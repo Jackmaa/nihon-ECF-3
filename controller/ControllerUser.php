@@ -6,6 +6,7 @@ class ControllerUser extends Controller {
         parent::__construct($router);
     }
 
+    // Handle user login
     public function login() {
         $model = new ModelUser();
         $model->isConnected();
@@ -33,12 +34,14 @@ class ControllerUser extends Controller {
         }
     }
 
+    // Handle user logout
     public function logout() {
         session_unset();
         session_destroy();
         header('Location: /nihon');
     }
 
+    // Handle user registration
     public function register() {
 
         if ($_SERVER['REQUEST_METHOD'] === "POST") {
