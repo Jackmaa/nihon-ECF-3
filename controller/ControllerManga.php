@@ -1,4 +1,4 @@
 <?php
-class ControllerManga {
+class ControllerManga extends Controller{
 
 }
