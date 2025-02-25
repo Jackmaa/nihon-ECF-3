@@ -9,6 +9,9 @@ $router->setBasePath('/nihon');
 //HOMEPAGE
 $router->map("GET", "/", "ControllerManga#home", "home");
 
+//LOGIN
+$router->map("GET|POST", "/login", "ControllerUser#login", "login");
+
 // Match the current request
 $match = $router->match();
 
@@ -21,7 +24,7 @@ if (is_array($match)) {
 
     // Check if the controller class exists
     if (class_exists($controller)) {
-        $obj = new $controller();
+        $obj = new $controller($router);
 
         // Check if the action method is callable
         if (is_callable([$obj, $action])) {

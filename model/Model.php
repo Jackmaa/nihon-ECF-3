@@ -4,8 +4,7 @@ abstract class Model {
     private static $db;
     private $cost;
 
-    // GETTERS 
-
+    // Get the database connection
     protected function getDb() {
         if (self::$db == null) {
             self::setDb();
@@ -14,7 +13,7 @@ abstract class Model {
         return self::$db;
     }
 
-    //SETTERS
+    // Set the database connection
     private static function setDb() {
         try {
             //charset utf8mb4 enables the storage of emoji (may not use it)
@@ -24,8 +23,7 @@ abstract class Model {
         }
     }
 
-    // Function to get the optimal hashing for a password
-    // based on the connexion to the server
+    // Function to get the optimal hashing cost for a password
     public function setCost($timeTarget) {
         // By default the hashing is 10
         $cost = 10;
