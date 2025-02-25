@@ -1,4 +1,6 @@
 <?php
-class ControllerManga extends Controller{
-
+class ControllerManga {
+    public function home() {
+        echo "Welcome to the homepage";
+    }
 }
