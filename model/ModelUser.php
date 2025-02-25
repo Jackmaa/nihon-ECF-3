@@ -2,7 +2,7 @@
 
 class ModelUser extends Model {
     public function getUser(string $email) {
-        $req = $this->getDb()->prepare('SELECT `id_user`, `name`, `email`, `password` FROM `user` WHERE `email` = :email');
+        $req = $this->getDb()->prepare('SELECT `id_user`, `username`, `email`, `password` FROM `user` WHERE `email` = :email');
         $req->bindParam(':email', $email, PDO::PARAM_STR);
         $req->execute();
 
@@ -21,9 +21,9 @@ class ModelUser extends Model {
         $user = $this->getDb()->prepare('SELECT `email` FROM user WHERE `email` = :email');
         $user->bindParam(':email', $email, PDO::PARAM_STR);
         $user->execute();
-        $data = $user->fetch(PDO::FETCH_ASSOC);
+        $user->fetch(PDO::FETCH_ASSOC);
 
-        if ($data->rowCount() > 0) {
+        if ($user->rowCount() > 0) {
             return false;
         } else {
             return true;
@@ -35,27 +35,37 @@ class ModelUser extends Model {
         $user = $this->getDb()->prepare('SELECT `username` FROM user WHERE `username` = :username');
         $user->bindParam(':username', $username, PDO::PARAM_STR);
         $user->execute();
-        $data = $user->fetch(PDO::FETCH_ASSOC);
+        $user->fetch(PDO::FETCH_ASSOC);
 
-        if ($data->rowCount() > 0) {
+        if ($user->rowCount() > 0) {
             return false;
         } else {
             return true;
         }
     }
 
-    public function createUser(string $username, string $email, string $password) {
+    public function createUser(string $username, string $email, string $password, int $token) {
 
         $user = $this->getDb()->prepare(
             'INSERT INTO
-                `user` (`username`, `email`, `password`, `signing_date`)
+                `user` (`username`, `email`, `password`, `signing_date`, `token`)
             VALUES
-                (:username, :email, :password, NOW())');
+                (:username, :email, :password, NOW(), :token)');
 
         $password = password_hash($password, PASSWORD_BCRYPT, ['cost' => $this->setCost(0.250)]);
         $user->bindParam(':username', $username, PDO::PARAM_STR);
         $user->bindParam(':email', $email, PDO::PARAM_STR);
         $user->bindParam(':password', $password, PDO::PARAM_STR);
+        $user->bindParam(':token', $token, PDO::PARAM_INT);
         $user->execute();
+    }
+
+    private function generateVerificationCode($length = 6) {
+        $characters = '0123456789';
+        $code = '';
+        for ($i = 0; $i < $length; $i++) {
+            $code .= $characters[rand(0, strlen($characters) - 1)];
+        }
+        return $code;
     }
 }
