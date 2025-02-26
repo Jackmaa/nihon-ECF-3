@@ -1,26 +1,23 @@
 <?php
-
-require_once './entity/Mailer.php';
-
-class ControllerUser extends Controller{
-
+class ControllerUser extends Controller {
+    public function __construct(AltoRouter $router) {
+        parent::__construct($router);
+    }
     // Handle user login
     public function login() {
         $model = new ModelUser();
         $model->isConnected();
-
-        //So normally we can access the $router globally with :
-        // $this->router->generate('home');
+        // On peut maintenant accéder à $this->router
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (! empty($_POST['mail']) && ! empty($_POST['password'])) {
                 $user = $model->getUser($_POST['mail']);
                 if ($user && password_verify($_POST['password'], $user->getPassword())) {
                     $_SESSION['id']   = $user->getId_user();
                     $_SESSION['name'] = $user->getUsername();
-                    header('Location: /nihon');
+                    header('Location: ' . $this->router->generate('home'));
                     exit();
                 } else {
-                    $error = 'email or password is not valid';
+                    $error = 'Email or password is not valid';
                     require_once './view/login.php';
                 }
             } else {
@@ -36,7 +33,7 @@ class ControllerUser extends Controller{
     public function logout() {
         session_unset();
         session_destroy();
-        header('Location: /nihon');
+        header('Location: ' . $this->router->generate('home'));
     }
 
     // Handle user registration
@@ -44,13 +41,9 @@ class ControllerUser extends Controller{
         $token = bin2hex(random_bytes(32));
         $expires_at = date('Y-m-d H:i:s', time() + 900); //TIMER ZER DE LA STREET
         if ($_SERVER['REQUEST_METHOD'] === "POST") {
-
             if (! empty($_POST['email']) && ! empty($_POST['password']) && ! empty($_POST['password_verify'])) {
-
                 if ($_POST['password'] === $_POST['password_verify']) {
-
                     $model = new ModelUser();
-
                     if ($model->checkUserMail($_POST['email']) && $model->checkUserName($_POST['username'])) {
                         $username = $_POST['username'];
                         $email = $_POST['email'];
