@@ -3,7 +3,7 @@
 class ModelUser extends Model {
     // Retrieve user details by email
     public function getUser(string $email) {
-        $req = $this->getDb()->prepare('SELECT `id_user`, `name`, `email`, `password` FROM `user` WHERE `email` = :email');
+        $req = $this->getDb()->prepare('SELECT `id_user`, `username`, `email`, `password` FROM `user` WHERE `email` = :email');
         $req->bindParam(':email', $email, PDO::PARAM_STR);
         $req->execute();
 
@@ -47,20 +47,34 @@ class ModelUser extends Model {
             return true;
         }
     }
-
-    // Create a new user with the provided details
-    public function createUser(string $username, string $email, string $password) {
-
+    public function createUser(string $username, string $email, string $password, string $token) {
         $user = $this->getDb()->prepare(
             'INSERT INTO
-                `user` (`username`, `email`, `password`, `signing_date`)
+                `user` (`username`, `email`, `password`, `signing_date`, `token`)
             VALUES
-                (:username, :email, :password, NOW())');
+                (:username, :email, :password, NOW(), :token)');
 
         $password = password_hash($password, PASSWORD_BCRYPT, ['cost' => $this->setCost(0.250)]);
         $user->bindParam(':username', $username, PDO::PARAM_STR);
         $user->bindParam(':email', $email, PDO::PARAM_STR);
         $user->bindParam(':password', $password, PDO::PARAM_STR);
+        $user->bindParam(':token', $token, PDO::PARAM_STR); // on avait laissé le INT ici donc il prenait que les chiffres
         $user->execute();
+    }
+
+    public function verifyToken(string $token, string $email){
+        $req = $this->getDb()->prepare('SELECT `email` FROM `user` WHERE `token` = ? AND `email`  = ? AND `is_verified` = 0');
+        $req->execute([$token, $email]);
+        $user = $req->fetch();
+
+        if($user){
+            $req = $this->getDb()->prepare('UPDATE `user` SET `is_verified` = 1 WHERE email = :email');
+            $req->bindParam(':email', $email, PDO::PARAM_STR);
+            $req->execute();
+
+            return $user;
+        } else {
+            return false;
+        }
     }
 }

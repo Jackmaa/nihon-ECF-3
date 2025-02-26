@@ -3,12 +3,10 @@ class ControllerUser extends Controller {
     public function __construct(AltoRouter $router) {
         parent::__construct($router);
     }
-
     // Handle user login
     public function login() {
         $model = new ModelUser();
         $model->isConnected();
-
         // On peut maintenant accéder à $this->router
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (! empty($_POST['mail']) && ! empty($_POST['password'])) {
@@ -40,13 +38,26 @@ class ControllerUser extends Controller {
 
     // Handle user registration
     public function register() {
+        $token = bin2hex(random_bytes(32));
         if ($_SERVER['REQUEST_METHOD'] === "POST") {
             if (! empty($_POST['email']) && ! empty($_POST['password']) && ! empty($_POST['password_verify'])) {
                 if ($_POST['password'] === $_POST['password_verify']) {
                     $model = new ModelUser();
                     if ($model->checkUserMail($_POST['email']) && $model->checkUserName($_POST['username'])) {
-                        $model->createUser($_POST['username'], $_POST['email'], $_POST['password']);
-                        echo "Compte créé avec succès !";
+                        $username = $_POST['username'];
+                        $email = $_POST['email'];
+                        $password = $_POST['password'];
+
+                        $insertResult = $model->createUser($username, $email, $password, $token);
+
+                            // Envoyer l'email de vérification
+                            $mailer = new Mailer($token);
+                            $verificationLink = "http://localhost/nihon/verify/?email=$email&code=$token";
+                            $sendResult = $mailer->sendVerificationEmail($email, $username, $verificationLink);
+                            var_dump($token);
+    
+                        echo "Compte crée avec succès !";
+
                         require_once './view/home.php';
                     } else {
                         echo "Email or username is already taken.";
@@ -64,4 +75,23 @@ class ControllerUser extends Controller {
             require_once './view/register.php';
         }
     }
+
+    public function verify(){
+        $token = $_GET['code'] ?? '';
+        $email = $_GET['email'] ?? '';
+        if($token && $email){
+
+            $model = new ModelUser();
+            if($model->verifyToken($token, $email)){
+                echo 'Everything went fine';
+                header('Location: /nihon/login');
+            } else {
+                echo 'There was a problem when you tried to log in';
+            }
+            
+        } else {
+            echo 'Check email again';
+        }
+    }
+
 }
