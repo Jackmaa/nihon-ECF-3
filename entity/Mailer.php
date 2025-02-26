@@ -1,7 +1,6 @@
 <?php
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
-
 $dir = "C:\wamp64\www\\nihon\\";
 
 $dotenv = Dotenv\Dotenv::createImmutable($dir);
@@ -22,7 +21,7 @@ class Mailer {
         $this->mail->isSMTP();
         $this->mail->Host     = 'sandbox.smtp.mailtrap.io';
         $this->mail->SMTPAuth = true;
-        $this->mail->Port     = 2525;
+        $this->mail->Port = 2525;
         $this->mail->Username = $_ENV['MAIL_USERNAME'];
         $this->mail->Password = $_ENV['MAIL_PASSWORD'];
     }
