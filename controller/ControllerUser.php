@@ -39,23 +39,22 @@ class ControllerUser extends Controller {
     // Handle user registration
     public function register() {
         $token = bin2hex(random_bytes(32));
-        $expires_at = date('Y-m-d H:i:s', time() + 900); //TIMER ZER DE LA STREET
         if ($_SERVER['REQUEST_METHOD'] === "POST") {
             if (! empty($_POST['email']) && ! empty($_POST['password']) && ! empty($_POST['password_verify'])) {
                 if ($_POST['password'] === $_POST['password_verify']) {
                     $model = new ModelUser();
                     if ($model->checkUserMail($_POST['email']) && $model->checkUserName($_POST['username'])) {
                         $username = $_POST['username'];
-                        $email = $_POST['email'];
+                        $email    = $_POST['email'];
                         $password = $_POST['password'];
 
                         $insertResult = $model->createTempUser($username, $email, $password, $token);
 
-                            // Envoyer l'email de vérification
-                            $mailer = new Mailer($token);
-                            $verificationLink = "http://localhost/nihon/verify/?email=$email&code=$token";
-                            $sendResult = $mailer->sendVerificationEmail($email, $username, $verificationLink);
-    
+                        // Envoyer l'email de vérification
+                        $mailer           = new Mailer($token);
+                        $verificationLink = "http://localhost/nihon/verify/?email=$email&code=$token";
+                        $sendResult       = $mailer->sendVerificationEmail($email, $username, $verificationLink);
+
                         echo "Your account was created ! An email has been sent, please check it out to verify your email.";
 
                         require_once './view/home.php';
@@ -80,13 +79,12 @@ class ControllerUser extends Controller {
 
         $token = $_GET['code'] ?? '';
         $email = $_GET['email'] ?? '';
-    
+
         if ($token && $email) {
             $model = new ModelUser();
-            $user = $model->verifyToken($token, $email);
-            var_dump($user);
+            $user  = $model->verifyToken($token, $email);
             $model->createUser($user['username'], $user['email'], $user['password']);
-    
+
             // if ($user) {
             //     $_SESSION['user'] = [
             //         'email' => $user['email'],
@@ -102,6 +100,5 @@ class ControllerUser extends Controller {
             echo 'Please fait un effort ptn.';
         }
     }
-    
 
 }
