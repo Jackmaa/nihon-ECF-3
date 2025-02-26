@@ -48,7 +48,6 @@ class ModelUser extends Model {
         }
     }
 
-
     //Create pending user
     public function createUser(string $username, string $email, string $password) {
 
@@ -67,10 +66,10 @@ class ModelUser extends Model {
         $user->execute();
     }
 
-    public function createTempUser(string $username, string $email, string $password, string $token){
+    public function createTempUser(string $username, string $email, string $password, string $token) {
         $expiryTime = time() + (15 * 60);
-        $user = $this->getDb()->prepare('INSERT INTO `email_verify` (`username`, `email`, `password`, `expires_at`, `token`) VALUES (:username, :email, :password, :expires_at, :token)');
-        $password = password_hash($password, PASSWORD_BCRYPT, ['cost' => $this->setCost(0.250)]);
+        $user       = $this->getDb()->prepare('INSERT INTO `email_verify` (`username`, `email`, `password`, `expires_at`, `token`) VALUES (:username, :email, :password, :expires_at, :token)');
+        $password   = password_hash($password, PASSWORD_BCRYPT, ['cost' => $this->setCost(0.250)]);
         $user->bindParam(':username', $username, PDO::PARAM_STR);
         $user->bindParam(':email', $email, PDO::PARAM_STR);
         $user->bindParam(':password', $password, PDO::PARAM_STR);
@@ -80,17 +79,17 @@ class ModelUser extends Model {
 
     }
 
-    public function verifyToken(string $token, string $email){
+    public function verifyToken(string $token, string $email) {
         $req = $this->getDb()->prepare('SELECT `username`, `email`, `password`, `expires_at` FROM `email_verify` WHERE `token` = ? AND `email`  = ?');
         $req->execute([$token, $email]);
-        $user = $req->fetch(PDO::FETCH_ASSOC);
-
-        if($user['expires_at'] > time()){
+        $data          = $req->fetch(PDO::FETCH_ASSOC);
+        $expiringTimer = $data['expires_at'];
+        if ($expiringTimer > time()) {
             $req = $this->getDb()->prepare('DELETE FROM `email_verify` WHERE `email` = :email');
             $req->bindParam(':email', $email, PDO::PARAM_STR);
             $req->execute();
 
-            return $user;
+            return $data;
         } else {
             return false;
         }
