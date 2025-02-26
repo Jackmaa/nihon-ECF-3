@@ -1,7 +1,11 @@
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-require_once './vendor/autoload.php';
+
+$dir = "C:\wamp64\www\\nihon\\";
+
+$dotenv = Dotenv\Dotenv::createImmutable($dir);
+$dotenv->load();
 
 class Mailer {
     private $mail;
@@ -19,8 +23,8 @@ class Mailer {
         $this->mail->Host = 'sandbox.smtp.mailtrap.io';
         $this->mail->SMTPAuth = true;
         $this->mail->Port = 2525;
-        $this->mail->Username = '227c72b022dd6d';
-        $this->mail->Password = '5bf5ecbe5ffe93';
+        $this->mail->Username = $_ENV['MAIL_USERNAME'];
+        $this->mail->Password = $_ENV['MAIL_PASSWORD'];
     }
 
     public function sendVerificationEmail($email, $username, $verificationlink) {

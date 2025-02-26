@@ -42,6 +42,7 @@ class ControllerUser extends Controller{
     // Handle user registration
     public function register() {
         $token = bin2hex(random_bytes(32));
+        $expires_at = date('Y-m-d H:i:s', time() + 900); //TIMER ZER DE LA STREET
         if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
             if (! empty($_POST['email']) && ! empty($_POST['password']) && ! empty($_POST['password_verify'])) {
@@ -55,15 +56,14 @@ class ControllerUser extends Controller{
                         $email = $_POST['email'];
                         $password = $_POST['password'];
 
-                        $insertResult = $model->createUser($username, $email, $password, $token);
+                        $insertResult = $model->createTempUser($username, $email, $password, $token);
 
                             // Envoyer l'email de vérification
                             $mailer = new Mailer($token);
                             $verificationLink = "http://localhost/nihon/verify/?email=$email&code=$token";
                             $sendResult = $mailer->sendVerificationEmail($email, $username, $verificationLink);
-                            var_dump($token);
     
-                        echo "Compte crée avec succès !";
+                        echo "Your account was created ! An email has been sent, please check it out to verify your email.";
 
                         require_once './view/home.php';
                     } else {
@@ -83,22 +83,32 @@ class ControllerUser extends Controller{
         }
     }
 
-    public function verify(){
+    public function verify() {
+
         $token = $_GET['code'] ?? '';
         $email = $_GET['email'] ?? '';
-        if($token && $email){
-
+    
+        if ($token && $email) {
             $model = new ModelUser();
-            if($model->verifyToken($token, $email)){
-                echo 'Everything went fine';
-                header('Location: /nihon/login');
-            } else {
-                echo 'There was a problem when you tried to log in';
-            }
-            
+            $user = $model->verifyToken($token, $email);
+            var_dump($user);
+            $model->createUser($user['username'], $user['email'], $user['password']);
+    
+            // if ($user) {
+            //     $_SESSION['user'] = [
+            //         'email' => $user['email'],
+            //         'id' => $user['id'],
+            //         'is_verified' => true,
+            //     ];
+            //     header('Location: /nihon/home');
+            //     exit();
+            // } else {
+            //     echo 'Invalid token or email.';
+            // }
         } else {
-            echo 'Check email again';
+            echo 'Please fait un effort ptn.';
         }
     }
+    
 
 }
