@@ -9,8 +9,12 @@ $router->setBasePath('/nihon');
 //HOMEPAGE
 $router->map("GET", "/", "ControllerManga#home", "home");
 
+//USER 
 //LOGIN
 $router->map("GET|POST", "/login", "ControllerUser#login", "login");
+
+//REGISTER
+$router->map("GET|POST", "/register", "ControllerUser#register", "register");
 
 // Match the current request
 $match = $router->match();
