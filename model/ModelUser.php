@@ -26,7 +26,7 @@ class ModelUser extends Model {
         $user->execute();
         $data = $user->fetch(PDO::FETCH_ASSOC);
 
-        if ($data->rowCount() > 0) {
+        if ($data) {
             return false;
         } else {
             return true;
@@ -41,7 +41,7 @@ class ModelUser extends Model {
         $user->execute();
         $data = $user->fetch(PDO::FETCH_ASSOC);
 
-        if ($data->rowCount() > 0) {
+        if ($data) {
             return false;
         } else {
             return true;
