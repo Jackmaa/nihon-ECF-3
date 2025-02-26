@@ -86,8 +86,6 @@ class ControllerUser extends Controller{
     public function verify(){
         $token = $_GET['code'] ?? '';
         $email = $_GET['email'] ?? '';
-            var_dump($token);
-            var_dump($email);
         if($token && $email){
 
             $model = new ModelUser();
@@ -97,6 +95,7 @@ class ControllerUser extends Controller{
             } else {
                 echo 'There was a problem when you tried to log in';
             }
+            
         } else {
             echo 'Check email again';
         }

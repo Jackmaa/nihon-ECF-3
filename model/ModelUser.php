@@ -56,7 +56,7 @@ class ModelUser extends Model {
         $user->bindParam(':username', $username, PDO::PARAM_STR);
         $user->bindParam(':email', $email, PDO::PARAM_STR);
         $user->bindParam(':password', $password, PDO::PARAM_STR);
-        $user->bindParam(':token', $token, PDO::PARAM_INT);
+        $user->bindParam(':token', $token, PDO::PARAM_STR); // on avait laissé le INT ici donc il prenait que les chiffres
         $user->execute();
     }
 
