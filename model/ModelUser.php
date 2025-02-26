@@ -44,7 +44,7 @@ class ModelUser extends Model {
         }
     }
 
-    public function createUser(string $username, string $email, string $password, int $token) {
+    public function createUser(string $username, string $email, string $password, string $token) {
 
         $user = $this->getDb()->prepare(
             'INSERT INTO
@@ -60,12 +60,19 @@ class ModelUser extends Model {
         $user->execute();
     }
 
-    private function generateVerificationCode($length = 6) {
-        $characters = '0123456789';
-        $code = '';
-        for ($i = 0; $i < $length; $i++) {
-            $code .= $characters[rand(0, strlen($characters) - 1)];
+    public function verifyToken(string $token, string $email){
+        $req = $this->getDb()->prepare('SELECT `email` FROM `user` WHERE `token` = ? AND `email`  = ? AND `is_verified` = 0');
+        $req->execute([$token, $email]);
+        $user = $req->fetch();
+
+        if($user){
+            $req = $this->getDb()->prepare('UPDATE `user` SET `is_verified` = 1 WHERE email = :email');
+            $req->bindParam(':email', $email, PDO::PARAM_STR);
+            $req->execute();
+
+            return $user;
+        } else {
+            return false;
         }
-        return $code;
     }
 }

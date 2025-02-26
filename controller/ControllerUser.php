@@ -41,7 +41,7 @@ class ControllerUser extends Controller{
 
     // Handle user registration
     public function register() {
-
+        $token = bin2hex(random_bytes(32));
         if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
             if (! empty($_POST['email']) && ! empty($_POST['password']) && ! empty($_POST['password_verify'])) {
@@ -54,22 +54,14 @@ class ControllerUser extends Controller{
                         $username = $_POST['username'];
                         $email = $_POST['email'];
                         $password = $_POST['password'];
-                        $verificationCode = $this->generateVerificationCode();//VERIFIERRRRRRRRRRRRRRRRR
 
-                        $insertResult = $model->createUser($_POST['username'], $_POST['email'], $_POST['password'], $verificationCode);
+                        $insertResult = $model->createUser($username, $email, $password, $token);
 
-                        if ($insertResult === true) {
                             // Envoyer l'email de vérification
-                            $mailer = new Mailer();
-                            $verificationLink = "http://tonsite.com/verify.php?email=$email&code=$verificationCode";
+                            $mailer = new Mailer($token);
+                            $verificationLink = "http://localhost/nihon/verify/?email=$email&code=$token";
                             $sendResult = $mailer->sendVerificationEmail($email, $username, $verificationLink);
-                            if ($sendResult === true) {
-                                echo "Compte créé avec succès ! Un email de vérification a été envoyé.";
-                            } else {
-                                echo $sendResult;
-                                require_once './view/register.php';
-                            }
-                        }
+                            var_dump($token);
     
                         echo "Compte crée avec succès !";
 
@@ -91,12 +83,23 @@ class ControllerUser extends Controller{
         }
     }
 
-    private function generateVerificationCode($length = 6) {
-        $characters = '0123456789';
-        $code = '';
-        for ($i = 0; $i < $length; $i++) {
-            $code .= $characters[rand(0, strlen($characters) - 1)];
+    public function verify(){
+        $token = $_GET['code'] ?? '';
+        $email = $_GET['email'] ?? '';
+            var_dump($token);
+            var_dump($email);
+        if($token && $email){
+
+            $model = new ModelUser();
+            if($model->verifyToken($token, $email)){
+                echo 'Everything went fine';
+                header('Location: /nihon/login');
+            } else {
+                echo 'There was a problem when you tried to log in';
+            }
+        } else {
+            echo 'Check email again';
         }
-        return $code;
     }
+
 }

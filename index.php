@@ -15,6 +15,9 @@ $router->map("GET|POST", "/login", "ControllerUser#login", "login");
 //REGISTER
 $router->map("GET|POST", "/register", "ControllerUser#register", "register");
 
+//VERIFY
+$router->map("GET", "/verify/*", "ControllerUser#verify", "verify");
+
 $match = $router->match();
 
 
