@@ -1,7 +1,6 @@
 <?php
-use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-
+use PHPMailer\PHPMailer\PHPMailer;
 $dir = "C:\wamp64\www\\nihon\\";
 
 $dotenv = Dotenv\Dotenv::createImmutable($dir);
@@ -12,7 +11,7 @@ class Mailer {
     private $token;
 
     public function __construct($token) {
-        $this->mail = new PHPMailer(true);
+        $this->mail  = new PHPMailer(true);
         $this->token = $token;
         $this->configureMailer();
     }
@@ -20,7 +19,7 @@ class Mailer {
     private function configureMailer() {
         $this->mail->CharSet = 'UTF-8';
         $this->mail->isSMTP();
-        $this->mail->Host = 'sandbox.smtp.mailtrap.io';
+        $this->mail->Host     = 'sandbox.smtp.mailtrap.io';
         $this->mail->SMTPAuth = true;
         $this->mail->Port = 2525;
         $this->mail->Username = $_ENV['MAIL_USERNAME'];
@@ -34,7 +33,7 @@ class Mailer {
             $this->mail->addAttachment('asset/img/Group 10.svg');
             $this->mail->isHTML(true);
             $this->mail->Subject = 'Confirme ton inscription à NIHON ! 📖✨';
-            $this->mail->Body = '<p style="font-family: Arial, sans-serif; font-size: 16px; color: #333;">
+            $this->mail->Body    = '<p style="font-family: Arial, sans-serif; font-size: 16px; color: #333;">
                 Salut ' . $username . ', <br><br>
                 Bienvenue sur <strong>NIHON</strong>, ta nouvelle mangathèque en ligne ! 🎉 <br>
                 Avant de commencer ton aventure parmi nos milliers de mangas, il ne te reste plus qu’une étape : confirmer ton adresse e-mail. <br><br>
