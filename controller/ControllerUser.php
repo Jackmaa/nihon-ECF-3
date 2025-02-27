@@ -82,8 +82,13 @@ class ControllerUser extends Controller {
 
         if ($token && $email) {
             $model = new ModelUser();
-            $user  = $model->verifyToken($token, $email);
-            $model->createUser($user['username'], $user['email'], $user['password']);
+            $timer = $model->verifyToken($token, $email);
+            if ($timer > time()) {
+                $user = $model->getTempUser($email);
+                $model->createUser($user['username'], $user['email'], $user['password']);
+                $model->deleteTempUser($email);
+                echo 'Your account has been verified. You can now log in.';
+            }
 
             // if ($user) {
             //     $_SESSION['user'] = [
