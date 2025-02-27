@@ -272,7 +272,8 @@
                 </div>
     </section>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
-    <script src="public\asset\js\main.js"></script>
+    <script src="public\asset\js\base.js"></script>
+    <script src="public\asset\js\home.js"></script>
 </body>
 
 </html>

@@ -1,231 +1,12 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Bangers&family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Kaisei+Tokumin&display=swap");
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  box-sizing: border-box;
-  scroll-behavior: smooth;
-  min-height: 100vh;
-  padding: 2vw;
-  background-color: #f2ebe8;
-}
-
-.font-bangers {
-  font-family: "Bangers", serif;
-}
-
-.font-barlow-condensed {
-  font-family: "Barlow Condensed", serif;
-}
-
-.font-kaisei-tokumin {
-  font-family: "Kaisei Tokumin", serif;
-}
-
-.button {
-  background-color: #cc392b;
-  color: white;
-  padding: 10px 60px;
-  border-radius: 15px;
-  cursor: pointer;
-}
-
-header {
-  display: flex;
-  justify-content: space-between;
-  padding: 50px;
-}
-
-.connexion {
-  text-align: center;
-}
-
-.backform {
-  background-color: #ffffff;
-  font-weight: bold;
-  padding: 10px;
-  color: black;
-}
-
-input {
-  border-radius: 10px;
-}
-
-input::-moz-placeholder {
-  color: black;
-}
-
-input::placeholder {
-  color: black;
-}
-
-h1 {
-  font-family: bangers;
-}
-
-.footer {
-  display: flex;
-}
-
-.clickhere {
-  color: #cc392b;
-}
-
-.mb-10 {
-  margin: 10px;
-}
-
-.flex {
-  display: flex;
-}
-
-.flex1 {
-  display: flex;
-  justify-content: space-between;
-}
-
-.copyright {
-  text-align: center;
-}
-
-.connexion {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#img-connexion {
-  display: none;
-}
-
-#img-connexion img {
-  max-width: 50%;
-}
-
-#img-subscrire {
-  max-width: 90%;
-}
-
-#img-subscrire {
-  display: none;
-}
-
-/* Tablette en portrait*/
-@media (min-width: 600px) {
-  #img-connexion {
-    display: block;
-    width: 40vw;
-  }
-  .connexion {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-  }
-  .form-container {
-    width: auto;
-  }
-  .form-container h1 {
-    font-size: 1.5rem;
-  }
-  .form-container input,
-  .form-container button {
-    font-size: 1.5rem;
-    margin-bottom: 2vh;
-  }
-  #img-subscrire {
-    display: block;
-    width: 60vw;
-  }
-}
-/*Tablette en paysage*/
-@media (min-width: 768px) {
-  #img-connexion {
-    display: block;
-    width: 40vw;
-  }
-  .connexion {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-  }
-  .form-container {
-    width: auto;
-  }
-  .form-container h1 {
-    font-size: 1.5rem;
-  }
-  .form-container input,
-  .form-container button {
-    font-size: 1rem;
-    margin-bottom: 2vh;
-  }
-  #img-subscrire {
-    display: block;
-    width: 60vw;
-  }
-}
-/* Écran d'ordinateur portable*/
-@media (min-width: 1024px) {
-  #img-connexion {
-    display: block;
-    width: 40vw;
-  }
-  .connexion {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-  }
-  .form-container {
-    width: auto;
-  }
-  .form-container h1 {
-    font-size: 1.5rem;
-  }
-  .form-container input,
-  .form-container button {
-    font-size: 1.5rem;
-    margin-bottom: 2.5vh;
-  }
-  #img-subscrire {
-    display: block;
-    width: 60vw;
-  }
-}
-/*Grand écran de PC / TV*/
-@media (min-width: 1440px) {
-  #img-connexion {
-    display: block;
-    width: 40vw;
-  }
-  .connexion {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-  }
-  .form-container {
-    width: auto;
-  }
-  .form-container h1 {
-    font-size: 2rem;
-  }
-  .form-container input,
-  .form-container button {
-    font-size: 1.5rem;
-    margin-bottom: 2.5vh;
-  }
-  #img-subscrire {
-    display: block;
-    width: 60vw;
-  }
-}
-/*------------------------------RESET ------------------------------*/
+/*
+**********************************
+***********RESET CSS************
+**********************************
+*/
 *,
-*::before,
-*::after {
+*::before, *::after {
   margin: 0;
   padding: 0;
 }
@@ -247,11 +28,7 @@ img {
   max-width: 100%;
 }
 
-a,
-p,
-ul,
-li,
-label {
+a, p, ul, li, label {
   text-decoration: none;
   list-style: none;
   line-height: 1.35rem;
@@ -262,16 +39,15 @@ figcaption {
   display: none;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
   line-height: 1.75rem;
 }
 
-/*--------------------- VARIABLES--------------------*/
+/*
+**********************************
+***********VARIABLES************
+**********************************
+*/
 :root {
   --ff-bangers: "Bangers", serif;
   --ff-barlow: "Barlow Condensed", serif;
@@ -287,18 +63,225 @@ h6 {
   --mb-5: 5vw;
 }
 
-/*------------------GENERAL STYLING----------------*/
+/*
+**********************************
+***********GENERAL STYLING************
+**********************************
+*/
 .p-all-2 {
   padding: 2vw;
 }
 
-/*------------------HEADER----------------*/
+/*
+**********************************
+***********HEADER************
+**********************************
+*/
 .menu-mobile {
   display: flex;
   justify-content: space-between;
 }
 
-/*------------------SLIDER----------------*/
+/*
+**********************************
+***********MENU BURGER************
+**********************************
+*/
+.menu-desktop {
+  display: none;
+}
+
+.menu-burger {
+  cursor: pointer;
+}
+.menu-burger img.svg {
+  transition: filter 0.3s ease;
+}
+.menu-burger:hover img {
+  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5)) brightness(1.2);
+}
+
+.burger-menu {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  z-index: 1000;
+  padding: 20px;
+  background: linear-gradient(to bottom, #cc392b, #231b19);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  transform: translateX(-100%);
+  transition: none;
+}
+.burger-menu.active {
+  display: block;
+}
+.burger-menu ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--ff-bangers);
+  height: 100%;
+  font-size: var(--fs-2);
+  margin-bottom: var(--mb-5);
+}
+.burger-menu ul li a {
+  display: block;
+  padding: 10px;
+  color: var(--fc-light);
+  transition: all 0.5s ease;
+  margin-bottom: var(--mb-5);
+}
+.burger-menu ul li a:hover {
+  background-color: var(--primary-clr-red);
+}
+
+.menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 15px 20px;
+  position: absolute;
+  top: 15px;
+  left: 0;
+}
+
+.menu-logo {
+  height: 8vw;
+  margin: 0 auto;
+}
+
+.close-menu {
+  position: absolute;
+  top: 0;
+  left: 15px;
+  font-size: 4rem;
+  font-weight: bold;
+  color: var(--fc-black);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.close-menu:hover {
+  transform: rotate(90deg);
+}
+
+/*
+**********************************
+***********FOOTER************
+**********************************
+*/
+footer > p {
+  margin-bottom: 1%;
+  padding: 0 20px;
+}
+
+.flex {
+  display: flex;
+}
+.flex a, .flex img {
+  width: 100%;
+  margin-right: 1.5vw;
+  transition: all ease 0.3s;
+}
+.flex a:hover, .flex img:hover {
+  background-color: #333;
+}
+
+.flex1 {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.copyright {
+  text-align: center;
+}
+.copyright a {
+  color: var(--fc-black);
+  transition: all ease 0.3s;
+  margin: 0 3vw;
+}
+.copyright a:hover {
+  color: #cc392b;
+}
+.copyright p {
+  margin-top: 0.5%;
+  font-weight: 700;
+}
+
+/*
+**********************************
+***********LOGIN************
+**********************************
+*/
+.connexion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.connexion h1 {
+  font-family: var(--ff-bangers);
+  margin-bottom: 1.5rem;
+}
+.connexion input {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  background-color: var(--fc-light);
+  padding: 10px;
+  color: black;
+  margin-bottom: var(--mb-5);
+}
+.connexion input::-moz-placeholder {
+  color: rgba(51, 51, 51, 0.4431372549);
+  font-family: var(--ff-barlow);
+  font-weight: 400;
+}
+.connexion input::placeholder {
+  color: rgba(51, 51, 51, 0.4431372549);
+  font-family: var(--ff-barlow);
+  font-weight: 400;
+}
+.connexion button {
+  background-color: #cc392b;
+  color: white;
+  padding: 10px 60px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-family: var(--ff-bangers);
+  transition: all ease 0.3s;
+}
+.connexion button:hover {
+  background-color: #cc1606;
+}
+
+#img-connexion {
+  display: none;
+}
+#img-connexion img {
+  max-width: 50%;
+}
+
+/*
+**********************************
+*************REGISTER*************
+**********************************
+*/
+#img-subscrire {
+  max-width: 90%;
+  display: none;
+}
+
+/*
+**********************************
+*************SLIDER HERO*************
+**********************************
+*/
 .carousel {
   position: relative;
   overflow: hidden;
@@ -429,88 +412,6 @@ h6 {
   width: 100%;
 }
 
-.menu-desktop {
-  display: none;
-}
-
-.menu-burger {
-  cursor: pointer;
-}
-.menu-burger img.svg {
-  transition: filter 0.3s ease;
-}
-.menu-burger:hover img {
-  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5)) brightness(1.2);
-}
-
-.burger-menu {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 100vh;
-  z-index: 1000;
-  padding: 20px;
-  background: linear-gradient(to bottom, #cc392b, #231b19);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-  transform: translateX(-100%);
-  transition: none;
-}
-.burger-menu.active {
-  display: block;
-}
-.burger-menu ul {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--ff-bangers);
-  height: 100%;
-  font-size: var(--fs-2);
-  margin-bottom: var(--mb-5);
-}
-.burger-menu ul li a {
-  display: block;
-  padding: 10px;
-  color: var(--fc-light);
-  transition: all 0.5s ease;
-  margin-bottom: var(--mb-5);
-}
-.burger-menu ul li a:hover {
-  background-color: var(--primary-clr-red);
-}
-
-.menu-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  padding: 15px 20px;
-  position: absolute;
-  top: 15px;
-  left: 0;
-}
-
-.menu-logo {
-  height: 8vw;
-  margin: 0 auto;
-}
-
-.close-menu {
-  position: absolute;
-  top: 0;
-  left: 15px;
-  font-size: 4rem;
-  font-weight: bold;
-  color: var(--fc-black);
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-.close-menu:hover {
-  transform: rotate(90deg);
-}
-
 .slider {
   position: relative;
   overflow: hidden;
@@ -619,7 +520,98 @@ h6 {
 *********MEDIA QUERIES************
 **********************************
 */
+@media (min-width: 600px) {
+  /*
+  **********************************
+  ***********LOGIN/REGISTER************
+  **********************************
+  */
+  #img-connexion {
+    display: block;
+    width: 40vw;
+  }
+  .connexion {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  .form-container {
+    width: auto;
+  }
+  .form-container h1 {
+    font-size: 1.5rem;
+  }
+  .form-container input,
+  .form-container button {
+    font-size: 1.5rem;
+    margin-bottom: 2vh;
+  }
+  #img-subscrire {
+    display: block;
+    width: 60vw;
+  }
+}
+@media (min-width: 768px) {
+  /*
+  **********************************
+  ***********LOGIN/REGISTER************
+  **********************************
+  */
+  #img-connexion {
+    display: block;
+    width: 40vw;
+  }
+  .connexion {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  .form-container {
+    width: auto;
+  }
+  .form-container h1 {
+    font-size: 1.5rem;
+  }
+  .form-container input,
+  .form-container button {
+    font-size: 1rem;
+    margin-bottom: 2vh;
+  }
+  #img-subscrire {
+    display: block;
+    width: 60vw;
+  }
+}
 @media (min-width: 1024px) {
+  /*
+  **********************************
+  ***********LOGIN/REGISTER************
+  **********************************
+  */
+  #img-connexion {
+    display: block;
+    width: 40vw;
+  }
+  .connexion {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  .form-container {
+    width: auto;
+  }
+  .form-container h1 {
+    font-size: 1.5rem;
+  }
+  .form-container input,
+  .form-container button {
+    font-size: 1.5rem;
+    margin-bottom: 2.5vh;
+  }
+  #img-subscrire {
+    display: block;
+    width: 60vw;
+  }
   /*
   **********************************
   ***********MENU BURGER************
@@ -637,5 +629,36 @@ h6 {
   .menu-desktop figure,
   .menu-desktop img {
     width: 25%;
+  }
+}
+@media (min-width: 1440px) {
+  /*
+  **********************************
+  ***********LOGIN/REGISTER************
+  **********************************
+  */
+  #img-connexion {
+    display: block;
+    width: 40vw;
+  }
+  .connexion {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  .form-container {
+    width: auto;
+  }
+  .form-container h1 {
+    font-size: 2rem;
+  }
+  .form-container input,
+  .form-container button {
+    font-size: 1.5rem;
+    margin-bottom: 2.5vh;
+  }
+  #img-subscrire {
+    display: block;
+    width: 60vw;
   }
 }/*# sourceMappingURL=styles.css.map */
