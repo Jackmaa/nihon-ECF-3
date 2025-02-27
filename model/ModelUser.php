@@ -73,25 +73,28 @@ class ModelUser extends Model {
         $user->bindParam(':username', $username, PDO::PARAM_STR);
         $user->bindParam(':email', $email, PDO::PARAM_STR);
         $user->bindParam(':password', $password, PDO::PARAM_STR);
-        $user->bindParam(':expires_at', $expiryTime, PDO::PARAM_STR);
+        $user->bindParam(':expires_at', $expiryTime, PDO::PARAM_INT);
         $user->bindParam(':token', $token, PDO::PARAM_STR);
         $user->execute();
 
     }
 
     public function verifyToken(string $token, string $email) {
-        $req = $this->getDb()->prepare('SELECT `username`, `email`, `password`, `expires_at` FROM `email_verify` WHERE `token` = ? AND `email`  = ?');
+        $req = $this->getDb()->prepare('SELECT`expires_at` FROM `email_verify` WHERE `token` = ? AND `email`  = ?');
         $req->execute([$token, $email]);
-        $data          = $req->fetch(PDO::FETCH_ASSOC);
-        $expiringTimer = $data['expires_at'];
-        if ($expiringTimer > time()) {
-            $req = $this->getDb()->prepare('DELETE FROM `email_verify` WHERE `email` = :email');
-            $req->bindParam(':email', $email, PDO::PARAM_STR);
-            $req->execute();
+        $expiringTimer = $req->fetch(PDO::FETCH_ASSOC);
+        return $expiringTimer;
+    }
 
-            return $data;
-        } else {
-            return false;
-        }
+    public function getTempUser(string $email) {
+        $req = $this->getDb()->prepare('SELECT `username`, `email`, `password` FROM `email_verify` WHERE `email` = ?');
+        $req->execute([$email]);
+        $data = $req->fetch(PDO::FETCH_ASSOC);
+        return $data;
+    }
+
+    public function deleteTempUser(string $email) {
+        $req = $this->getDb()->prepare('DELETE FROM `email_verify` WHERE `email` = ?');
+        $req->execute([$email]);
     }
 }
