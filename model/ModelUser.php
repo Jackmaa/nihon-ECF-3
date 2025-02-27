@@ -59,7 +59,6 @@ class ModelUser extends Model {
             VALUES
                 (:username, :email, :password, NOW())');
 
-        $password = password_hash($password, PASSWORD_BCRYPT, ['cost' => $this->setCost(0.250)]);
         $user->bindParam(':username', $username, PDO::PARAM_STR);
         $user->bindParam(':email', $email, PDO::PARAM_STR);
         $user->bindParam(':password', $password, PDO::PARAM_STR);
