@@ -4,7 +4,6 @@ require_once './vendor/autoload.php';
 require_once './vendor/altorouter/altorouter/AltoRouter.php';
 
 $router = new AltoRouter();
-$router->setBasePath('/nihon');
 
 //HOMEPAGE
 $router->map("GET", "/", "ControllerManga#home", "home");
@@ -62,3 +61,4 @@ if (is_array($match)) {
 } else {
     // Error: No route matched
     echo "Error: No route matched.";
+}}
