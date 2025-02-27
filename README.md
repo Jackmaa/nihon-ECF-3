@@ -1,8 +1,16 @@
 # 🌐 **NIHON**
 
-## 🚀 **Our Goal**
+✨ **Why NIHON? What does it mean?**
+
+Nihon is an online manga library designed to provide an organized and user-friendly way to explore and manage your favorite manga. The name Nihon was chosen as a play on words: in Japanese, Hon (本) means "book," and we wanted a name that reflects both our passion for manga and its cultural origins.
 
 ---
+
+## 🚀 **Our Goal**
+
+Create a comprehensive and user-friendly online manga library that allows users to browse, search, and borrow their favorite mangas. Nihon aims to provide a smooth and intuitive experience, following MVC principles for clean and scalable architecture, and ensuring a visually appealing and responsive UI.
+
+## Ultimately, the goal is to make Nihon a go-to platform for manga enthusiasts, offering an organized, efficient, and enjoyable way to explore and track their favorite manga.
 
 ## 👥 **Project By**
 
