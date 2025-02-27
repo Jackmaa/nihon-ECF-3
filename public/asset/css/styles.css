@@ -1,22 +1,17 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Bangers&family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Kaisei+Tokumin&display=swap");
-/*------------------------------RESET ------------------------------*/
-*, *::before, *::after {
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: smooth;
-  }
-}
 body {
   box-sizing: border-box;
   scroll-behavior: smooth;
   min-height: 100vh;
   padding: 2vw;
-  background-color: #F2EBE8;
+  background-color: #f2ebe8;
 }
 
 .font-bangers {
@@ -32,7 +27,7 @@ body {
 }
 
 .button {
-  background-color: #CC392B;
+  background-color: #cc392b;
   color: white;
   padding: 10px 60px;
   border-radius: 15px;
@@ -50,7 +45,7 @@ header {
 }
 
 .backform {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   font-weight: bold;
   padding: 10px;
   color: black;
@@ -77,7 +72,7 @@ h1 {
 }
 
 .clickhere {
-  color: #CC392B;
+  color: #cc392b;
 }
 
 .mb-10 {
@@ -136,7 +131,8 @@ h1 {
   .form-container h1 {
     font-size: 1.5rem;
   }
-  .form-container input, .form-container button {
+  .form-container input,
+  .form-container button {
     font-size: 1.5rem;
     margin-bottom: 2vh;
   }
@@ -162,7 +158,8 @@ h1 {
   .form-container h1 {
     font-size: 1.5rem;
   }
-  .form-container input, .form-container button {
+  .form-container input,
+  .form-container button {
     font-size: 1rem;
     margin-bottom: 2vh;
   }
@@ -188,7 +185,8 @@ h1 {
   .form-container h1 {
     font-size: 1.5rem;
   }
-  .form-container input, .form-container button {
+  .form-container input,
+  .form-container button {
     font-size: 1.5rem;
     margin-bottom: 2.5vh;
   }
@@ -214,14 +212,33 @@ h1 {
   .form-container h1 {
     font-size: 2rem;
   }
-  .form-container input, .form-container button {
+  .form-container input,
+  .form-container button {
     font-size: 1.5rem;
     margin-bottom: 2.5vh;
   }
   #img-subscrire {
     display: block;
     width: 60vw;
-=======
+  }
+}
+/*------------------------------RESET ------------------------------*/
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+body {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  min-height: 100vh;
   background-color: var(--primacy-clr-light);
 }
 
@@ -230,7 +247,11 @@ img {
   max-width: 100%;
 }
 
-a, p, ul, li, label {
+a,
+p,
+ul,
+li,
+label {
   text-decoration: none;
   list-style: none;
   line-height: 1.35rem;
@@ -241,7 +262,12 @@ figcaption {
   display: none;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   line-height: 1.75rem;
 }
 
@@ -254,9 +280,9 @@ h1, h2, h3, h4, h5, h6 {
   --fc-black: black;
   --fs-2: 2rem;
   --fs-1: 1.2rem;
-  --fs-08: .8rem;
+  --fs-08: 0.8rem;
   --primary-clr-red: #cc392b;
-  --primacy-clr-light: #F2EBE8;
+  --primacy-clr-light: #f2ebe8;
   --m-all-5: 5vw;
   --mb-5: 5vw;
 }
@@ -300,7 +326,8 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: var(--mb-5);
 }
 
-.prev, .next {
+.prev,
+.next {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -425,7 +452,7 @@ h1, h2, h3, h4, h5, h6 {
   height: 100vh;
   z-index: 1000;
   padding: 20px;
-  background: linear-gradient(to bottom, #CC392B, #231B19);
+  background: linear-gradient(to bottom, #cc392b, #231b19);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   transform: translateX(-100%);
   transition: none;
@@ -607,7 +634,8 @@ h1, h2, h3, h4, h5, h6 {
   .menu-desktop {
     display: block;
   }
-  .menu-desktop figure, .menu-desktop img {
+  .menu-desktop figure,
+  .menu-desktop img {
     width: 25%;
   }
 }/*# sourceMappingURL=styles.css.map */
