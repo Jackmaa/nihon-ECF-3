@@ -1,6 +1,8 @@
 <?php
 class ControllerManga {
     public function home() {
-        echo "Welcome to the homepage";
+        $model  = new ModelManga();
+        $mangas = $model->getMangaList();
+        require_once './view/home.php';
     }
 }
