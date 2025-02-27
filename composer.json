@@ -1,0 +1,15 @@
+{
+  "require": {
+    "altorouter/altorouter": "1.1.0",
+    "phpmailer/phpmailer": "^6.9",
+    "vlucas/phpdotenv": "^5.6"
+  },
+  "autoload": {
+    "classmap": [
+      "entity/",
+      "controller/",
+      "model/",
+      "view/"
+    ]
+  }
+}
