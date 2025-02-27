@@ -7,24 +7,10 @@
 </head>
 <body>
     <h2>You need to login to access this page</h2>
-    <form action="/login" method="post">
-        <input type="text" name="username" placeholder="Username">
+    <form action="/login" method="POST">
+        <input type="email" name="email" placeholder="Email">
         <input type="password" name="password" placeholder="Password">
         <button type="submit">Login</button>
     </form>
-
-    <?php
-        if (isset($_POST['username']) && isset($_POST['password'])) {
-            $username = $_POST['username'];
-            $password = $_POST['password'];
-
-            if ($username == 'admin' && $password == 'admin') {
-                echo 'Login success';
-            } else {
-                echo 'Login failed';
-            }
-        }
-    ?>
-
 </body>
 </html>

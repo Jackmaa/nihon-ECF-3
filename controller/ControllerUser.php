@@ -6,29 +6,32 @@ class ControllerUser extends Controller {
     // Handle user login
     public function login() {
         $model = new ModelUser();
-        $model->isConnected();
         // On peut maintenant accéder à $this->router
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (! empty($_POST['mail']) && ! empty($_POST['password'])) {
-                $user = $model->getUser($_POST['mail']);
-                if ($user && password_verify($_POST['password'], $user->getPassword())) {
-                    $_SESSION['id']   = $user->getId_user();
-                    $_SESSION['name'] = $user->getUsername();
+            // Check if the email and password are set
+            if (! empty($_POST['email']) && ! empty($_POST['password'])) {
+                // Fetch the user by email
+                $user = $model->getUser($_POST['email']);
+                var_dump($_POST['password']);
+                var_dump($user->getPassword());
+                // Check if the user exists and the password is correct
+                if (password_verify($_POST['password'], $user->getPassword())) {
+                    // Set the user ID in the session
+                    $_SESSION['id_user'] = $user->getId_user();
+                    $_SESSION['name']    = $user->getUsername();
                     header('Location: ' . $this->router->generate('home'));
-                    exit();
+                    exit;
                 } else {
-                    $error = 'Email or password is not valid';
-                    require_once './view/login.php';
+                    // Display an error message
+                    echo 'Invalid email or password.';
                 }
             } else {
-                $error = 'Fields are incorrect';
-                require_once './view/login.php';
+                // Display an error message
+                echo 'Email and password are required.';
             }
-        } else {
-            require_once './view/login.php';
         }
+        require_once './view/login.php';
     }
-
     // Handle user logout
     public function logout() {
         session_unset();
@@ -45,18 +48,17 @@ class ControllerUser extends Controller {
                     $model = new ModelUser();
                     if ($model->checkUserMail($_POST['email']) && $model->checkUserName($_POST['username'])) {
                         $username = $_POST['username'];
-                        $email = $_POST['email'];
+                        $email    = $_POST['email'];
                         $password = $_POST['password'];
 
-                        $insertResult = $model->createUser($username, $email, $password, $token);
+                        $model->createTempUser($username, $email, $password, $token);
 
-                            // Envoyer l'email de vérification
-                            $mailer = new Mailer($token);
-                            $verificationLink = "http://localhost/nihon/verify/?email=$email&code=$token";
-                            $sendResult = $mailer->sendVerificationEmail($email, $username, $verificationLink);
-                            var_dump($token);
-    
-                        echo "Compte crée avec succès !";
+                        // Envoyer l'email de vérification
+                        $mailer           = new Mailer($token);
+                        $verificationLink = "http://nihon/verify/?email=$email&code=$token";
+                        $mailer->sendVerificationEmail($email, $username, $verificationLink);
+
+                        echo "Your account was created ! An email has been sent, please check it out to verify your email.";
 
                         require_once './view/home.php';
                     } else {
@@ -76,21 +78,38 @@ class ControllerUser extends Controller {
         }
     }
 
-    public function verify(){
+    public function verify() {
+
         $token = $_GET['code'] ?? '';
         $email = $_GET['email'] ?? '';
-        if($token && $email){
 
+        if ($token && $email) {
             $model = new ModelUser();
-            if($model->verifyToken($token, $email)){
-                echo 'Everything went fine';
-                header('Location: /nihon/login');
+            $timer = $model->verifyToken($token, $email);
+            $now   = time();
+            var_dump($timer);
+            var_dump($now);
+            if ($timer['expires_at'] > $now) {
+                $user = $model->getTempUser($email);
+                $model->createUser($user['username'], $user['email'], $user['password']);
+                $model->deleteTempUser($email);
+                require_once './view/login.php';
             } else {
-                echo 'There was a problem when you tried to log in';
+                echo 'Your token has expired. A new link has been sent to your email.';
+                $user             = $model->getTempUser($email);
+                $username         = $user['username'];
+                $email            = $user['email'];
+                $password         = $user['password'];
+                $token            = bin2hex(random_bytes(32));
+                $mailer           = new Mailer($token);
+                $verificationLink = "http://nihon/verify/?email=$email&code=$token";
+                $mailer->sendVerificationEmail($email, $username, $verificationLink);
+                $model->deleteTempUser($email);
+                $model->createTempUser($username, $email, $password, $token);
             }
-            
+
         } else {
-            echo 'Check email again';
+            echo 'Please fait un effort ptn.';
         }
     }
 

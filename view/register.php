@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="/nihon/register" method="POST">
+    <form action="/register" method="POST">
         <input type="text" name="username" placeholder="Username">
         <input type="email" name="email" placeholder="Email">
         <input type="password" name="password" placeholder="Password">

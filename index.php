@@ -18,20 +18,6 @@ $router->map("GET|POST", "/register", "ControllerUser#register", "register");
 //VERIFY
 $router->map("GET", "/verify/*", "ControllerUser#verify", "verify");
 
-$match = $router->match();
-
-
-
-if(is_array($match)){
-    list($controller, $action) = explode('#', $match['target']);
-    $obj = new $controller($router);
-
-    if(is_callable(array($obj, $action))){
-        call_user_func_array(array($obj, $action), $match['params']);
-    }
-    else{
-        echo "Error: can't call $action on $controller";
-    }
 // Match the current request
 $match = $router->match();
 
@@ -61,4 +47,4 @@ if (is_array($match)) {
 } else {
     // Error: No route matched
     echo "Error: No route matched.";
-}}
+}
