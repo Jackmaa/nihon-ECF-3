@@ -1,8 +1,8 @@
 <?php
-$title = 'Nihon | Login';
-$meta_description = 'log in to your "Nihon" account';
-$scripts = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public\asset\js\base.js"];
-ob_start();
+    $title            = 'Nihon | Login';
+    $meta_description = 'log in to your "Nihon" account';
+    $scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public\asset\js\base.js"];
+    ob_start();
 ?>
     <main class=connexion>
 
@@ -22,22 +22,10 @@ ob_start();
         <figure>
             <img id="img-connexion" src="public\asset\img\connexion.webp" alt="image connexion">
         </figure>
-
-        <?php
-        if (isset($_POST['username']) && isset($_POST['password'])) {
-            $username = $_POST['username'];
-            $password = $_POST['password'];
-
-            if ($username == 'admin' && $password == 'admin') {
-                echo 'Login success';
-            } else {
-                echo 'Login failed';
-            }
-        }
-        ?>
     </main>
 <?php
-$content = ob_get_contents();
-ob_end_clean();
-require_once('view\base_html.php');
+    $content = ob_get_contents();
+    ob_end_clean();
+require_once 'view\base_html.php';
+
 ?>
