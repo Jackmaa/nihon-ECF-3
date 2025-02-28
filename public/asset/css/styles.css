@@ -661,4 +661,35 @@ footer > p {
     display: block;
     width: 60vw;
   }
+}
+/*
+**********************************
+***********CONTACT PAGE************
+**********************************
+*/
+figure {
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  background-color: #A2EEFB;
+  border-radius: 10px;
+}
+
+input, textarea {
+  margin: 1%;
+  padding: 1%;
+  border-radius: 10px;
+  border: none;
+  background-color: #F5F5F5;
+}
+
+h2 {
+  text-align: center;
+  font-family: var(--ff-bangers);
+  margin: 1%;
+  color: #ffffff;
+  -webkit-text-stroke: 2px red;
 }/*# sourceMappingURL=styles.css.map */
