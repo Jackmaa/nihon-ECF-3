@@ -36,6 +36,7 @@
             <div>
                 <figure><a href="#"><img src="public\asset\img\logo.svg" alt="Logo"></a></figure>
                 <figure><a href="#"><img src="public\asset\img\search.svg" alt="loup"></a></figure>
+                <figure><a href="#"><img src="public\asset\img\profile_picture.webp" alt="profile picture"></a></figure>
             </div>
         </section>
 

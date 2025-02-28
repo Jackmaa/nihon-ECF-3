@@ -22,19 +22,6 @@ ob_start();
         <figure>
             <img id="img-connexion" src="public\asset\img\connexion.webp" alt="image connexion">
         </figure>
-
-        <?php
-        if (isset($_POST['username']) && isset($_POST['password'])) {
-            $username = $_POST['username'];
-            $password = $_POST['password'];
-
-            if ($username == 'admin' && $password == 'admin') {
-                echo 'Login success';
-            } else {
-                echo 'Login failed';
-            }
-        }
-        ?>
     </main>
 <?php
 $content = ob_get_contents();
