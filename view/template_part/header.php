@@ -36,7 +36,18 @@
             <div>
                 <figure><a href="#"><img src="public\asset\img\logo.svg" alt="Logo"></a></figure>
                 <figure><a href="#"><img src="public\asset\img\search.svg" alt="loup"></a></figure>
-                <figure><a href="#"><img src="public\asset\img\profile_picture.webp" alt="profile picture"></a></figure>
+                <figure class="profile" >
+                    <a href="#"><img src="public\asset\img\profile_picture.webp" alt="profile picture"></a>
+                <div class="dropdown">
+                    <ul>
+                    <li><a href="#">Profil</a></li>
+                    <li><a href="#">My Favorites</a></li>
+                    <li><a href="#">My Boocks</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Déconnexion</a></li>
+                </ul>
+                </div>
+                </figure>
             </div>
         </section>
 
