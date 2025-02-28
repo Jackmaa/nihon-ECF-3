@@ -1,44 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="public\asset\css\styles.css">
-    <title>Document</title>
-</head>
-
-<body>
-    <header class="p-all-2">
-        <section class="menu-mobile">
-            <figure class="menu-burger menuToggle">
-                <img src="public/asset/img/menu_bar.svg" alt="bar menu">
-            </figure>
-            <figure><img src="public\asset\img\logo.svg" alt="Logo"></figure>
-            <figure><img src="public\asset\img\search.svg" alt="search bar"></figure>
-            <div class="burger-menu menuBurger">
-                <div class="menu-header">
-                    <img src="public\asset\img\logo.svg" alt="Menu Logo" class="menu-logo">
-                    <span class="close-menu">×</span>
-                </div>
-                <ul>
-                    <li><a href="#">Connexion</a></li>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">My Books</a></li>
-                    <li><a href="#">Favorites</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </div>
-        </section>
-
-        <section class="menu-desktop">
-            <div>
-                <figure><a href="#"><img src="public\asset\img\logo.svg" alt="Logo"></a></figure>
-                <figure><a href="#"><img src="public\asset\img\search.svg" alt="loup"></a></figure>
-            </div>
-        </section>
-
-    </header>
+<?php
+$title = 'Nihon | Home';
+$meta_description = 'The best place to find your next manga\'s addiction ';
+$scripts = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public\asset\js\base.js", "public\asset\js\home.js"];
+ob_start();
+?>
     <section class="hero-mobile">
         <div class="carousel">
             <div class="carousel-wrapper">
@@ -271,9 +236,10 @@
                     </div>
                 </div>
     </section>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
-    <script src="public\asset\js\base.js"></script>
-    <script src="public\asset\js\home.js"></script>
 </body>
-
 </html>
+<?php
+$content = ob_get_contents();
+ob_end_clean();
+require_once('view\base_html.php');
+?>

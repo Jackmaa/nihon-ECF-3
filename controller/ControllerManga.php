@@ -1,9 +1,9 @@
 <?php
-class ControllerManga extends Controller{
+class ControllerManga extends Controller {
 
-public function __construct(AltoRouter $router) {
-    parent::__construct($router);
-}
+    public function __construct(AltoRouter $router) {
+        parent::__construct($router);
+    }
 
     public function home() {
         $model  = new ModelManga();
@@ -33,5 +33,32 @@ public function __construct(AltoRouter $router) {
             $data = $get->getManga($id);
             require_once('./view/update.php');
         }
+    }
+    
+    public function create() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $model          = new ModelManga();
+            $author         = $model->getMangaAuthorByName($_POST['author']);
+            $authorId       = $author['id_author'];
+            $name           = $_POST['name'];
+            $description    = $_POST['description'];
+            $published_date = $_POST['published_date'];
+            $thumbnail      = $_FILES['thumbnail']['name'];
+            $tmp_thumbnail  = $_FILES['thumbnail']['tmp_name'];
+            move_uploaded_file($tmp_thumbnail, './public/asset/img/' . $thumbnail);
+            $thumbnail = './public/asset/img/' . $thumbnail;
+            $model->createManga($name, $authorId, $description, $published_date, $thumbnail);
+            $message = 'Manga created successfully.';
+            header('Location: ' . $this->router->generate('home'));
+            exit;
+        }
+        require_once './view/createmanga.php';
+    }
+
+    public function read($id) {
+        $model = new ModelManga();
+        $manga = $model->getMangaById($id);
+        var_dump($manga);
+        require_once './view/manga.php';
     }
 }
