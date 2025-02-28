@@ -9,7 +9,7 @@
     <form action="/create" method="post" enctype="multipart/form-data">
         <input type="text" name="name" placeholder="Title">
         <input type="text" name="author" placeholder="Author">
-        <input type="text" name="description" placeholder="Description">
+        <textarea type="text" name="description" placeholder="Description"></textarea>
         <input type="date" name="published_date" id="published_date">
         <input type="file" name="thumbnail" id="thumbnail">
         <button type="submit">Create</button>
