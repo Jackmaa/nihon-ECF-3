@@ -11,12 +11,14 @@ $router->map("GET", "/", "ControllerManga#home", "home");
 //USER 
 //LOGIN
 $router->map("GET|POST", "/login", "ControllerUser#login", "login");
-
 //REGISTER
 $router->map("GET|POST", "/register", "ControllerUser#register", "register");
-
 //VERIFY
 $router->map("GET", "/verify/*", "ControllerUser#verify", "verify");
+
+//MANGA
+//CREATE
+$router->map("GET|POST", "/create", "ControllerManga#create", "create");
 
 // Match the current request
 $match = $router->match();
