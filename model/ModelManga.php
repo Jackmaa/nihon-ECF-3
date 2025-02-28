@@ -1,5 +1,7 @@
 <?php
 class ModelManga extends Model {
+
+    // Get all mangas from the database by category (shonen)
     public function getMangaListByCat() {
         $req = $this->getDb()->query(
             'SELECT *
@@ -15,6 +17,7 @@ class ModelManga extends Model {
         return $mangas;
     }
 
+    // Get a mangaka by name (for the create method)
     public function getMangaAuthorByName(string $name) {
         $req = $this->getDb()->prepare(
             'SELECT
@@ -28,6 +31,7 @@ class ModelManga extends Model {
         return $req->fetch(PDO::FETCH_ASSOC);
     }
 
+    //Create a manga
     public function createManga(string $name, int $author, string $description, string $published_date, string $thumbnail) {
         $req = $this->getDb()->prepare(
             'INSERT INTO
@@ -40,6 +44,24 @@ class ModelManga extends Model {
         $req->bindParam(':published_date', $published_date, PDO::PARAM_STR);
         $req->bindParam(':thumbnail', $thumbnail, PDO::PARAM_STR);
         $req->execute();
+    }
+
+    // Get a manga by id
+    public function getMangaById(int $id) {
+        $req = $this->getDb()->prepare(
+            'SELECT
+               manga.id_manga, manga.name, manga.id_author, manga.description, manga.published_date, manga.thumbnail,
+                author.name AS author_name
+            FROM
+                manga
+
+            INNER JOIN
+                author ON manga.id_author = author.id_author
+            WHERE
+                id_manga = :id');
+        $req->bindParam(':id', $id, PDO::PARAM_INT);
+        $req->execute();
+        return new MangaDTO(new Manga($data = $req->fetch(PDO::FETCH_ASSOC)), $data['author_name']);
     }
 }
 

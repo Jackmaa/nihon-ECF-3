@@ -20,6 +20,9 @@ $router->map("GET", "/verify/*", "ControllerUser#verify", "verify");
 //CREATE
 $router->map("GET|POST", "/create", "ControllerManga#create", "create");
 
+//READ
+$router->map("GET", "/manga/[i:id]", "ControllerManga#read", "read");
+
 // Match the current request
 $match = $router->match();
 

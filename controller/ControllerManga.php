@@ -30,4 +30,11 @@ class ControllerManga extends Controller {
         }
         require_once './view/createmanga.php';
     }
+
+    public function read($id) {
+        $model = new ModelManga();
+        $manga = $model->getMangaById($id);
+        var_dump($manga);
+        require_once './view/manga.php';
+    }
 }
