@@ -36,8 +36,14 @@ class ControllerManga extends Controller {
 
     public function create() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $model          = new ModelManga();
-            $author         = $model->getMangaAuthorByName($_POST['author']);
+            $model  = new ModelManga();
+            $author = $model->getMangaAuthorByName($_POST['author']);
+            if (! $author) {
+                // Author does not exist, create a new author
+                $model->createAuthor($_POST['author']);
+                $author = $model->getMangaAuthorByName($_POST['author']);
+            }
+
             $authorId       = $author['id_author'];
             $name           = $_POST['name'];
             $description    = $_POST['description'];
