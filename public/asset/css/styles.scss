@@ -1137,8 +1137,9 @@ figure{
           background-color: #cc1606;
       }
   }
-    figure{
+  figure {
     text-align: center;
-}
+    margin: 0 auto; /* Centrer la figure */
+  }
 }
 

@@ -760,4 +760,5 @@ figure {
 }
 .formulaire figure {
   text-align: center;
+  margin: 0 auto; /* Centrer la figure */
 }/*# sourceMappingURL=styles.css.map */
