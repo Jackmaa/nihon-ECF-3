@@ -61,4 +61,10 @@ class ControllerManga extends Controller {
         var_dump($manga);
         require_once './view/manga.php';
     }
+
+    public function delete($id) {
+        $model = new ModelManga();
+        $model->deleteManga($id);
+        header('Location: /');
+    }
 }
