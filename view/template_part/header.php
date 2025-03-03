@@ -36,7 +36,7 @@
         <section class="menu-desktop">
             <div>
                 <figure><a href="#"><img src="public\asset\img\logo.svg" alt="Logo"></a></figure>
-                <figure><a href="#"><img src="public\asset\img\search.svg" alt="loup"></a></figure>
+                <figure><img src="public\asset\img\search.svg" alt="loup"><input type="text" name="search" id="search" placeholder="Search"></figure>
                 <figure class="profile" >
                     <a href="#"><img src="public\asset\img\profile_picture.webp" alt="profile picture"></a>
                 <div class="dropdown">
