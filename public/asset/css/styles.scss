@@ -77,6 +77,11 @@ h1,h2,h3,h4,h5,h6 {
 .p-all-2 {
   padding: 1vw;
 }
+.flexcenter{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 /*
 **********************************
@@ -622,8 +627,19 @@ padding: 0 20px;
         display: block;
         width: 60vw;
       }
-    
+  /*
+*******************************
+***********contact***********
+*******************************
+*/  
+.formulaire{
+margin: 0 auto;}
+
+
+
 }
+
+
 
 @media (min-width: 768px) {
 /*
@@ -658,7 +674,15 @@ padding: 0 20px;
         display: block;
         width: 60vw;
       }
-    
+      /*
+*******************************
+***********contact***********
+*******************************
+*/  
+.formulaire{
+  margin: 0 auto;}
+  
+
 }
 
 @media (min-width: 1024px) {
@@ -696,6 +720,16 @@ padding: 0 20px;
         width: 60vw;
       }
     
+      /*
+*******************************
+***********contact***********
+*******************************
+*/  
+.formulaire{
+  margin: 0 auto;
+  max-width: 024px;
+}
+
   /*
 **********************************
 **************HEADER**************
@@ -1107,6 +1141,27 @@ padding: 0 20px;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*
 **********************************
 ***********CONTACT PAGE************
@@ -1116,8 +1171,12 @@ padding: 0 20px;
 .formulaire{
     display:flex;
     flex-direction: column;
+    justify-content: center;
     background-color: #A2EEFB;
     border-radius: 10px;
+    outline: 3px solid #ffffff;
+    max-width: 600px; 
+    margin: 20px;
 
     h2{text-align: center;
       font-family: var(--ff-bangers);
@@ -1131,6 +1190,7 @@ padding: 0 20px;
         border-radius: 10px;
         border: none;
         background-color: #F5F5F5;
+        outline: 1px solid #B3B34E;
     }
 
 
@@ -1139,7 +1199,7 @@ padding: 0 20px;
       padding: 1%;
       border-radius: 10px;
       border: none;
-      background-color: #cc392b;
+      background-color: #FCC8E1;
       color: #ffffff;
       font-family: var(--ff-bangers);
       cursor: pointer;
@@ -1148,9 +1208,11 @@ padding: 0 20px;
       &:hover{
           background-color: #cc1606;
       }
-  }
-    figure{
-    text-align: center;
-}
-}
+  
 
+    }  
+    
+    
+  
+}
+  
