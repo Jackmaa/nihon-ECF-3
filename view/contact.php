@@ -1,19 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="public\css\styles.scss">
-</head>
-<body>
-<header>
-        <figure><img src="public\assets\img\menu.svg" alt="menu"></figure>
-        <figure><img src="public\assets\img\logo.svg" alt="logo"></figure>
-        <figure><img src="public\assets\img\search.svg" alt="search"></figure>
-    </header>    
-    <p>coucou</p>
+<?php
+$title = 'Nihon | CONTACT';
+$meta_description = 'Contact us for any questions or suggestions';
+$scripts = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public\asset\js\base.js", "public\asset\js\home.js"];
+ob_start();
+?>
+
+<main>
+
+<figure><img src="public\asset\img\contact.webp" alt="image contact"></figure>
 
 
-</body>
-</html>
+<form action="#" method="post">
+
+<h2>Contact Us</h2>
+    <input type="text" id="name" name="name" placeholder="Nom" required>
+
+    <input type="email" id="email" name="email" placeholder="Email" required>
+
+    <textarea id="message" name="message" rows="5" placeholder="Votre message" required></textarea>
+
+    <button type="submit">Submit</button>
+</form>
+
+</main>
+
+<?php
+$content = ob_get_contents();
+ob_end_clean();
+require_once('view\base_html.php');
+?>

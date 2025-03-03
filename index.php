@@ -18,6 +18,10 @@ $router->map("GET|POST", "/register", "ControllerUser#register", "register");
 //VERIFY
 $router->map("GET", "/verify/*", "ControllerUser#verify", "verify");
 
+//CONTACT
+$router->map("GET|POST", "/contact", "ControllerGeneral#contact", "contact");
+
+
 // Match the current request
 $match = $router->match();
 
