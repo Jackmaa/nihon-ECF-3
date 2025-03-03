@@ -54,6 +54,8 @@ h1,h2,h3,h4,h5,h6 {
   --ff-barlow: "Barlow Condensed", serif;
   --ff-kaisei: "Kaisei Tokumin", serif;
 
+  --letter-spacing: 0.09rem;
+
   --fc-light: #fff;
   --fc-black: black;
 
@@ -73,7 +75,7 @@ h1,h2,h3,h4,h5,h6 {
 **********************************
 */
 .p-all-2 {
-  padding: 2vw;
+  padding: 1vw;
 }
 
 /*
@@ -244,6 +246,7 @@ padding: 0 20px;
 
     h1 {
         font-family: var(--ff-bangers);
+        letter-spacing: var(--letter-spacing);
         margin-bottom: 1.5rem;
     }
 
@@ -270,6 +273,7 @@ padding: 0 20px;
         border-radius: 15px;
         cursor: pointer;
         font-family: var(--ff-bangers);
+        letter-spacing: var(--letter-spacing);
         transition: all ease 0.3s;
 
         &:hover{
@@ -317,6 +321,7 @@ padding: 0 20px;
 
 .carousel-item {
   font-family: var(--ff-bangers);
+  letter-spacing: var(--letter-spacing);
   color: var(--fc-light);
   min-width: 100%;
   display: flex;
@@ -508,6 +513,7 @@ padding: 0 20px;
     text-align: justify;
     margin: 8% 3%;
     font-family: var(--ff-bangers);
+    letter-spacing: var(--letter-spacing);
   }
 
   .slider {
@@ -692,7 +698,7 @@ padding: 0 20px;
     
   /*
 **********************************
-***********MENU BURGER************
+**************HEADER**************
 **********************************
 */
 
@@ -706,13 +712,73 @@ padding: 0 20px;
 
   .menu-desktop {
     display: block;
+  
+    figure:nth-of-type(1) a img {
+      width: 7vw;
+    }
+  
+    figure:nth-of-type(2) a img {
+      width: 3vw;
+    }
+  
+    figure:nth-of-type(3) a img {
+      width: 5vw;
+      height: 5vw;
+      object-fit: cover;
+      border-radius: 50%;
+      cursor: pointer;
 
-    & figure,
-    img {
-      width: 25%;
+      &:hover {
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1), 
+                0 3px 3px rgba(0, 0, 0, 0.1);
+      }
+    }
+  
+    div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+    }
+  
+    .profile {
+      position: relative;
+  
+      .dropdown {
+        display: none;
+        position: absolute;
+        right: 0;
+        top: 100%;
+        background-color: white;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        width: 150px;
+        padding: 10px;
+        z-index: 10;
+  
+        li {
+          padding: 8px 12px;
+          font-family: var(--ff-bangers);
+          letter-spacing: var(--letter-spacing);
+  
+          &:hover {
+            background-color: #f0f0f0;
+          }
+
+          a {
+            color: var(--fc-black);
+          }
+        }
+      }
+  
+      &.active .dropdown {
+        display: block;
+      }
     }
   }
+  
 }
+
 
 @media (min-width: 1440px) {
 
@@ -755,3 +821,303 @@ padding: 0 20px;
 // * {
 //     outline: 3px solid green;
 // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+**********************************
+***********CONTACT PAGE************
+**********************************
+*/
+
+figure{
+    text-align: center;
+}
+form{
+    display:flex;
+    flex-direction: column;
+    background-color: #A2EEFB;
+    border-radius: 10px;
+}
+input, textarea{
+    margin: 1%;
+    padding: 1%;
+    border-radius: 10px;
+    border: none;
+    background-color: #F5F5F5;
+}
+h2{
+    text-align: center;
+    font-family: var(--ff-bangers);
+    margin: 1%;
+    color: #ffffff;
+    -webkit-text-stroke: 2px red;
+}

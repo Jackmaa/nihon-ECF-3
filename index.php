@@ -25,6 +25,9 @@ $router->map("GET", "/manga/[i:id]", "ControllerManga#read", "read");
 
 //UPDATE MANGA
 $router->map("GET|POST", "/update/[i:id]", "ControllerManga#update", "update");
+//CONTACT
+$router->map("GET|POST", "/contact", "ControllerGeneral#contact", "contact");
+
 
 // Match the current request
 $match = $router->match();
