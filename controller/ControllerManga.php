@@ -68,7 +68,7 @@ class ControllerManga extends Controller {
     }
 
     public function authorAJAX() {
-        $search  = $_POST['author'] . '%';
+        $search  = '%' . $_POST['author'] . '%';
         $model   = new ModelManga();
         $authors = $model->getMangaAuthor($search);
         echo json_encode($authors);
