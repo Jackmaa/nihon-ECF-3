@@ -10,7 +10,7 @@ ob_start();
 <figure><img src="public\asset\img\contact.webp" alt="image contact"></figure>
 
 
-<form action="#" method="post">
+<form class=formulaire action="#" method="post">
 
 <h2>Contact Us</h2>
     <input type="text" id="name" name="name" placeholder="Nom" required>
@@ -19,7 +19,7 @@ ob_start();
 
     <textarea id="message" name="message" rows="5" placeholder="Votre message" required></textarea>
 
-    <button type="submit">Submit</button>
+    <button class=button type="submit">Submit</button>
 </form>
 
 </main>

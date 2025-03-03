@@ -724,25 +724,40 @@ figure {
   text-align: center;
 }
 
-form {
+.formulaire {
   display: flex;
   flex-direction: column;
   background-color: #A2EEFB;
   border-radius: 10px;
 }
-
-input, textarea {
+.formulaire h2 {
+  text-align: center;
+  font-family: var(--ff-bangers);
+  margin: 1%;
+  color: #ffffff;
+  -webkit-text-stroke: 2px red;
+}
+.formulaire input, .formulaire textarea {
   margin: 1%;
   padding: 1%;
   border-radius: 10px;
   border: none;
   background-color: #F5F5F5;
 }
-
-h2 {
-  text-align: center;
-  font-family: var(--ff-bangers);
+.formulaire .button {
   margin: 1%;
+  padding: 1%;
+  border-radius: 10px;
+  border: none;
+  background-color: #cc392b;
   color: #ffffff;
-  -webkit-text-stroke: 2px red;
+  font-family: var(--ff-bangers);
+  cursor: pointer;
+  transition: all ease 0.3s;
+}
+.formulaire .button:hover {
+  background-color: #cc1606;
+}
+.formulaire figure {
+  text-align: center;
 }/*# sourceMappingURL=styles.css.map */
