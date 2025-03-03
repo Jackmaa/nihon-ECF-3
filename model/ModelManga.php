@@ -18,7 +18,18 @@ class ModelManga extends Model {
     }
 
     public function getManga(int $id) {
-        $req = $this->getDb()->prepare('SELECT `id_manga`, `name`, `id_author`, `description`, `published_date`, `thumbnail` FROM `manga` WHERE id_manga = :id');
+        $req = $this->getDb()->prepare(
+            'SELECT
+                `id_manga`,
+                `name`,
+                `id_author`,
+                `description`,
+                `published_date`,
+                `thumbnail`
+            FROM
+                `manga`
+            WHERE
+                id_manga = :id');
         $req->bindParam('id', $id, PDO::PARAM_INT);
         $req->execute();
 
@@ -28,8 +39,14 @@ class ModelManga extends Model {
     }
 
     public function updateManga(int $id, string $name, string $description, string $published_date, string $thumbnail) {
-
-        $req = $this->getDb()->prepare('UPDATE `manga` SET `name` = :name, `description` = :description, `published_date` = :published_date, `thumbnail` = :thumbnail WHERE id_manga = :id');
+        $req = $this->getDb()->prepare(
+            'UPDATE `manga`
+            SET
+            `name` = :name,
+            `description` = :description,
+            `published_date` = :published_date,
+            `thumbnail` = :thumbnail
+            WHERE id_manga = :id');
         $req->bindParam(':name', $name, PDO::PARAM_STR);
         $req->bindParam(':description', $description, PDO::PARAM_STR);
         $req->bindParam(':published_date', $published_date, PDO::PARAM_STR);
@@ -66,7 +83,6 @@ class ModelManga extends Model {
         $req->execute();
     }
 
-    // Get a manga by id
     public function getMangaById(int $id) {
         $req = $this->getDb()->prepare(
             'SELECT

@@ -3,6 +3,7 @@ class ControllerUser extends Controller {
     public function __construct(AltoRouter $router) {
         parent::__construct($router);
     }
+
     // Handle user login
     public function login() {
         $model = new ModelUser();
@@ -32,6 +33,7 @@ class ControllerUser extends Controller {
         }
         require_once './view/login.php';
     }
+
     // Handle user logout
     public function logout() {
         session_unset();
@@ -51,14 +53,15 @@ class ControllerUser extends Controller {
                         $email    = $_POST['email'];
                         $password = $_POST['password'];
 
+                        // Create a temporary user entry
                         $model->createTempUser($username, $email, $password, $token);
 
-                        // Envoyer l'email de vérification
+                        // Send verification email
                         $mailer           = new Mailer($token);
                         $verificationLink = "http://nihon/verify/?email=$email&code=$token";
                         $mailer->sendVerificationEmail($email, $username, $verificationLink);
 
-                        echo "Your account was created ! An email has been sent, please check it out to verify your email.";
+                        echo "Your account was created! An email has been sent, please check it out to verify your email.";
 
                         require_once './view/home.php';
                     } else {
@@ -78,8 +81,8 @@ class ControllerUser extends Controller {
         }
     }
 
+    // Handle email verification
     public function verify() {
-
         $token = $_GET['code'] ?? '';
         $email = $_GET['email'] ?? '';
 
@@ -90,6 +93,7 @@ class ControllerUser extends Controller {
             var_dump($timer);
             var_dump($now);
             if ($timer['expires_at'] > $now) {
+                // Create a new user from the temporary user data
                 $user = $model->getTempUser($email);
                 $model->createUser($user['username'], $user['email'], $user['password']);
                 $model->deleteTempUser($email);
@@ -107,10 +111,8 @@ class ControllerUser extends Controller {
                 $model->deleteTempUser($email);
                 $model->createTempUser($username, $email, $password, $token);
             }
-
         } else {
-            echo 'Please fait un effort ptn.';
+            echo 'Please provide a valid token and email.';
         }
     }
-
 }
