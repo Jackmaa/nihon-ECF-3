@@ -721,7 +721,7 @@ padding: 0 20px;
     display: flex;
     flex-direction: row;
     img {
-      width: 3vw;
+      width: 2.4vw;
     }
   }
   
@@ -782,12 +782,22 @@ padding: 0 20px;
 
     input {
       color: #333;
-      width: 5%;
+      width: 22%;
       height: 5vh;
       padding: 0 10px;
+      font-size: 1.2rem;
+      border: 1px solid #979797;
+      font-family: var(--ff-barlow);
+      border-radius: 50px;
+      transition: all ease 0.8s;
       &:focus{
-        border-color: blue;
+        border: 1px solid #cc392b;
+        border-radius: 50px;
         width: 100%;
+        outline: none;
+       &::placeholder {
+          color: transparent;
+        }
       }
     }
   }
