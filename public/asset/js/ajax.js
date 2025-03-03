@@ -4,7 +4,11 @@ window.addEventListener("load", function () {
   let response = document.getElementById("response");
 
   createAuthorInput.addEventListener("input", function () {
-    response.innerHTML = "";
+    if (createAuthorInput.value.length <= 3) {
+      response.innerHTML = "";
+      return;
+    }
+
     let formData = new FormData(createForm);
     fetch("/authorAJAX", {
       method: "POST",

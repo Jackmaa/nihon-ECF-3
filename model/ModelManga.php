@@ -91,7 +91,7 @@ class ModelManga extends Model {
     }
 
     public function getMangaAuthor($name) {
-        $req = $this->getDb()->prepare('SELECT `name` FROM `author` WHERE `name` LIKE :name ORDER BY `name` ASC LIMIT 10');
+        $req = $this->getDb()->prepare('SELECT `name` FROM `author` WHERE `name` LIKE :name ORDER BY `name` ASC LIMIT 4');
         $req->bindParam(':name', $name, PDO::PARAM_STR);
         $req->execute();
         return $req->fetchAll(PDO::FETCH_ASSOC);
