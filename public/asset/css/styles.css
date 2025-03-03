@@ -704,12 +704,6 @@ footer > p {
     width: 100%;
     outline: none;
   }
-  .menu-desktop input:focus::-moz-placeholder {
-    color: transparent;
-  }
-  .menu-desktop input:focus::placeholder {
-    color: transparent;
-  }
 }
 @media (min-width: 1440px) {
   /*
