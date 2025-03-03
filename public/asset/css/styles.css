@@ -634,7 +634,11 @@ footer > p {
   .menu-desktop figure:nth-of-type(1) a img {
     width: 7vw;
   }
-  .menu-desktop figure:nth-of-type(2) a img {
+  .menu-desktop figure:nth-of-type(2) {
+    display: flex;
+    flex-direction: row;
+  }
+  .menu-desktop figure:nth-of-type(2) img {
     width: 3vw;
   }
   .menu-desktop figure:nth-of-type(3) a img {
@@ -683,6 +687,16 @@ footer > p {
   .menu-desktop .profile.active .dropdown {
     display: block;
   }
+  .menu-desktop input {
+    color: #333;
+    width: 5%;
+    height: 5vh;
+    padding: 0 10px;
+  }
+  .menu-desktop input:focus {
+    border-color: blue;
+    width: 100%;
+  }
 }
 @media (min-width: 1440px) {
   /*
@@ -720,10 +734,6 @@ footer > p {
 ***********CONTACT PAGE************
 **********************************
 */
-figure {
-  text-align: center;
-}
-
 .formulaire {
   display: flex;
   flex-direction: column;

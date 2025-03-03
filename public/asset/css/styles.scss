@@ -717,9 +717,13 @@ padding: 0 20px;
       width: 7vw;
     }
   
-    figure:nth-of-type(2) a img {
+    figure:nth-of-type(2) {
+    display: flex;
+    flex-direction: row;
+    img {
       width: 3vw;
     }
+  }
   
     figure:nth-of-type(3) a img {
       width: 5vw;
@@ -773,6 +777,17 @@ padding: 0 20px;
   
       &.active .dropdown {
         display: block;
+      }
+    }
+
+    input {
+      color: #333;
+      width: 5%;
+      height: 5vh;
+      padding: 0 10px;
+      &:focus{
+        border-color: blue;
+        width: 100%;
       }
     }
   }
@@ -1098,9 +1113,6 @@ padding: 0 20px;
 **********************************
 */
 
-figure{
-    text-align: center;
-}
 .formulaire{
     display:flex;
     flex-direction: column;
