@@ -73,6 +73,12 @@ h1, h2, h3, h4, h5, h6 {
   padding: 1vw;
 }
 
+.flexcenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /*
 **********************************
 ***********HEADER************
@@ -555,6 +561,14 @@ footer > p {
     display: block;
     width: 60vw;
   }
+  /*
+  *******************************
+  ***********contact***********
+  *******************************
+  */
+  .formulaire {
+    margin: 0 auto;
+  }
 }
 @media (min-width: 768px) {
   /*
@@ -586,6 +600,14 @@ footer > p {
     display: block;
     width: 60vw;
   }
+  /*
+  *******************************
+  ***********contact***********
+  *******************************
+  */
+  .formulaire {
+    margin: 0 auto;
+  }
 }
 @media (min-width: 1024px) {
   /*
@@ -616,6 +638,15 @@ footer > p {
   #img-subscrire {
     display: block;
     width: 60vw;
+  }
+  /*
+  *******************************
+  ***********contact***********
+  *******************************
+  */
+  .formulaire {
+    margin: 0 auto;
+    max-width: 24px;
   }
   /*
   **********************************
@@ -720,15 +751,15 @@ footer > p {
 ***********CONTACT PAGE************
 **********************************
 */
-figure {
-  text-align: center;
-}
-
 .formulaire {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   background-color: #A2EEFB;
   border-radius: 10px;
+  outline: 3px solid #ffffff;
+  max-width: 600px;
+  margin: 20px;
 }
 .formulaire h2 {
   text-align: center;
@@ -743,13 +774,14 @@ figure {
   border-radius: 10px;
   border: none;
   background-color: #F5F5F5;
+  outline: 1px solid #B3B34E;
 }
 .formulaire .button {
   margin: 1%;
   padding: 1%;
   border-radius: 10px;
   border: none;
-  background-color: #cc392b;
+  background-color: #FCC8E1;
   color: #ffffff;
   font-family: var(--ff-bangers);
   cursor: pointer;
@@ -757,8 +789,4 @@ figure {
 }
 .formulaire .button:hover {
   background-color: #cc1606;
-}
-.formulaire figure {
-  text-align: center;
-  margin: 0 auto; /* Centrer la figure */
 }/*# sourceMappingURL=styles.css.map */
