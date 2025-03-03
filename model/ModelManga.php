@@ -90,6 +90,12 @@ class ModelManga extends Model {
         $req->execute();
     }
 
+    public function createAuthor($authorName) {
+        $req = $this->getDb()->prepare("INSERT INTO author (name) VALUES (:name)");
+        $req->bindParam(':name', $authorName);
+        $req->execute();
+    }
+
     public function getMangaAuthor($name) {
         $req = $this->getDb()->prepare('SELECT `name` FROM `author` WHERE `name` LIKE :name ORDER BY `name` ASC LIMIT 4');
         $req->bindParam(':name', $name, PDO::PARAM_STR);
