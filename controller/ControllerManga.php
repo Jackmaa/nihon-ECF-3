@@ -11,30 +11,29 @@ class ControllerManga extends Controller {
         require_once './view/home.php';
     }
 
-    public function update($id){
+    public function update($id) {
 
-        if($_SERVER['REQUEST_METHOD'] === 'POST'){       
-                $model = new ModelManga();
-                var_dump($_FILES);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $model = new ModelManga();
+            var_dump($_FILES);
 
-                $thumbnail      = $_FILES['thumbnail']['name'];
-                $tmp_thumbnail  = $_FILES['thumbnail']['tmp_name'];
-                move_uploaded_file($tmp_thumbnail, './public/asset/img/' . $thumbnail);
-                $thumbnail = './public/asset/img/' . $thumbnail;
+            $thumbnail     = $_FILES['thumbnail']['name'];
+            $tmp_thumbnail = $_FILES['thumbnail']['tmp_name'];
+            move_uploaded_file($tmp_thumbnail, './public/asset/img/' . $thumbnail);
+            $thumbnail = './public/asset/img/' . $thumbnail;
 
-                $model->updateManga($_POST['id'], $_POST['name'], $_POST['description'], $_POST['published_date'], $thumbnail);
-                var_dump($_POST);
+            $model->updateManga($_POST['id'], $_POST['name'], $_POST['description'], $_POST['published_date'], $thumbnail);
+            var_dump($_POST);
 
-
-                header('Location: /');
+            header('Location: /');
 
         } else {
-            $get = new ModelManga();
+            $get  = new ModelManga();
             $data = $get->getManga($id);
-            require_once('./view/update.php');
+            require_once './view/update.php';
         }
     }
-    
+
     public function create() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $model          = new ModelManga();
@@ -66,5 +65,13 @@ class ControllerManga extends Controller {
         $model = new ModelManga();
         $model->deleteManga($id);
         header('Location: /');
+    }
+
+    public function authorAJAX() {
+        $search  = $_POST['author'] . '%';
+        $model   = new ModelManga();
+        $authors = $model->getMangaAuthor($search);
+        echo json_encode($authors);
+        header('Content-Type: application/json');
     }
 }

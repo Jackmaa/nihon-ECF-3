@@ -19,6 +19,7 @@ $router->map("GET", "/verify/*", "ControllerUser#verify", "verify");
 //MANGA
 //CREATE
 $router->map("GET|POST", "/create", "ControllerManga#create", "create");
+$router->map("GET|POST", "/authorAJAX", "ControllerManga#authorAJAX", "authorAJAX");
 
 //READ
 $router->map("GET", "/manga/[i:id]", "ControllerManga#read", "read");
@@ -27,7 +28,6 @@ $router->map("GET", "/manga/[i:id]", "ControllerManga#read", "read");
 $router->map("GET|POST", "/update/[i:id]", "ControllerManga#update", "update");
 //CONTACT
 $router->map("GET|POST", "/contact", "ControllerGeneral#contact", "contact");
-
 
 //DELETE MANGA
 $router->map("GET", "/delete/[i:id]", "ControllerManga#delete", "delete");
