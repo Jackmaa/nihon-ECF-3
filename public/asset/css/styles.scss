@@ -529,7 +529,7 @@ padding: 0 20px;
     }
 
     .manga {
-      position: relative; /* Important pour positionner l'élément à l'intérieur */
+      position: relative; 
       padding: 10px;
       border-radius: 5px;
       text-align: center;
@@ -581,6 +581,58 @@ padding: 0 20px;
       }
     }
   }
+}
+
+// *********************************
+// ****OUR FAVORITE HOMEPAGE*****
+// *********************************
+
+#our-fav{
+  div:first-child {
+    display: flex;
+    padding: 10px;
+    font-family: var(--ff-bangers);
+    letter-spacing: var(--letter-spacing);
+
+    h2 {
+      margin: var(--m-all-5);
+    }
+}
+    .bubble-fav {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      padding: 10px 20px;
+
+      a {
+        color: #cc392b;
+
+        &:hover {
+          color: #cc1606;
+        }
+      }
+      h3 {
+        font-family: var(--ff-bangers);
+        letter-spacing: var(--letter-spacing);
+        margin-bottom: var(--mb-5);
+      }
+
+    hr {
+      margin-bottom: var(--mb-5);
+      background-color: black;
+      height: 1px;
+    }
+      p {
+        font-family: var(--ff-barlow);
+      }
+
+        figure {
+       padding: 10px 20px;
+      }
+    }
+
 }
 
 /*
@@ -798,8 +850,10 @@ padding: 0 20px;
       }
     }
   }
-  
 }
+
+
+
 
 
 @media (min-width: 1440px) {
@@ -809,7 +863,6 @@ padding: 0 20px;
 ***********LOGIN/REGISTER************
 **********************************
 */
-
     #img-connexion {
         display: block;
         width: 40vw;
