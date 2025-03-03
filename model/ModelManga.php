@@ -83,6 +83,12 @@ class ModelManga extends Model {
         $req->execute();
         return new MangaDTO(new Manga($data = $req->fetch(PDO::FETCH_ASSOC)), $data['author_name']);
     }
+
+    public function deleteManga($id){
+        $req = $this->getDb()->prepare('DELETE FROM `manga` WHERE id_manga = :id');
+        $req->bindParam(':id', $id, PDO::PARAM_INT);
+        $req->execute();
+    }
 }
 
 /*foreach ($mangas as $manga):
