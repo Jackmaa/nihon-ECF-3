@@ -507,7 +507,7 @@ padding: 0 20px;
 }
 
 .category-slider {
-  margin: 20% 3%;
+  margin: 10% 3%;
 
   h2 {
     text-align: justify;
@@ -529,50 +529,78 @@ padding: 0 20px;
     }
 
     .manga {
-      position: relative; 
-      padding: 10px;
-      border-radius: 5px;
+      position: relative;
       text-align: center;
-      flex: 0 0 calc(100% / 3);
+      flex: 0 0 calc(100% / 2 - 10px);
       box-sizing: border-box;
-      margin: 0 5px;
+      margin: 0 2vw;
       display: flex;
+      align-items: center;
+      justify-content: center;
       flex-direction: column;
       font-family: var(--ff-barlow);
       color: var(--fc-black);
       font-size: var(--fs-08);
 
-      a {
-        color: var(--fc-black);
-        font-size: var(--fs-1);
-      }
-      .heart {
-        position: absolute;
+      img {
+        display: block;
       }
 
-      .heart img {
-        width: 8vw;
-        height: 8vw;
+      a {
+        display: block;
+        position: relative;
+        color: var(--fc-black);
+        font-size: var(--fs-1);
+        color: var(--fc-light);
+
+        &:hover img:not(figure img) {
+          filter: brightness(50%);
+        }
+        img {
+          width: 100%;
+          transition: all 0.5s ease;
+        }
+      }
+
+      figure {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        transition: all 0.5s ease;
+        img {
+          width: 100%;
+        }
+      }
+
+      a:hover figure {
+        opacity: 1;
       }
     }
 
     button {
       position: absolute;
       top: 50%;
+      border-radius: 50px;
       transform: translateY(-50%);
-      background: rgba(255, 255, 255, 0.7);
+      background: rgba(255, 255, 255, 0.288);
       border: none;
       cursor: pointer;
       padding: 10px;
       font-size: 2rem;
       z-index: 100;
 
+      &:hover {
+        background: rgb(255, 255, 255);
+      }
+
       &.prev {
-        left: 10px;
+        left: 0px;
       }
 
       &.next {
-        right: 10px;
+        right: 0px;
       }
 
       &:disabled {
@@ -630,6 +658,7 @@ padding: 0 20px;
 
         figure {
        padding: 10px 20px;
+       width: 40%;
       }
     }
 
@@ -850,7 +879,62 @@ padding: 0 20px;
       }
     }
   }
+
+  /*
+**********************************
+***** OUR FAVORITE HOMEPAGE*******
+**********************************
+*/
+
+#our-fav {
+  #big-bubble-fav {
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+  }
+
+  .bubble-fav{
+    flex-direction: row;
+    width: 90%;
+
+    figure {
+      width: 60%;
+      img {
+        width: 100%;
+      }
+    }
+
+    h3 {
+      margin-bottom: 2vh;
+    }
+    hr {
+      margin-bottom: 2vh;
+    }
+  }
 }
+
+  /*
+**********************************
+***** SLIDER CATEGORY HOMEPAGE*******
+**********************************
+*/
+.category-slider .slider {
+  max-width: 1400px; /* Augmente la largeur du slider */
+}
+
+.slider-wrapper {
+max-width: max-content;
+}
+
+.manga {
+        flex: 0 0 calc(100% / 5 - 10px);
+        max-width: calc(100% / 5 - 10px);
+  img {
+    width:40%;
+  }
+}
+
+}
+
 
 
 

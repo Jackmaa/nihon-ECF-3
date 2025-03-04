@@ -35,42 +35,63 @@ prevButton.addEventListener('click', () => {
 // ********************************* 
 
 document.querySelectorAll('.category-slider').forEach(slider => {
-    let currentMangaIndex = 0;
+    let currentIndex = 0;
     const sliderWrapper = slider.querySelector('.slider-wrapper');
-    const mangas = slider.querySelectorAll('.manga');
-    const totalMangas = mangas.length;
-    const mangasPerView = 3;
+    const slides = Array.from(slider.querySelectorAll('.manga'));
+    const totalSlides = slides.length;
 
     const nextButton = slider.querySelector('.next');
     const prevButton = slider.querySelector('.prev');
 
-    const maxIndex = totalMangas - mangasPerView;
+    const firstClone = slides[0].cloneNode(true);
+    const lastClone = slides[totalSlides - 1].cloneNode(true);
+    
+    sliderWrapper.appendChild(firstClone);
+    sliderWrapper.insertBefore(lastClone, slides[0]);
+
+    const allSlides = sliderWrapper.querySelectorAll('.manga'); 
+    const slideWidth = slides[0].clientWidth; 
+    let isTransitioning = false;
 
     function updateSlider() {
-        const offset = -currentMangaIndex * (200 / mangasPerView);
-        sliderWrapper.style.transform = `translateX(${offset}%)`;
-        updateButtonState();
-    }
+        if (isTransitioning) return;
+        isTransitioning = true;
+        
+        const offset = -currentIndex * slideWidth; 
+        sliderWrapper.style.transition = 'transform 0.3s ease-in-out';
+        sliderWrapper.style.transform = `translateX(${offset}px)`;
 
-    function updateButtonState() {
-        prevButton.disabled = currentMangaIndex === 0;
-        nextButton.disabled = currentMangaIndex >= maxIndex;
+        setTimeout(() => {
+            if (currentIndex === totalSlides) { 
+                sliderWrapper.style.transition = 'none';
+                currentIndex = 0;
+                sliderWrapper.style.transform = `translateX(${-currentIndex * slideWidth}px)`;
+            } else if (currentIndex === -1) { 
+                sliderWrapper.style.transition = 'none';
+                currentIndex = totalSlides - 1;
+                sliderWrapper.style.transform = `translateX(${-currentIndex * slideWidth}px)`;
+            }
+            isTransitioning = false;
+        }, 300);
     }
 
     nextButton.addEventListener('click', () => {
-        if (currentMangaIndex < maxIndex) {
-            currentMangaIndex++;
-            updateSlider();
-        }
+        if (isTransitioning) return;
+        currentIndex++;
+        updateSlider();
     });
 
     prevButton.addEventListener('click', () => {
-        if (currentMangaIndex > 0) {
-            currentMangaIndex--;
-            updateSlider();
-        }
+        if (isTransitioning) return;
+        currentIndex--;
+        updateSlider();
     });
 
-    // Initialisation
-    updateButtonState();
+    window.addEventListener('resize', () => {
+        sliderWrapper.style.transition = 'none';
+        currentIndex = 0;
+        updateSlider();
+    });
+
+    sliderWrapper.style.transform = `translateX(${-currentIndex * slideWidth}px)`;
 });
