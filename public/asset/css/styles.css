@@ -1,4 +1,3 @@
-@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Bangers&family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Kaisei+Tokumin&display=swap");
 /*
 **********************************
@@ -480,7 +479,7 @@ footer > p {
   transition: transform 0.5s ease;
 }
 .category-slider .slider .manga {
-  position: relative; /* Important pour positionner l'élément à l'intérieur */
+  position: relative;
   padding: 10px;
   border-radius: 5px;
   text-align: center;
@@ -524,6 +523,46 @@ footer > p {
 .category-slider .slider button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+#our-fav div:first-child {
+  display: flex;
+  padding: 10px;
+  font-family: var(--ff-bangers);
+  letter-spacing: var(--letter-spacing);
+}
+#our-fav div:first-child h2 {
+  margin: var(--m-all-5);
+}
+#our-fav .bubble-fav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  padding: 10px 20px;
+}
+#our-fav .bubble-fav a {
+  color: #cc392b;
+}
+#our-fav .bubble-fav a:hover {
+  color: #cc1606;
+}
+#our-fav .bubble-fav h3 {
+  font-family: var(--ff-bangers);
+  letter-spacing: var(--letter-spacing);
+  margin-bottom: var(--mb-5);
+}
+#our-fav .bubble-fav hr {
+  margin-bottom: var(--mb-5);
+  background-color: black;
+  height: 1px;
+}
+#our-fav .bubble-fav p {
+  font-family: var(--ff-barlow);
+}
+#our-fav .bubble-fav figure {
+  padding: 10px 20px;
 }
 
 /*
@@ -670,7 +709,7 @@ footer > p {
     flex-direction: row;
   }
   .menu-desktop figure:nth-of-type(2) img {
-    width: 3vw;
+    width: 2.4vw;
   }
   .menu-desktop figure:nth-of-type(3) a img {
     width: 5vw;
@@ -720,13 +759,20 @@ footer > p {
   }
   .menu-desktop input {
     color: #333;
-    width: 5%;
+    width: 22%;
     height: 5vh;
     padding: 0 10px;
+    font-size: 1.2rem;
+    border: 1px solid #979797;
+    font-family: var(--ff-barlow);
+    border-radius: 50px;
+    transition: all ease 0.8s;
   }
   .menu-desktop input:focus {
-    border-color: blue;
+    border: 1px solid #cc392b;
+    border-radius: 50px;
     width: 100%;
+    outline: none;
   }
 }
 @media (min-width: 1440px) {
