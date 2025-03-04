@@ -1,8 +1,8 @@
 <?php
-$title = 'Nihon | Home';
-$meta_description = 'The best place to find your next manga\'s addiction ';
-$scripts = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public\asset\js\base.js", "public\asset\js\home.js"];
-ob_start();
+    $title            = 'Nihon | Home';
+    $meta_description = 'The best place to find your next manga\'s addiction ';
+    $scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public\asset\js\base.js", "public\asset\js\home.js"];
+    ob_start();
 ?>
 <section class="hero-mobile">
     <div class="carousel">
@@ -21,6 +21,29 @@ ob_start();
         <button class="next">❯</button>
     </div>
 </section>
+
+<section>
+    <?php foreach ($mangas as $category => $manga): ?>
+    <div class="category-slider">
+        <h2><?php echo $category?></h2>
+        <div class="slider">
+            <div class="slider-wrapper">
+                <?php foreach ($manga as $manga): ?>
+                <div class="manga">
+                    <a href="#"><img src="<?php echo $manga->getThumbnail()?>" alt=""><?php echo $manga->getName()?></a>
+                    <span class="heart"><img src="public\asset\img\heart.svg" alt="Heart"></span>
+                    <figure><img src="public\asset\img\star.svg" alt="">(300)</figure>
+                </div>
+                <?php endforeach; ?>
+            </div>
+            <button class="prev">❮</button>
+            <button class="next">❯</button>
+        </div>
+<?php endforeach; ?>
+</section>
+
+
+
 <section id="our-fav">
     <div>
         <h2>Our favorites</h2><img src="public\asset\img\emptyheart.svg" alt="empty heart">
@@ -278,7 +301,7 @@ ob_start();
 
 </html>
 <?php
-$content = ob_get_contents();
-ob_end_clean();
-require_once('view\base_html.php');
+    $content = ob_get_contents();
+    ob_end_clean();
+require_once 'view\base_html.php';
 ?>

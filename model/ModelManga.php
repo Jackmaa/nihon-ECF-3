@@ -1,14 +1,20 @@
 <?php
 class ModelManga extends Model {
-
+    // Get all the categories from the database
+    public function getCategories() {
+        $req = $this->getDb()->query('SELECT categories.category_name, categories.description FROM categories');
+        return $req->fetchAll(PDO::FETCH_ASSOC);
+    }
     // Get all mangas from the database by category (shonen)
-    public function getMangaListByCat() {
-        $req = $this->getDb()->query(
+    public function getMangaListByCat(string $category) {
+        $req = $this->getDb()->prepare(
             'SELECT *
-            FROM
-                category, manga
-            WHERE
-                category.name = "shonen" AND manga.thumbnail != ""');
+            FROM manga
+            INNER JOIN manga_category ON manga.id_manga = manga_category.manga_id
+            INNER JOIN categories ON manga_category.category_id = categories.id_category
+            WHERE categories.category_name = :category');
+        $req->bindParam(':category', $category, PDO::PARAM_STR);
+        $req->execute();
         $data   = $req->fetchAll(PDO::FETCH_ASSOC);
         $mangas = [];
         foreach ($data as $manga) {
@@ -138,11 +144,3 @@ class ModelManga extends Model {
         return $req->fetchAll(PDO::FETCH_ASSOC);
     }
 }
-
-/*foreach ($mangas as $manga):
-    <div class="manga">
-        <a href="#"><img src="<?php echo $manga->getThumbnail() ?>" alt="<?php echo $manga->getName() ?>"><?php echo $manga->getName() ?></a>
-        <span class="heart"><img src="public\asset\img\heart.svg" alt="Heart"></span>
-        <figure><img src="public\asset\img\star.svg" alt="">(300)</figure>
-    </div>
-endforeach; ?>*/
