@@ -1,7 +1,7 @@
 <?php
 $title            = 'Nihon | Home';
 $meta_description = 'The best place to find your next manga\'s addiction ';
-$scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public\asset\js\base.js", "public\asset\js\home.js"];
+$scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public\asset\js\base.js", "public\asset\js\home.js", "public/asset/js/header.js"];
 ob_start();
 ?>
 <section class="hero-mobile">

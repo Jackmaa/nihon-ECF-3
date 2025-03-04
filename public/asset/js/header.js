@@ -37,7 +37,7 @@ searchInput.addEventListener('input', function(){
             a.setAttribute('href', `/manga/${data.id_manga}`);
             a2.setAttribute('href', `/author/${data.id_author}`);
 
-            //APPEND ELEMENTS TO PARENT ELEMENT
+            //APPEND ELEMENTS TO PARENT ELEMENTS
             li.appendChild(author);
             li.appendChild(a);
             li.appendChild(a2);
