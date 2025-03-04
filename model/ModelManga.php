@@ -29,8 +29,7 @@ class ModelManga extends Model {
             manga.id_manga, manga_recommendation.message, manga.name, manga.id_author, manga.description, manga.published_date, manga.thumbnail
             FROM manga
             INNER JOIN manga_recommendation ON manga.id_manga = manga_recommendation.id_manga');
-        $data = $req->fetchAll(PDO::FETCH_ASSOC);
-        var_dump($data);
+        $data            = $req->fetchAll(PDO::FETCH_ASSOC);
         $recommendations = [];
         foreach ($data as $recommendation) {
             $message = $recommendation['message'];
