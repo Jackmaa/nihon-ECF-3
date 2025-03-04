@@ -509,12 +509,32 @@ padding: 0 20px;
 .category-slider {
   margin: 10% 3%;
 
-  h2 {
+  .category-title {
+    display: flex;
+    justify-content: space-between;
+
+    a {
+      margin: 8% 3%;
+      font-family: var(--ff-barlow);
+      color: var(--fc-black);
+      border: #231b19 1px solid;
+      padding: 5px 10px;
+      transition: all ease 0.3s;
+
+      &:hover {
+        color: #cc392b;
+        border: #cc392b 1px solid;
+      }
+    }
+    h2 {
     text-align: justify;
     margin: 8% 3%;
     font-family: var(--ff-bangers);
     letter-spacing: var(--letter-spacing);
   }
+  }
+
+
 
   .slider {
     position: relative;
@@ -569,8 +589,13 @@ padding: 0 20px;
         transform: translate(-50%, -50%);
         opacity: 0;
         transition: all 0.5s ease;
-        img {
+        svg {
           width: 100%;
+          fill: white;
+          transition: all 0.5s ease;
+          &:hover {
+            fill: #cc392b;
+          }
         }
       }
 
