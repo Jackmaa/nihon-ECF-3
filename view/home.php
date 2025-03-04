@@ -23,23 +23,25 @@
 </section>
 
 <section>
-    <?php foreach ($mangas as $category => $manga): ?>
-    <div class="category-slider">
-        <h2><?php echo $category?></h2>
-        <div class="slider">
-            <div class="slider-wrapper">
-                <?php foreach ($manga as $manga): ?>
-                <div class="manga">
-                    <a href="#"><img src="<?php echo $manga->getThumbnail()?>" alt=""><?php echo $manga->getName()?></a>
-                    <span class="heart"><img src="public\asset\img\heart.svg" alt="Heart"></span>
-                    <figure><img src="public\asset\img\star.svg" alt="">(300)</figure>
-                </div>
-                <?php endforeach; ?>
+    <?php foreach ($mangas as $category => $manga):
+        if (count($manga) == 0) {continue;}?>
+		    <div class="category-slider">
+		        <h2><?php echo $category ?></h2>
+		        <div class="slider">
+		            <div class="slider-wrapper">
+		            <?php foreach ($manga as $manga): ?>
+		            <div class="manga">
+	                    <a href="#"><img src="<?php echo $manga->getThumbnail() ?>" alt=""><?php echo $manga->getName() ?></a>
+	                    <span class="heart"><img src="public\asset\img\heart.svg" alt="Heart"></span>
+	                    <figure><img src="public\asset\img\star.svg" alt="">(300)</figure>
+		            </div>
+		            <?php endforeach; ?>
             </div>
             <button class="prev">❮</button>
             <button class="next">❯</button>
         </div>
-<?php endforeach; ?>
+    </div>
+    <?php endforeach; ?>
 </section>
 
 
