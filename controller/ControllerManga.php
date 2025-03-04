@@ -9,8 +9,11 @@ class ControllerManga extends Controller {
     public function home() {
         $model          = new ModelManga();
         $recommendation = $model->getMangaRecommendation();
-        $mangas         = $model->getMangaListByCat();
-        var_dump($recommendation);
+        $categories     = $model->getCategories();
+        foreach ($categories as $category) {
+            $mangas[$category['category_name']] = $model->getMangaListByCat($category['category_name']);
+        }
+
         require_once './view/home.php';
     }
 
