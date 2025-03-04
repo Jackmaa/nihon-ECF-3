@@ -17,6 +17,9 @@ $router->map("GET|POST", "/register", "ControllerUser#register", "register");
 $router->map("GET", "/verify/*", "ControllerUser#verify", "verify");
 
 //MANGA
+
+//SEARCH
+$router->map("GET|POST", "/search", "ControllerManga#search", "search");
 //CREATE
 $router->map("GET|POST", "/create", "ControllerManga#create", "create");
 $router->map("GET|POST", "/authorAJAX", "ControllerManga#authorAJAX", "authorAJAX");
@@ -31,6 +34,11 @@ $router->map("GET|POST", "/contact", "ControllerGeneral#contact", "contact");
 
 //DELETE MANGA
 $router->map("GET", "/delete/[i:id]", "ControllerManga#delete", "delete");
+
+//AUTHOR
+//READ
+$router->map("GET", "/author/[i:id]", "ControllerManga#readAuthor", "readAuthor");
+
 
 // Match the current request
 $match = $router->match();

@@ -87,6 +87,14 @@ class ControllerManga extends Controller {
         header('Location: /');
     }
 
+    public function search(){
+        $search = '%' . $_POST['search'] . '%';
+        $model  = new ModelManga();
+        $searchResults = $model->searchManga($search);
+        echo json_encode($searchResults);
+        header('Content-Type: application/json');
+    }
+
     // Method to handle AJAX request for author search
     public function authorAJAX() {
         $search  = '%' . $_POST['author'] . '%';
@@ -94,5 +102,11 @@ class ControllerManga extends Controller {
         $authors = $model->getMangaAuthor($search);
         echo json_encode($authors);
         header('Content-Type: application/json');
+    }
+
+    public function readAuthor($id) {
+        $model = new ModelManga();
+        $author = $model->getAuthorById($id);
+        require_once './view/author.php';
     }
 }
