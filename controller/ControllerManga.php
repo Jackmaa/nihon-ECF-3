@@ -7,8 +7,10 @@ class ControllerManga extends Controller {
 
     // Method to display the home page
     public function home() {
-        $model  = new ModelManga();
-        $mangas = $model->getMangaListByCat();
+        $model          = new ModelManga();
+        $recommendation = $model->getMangaRecommendation();
+        $mangas         = $model->getMangaListByCat();
+        var_dump($recommendation);
         require_once './view/home.php';
     }
 
