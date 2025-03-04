@@ -110,7 +110,7 @@ class ModelManga extends Model {
     public function getMangaById(int $id) {
         $req = $this->getDb()->prepare(
             'SELECT
-               manga.id_manga, manga.name, manga.id_author, manga.description, manga.published_date, manga.thumbnail,
+               manga.id_manga, manga.name, manga.description, manga.published_date, manga.thumbnail,
                 author.name AS author_name
             FROM
                 manga
@@ -121,7 +121,11 @@ class ModelManga extends Model {
                 id_manga = :id');
         $req->bindParam(':id', $id, PDO::PARAM_INT);
         $req->execute();
-        return new MangaDTO(new Manga($data = $req->fetch(PDO::FETCH_ASSOC)), $data['author_name']);
+        $data = $req->fetch(PDO::FETCH_ASSOC);
+        var_dump($data);
+        $author_name = $data['author_name'];
+        unset($data['author_name']);
+        return new MangaDTO(new Manga($data), $author_name);
     }
 
     public function deleteManga($id) {
@@ -141,5 +145,21 @@ class ModelManga extends Model {
         $req->bindParam(':name', $name, PDO::PARAM_STR);
         $req->execute();
         return $req->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function searchManga($str){
+        $str = trim($str);
+        $req = $this->getDb()->prepare("SELECT `id_manga`, `name`, `description`, `id_author` FROM `manga` WHERE `name` LIKE :str");
+        $req->bindParam(":str", $str, PDO::PARAM_STR);
+        $req->execute();
+    
+        return $req->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getAuthorById($id){
+        $req = $this->getDb()->prepare('SELECT `id_author`, `name` FROM `author` WHERE `id_author` = :id');
+        $req->bindParam(':id', $id, PDO::PARAM_INT);
+        $req->execute();
+        return new Author($req->fetch(PDO::FETCH_ASSOC));
     }
 }

@@ -36,7 +36,17 @@
         <section class="menu-desktop">
             <div>
                 <figure><a href="#"><img src="public\asset\img\logo.svg" alt="Logo"></a></figure>
-                <figure><img src="public\asset\img\search.svg" alt="loup"><input type="text" name="search" id="search" placeholder="Search"></figure>
+                <figure>
+                    <img src="public\asset\img\search.svg" alt="loup">
+                    <form action="" id="search-form" method="POST">
+                        <input type="text" name="search" id="search" placeholder="Search">
+                    </form>
+                    
+                    <div id="search-results">
+
+                    </div>
+
+                </figure>
                 <figure class="profile" >
                     <a href="#"><img src="public\asset\img\profile_picture.webp" alt="profile picture"></a>
                 <div class="dropdown">
