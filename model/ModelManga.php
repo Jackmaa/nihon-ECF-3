@@ -125,6 +125,7 @@ class ModelManga extends Model {
                 manga.id_manga = :id;');
         $req->bindParam(':id', $id, PDO::PARAM_INT);
         $req->execute();
+        $data        = $req->fetch(PDO::FETCH_ASSOC);
         $author_name = $data['author_name'];
         unset($data['author_name']);
         return new MangaDTO(new Manga($data), $author_name);
