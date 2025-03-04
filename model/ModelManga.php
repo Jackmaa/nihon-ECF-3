@@ -17,6 +17,25 @@ class ModelManga extends Model {
         return $mangas;
     }
 
+    public function getMangaRecommendation() {
+        $req = $this->getDb()->query(
+            'SELECT
+            manga.id_manga, manga_recommendation.message, manga.name, manga.id_author, manga.description, manga.published_date, manga.thumbnail
+            FROM manga
+            INNER JOIN manga_recommendation ON manga.id_manga = manga_recommendation.id_manga');
+        $data = $req->fetchAll(PDO::FETCH_ASSOC);
+        var_dump($data);
+        $recommendations = [];
+        foreach ($data as $recommendation) {
+            $message = $recommendation['message'];
+            unset($recommendation['message']);
+            $manga             = $recommendation;
+            $recommendations[] = new MangaRecommendation(new Manga($manga), $message);
+        }
+
+        return $recommendations;
+    }
+
     public function getManga(int $id) {
         $req = $this->getDb()->prepare(
             'SELECT
