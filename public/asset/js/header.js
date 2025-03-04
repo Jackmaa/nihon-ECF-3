@@ -31,7 +31,7 @@ searchInput.addEventListener('input', function(){
             //DATAS DISPLAYED IN DOM ELEMENTS
            
             a.textContent = data.name;
-            a2.textContent = data.id_author;
+            a2.textContent = data.author_name;
 
             //SET ATTRIBUTES
             a.setAttribute('href', `/manga/${data.id_manga}`);

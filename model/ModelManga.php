@@ -122,7 +122,6 @@ class ModelManga extends Model {
         $req->bindParam(':id', $id, PDO::PARAM_INT);
         $req->execute();
         $data = $req->fetch(PDO::FETCH_ASSOC);
-        var_dump($data);
         $author_name = $data['author_name'];
         unset($data['author_name']);
         return new MangaDTO(new Manga($data), $author_name);
@@ -149,7 +148,20 @@ class ModelManga extends Model {
 
     public function searchManga($str){
         $str = trim($str);
-        $req = $this->getDb()->prepare("SELECT `id_manga`, `name`, `description`, `id_author` FROM `manga` WHERE `name` LIKE :str");
+        $req = $this->getDb()->prepare(" SELECT
+                manga.id_manga,
+                manga.name,
+                manga.id_author,
+                manga.description,
+                manga.published_date,
+                manga.thumbnail,
+                author.name AS author_name
+            FROM
+                manga
+            INNER JOIN
+                author ON manga.id_author = author.id_author
+            WHERE
+                manga.name LIKE :str OR `author`.`name` LIKE :str");
         $req->bindParam(":str", $str, PDO::PARAM_STR);
         $req->execute();
     
