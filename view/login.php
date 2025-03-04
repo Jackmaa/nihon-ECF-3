@@ -9,11 +9,8 @@
         <section class="form-container">
             <h1> Connexion </h1>
             <form action="/login" method="post">
-                <input type="text" name="username" placeholder="Username">
-                <div>
-                    <input type="password" name="password"
-                        placeholder="Password">
-                </div>
+                <input type="text" name="email" placeholder="Email">
+                    <input type="password" name="password" placeholder="Password">
                 <p>no account yet ? <a class=clickhere href="">Click here</a></p>
                 <button type="submit">LOG IN</button>
             </form>
@@ -26,6 +23,6 @@
 <?php
     $content = ob_get_contents();
     ob_end_clean();
-require_once 'view\base_html.php';
+    require_once 'view\base_html.php';
 
 ?>
