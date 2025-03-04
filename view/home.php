@@ -85,187 +85,22 @@
 </div>
 </section>
 <section>
+    <?php foreach ($mangas as $category => $manga): ?>
     <div class="category-slider">
-        <h2>Kodomo</h2>
+        <h2><?php echo $category?></h2>
         <div class="slider">
             <div class="slider-wrapper">
+                <?php foreach ($manga as $manga): ?>
                 <div class="manga">
-                    <a href="#"><img src="public\asset\img\kodomo\51-ngUbCgCL._SX210_.webp" alt=""> <figure><img src="public\asset\img\heart_black_stroke.svg" alt="">300</figure></a>
+                    <a href="#"><img src="<?php echo $manga->getThumbnail()?>" alt="<?=$manga->getName()?>"><figure><img src="public\asset\img\heart_black_stroke.svg" alt="Like">300</figure></a>
                 </div>
-                <div class="manga">
-                    <a href="#"><img src="public\asset\img\kodomo\51PAuxx-fyL._SX210_.webp" alt=""> <figure><img src="public\asset\img\heart_black_stroke.svg" alt="">300</figure></a>
-                </div>
-                <div class="manga">
-                    <a href="#"><img src="public\asset\img\kodomo\61W4N3JE8GL._SX195_.webp" alt=""> <figure><img src="public\asset\img\heart_black_stroke.svg" alt="">300</figure></a>
-                </div>
-                <div class="manga">
-                    <a href="#"><img src="public\asset\img\kodomo\CVT_cvt_Kilari-Star-tome-1_6963.webp" alt=""> <figure><img src="public\asset\img\heart_black_stroke.svg" alt="">300</figure></a>
-                </div>
-                <div class="manga">
-                    <a href="#"><img src="public\asset\img\kodomo\CVT_cvt_Nijika-actrice-de-reve-Tome-1-_1376.webp" alt=""> <figure><img src="public\asset\img\heart_black_stroke.svg" alt="">300</figure></a>
-                </div>
-                <div class="manga">
-                    <a href="#"><img src="public\asset\img\kodomo\CVT_cvt_Princesse-Kilala-T01_780.webp" alt=""> <figure><img src="public\asset\img\heart_black_stroke.svg" alt="">300</figure></a>
-                </div>
-                <div class="manga">
-                    <a href="#"><img src="public\asset\img\kodomo\51-ngUbCgCL._SX210_.webp" alt=""> <figure><img src="public\asset\img\heart_black_stroke.svg" alt="">300</figure></a>
-                </div>
-                <div class="manga">
-                    <a href="#"><img src="public\asset\img\kodomo\51PAuxx-fyL._SX210_.webp" alt=""> <figure><img src="public\asset\img\heart_black_stroke.svg" alt="">300</figure></a>
-                </div>
-                <div class="manga">
-                    <a href="#"><img src="public\asset\img\kodomo\61W4N3JE8GL._SX195_.webp" alt=""> <figure><img src="public\asset\img\heart_black_stroke.svg" alt="">300</figure></a>
-                </div>
-                <div class="manga">
-                    <a href="#"><img src="public\asset\img\kodomo\CVT_cvt_Kilari-Star-tome-1_6963.webp" alt=""> <figure><img src="public\asset\img\heart_black_stroke.svg" alt="">300</figure></a>
-                </div>
-                <div class="manga">
-                    <a href="#"><img src="public\asset\img\kodomo\CVT_cvt_Nijika-actrice-de-reve-Tome-1-_1376.webp" alt=""> <figure><img src="public\asset\img\heart_black_stroke.svg" alt="">300</figure></a>
-                </div>
-                <div class="manga">
-                    <a href="#"><img src="public\asset\img\kodomo\CVT_cvt_Princesse-Kilala-T01_780.webp" alt=""> <figure><img src="public\asset\img\heart_black_stroke.svg" alt="">300</figure></a>
-                </div>
+                <?php endforeach; ?>
             </div>
             <button class="prev">❮</button>
             <button class="next">❯</button>
         </div>
-    </div>
-
-    <div class="category-slider">
-        <h2>Shōnen</h2>
-        <div class="slider">
-            <div class="slider-wrapper">
-                <div class="manga">
-                    <a href="#"><img src="public\asset\img\shonen\bleach.webp" alt=""> <figure><img src="public\asset\img\heart_black_stroke.svg" alt="">300</figure></a>
                 </div>
-                <div class="manga">
-                    <a href="#"><img src="public/asset/img/shonen/death_note.webp" alt=""> <figure><img src="public\asset\img\heart_black_stroke.svg" alt="">300</figure></a>
-                </div>
-                <div class="manga">
-                    <a href="#"><img src="public\asset\img\shonen\dragon_ball.webp" alt=""> <figure><img src="public\asset\img\heart_black_stroke.svg" alt="">300</figure></a>
-                </div>
-                <div class="manga">
-                    <a href="#"><img src="public\asset\img\shonen\naruto.webp" alt=""> <figure><img src="public\asset\img\heart_black_stroke.svg" alt="">300</figure></a>
-                </div>
-                <div class="manga">
-                    <a href="#"><img src="public\asset\img\shonen\fullmetal_alchemist.webp" alt=""> <figure><img src="public\asset\img\heart_black_stroke.svg" alt="">300</figure></a>
-                </div>
-                <div class="manga">
-                    <a href="#"><img src="public\asset\img\shonen\hunter_x_hunter.webp" alt=""> <figure><img src="public\asset\img\heart_black_stroke.svg" alt="">300</figure></a>
-                </div>
-            </div>
-            <button class="prev">❮</button>
-            <button class="next">❯</button>
-        </div>
-    </div>
-    <div class="category-slider">
-        <h2>Shōjo</h2>
-        <div class="slider">
-            <div class="slider-wrapper">
-                <div class="manga">
-                    <a href="#"><img src="public\asset\img\kodomo\51-ngUbCgCL._SX210_.webp" alt=""> <figure><img src="public\asset\img\heart_black_stroke.svg" alt="">300</figure></a>
-                </div>
-                <div class="manga">
-                    <a href="#"><img src="public\asset\img\kodomo\51PAuxx-fyL._SX210_.webp" alt=""> <figure><img src="public\asset\img\heart_black_stroke.svg" alt="">300</figure></a>
-                </div>
-                <div class="manga">
-                    <a href="#"><img src="public\asset\img\kodomo\61W4N3JE8GL._SX195_.webp" alt=""> <figure><img src="public\asset\img\heart_black_stroke.svg" alt="">300</figure></a>
-                </div>
-                <div class="manga">
-                    <a href="#"><img src="public\asset\img\kodomo\CVT_cvt_Kilari-Star-tome-1_6963.webp" alt=""> <figure><img src="public\asset\img\heart_black_stroke.svg" alt="">300</figure></a>
-                </div>
-                <div class="manga">
-                    <a href="#"><img src="public\asset\img\kodomo\CVT_cvt_Nijika-actrice-de-reve-Tome-1-_1376.webp" alt=""> <figure><img src="public\asset\img\heart_black_stroke.svg" alt="">300</figure></a>
-                </div>
-                <div class="manga">
-                    <a href="#"><img src="public\asset\img\kodomo\CVT_cvt_Princesse-Kilala-T01_780.webp" alt=""> <figure><img src="public\asset\img\heart_black_stroke.svg" alt="">300</figure></a>
-                </div>
-            </div>
-            <button class="prev">❮</button>
-            <button class="next">❯</button>
-        </div>
-    </div>
-    <div class="category-slider">
-        <h2>Seinen</h2>
-        <div class="slider">
-            <div class="slider-wrapper">
-                <div class="manga">
-                    <a href="#"><img src="public\asset\img\shonen\bleach.webp" alt=""> <figure><img src="public\asset\img\heart_black_stroke.svg" alt="">300</figure></a>
-                </div>
-                <div class="manga">
-                    <a href="#"><img src="public/asset/img/shonen/death_note.webp" alt=""> <figure><img src="public\asset\img\heart_black_stroke.svg" alt="">300</figure></a>
-                </div>
-                <div class="manga">
-                    <a href="#"><img src="public\asset\img\shonen\dragon_ball.webp" alt=""> <figure><img src="public\asset\img\heart_black_stroke.svg" alt="">300</figure></a>
-                </div>
-                <div class="manga">
-                    <a href="#"><img src="public\asset\img\shonen\naruto.webp" alt=""> <figure><img src="public\asset\img\heart_black_stroke.svg" alt="">300</figure></a>
-                </div>
-                <div class="manga">
-                    <a href="#"><img src="public\asset\img\shonen\fullmetal_alchemist.webp" alt=""> <figure><img src="public\asset\img\heart_black_stroke.svg" alt="">300</figure></a>
-                </div>
-                <div class="manga">
-                    <a href="#"><img src="public\asset\img\shonen\hunter_x_hunter.webp" alt=""> <figure><img src="public\asset\img\heart_black_stroke.svg" alt="">300</figure></a>
-                </div>
-            </div>
-            <button class="prev">❮</button>
-            <button class="next">❯</button>
-        </div>
-    </div>
-    <div class="category-slider">
-        <h2>Josei</h2>
-        <div class="slider">
-            <div class="slider-wrapper">
-                <div class="manga">
-                    <a href="#"><img src="public\asset\img\kodomo\51-ngUbCgCL._SX210_.webp" alt=""> <figure><img src="public\asset\img\heart_black_stroke.svg" alt="">300</figure></a>
-                </div>
-                <div class="manga">
-                    <a href="#"><img src="public\asset\img\kodomo\51PAuxx-fyL._SX210_.webp" alt=""> <figure><img src="public\asset\img\heart_black_stroke.svg" alt="">300</figure></a>
-                </div>
-                <div class="manga">
-                    <a href="#"><img src="public\asset\img\kodomo\61W4N3JE8GL._SX195_.webp" alt=""> <figure><img src="public\asset\img\heart_black_stroke.svg" alt="">300</figure></a>
-                </div>
-                <div class="manga">
-                    <a href="#"><img src="public\asset\img\kodomo\CVT_cvt_Kilari-Star-tome-1_6963.webp" alt=""> <figure><img src="public\asset\img\heart_black_stroke.svg" alt="">300</figure></a>
-                </div>
-                <div class="manga">
-                    <a href="#"><img src="public\asset\img\kodomo\CVT_cvt_Nijika-actrice-de-reve-Tome-1-_1376.webp" alt=""> <figure><img src="public\asset\img\heart_black_stroke.svg" alt="">300</figure></a>
-                </div>
-                <div class="manga">
-                    <a href="#"><img src="public\asset\img\kodomo\CVT_cvt_Princesse-Kilala-T01_780.webp" alt=""> <figure><img src="public\asset\img\heart_black_stroke.svg" alt="">300</figure></a>
-                </div>
-            </div>
-            <button class="prev">❮</button>
-            <button class="next">❯</button>
-        </div>
-    </div>
-    <div class="category-slider">
-        <h2>Seijin</h2>
-        <div class="slider">
-            <div class="slider-wrapper">
-                <div class="manga">
-                    <a href="#"><img src="public\asset\img\shonen\bleach.webp" alt=""> <figure><img src="public\asset\img\heart_black_stroke.svg" alt="">300</figure></a>
-                </div>
-                <div class="manga">
-                    <a href="#"><img src="public/asset/img/shonen/death_note.webp" alt=""> <figure><img src="public\asset\img\heart_black_stroke.svg" alt="">300</figure></a>
-                </div>
-                <div class="manga">
-                    <a href="#"><img src="public\asset\img\shonen\dragon_ball.webp" alt=""> <figure><img src="public\asset\img\heart_black_stroke.svg" alt="">300</figure></a>
-                </div>
-                <div class="manga">
-                    <a href="#"><img src="public\asset\img\shonen\naruto.webp" alt=""><figure><img src="public\asset\img\heart_black_stroke.svg" alt="">300</figure></a>
-                </div>
-                <div class="manga">
-                    <a href="#"><img src="public\asset\img\shonen\fullmetal_alchemist.webp" alt=""> <figure><img src="public\asset\img\heart_black_stroke.svg" alt="">300</figure></a>
-                </div>
-                <div class="manga">
-                    <a href="#"><img src="public\asset\img\shonen\hunter_x_hunter.webp" alt=""> <figure><img src="public\asset\img\heart_black_stroke.svg" alt="">300</figure></a>
-                </div>
-            </div>
-            <button class="prev">❮</button>
-            <button class="next">❯</button>
-        </div>
-    </div>
+<?php endforeach; ?>
 </section>
 </body>
 
