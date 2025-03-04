@@ -455,7 +455,23 @@ footer > p {
 .category-slider {
   margin: 10% 3%;
 }
-.category-slider h2 {
+.category-slider .category-title {
+  display: flex;
+  justify-content: space-between;
+}
+.category-slider .category-title a {
+  margin: 8% 3%;
+  font-family: var(--ff-barlow);
+  color: var(--fc-black);
+  border: #231b19 1px solid;
+  padding: 5px 10px;
+  transition: all ease 0.3s;
+}
+.category-slider .category-title a:hover {
+  color: #cc392b;
+  border: #cc392b 1px solid;
+}
+.category-slider .category-title h2 {
   text-align: justify;
   margin: 8% 3%;
   font-family: var(--ff-bangers);
@@ -511,8 +527,13 @@ footer > p {
   opacity: 0;
   transition: all 0.5s ease;
 }
-.category-slider .slider .manga figure img {
+.category-slider .slider .manga figure svg {
   width: 100%;
+  fill: white;
+  transition: all 0.5s ease;
+}
+.category-slider .slider .manga figure svg:hover {
+  fill: #cc392b;
 }
 .category-slider .slider .manga a:hover figure {
   opacity: 1;
