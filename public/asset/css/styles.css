@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Bangers&family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Kaisei+Tokumin&display=swap");
 /*
 **********************************
@@ -70,6 +71,12 @@ h1, h2, h3, h4, h5, h6 {
 */
 .p-all-2 {
   padding: 1vw;
+}
+
+.flexcenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /*
@@ -808,6 +815,14 @@ div.mangaPage svg:hover {
     display: block;
     width: 60vw;
   }
+  /*
+  *******************************
+  ***********contact***********
+  *******************************
+  */
+  .formulaire {
+    margin: 0 auto;
+  }
 }
 @media (min-width: 768px) {
   /*
@@ -839,6 +854,14 @@ div.mangaPage svg:hover {
     display: block;
     width: 60vw;
   }
+  /*
+  *******************************
+  ***********contact***********
+  *******************************
+  */
+  .formulaire {
+    margin: 0 auto;
+  }
 }
 @media (min-width: 1024px) {
   /*
@@ -869,6 +892,15 @@ div.mangaPage svg:hover {
   #img-subscrire {
     display: block;
     width: 60vw;
+  }
+  /*
+  *******************************
+  ***********contact***********
+  *******************************
+  */
+  .formulaire {
+    margin: 0 auto;
+    max-width: 24px;
   }
   /*
   **********************************
@@ -959,6 +991,13 @@ div.mangaPage svg:hover {
   }
   /*
   **********************************
+
+  ***********DASHBOARD************
+  **********************************
+  */
+  div.headdashboard {
+    height: 50vh;
+/*
   ***** OUR FAVORITE HOMEPAGE*******
   **********************************
   */
@@ -1032,6 +1071,14 @@ div.mangaPage svg:hover {
     display: block;
     width: 60vw;
   }
+  /*
+  **********************************
+  ***********DASHBOARD************
+  **********************************
+  */
+  div.headdashboard {
+    height: 70vh;
+  }
 }
 /*
 **********************************
@@ -1041,8 +1088,12 @@ div.mangaPage svg:hover {
 .formulaire {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   background-color: #A2EEFB;
   border-radius: 10px;
+  outline: 3px solid #ffffff;
+  max-width: 600px;
+  margin: 20px;
 }
 .formulaire h2 {
   text-align: center;
@@ -1057,13 +1108,14 @@ div.mangaPage svg:hover {
   border-radius: 10px;
   border: none;
   background-color: #F5F5F5;
+  outline: 1px solid #B3B34E;
 }
 .formulaire .button {
   margin: 1%;
   padding: 1%;
   border-radius: 10px;
   border: none;
-  background-color: #cc392b;
+  background-color: #FCC8E1;
   color: #ffffff;
   font-family: var(--ff-bangers);
   cursor: pointer;
@@ -1072,6 +1124,115 @@ div.mangaPage svg:hover {
 .formulaire .button:hover {
   background-color: #cc1606;
 }
-.formulaire figure {
-  text-align: center;
-}/*# sourceMappingURL=styles.css.map */
+
+/*
+**********************************
+***********DASHBOARD************
+**********************************
+*/
+.headdashboard {
+  height: 30vh;
+  background: url(../img/dashboard_desktop.svg) no-repeat center center/cover;
+}
+
+.dashboard {
+  /* filepath: /C:/wamp64/www/nihon/public/asset/css/styles.scss */
+}
+.dashboard table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+.dashboard th, .dashboard td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+.dashboard th {
+  background-color: #cc392b;
+  color: white;
+}
+.dashboard tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+.dashboard .color-button {
+  background-color: #008CBA;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.dashboard .color-button:hover {
+  opacity: 0.8;
+}
+.dashboard label {
+  margin: 0 4%;
+}
+.dashboard h1 {
+  font-family: var(--ff-bangers);
+  letter-spacing: var(--letter-spacing);
+}
+.dashboard .center {
+  display: flex;
+  justify-content: center;
+  margin: 4% 0;
+}
+.dashboard img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+}
+.dashboard .button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dashboard .button-container .button {
+  align-items: center;
+  margin: 1%;
+  padding: 1%;
+  border-radius: 10px;
+  border: none;
+  background-color: #FCC8E1;
+  color: #0e0e0e;
+  font-family: var(--ff-bangers);
+  cursor: pointer;
+  transition: all ease 0.3s;
+}
+.dashboard .button-container .button:hover {
+  background-color: #cc1606;
+}
+.dashboard .popup {
+  display: none; /* Masquer par défaut */
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #ccc;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+.dashboard .overlay {
+  display: none; /* Masquer par défaut */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+.dashboard .popup.active,
+.dashboard .overlay.active {
+  display: block; /* Afficher lorsque actif */
+}
+
+/*
+**********************************
+***********LOANS HISTORY************
+**********************************
+*//*# sourceMappingURL=styles.css.map */
