@@ -74,8 +74,9 @@ class ControllerManga extends Controller {
 
     // Method to read a manga entry by ID
     public function read($id) {
-        $model = new ModelManga();
-        $manga = $model->getMangaById($id);
+        $model   = new ModelManga();
+        $manga   = $model->getMangaById($id);
+        $volumes = $model->getMangaVolumes($id);
         require_once './view/manga.php';
     }
 
@@ -86,9 +87,9 @@ class ControllerManga extends Controller {
         header('Location: /');
     }
 
-    public function search(){
-        $search = '%' . $_POST['search'] . '%';
-        $model  = new ModelManga();
+    public function search() {
+        $search        = '%' . $_POST['search'] . '%';
+        $model         = new ModelManga();
         $searchResults = $model->searchManga($search);
         echo json_encode($searchResults);
         header('Content-Type: application/json');
@@ -104,7 +105,7 @@ class ControllerManga extends Controller {
     }
 
     public function readAuthor($id) {
-        $model = new ModelManga();
+        $model  = new ModelManga();
         $author = $model->getAuthorById($id);
         require_once './view/author.php';
     }
