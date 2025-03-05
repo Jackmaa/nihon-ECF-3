@@ -11,6 +11,9 @@ $router->map("GET", "/", "ControllerManga#home", "home");
 //USER 
 //LOGIN
 $router->map("GET|POST", "/login", "ControllerUser#login", "login");
+//LOGOUT
+$router->map("GET", "/logout", "ControllerUser#logout", "logout");
+
 //REGISTER
 $router->map("GET|POST", "/register", "ControllerUser#register", "register");
 //VERIFY
@@ -38,7 +41,6 @@ $router->map("GET", "/delete/[i:id]", "ControllerManga#delete", "delete");
 //AUTHOR
 //READ
 $router->map("GET", "/author/[i:id]", "ControllerManga#readAuthor", "readAuthor");
-
 
 // Match the current request
 $match = $router->match();
