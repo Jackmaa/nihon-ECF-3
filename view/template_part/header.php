@@ -17,7 +17,17 @@
                 <img src="public/asset/img/menu_bar.svg" alt="bar menu">
             </figure>
             <figure><img src="public\asset\img\logo.svg" alt="Logo"></figure>
-            <figure><img src="public\asset\img\search.svg" alt="search bar"></figure>
+            <figure class="test" >
+                    <img src="public\asset\img\search.svg" alt="loup">
+                    <form action="" id="search-form" method="POST">
+                        <input type="text" name="search" id="search" placeholder="Search">
+                    </form>
+                    
+                    <div id="search-results">
+
+                    </div>
+
+                </figure>
             <div class="burger-menu menuBurger">
                 <div class="menu-header">
                     <img src="public\asset\img\logo.svg" alt="Menu Logo" class="menu-logo">
