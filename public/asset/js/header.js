@@ -1,3 +1,7 @@
+// *********************************
+// ***********SEARCH***********
+// ********************************* 
+
 let searchForm = document.getElementById('search-form');
 let searchInput = document.getElementById('search');
 const responseDiv = document.getElementById('search-results');
@@ -25,7 +29,6 @@ searchInput.addEventListener('input', function(){
             //DOM BUILDING
             let li = document.createElement('li');
             let a = document.createElement('a');
-            let author = document.createElement('p');
             let a2 = document.createElement('a');
             
             //DATAS DISPLAYED IN DOM ELEMENTS
@@ -38,7 +41,6 @@ searchInput.addEventListener('input', function(){
             a2.setAttribute('href', `/author/${data.id_author}`);
 
             //APPEND ELEMENTS TO PARENT ELEMENTS
-            li.appendChild(author);
             li.appendChild(a);
             li.appendChild(a2);
             ulResults.appendChild(li);
