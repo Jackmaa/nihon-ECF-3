@@ -178,4 +178,6 @@ class ModelManga extends Model {
         $req->execute();
         return new Author($req->fetch(PDO::FETCH_ASSOC));
     }
+    public function bookPage(){
+    }
 }

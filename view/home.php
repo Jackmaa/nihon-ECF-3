@@ -117,9 +117,6 @@ ob_start();
         </div>
     <?php endforeach; ?>
 </section>
-</body>
-
-</html>
 <?php
 $content = ob_get_contents();
 ob_end_clean();
