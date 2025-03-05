@@ -115,4 +115,22 @@ class ControllerUser extends Controller {
             echo 'Please provide a valid token and email.';
         }
     }
+
+    public function update(int $id){
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (! empty($_POST['username']) && ! empty($_POST['email']) && ! empty($_POST['password']) && ! empty($_POST['password_verify']) && ! empty($_POST['profile_pic'])) {
+                if ($_POST['password'] === $_POST['password_verify']) {
+                    $model->updateUser($_POST['email'], $_POST['password']);
+                    echo 'Your account has been updated.';
+                    header('Location: ' . $this->router->generate('home'));
+                } else {
+                    echo 'Passwords do not match.';
+                }
+            } else {
+                echo 'All the fields are required.';
+            }
+        }
+        require_once './view/update.php';
+    }
 }
