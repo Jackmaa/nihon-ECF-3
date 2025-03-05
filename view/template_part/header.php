@@ -19,11 +19,11 @@
             <figure><img src="public\asset\img\logo.svg" alt="Logo"></figure>
             <figure class="test" >
                     <img src="public\asset\img\search.svg" alt="loup">
-                    <form action="" id="search-form" method="POST">
-                        <input type="text" name="search" id="search" placeholder="Search">
+                    <form action="" id="search-form-mobile" method="POST">
+                        <input type="text" name="search" id="search-mobile" placeholder="Search">
                     </form>
 
-                    <div id="search-results">
+                    <div id="search-results-mobile">
 
                     </div>
 
@@ -48,11 +48,11 @@
                 <figure><a href="#"><img src="public\asset\img\logo.svg" alt="Logo"></a></figure>
                 <figure>
                     <img src="public\asset\img\search.svg" alt="loup">
-                    <form action="" id="search-form" method="POST">
-                        <input type="text" name="search" id="search" placeholder="Search">
+                    <form action="" id="search-form-desktop" method="POST">
+                        <input type="text" name="search" id="search-desktop" placeholder="Search">
                     </form>
 
-                    <div id="search-results">
+                    <div id="search-results-desktop">
 
                     </div>
 
