@@ -54,19 +54,19 @@ class ControllerUser extends Controller {
                         $password = $_POST['password'];
 
                         // Create a temporary user entry
-                        $model->createTempUser($username, $email, $password, $token);
+                        $insertResult = $model->createTempUser($username, $email, $password, $token);
 
                         // Send verification email
                         $mailer           = new Mailer($token);
                         $verificationLink = "http://nihon/verify/?email=$email&code=$token";
-                        $mailer->sendVerificationEmail($email, $username, $verificationLink);
-
+                        $sendResult       = $mailer->sendVerificationEmail($email, $username, $verificationLink);
+                        var_dump($sendResult);
                         echo "Your account was created! An email has been sent, please check it out to verify your email.";
 
-                        require_once './view/home.php';
+                        header('Location: ' . $this->router->generate('login'));
                     } else {
                         echo "Email or username is already taken.";
-                        require_once './view/login.php';
+                        header('Location: ' . $this->router->generate('login'));
                     }
                 } else {
                     echo 'Passwords do not match.';
@@ -97,7 +97,7 @@ class ControllerUser extends Controller {
                 $user = $model->getTempUser($email);
                 $model->createUser($user['username'], $user['email'], $user['password']);
                 $model->deleteTempUser($email);
-                require_once './view/login.php';
+                header('Location: ' . $this->router->generate('login'));
             } else {
                 echo 'Your token has expired. A new link has been sent to your email.';
                 $user             = $model->getTempUser($email);

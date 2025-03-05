@@ -22,7 +22,7 @@
                     <form action="" id="search-form" method="POST">
                         <input type="text" name="search" id="search" placeholder="Search">
                     </form>
-                    
+
                     <div id="search-results">
 
                     </div>
@@ -51,12 +51,13 @@
                     <form action="" id="search-form" method="POST">
                         <input type="text" name="search" id="search" placeholder="Search">
                     </form>
-                    
+
                     <div id="search-results">
 
                     </div>
 
                 </figure>
+                <?php if (isset($_SESSION['id_user'])): ?>
                 <figure class="profile" >
                     <a href="#"><img src="<?= BASE_URL ?>public\asset\img\profile_picture.webp" alt="profile picture"></a>
                 <div class="dropdown">
@@ -65,10 +66,16 @@
                     <li><a href="#">My Favorites</a></li>
                     <li><a href="#">My Boocks</a></li>
                     <li><a href="#">Contact</a></li>
-                    <li><a href="#">Déconnexion</a></li>
+                    <li><a href="<?php echo $this->router->generate('logout') ?>">Déconnexion</a></li>
                 </ul>
                 </div>
                 </figure>
+                <?php else: ?>
+                <figure class="connexion">
+                   <a href="<?php echo $this->router->generate('login') ?>">Connexion</a>
+                </figure>
+                <?php endif; ?>
+
             </div>
         </section>
 

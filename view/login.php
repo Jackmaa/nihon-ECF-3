@@ -9,7 +9,7 @@
         <section class="form-container">
             <h1> Connexion </h1>
             <form action="/login" method="post">
-                <input type="text" name="username" placeholder="Username">
+                <input type="text" name="email" placeholder="Email">
                 <div>
                     <input type="password" name="password"
                         placeholder="Password">
@@ -26,6 +26,6 @@
 <?php
     $content = ob_get_contents();
     ob_end_clean();
-require_once 'view\base_html.php';
+    require_once 'view\base_html.php';
 
 ?>
