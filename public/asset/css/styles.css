@@ -630,11 +630,24 @@ footer > p {
 ***********MANGA PAGE************
 **********************************
 */
+.liked {
+  fill: red;
+}
+
 div.mangaPage {
   position: relative;
   width: 100%;
   height: 50vh;
   overflow: hidden;
+}
+div.mangaPage .like-count {
+  position: absolute;
+  font-family: var(--ff-barlow);
+  font-size: 1.4rem;
+  color: white;
+  margin: 5vh;
+  top: 10%;
+  left: 10%;
 }
 div.mangaPage img:first-child {
   filter: brightness(20%);
