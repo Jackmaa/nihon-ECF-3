@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: `manga_id=${mangaId}`,
+        body: JSON.stringify({ manga_id: mangaId }),
       })
         .then((response) => response.json())
         .then((data) => {

@@ -76,18 +76,20 @@ class Manga {
     }
 
     // Like System
-    public function toggleLike($user_id) {
+    public function toggleLike($id_user) {
         $req = $this->getDb()->prepare("SELECT id_fav FROM fav WHERE id_user = ? AND id_manga = ?");
-        $req->execute([$user_id, $this->id_manga]);
+        $req->execute([$id_user, $this->id_manga]);
         $like = $req->fetch();
 
         if ($like) {
             $req = $this->getDb()->prepare("DELETE FROM fav WHERE id_user = ? AND id_manga = ?");
-            $req->execute([$user_id, $this->id_manga]);
+            $req->execute([$id_user, $this->id_manga]);
+            error_log("Unliked manga_id: {$this->id_manga} by user_id: $id_user");
             return false; // Unliked
         } else {
             $req = $this->getDb()->prepare("INSERT INTO fav (id_user, id_manga) VALUES (?, ?)");
-            $req->execute([$user_id, $this->id_manga]);
+            $req->execute([$id_user, $this->id_manga]);
+            error_log("Liked manga_id: {$this->id_manga} by user_id: $id_user");
             return true; // Liked
         }
     }
@@ -95,6 +97,8 @@ class Manga {
     public function getLikesCount() {
         $req = $this->getDb()->prepare("SELECT COUNT(*) FROM fav WHERE id_manga = ?");
         $req->execute([$this->id_manga]);
-        return $req->fetchColumn();
+        $count = $req->fetchColumn();
+        error_log("Manga_id {$this->id_manga} has $count likes");
+        return $count;
     }
 }

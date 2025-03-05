@@ -113,13 +113,13 @@ class ControllerManga extends Controller {
     public function likeManga() {
         header('Content-Type: application/json');
 
-        if (! isset($_SESSION['user_id'])) {
+        if (! isset($_SESSION['id_user'])) {
             echo json_encode(['error' => 'Not logged in']);
             exit;
         }
 
-        $user_id  = $_SESSION['user_id'];
-        $manga_id = $_POST['manga_id'] ?? null;
+        $data     = json_decode(file_get_contents("php://input"), true);
+        $manga_id = $data['manga_id'] ?? null;
 
         if (! $manga_id) {
             echo json_encode(['error' => 'Invalid request']);
@@ -128,7 +128,7 @@ class ControllerManga extends Controller {
 
         // Instantiate Manga object with ID only
         $manga      = new Manga(['id_manga' => $manga_id]);
-        $liked      = $manga->toggleLike($user_id);
+        $liked      = $manga->toggleLike($_SESSION['id_user']);
         $like_count = $manga->getLikesCount();
 
         echo json_encode(['liked' => $liked, 'like_count' => $like_count]);
