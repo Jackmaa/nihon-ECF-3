@@ -91,6 +91,27 @@ h1,h2,h3,h4,h5,h6 {
 .menu-mobile {
   display: flex;
   justify-content: space-between;
+
+  .test {
+    display: flex;
+    input {
+      color: #333;
+      width: 22%;
+      height: 5vh;
+      padding: 0 10px;
+      font-size: 1.2rem;
+      border: 1px solid #979797;
+      font-family: var(--ff-barlow);
+      border-radius: 50px;
+      transition: all ease 0.8s;
+      &:focus{
+        border: 1px solid #cc392b;
+        border-radius: 50px;
+        width: 80%;
+        outline: none;
+      }
+    }
+  }
 }
 
 /*
@@ -512,14 +533,34 @@ padding: 0 20px;
 }
 
 .category-slider {
-  margin: 20% 3%;
+  margin: 10% 3%;
 
-  h2 {
+  .category-title {
+    display: flex;
+    justify-content: space-between;
+
+    a {
+      margin: 8% 3%;
+      font-family: var(--ff-barlow);
+      color: var(--fc-black);
+      border: #231b19 1px solid;
+      padding: 5px 10px;
+      transition: all ease 0.3s;
+
+      &:hover {
+        color: #cc392b;
+        border: #cc392b 1px solid;
+      }
+    }
+    h2 {
     text-align: justify;
     margin: 8% 3%;
     font-family: var(--ff-bangers);
     letter-spacing: var(--letter-spacing);
   }
+  }
+
+
 
   .slider {
     position: relative;
@@ -534,50 +575,83 @@ padding: 0 20px;
     }
 
     .manga {
-      position: relative; 
-      padding: 10px;
-      border-radius: 5px;
+      position: relative;
       text-align: center;
-      flex: 0 0 calc(100% / 3);
+      flex: 0 0 calc(100% / 2 - 10px);
       box-sizing: border-box;
-      margin: 0 5px;
+      margin: 0 2vw;
       display: flex;
+      align-items: center;
+      justify-content: center;
       flex-direction: column;
       font-family: var(--ff-barlow);
       color: var(--fc-black);
       font-size: var(--fs-08);
 
-      a {
-        color: var(--fc-black);
-        font-size: var(--fs-1);
-      }
-      .heart {
-        position: absolute;
+      img {
+        display: block;
       }
 
-      .heart img {
-        width: 8vw;
-        height: 8vw;
+      a {
+        display: block;
+        position: relative;
+        color: var(--fc-black);
+        font-size: var(--fs-1);
+        color: var(--fc-light);
+
+        &:hover img:not(figure img) {
+          filter: brightness(50%);
+        }
+        img {
+          width: 100%;
+          transition: all 0.5s ease;
+        }
+      }
+
+      figure {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        transition: all 0.5s ease;
+        svg {
+          width: 100%;
+          fill: white;
+          transition: all 0.5s ease;
+          &:hover {
+            fill: #cc392b;
+          }
+        }
+      }
+
+      a:hover figure {
+        opacity: 1;
       }
     }
 
     button {
       position: absolute;
       top: 50%;
+      border-radius: 50px;
       transform: translateY(-50%);
-      background: rgba(255, 255, 255, 0.7);
+      background: rgba(255, 255, 255, 0.288);
       border: none;
       cursor: pointer;
       padding: 10px;
       font-size: 2rem;
       z-index: 100;
 
+      &:hover {
+        background: rgb(255, 255, 255);
+      }
+
       &.prev {
-        left: 10px;
+        left: 0px;
       }
 
       &.next {
-        right: 10px;
+        right: 0px;
       }
 
       &:disabled {
@@ -635,9 +709,153 @@ padding: 0 20px;
 
         figure {
        padding: 10px 20px;
+       width: 40%;
       }
     }
 
+}
+
+/*
+**********************************
+***********MANGA PAGE************
+**********************************
+*/
+
+div.mangaPage {
+  position: relative;
+  width: 100%;
+  height: 50vh;
+  overflow: hidden;
+
+  img:first-child{
+    filter: brightness(20%);
+    width: 100%;
+  }
+
+  h2 {
+    font-family: var(--ff-barlow);
+    font-size: 2rem ;
+    font-weight: 400;
+    position: absolute;
+    color: var(--fc-light);
+    margin: 5%;
+    top: 0%;
+    left: 0%;
+  }
+  svg {
+    cursor: pointer;
+    width: 8vh;
+    height: 8vh;
+    position: absolute;
+    fill: white;
+    margin: 5%;
+    top: 10%;
+    left: 0%;
+    transition: all ease 0.3s;
+    &:hover {
+      fill: #cc392b;
+    }
+  }
+}
+
+.sum-manga {
+  margin-top: 5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h2 {
+    font-family: var(--ff-bangers);
+    letter-spacing: var(--letter-spacing);
+    margin-bottom: 2vh;
+  }
+  p {
+    font-family: var(--ff-barlow);
+    font-size: 1.2rem;
+    width: 90%;
+    height: 90%;
+    text-align: center;
+  }
+  
+}
+
+.char-manga {
+  display: flex;
+  justify-content: center;
+  margin-top: 1vh;
+  font-family: var(--ff-barlow);
+  font-size: 0.8rem;
+  div {
+    display: flex;
+    a {
+      margin: 0 1vh;
+      color: #cc392b;
+      font-weight: 500;
+      &:hover {
+        color: #cc1606;
+      }
+    }
+  }
+}
+
+.review {
+  width: 90%;
+  display: grid;
+  place-self: center;
+  place-content: center;
+  align-content: center;
+  margin-top: 5vh;
+  font-family: var(--ff-barlow);
+  max-height: 50vh;
+  overflow-y: auto;
+  padding-right: 10px; 
+  scrollbar-width: thin; 
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent; 
+
+hr{
+  margin: 2vh 0;
+}
+
+  p :last-child {
+    margin-top: 2vh;
+  }
+
+  .cadre-review {
+    display: flex;
+    justify-content: center;
+
+    .comm {
+      display: flex;
+      align-items: center;
+      width: fit-content;
+    }
+
+    .cadre-profile {
+      margin-left: 5vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+    }
+  }
+
+  img.profile-picture {
+    width: 10vh;
+    height: 10vh;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+}
+.review::-webkit-scrollbar {
+  width: 8px;
+}
+
+.review::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+}
+
+.review::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 /*
@@ -887,6 +1105,7 @@ margin: 0 auto;}
 
   /*
 **********************************
+
 ***********DASHBOARD************
 **********************************
 */
@@ -895,7 +1114,60 @@ div.headdashboard{
   height: 50vh;
 }
 
+/*
+***** OUR FAVORITE HOMEPAGE*******
+**********************************
+*/
+
+#our-fav {
+  #big-bubble-fav {
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+  }
+
+  .bubble-fav{
+    flex-direction: row;
+    width: 90%;
+
+    figure {
+      width: 60%;
+      img {
+        width: 100%;
+      }
+    }
+
+    h3 {
+      margin-bottom: 2vh;
+    }
+    hr {
+      margin-bottom: 2vh;
+    }
+  }
 }
+
+  /*
+**********************************
+***** SLIDER CATEGORY HOMEPAGE*******
+**********************************
+*/
+.category-slider .slider {
+  max-width: 1400px; /* Augmente la largeur du slider */
+}
+
+.slider-wrapper {
+max-width: max-content;
+}
+
+.manga {
+        flex: 0 0 calc(100% / 5 - 10px);
+        max-width: calc(100% / 5 - 10px);
+  img {
+    width:40%;
+  }
+}
+
+}
+
 
 
 

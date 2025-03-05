@@ -1,14 +1,20 @@
 <?php
 class ModelManga extends Model {
-
+    // Get all the categories from the database
+    public function getCategories() {
+        $req = $this->getDb()->query('SELECT categories.category_name, categories.description FROM categories');
+        return $req->fetchAll(PDO::FETCH_ASSOC);
+    }
     // Get all mangas from the database by category (shonen)
-    public function getMangaListByCat() {
-        $req = $this->getDb()->query(
+    public function getMangaListByCat(string $category) {
+        $req = $this->getDb()->prepare(
             'SELECT *
-            FROM
-                category, manga
-            WHERE
-                category.name = "shonen" AND manga.thumbnail != ""');
+            FROM manga
+            INNER JOIN manga_category ON manga.id_manga = manga_category.manga_id
+            INNER JOIN categories ON manga_category.category_id = categories.id_category
+            WHERE categories.category_name = :category');
+        $req->bindParam(':category', $category, PDO::PARAM_STR);
+        $req->execute();
         $data   = $req->fetchAll(PDO::FETCH_ASSOC);
         $mangas = [];
         foreach ($data as $manga) {
@@ -23,8 +29,7 @@ class ModelManga extends Model {
             manga.id_manga, manga_recommendation.message, manga.name, manga.id_author, manga.description, manga.published_date, manga.thumbnail
             FROM manga
             INNER JOIN manga_recommendation ON manga.id_manga = manga_recommendation.id_manga');
-        $data = $req->fetchAll(PDO::FETCH_ASSOC);
-        var_dump($data);
+        $data            = $req->fetchAll(PDO::FETCH_ASSOC);
         $recommendations = [];
         foreach ($data as $recommendation) {
             $message = $recommendation['message'];
@@ -36,6 +41,7 @@ class ModelManga extends Model {
         return $recommendations;
     }
 
+    //For the manga/id page
     public function getManga(int $id) {
         $req = $this->getDb()->prepare(
             'SELECT
@@ -55,6 +61,26 @@ class ModelManga extends Model {
         $result = $req->fetch(PDO::FETCH_ASSOC);
 
         return $result ? new Manga($result) : null;
+    }
+
+    //Get all the volumes of a manga
+    public function getMangaVolumes(int $id) {
+        $req = $this->getDb()->prepare(
+            'SELECT
+                `id_volume`
+            FROM
+                `manga_volume`
+            WHERE
+                id_manga = :id');
+        $req->bindParam('id', $id, PDO::PARAM_INT);
+        $req->execute();
+
+        $volumes = [];
+        while ($result = $req->fetch(PDO::FETCH_COLUMN)) {
+            $volumes[] = $result;
+        }
+
+        return $volumes;
     }
 
     public function updateManga(int $id, string $name, string $description, string $published_date, string $thumbnail) {
@@ -105,18 +131,25 @@ class ModelManga extends Model {
     public function getMangaById(int $id) {
         $req = $this->getDb()->prepare(
             'SELECT
-               manga.id_manga, manga.name, manga.id_author, manga.description, manga.published_date, manga.thumbnail,
+                manga.id_manga,
+                manga.name,
+                manga.id_author,
+                manga.description,
+                manga.published_date,
+                manga.thumbnail,
                 author.name AS author_name
             FROM
                 manga
-
             INNER JOIN
                 author ON manga.id_author = author.id_author
             WHERE
-                id_manga = :id');
+                manga.id_manga = :id;');
         $req->bindParam(':id', $id, PDO::PARAM_INT);
         $req->execute();
-        return new MangaDTO(new Manga($data = $req->fetch(PDO::FETCH_ASSOC)), $data['author_name']);
+        $data        = $req->fetch(PDO::FETCH_ASSOC);
+        $author_name = $data['author_name'];
+        unset($data['author_name']);
+        return new MangaDTO(new Manga($data), $author_name);
     }
 
     public function deleteManga($id) {
@@ -137,12 +170,33 @@ class ModelManga extends Model {
         $req->execute();
         return $req->fetchAll(PDO::FETCH_ASSOC);
     }
-}
 
-/*foreach ($mangas as $manga):
-    <div class="manga">
-        <a href="#"><img src="<?php echo $manga->getThumbnail() ?>" alt="<?php echo $manga->getName() ?>"><?php echo $manga->getName() ?></a>
-        <span class="heart"><img src="public\asset\img\heart.svg" alt="Heart"></span>
-        <figure><img src="public\asset\img\star.svg" alt="">(300)</figure>
-    </div>
-endforeach; ?>*/
+    public function searchManga($str) {
+        $str = trim($str);
+        $req = $this->getDb()->prepare(" SELECT
+                manga.id_manga,
+                manga.name,
+                manga.id_author,
+                manga.description,
+                manga.published_date,
+                manga.thumbnail,
+                author.name AS author_name
+            FROM
+                manga
+            INNER JOIN
+                author ON manga.id_author = author.id_author
+            WHERE
+                manga.name LIKE :str OR `author`.`name` LIKE :str");
+        $req->bindParam(":str", $str, PDO::PARAM_STR);
+        $req->execute();
+
+        return $req->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getAuthorById($id) {
+        $req = $this->getDb()->prepare('SELECT `id_author`, `name` FROM `author` WHERE `id_author` = :id');
+        $req->bindParam(':id', $id, PDO::PARAM_INT);
+        $req->execute();
+        return new Author($req->fetch(PDO::FETCH_ASSOC));
+    }
+}

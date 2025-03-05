@@ -9,8 +9,11 @@ class ControllerManga extends Controller {
     public function home() {
         $model          = new ModelManga();
         $recommendation = $model->getMangaRecommendation();
-        $mangas         = $model->getMangaListByCat();
-        var_dump($recommendation);
+        $categories     = $model->getCategories();
+        foreach ($categories as $category) {
+            $mangas[$category['category_name']] = $model->getMangaListByCat($category['category_name']);
+        }
+
         require_once './view/home.php';
     }
 
@@ -71,9 +74,9 @@ class ControllerManga extends Controller {
 
     // Method to read a manga entry by ID
     public function read($id) {
-        $model = new ModelManga();
-        $manga = $model->getMangaById($id);
-        var_dump($manga);
+        $model   = new ModelManga();
+        $manga   = $model->getMangaById($id);
+        $volumes = $model->getMangaVolumes($id);
         require_once './view/manga.php';
     }
 
@@ -84,6 +87,14 @@ class ControllerManga extends Controller {
         header('Location: /');
     }
 
+    public function search() {
+        $search        = '%' . $_POST['search'] . '%';
+        $model         = new ModelManga();
+        $searchResults = $model->searchManga($search);
+        echo json_encode($searchResults);
+        header('Content-Type: application/json');
+    }
+
     // Method to handle AJAX request for author search
     public function authorAJAX() {
         $search  = '%' . $_POST['author'] . '%';
@@ -91,5 +102,35 @@ class ControllerManga extends Controller {
         $authors = $model->getMangaAuthor($search);
         echo json_encode($authors);
         header('Content-Type: application/json');
+    }
+
+    public function readAuthor($id) {
+        $model  = new ModelManga();
+        $author = $model->getAuthorById($id);
+        require_once './view/author.php';
+    }
+
+    public function likeManga() {
+        header('Content-Type: application/json');
+
+        if (! isset($_SESSION['id_user'])) {
+            echo json_encode(['error' => 'Not logged in']);
+            exit;
+        }
+
+        $data     = json_decode(file_get_contents("php://input"), true);
+        $manga_id = $data['manga_id'] ?? null;
+
+        if (! $manga_id) {
+            echo json_encode(['error' => 'Invalid request']);
+            exit;
+        }
+
+        // Instantiate Manga object with ID only
+        $manga      = new Manga(['id_manga' => $manga_id]);
+        $liked      = $manga->toggleLike($_SESSION['id_user']);
+        $like_count = $manga->getLikesCount();
+
+        echo json_encode(['liked' => $liked, 'like_count' => $like_count]);
     }
 }

@@ -47,26 +47,33 @@ class ControllerUser extends Controller {
         if ($_SERVER['REQUEST_METHOD'] === "POST") {
             if (! empty($_POST['email']) && ! empty($_POST['password']) && ! empty($_POST['password_verify'])) {
                 if ($_POST['password'] === $_POST['password_verify']) {
-                    $model = new ModelUser();
-                    if ($model->checkUserMail($_POST['email']) && $model->checkUserName($_POST['username'])) {
-                        $username = $_POST['username'];
-                        $email    = $_POST['email'];
-                        $password = $_POST['password'];
+                    // Check if the password meets the regex criteria
+                    $password = $_POST['password'];
+                    $passwordPattern = '/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/';
+                    if (preg_match($passwordPattern, $password)) {
+                        $model = new ModelUser();
+                        if ($model->checkUserMail($_POST['email']) && $model->checkUserName($_POST['username'])) {
+                            $username = $_POST['username'];
+                            $email    = $_POST['email'];
 
-                        // Create a temporary user entry
-                        $model->createTempUser($username, $email, $password, $token);
+                            // Create a temporary user entry
+                            $insertResult = $model->createTempUser($username, $email, $password, $token);
 
-                        // Send verification email
-                        $mailer           = new Mailer($token);
-                        $verificationLink = "http://nihon/verify/?email=$email&code=$token";
-                        $mailer->sendVerificationEmail($email, $username, $verificationLink);
+                            // Send verification email
+                            $mailer           = new Mailer($token);
+                            $verificationLink = "http://nihon/verify/?email=$email&code=$token";
+                            $sendResult       = $mailer->sendVerificationEmail($email, $username, $verificationLink);
+                            var_dump($sendResult);
+                            echo "Your account was created! An email has been sent, please check it out to verify your email.";
 
-                        echo "Your account was created! An email has been sent, please check it out to verify your email.";
-
-                        require_once './view/home.php';
+                            header('Location: ' . $this->router->generate('login'));
+                        } else {
+                            echo "Email or username is already taken.";
+                            header('Location: ' . $this->router->generate('login'));
+                        }
                     } else {
-                        echo "Email or username is already taken.";
-                        require_once './view/login.php';
+                        echo 'Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character.';
+                        require_once './view/register.php';
                     }
                 } else {
                     echo 'Passwords do not match.';
@@ -97,7 +104,7 @@ class ControllerUser extends Controller {
                 $user = $model->getTempUser($email);
                 $model->createUser($user['username'], $user['email'], $user['password']);
                 $model->deleteTempUser($email);
-                require_once './view/login.php';
+                header('Location: ' . $this->router->generate('login'));
             } else {
                 echo 'Your token has expired. A new link has been sent to your email.';
                 $user             = $model->getTempUser($email);
@@ -114,5 +121,23 @@ class ControllerUser extends Controller {
         } else {
             echo 'Please provide a valid token and email.';
         }
+    }
+
+    public function update(int $id){
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (! empty($_POST['username']) && ! empty($_POST['email']) && ! empty($_POST['password']) && ! empty($_POST['password_verify']) && ! empty($_POST['profile_pic'])) {
+                if ($_POST['password'] === $_POST['password_verify']) {
+                    $model->updateUser($_POST['email'], $_POST['password']);
+                    echo 'Your account has been updated.';
+                    header('Location: ' . $this->router->generate('home'));
+                } else {
+                    echo 'Passwords do not match.';
+                }
+            } else {
+                echo 'All the fields are required.';
+            }
+        }
+        require_once './view/update.php';
     }
 }
