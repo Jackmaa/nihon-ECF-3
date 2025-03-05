@@ -76,7 +76,6 @@ class ControllerManga extends Controller {
     public function read($id) {
         $model = new ModelManga();
         $manga = $model->getMangaById($id);
-        var_dump($manga);
         require_once './view/manga.php';
     }
 
