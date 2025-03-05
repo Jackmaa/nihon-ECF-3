@@ -103,4 +103,14 @@ class ModelUser extends Model {
         $req = $this->getDb()->prepare('DELETE FROM `email_verify` WHERE `email` = ?');
         $req->execute([$email]);
     }
+
+    public function updateUser(string $username, string $email, string $password, string $profile_pic){
+        $req = $this->getDb()->prepare('UPDATE `user` SET `username` = :username, `email` = :email, `password` = :password, `profile_pic` = :profile_pic WHERE `id_user` = :id_user');
+        $req->bindParam(':username', $username, PDO::PARAM_STR);
+        $req->bindParam(':email', $email, PDO::PARAM_STR);
+        $req->bindParam(':password', $password, PDO::PARAM_STR);
+        $req->bindParam(':profile_pic', $profile_pic, PDO::PARAM_STR);
+        $req->bindParam(':id_user', $id_user, PDO::PARAM_INT);
+        $req->execute();
+    }
 }
