@@ -44,9 +44,16 @@ $router->map("GET|POST", "/contact", "ControllerGeneral#contact", "contact");
 //DELETE MANGA
 $router->map("GET", "/delete/[i:id]", "ControllerManga#delete", "delete");
 
+//DASHBOARD
+$router->map("GET", "/dashboard","ControllerDashboard#libarian", "dashboard");
+
+//LOANSHISTORY
+$router->map("GET", "/loanshistory","ControllerDashboard#history", "loanshistory");
+
 //AUTHOR
 //READ
 $router->map("GET", "/author/[i:id]", "ControllerManga#readAuthor", "readAuthor");
+
 
 // Match the current request
 $match = $router->match();

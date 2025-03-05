@@ -7,7 +7,7 @@ ob_start();
 
 <main>
 
-<figure><img src="public\asset\img\contact.webp" alt="image contact"></figure>
+<figure class="flexcenter"><img src="public\asset\img\contact.webp" alt="image contact"></figure>
 
 
 <form class=formulaire action="#" method="post">
