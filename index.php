@@ -40,14 +40,6 @@ $router->map("GET", "/delete/[i:id]", "ControllerManga#delete", "delete");
 $router->map("GET", "/author/[i:id]", "ControllerManga#readAuthor", "readAuthor");
 
 
-
-
-
-
-//BOOK PAGE
-$router->map("GET", "/bookPage", "ControllerManga#bookPage", "bookPage");
-
-
 // Match the current request
 $match = $router->match();
 
