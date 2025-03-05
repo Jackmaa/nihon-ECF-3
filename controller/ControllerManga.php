@@ -109,4 +109,8 @@ class ControllerManga extends Controller {
         $author = $model->getAuthorById($id);
         require_once './view/author.php';
     }
+
+    public function bookPage() {
+        require_once './view/bookPage.php';
+    }
 }
