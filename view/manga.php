@@ -20,7 +20,7 @@
         </div>
         <div class="char-manga">
             <div>
-                <p>category :</p> <a href="#">CATEGORY</a>
+                <p>category :</p> <a href="#"><?php echo $manga->categories ?></a>
             </div>
             <div>
                 <p>Author : </p><a href="#"><?php echo $manga->author ?></a>
