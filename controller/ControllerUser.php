@@ -48,7 +48,7 @@ class ControllerUser extends Controller {
             if (! empty($_POST['email']) && ! empty($_POST['password']) && ! empty($_POST['password_verify'])) {
                 if ($_POST['password'] === $_POST['password_verify']) {
                     // Check if the password meets the regex criteria
-                    $password = $_POST['password'];
+                    $password        = $_POST['password'];
                     $passwordPattern = '/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/';
                     if (preg_match($passwordPattern, $password)) {
                         $model = new ModelUser();
@@ -123,12 +123,13 @@ class ControllerUser extends Controller {
         }
     }
 
-    public function update(int $id){
+    public function update(int $id) {
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (! empty($_POST['username']) && ! empty($_POST['email']) && ! empty($_POST['password']) && ! empty($_POST['password_verify']) && ! empty($_POST['profile_pic'])) {
                 if ($_POST['password'] === $_POST['password_verify']) {
-                    $model->updateUser($_POST['email'], $_POST['password']);
+                    $model = new ModelUser();
+                    $model->updateUser($_POST['username'], $_POST['email'], $_POST['password'], $_POST['profile_pic']);
                     echo 'Your account has been updated.';
                     header('Location: ' . $this->router->generate('home'));
                 } else {
