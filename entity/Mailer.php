@@ -31,7 +31,6 @@ class Mailer {
         try {
             $this->mail->setFrom('do-not-replyNihon@gmail.com', 'Nihon');
             $this->mail->addAddress('destinataire@example.com', 'user'); // Adresse de test Mailtrap
-            $this->mail->addAttachment('asset/img/Group 10.svg');
             $this->mail->isHTML(true);
             $this->mail->Subject = 'Confirme ton inscription à NIHON ! 📖✨';
             $this->mail->Body    = '<p style="font-family: Arial, sans-serif; font-size: 16px; color: #333;">

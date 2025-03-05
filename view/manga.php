@@ -1,13 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+<?php
+$title            = 'Nihon | ' . $manga->manga->getName();
+$meta_description = $manga->manga->getName() . 'it a great manga';
+$scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public\asset\js\base.js", "public\asset\js\header.js"];
+ob_start();
+?>
+<main>
     <h1><?php echo $manga->manga->getName(); ?></h1>
     <img src=".<?php echo $manga->manga->getThumbnail(); ?>" alt="<?php echo $manga->manga->getName(); ?>">
     <span><?php echo $manga->author ?></span>
-</body>
-</html>
+    <?php foreach ($volumes as $volume): ?>
+        <h2>Volume&nbsp;<?php echo $volume ?></h2>
+    <?php endforeach; ?>
+</main>
+<?php
+$content = ob_get_contents();
+ob_end_clean();
+require_once 'view\base_html.php';
+?>

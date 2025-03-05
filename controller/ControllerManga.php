@@ -74,9 +74,9 @@ class ControllerManga extends Controller {
 
     // Method to read a manga entry by ID
     public function read($id) {
-        $model = new ModelManga();
-        $manga = $model->getMangaById($id);
-        var_dump($manga);
+        $model   = new ModelManga();
+        $manga   = $model->getMangaById($id);
+        $volumes = $model->getMangaVolumes($id);
         require_once './view/manga.php';
     }
 

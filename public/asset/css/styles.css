@@ -81,6 +81,26 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   justify-content: space-between;
 }
+.menu-mobile .test {
+  display: flex;
+}
+.menu-mobile .test input {
+  color: #333;
+  width: 22%;
+  height: 5vh;
+  padding: 0 10px;
+  font-size: 1.2rem;
+  border: 1px solid #979797;
+  font-family: var(--ff-barlow);
+  border-radius: 50px;
+  transition: all ease 0.8s;
+}
+.menu-mobile .test input:focus {
+  border: 1px solid #cc392b;
+  border-radius: 50px;
+  width: 80%;
+  outline: none;
+}
 
 /*
 **********************************

@@ -50,18 +50,25 @@ class ModelUser extends Model {
 
     //Create pending user
     public function createUser(string $username, string $email, string $password) {
+        $default_image = [
+            'public\asset\img\profile pic\izuku.webp',
+            'public\asset\img\profile pic\luffy.webp',
+            'public\asset\img\profile pic\minato.webp',
+            'public\asset\img\profile pic\tanjiro.webp'
+        ];
 
-        // $expires_at = date('Y-m-d H:i:s', time() + 900);
+        $random_image = $default_image[array_rand($default_image)];
 
         $user = $this->getDb()->prepare(
             'INSERT INTO
-                `user` (`username`, `email`, `password`, `signing_date`)
+                `user` (`username`, `email`, `password`, `signing_date`, `profile_pic`)
             VALUES
-                (:username, :email, :password, NOW())');
+                (:username, :email, :password, NOW(), :profile_pic)');
 
         $user->bindParam(':username', $username, PDO::PARAM_STR);
         $user->bindParam(':email', $email, PDO::PARAM_STR);
         $user->bindParam(':password', $password, PDO::PARAM_STR);
+        $user->bindParam(':profile_pic', $random_image, PDO::PARAM_STR);
         $user->execute();
     }
 
@@ -95,5 +102,15 @@ class ModelUser extends Model {
     public function deleteTempUser(string $email) {
         $req = $this->getDb()->prepare('DELETE FROM `email_verify` WHERE `email` = ?');
         $req->execute([$email]);
+    }
+
+    public function updateUser(string $username, string $email, string $password, string $profile_pic){
+        $req = $this->getDb()->prepare('UPDATE `user` SET `username` = :username, `email` = :email, `password` = :password, `profile_pic` = :profile_pic WHERE `id_user` = :id_user');
+        $req->bindParam(':username', $username, PDO::PARAM_STR);
+        $req->bindParam(':email', $email, PDO::PARAM_STR);
+        $req->bindParam(':password', $password, PDO::PARAM_STR);
+        $req->bindParam(':profile_pic', $profile_pic, PDO::PARAM_STR);
+        $req->bindParam(':id_user', $id_user, PDO::PARAM_INT);
+        $req->execute();
     }
 }
