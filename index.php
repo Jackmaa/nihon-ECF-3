@@ -30,6 +30,9 @@ $router->map("GET|POST", "/search", "ControllerManga#search", "search");
 $router->map("GET|POST", "/create", "ControllerManga#create", "create");
 $router->map("GET|POST", "/authorAJAX", "ControllerManga#authorAJAX", "authorAJAX");
 
+//LIKE
+$router->map('POST', '/like', 'ControllerManga#likeManga', 'like_manga');
+
 //READ
 $router->map("GET", "/manga/[i:id]", "ControllerManga#read", "read");
 

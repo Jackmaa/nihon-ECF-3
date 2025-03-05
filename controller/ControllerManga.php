@@ -109,4 +109,28 @@ class ControllerManga extends Controller {
         $author = $model->getAuthorById($id);
         require_once './view/author.php';
     }
+
+    public function likeManga() {
+        header('Content-Type: application/json');
+
+        if (! isset($_SESSION['id_user'])) {
+            echo json_encode(['error' => 'Not logged in']);
+            exit;
+        }
+
+        $data     = json_decode(file_get_contents("php://input"), true);
+        $manga_id = $data['manga_id'] ?? null;
+
+        if (! $manga_id) {
+            echo json_encode(['error' => 'Invalid request']);
+            exit;
+        }
+
+        // Instantiate Manga object with ID only
+        $manga      = new Manga(['id_manga' => $manga_id]);
+        $liked      = $manga->toggleLike($_SESSION['id_user']);
+        $like_count = $manga->getLikesCount();
+
+        echo json_encode(['liked' => $liked, 'like_count' => $like_count]);
+    }
 }
