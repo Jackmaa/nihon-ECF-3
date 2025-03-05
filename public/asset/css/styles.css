@@ -627,6 +627,141 @@ footer > p {
 
 /*
 **********************************
+***********MANGA PAGE************
+**********************************
+*/
+div.mangaPage {
+  position: relative;
+  width: 100%;
+  height: 50vh;
+  overflow: hidden;
+}
+div.mangaPage img:first-child {
+  filter: brightness(20%);
+  width: 100%;
+}
+div.mangaPage h2 {
+  font-family: var(--ff-barlow);
+  font-size: 2rem;
+  font-weight: 400;
+  position: absolute;
+  color: var(--fc-light);
+  margin: 5%;
+  top: 0%;
+  left: 0%;
+}
+div.mangaPage svg {
+  cursor: pointer;
+  width: 8vh;
+  height: 8vh;
+  position: absolute;
+  fill: white;
+  margin: 5%;
+  top: 10%;
+  left: 0%;
+  transition: all ease 0.3s;
+}
+div.mangaPage svg:hover {
+  fill: #cc392b;
+}
+
+.sum-manga {
+  margin-top: 5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.sum-manga h2 {
+  font-family: var(--ff-bangers);
+  letter-spacing: var(--letter-spacing);
+  margin-bottom: 2vh;
+}
+.sum-manga p {
+  font-family: var(--ff-barlow);
+  font-size: 1.2rem;
+  width: 90%;
+  height: 90%;
+  text-align: center;
+}
+
+.char-manga {
+  display: flex;
+  justify-content: center;
+  margin-top: 1vh;
+  font-family: var(--ff-barlow);
+  font-size: 0.8rem;
+}
+.char-manga div {
+  display: flex;
+}
+.char-manga div a {
+  margin: 0 1vh;
+  color: #cc392b;
+  font-weight: 500;
+}
+.char-manga div a:hover {
+  color: #cc1606;
+}
+
+.review {
+  width: 90%;
+  display: grid;
+  place-self: center;
+  place-content: center;
+  align-content: center;
+  margin-top: 5vh;
+  font-family: var(--ff-barlow);
+  max-height: 50vh;
+  overflow-y: auto;
+  padding-right: 10px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+}
+.review hr {
+  margin: 2vh 0;
+}
+.review p :last-child {
+  margin-top: 2vh;
+}
+.review .cadre-review {
+  display: flex;
+  justify-content: center;
+}
+.review .cadre-review .comm {
+  display: flex;
+  align-items: center;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.review .cadre-review .cadre-profile {
+  margin-left: 5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.review img.profile-picture {
+  width: 10vh;
+  height: 10vh;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.review::-webkit-scrollbar {
+  width: 8px;
+}
+
+.review::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+}
+
+.review::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/*
+**********************************
 *********MEDIA QUERIES************
 **********************************
 */
