@@ -41,6 +41,7 @@ class ModelManga extends Model {
         return $recommendations;
     }
 
+    //For the manga/id page
     public function getManga(int $id) {
         $req = $this->getDb()->prepare(
             'SELECT
@@ -60,6 +61,26 @@ class ModelManga extends Model {
         $result = $req->fetch(PDO::FETCH_ASSOC);
 
         return $result ? new Manga($result) : null;
+    }
+
+    //Get all the volumes of a manga
+    public function getMangaVolumes(int $id) {
+        $req = $this->getDb()->prepare(
+            'SELECT
+                `id_volume`
+            FROM
+                `manga_volume`
+            WHERE
+                id_manga = :id');
+        $req->bindParam('id', $id, PDO::PARAM_INT);
+        $req->execute();
+
+        $volumes = [];
+        while ($result = $req->fetch(PDO::FETCH_COLUMN)) {
+            $volumes[] = $result;
+        }
+
+        return $volumes;
     }
 
     public function updateManga(int $id, string $name, string $description, string $published_date, string $thumbnail) {

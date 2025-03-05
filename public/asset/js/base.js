@@ -37,7 +37,6 @@ menuIcon.addEventListener('mouseleave', () => {
     gsap.to(menuIcon, { scale: 1, rotation: 0, duration: 0.3 });
 });
 
-
 // *********************************
 // ***********MENU DESKTOP***********
 // ********************************* 
@@ -126,3 +125,4 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+

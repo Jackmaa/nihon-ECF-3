@@ -2,7 +2,7 @@
 session_start();
 require_once './vendor/autoload.php';
 require_once './vendor/altorouter/altorouter/AltoRouter.php';
-
+require_once './config.php';
 $router = new AltoRouter();
 
 //HOMEPAGE
@@ -20,7 +20,7 @@ $router->map("GET|POST", "/register", "ControllerUser#register", "register");
 $router->map("GET", "/verify/*", "ControllerUser#verify", "verify");
 
 //UPDATE
-$router->map("GET|POST", "/updateUser", "ControllerUser#updateUser", "updateUser");
+$router->map("GET|POST", "/updateUser", "ControllerUser#update", "updateUser");
 
 //MANGA
 
