@@ -63,10 +63,10 @@ class ControllerUser extends Controller {
                         var_dump($sendResult);
                         echo "Your account was created! An email has been sent, please check it out to verify your email.";
 
-                        require_once './view/home.php';
+                        header('Location: ' . $this->router->generate('login'));
                     } else {
                         echo "Email or username is already taken.";
-                        require_once './view/login.php';
+                        header('Location: ' . $this->router->generate('login'));
                     }
                 } else {
                     echo 'Passwords do not match.';
