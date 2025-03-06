@@ -16,7 +16,7 @@
             <figure class="menu-burger menuToggle">
                 <img src="<?php echo BASE_URL ?>public/asset/img/menu_bar.svg" alt="bar menu">
             </figure>
-            <figure><img src="<?php echo BASE_URL ?>public\asset\img\logo.svg" alt="Logo"></figure>
+            <figure><a href="<?php echo BASE_URL ?>"><img src="<?php echo BASE_URL ?>public\asset\img\logo.svg" alt="Logo"></a></figure>
             <figure class="test" >
                     <img src="<?php echo BASE_URL ?>public\asset\img\search.svg" alt="loup">
                     <form action="" id="search-form-mobile" method="POST">
@@ -45,7 +45,7 @@
 
         <section class="menu-desktop">
             <div>
-                <figure><a href="#"><img src="<?php echo BASE_URL ?>public\asset\img\logo.svg" alt="Logo"></a></figure>
+                <figure><a href="<?php echo BASE_URL ?>"><img src="<?php echo BASE_URL ?>public\asset\img\logo.svg" alt="Logo"></a></figure>
                 <figure>
                     <img src="<?php echo BASE_URL ?>public\asset\img\search.svg" alt="loup">
                     <form action="" id="search-form-desktop" method="POST">
