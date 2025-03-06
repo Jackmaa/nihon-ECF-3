@@ -1,40 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="public\asset\css\style.scss">
-</head>
-<body>
-<div class="headdashboard">
-    <p>Loans Managin history</p>
-</div>
+<?php
+$title            = 'Nihon | Login';
+$meta_description = 'log in to your "Nihon" account';
+$scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public/asset/js/base.js", "public/asset/js/header.js", "public/asset/js/login.js"];
+ob_start();
+?>
 
-<p>ID book</p>
-<table>
-        <tr>
-            <th>User</th>
-            <th>Loan Date</th>
-            <th>Return Date</th>
-        </tr>
-        <tr>
-            <td><input type="text" placeholder="Entrée 1"></td>
-            <td><input type="text" placeholder="Entrée 2"></td>
-            <td><input type="text" placeholder="Entrée 3"></td>
-        </tr>
-        <tr>
-            <td><input type="text" placeholder="Entrée 4"></td>
-            <td><input type="text" placeholder="Entrée 5"></td>
-            <td><input type="text" placeholder="Entrée 6"></td>
-        </tr>
-        <tr>
-            <td><input type="text" placeholder="Entrée 7"></td>
-            <td><input type="text" placeholder="Entrée 8"></td>
-            <td><input type="text" placeholder="Entrée 9"></td>
-        </tr>
-    </table>
 
-    
-</body>
-</html>
+
+
+
+<?php
+$content = ob_get_contents();
+ob_end_clean();
+require_once 'view/base_html.php';
+?>

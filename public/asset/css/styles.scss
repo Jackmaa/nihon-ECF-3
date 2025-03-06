@@ -270,7 +270,7 @@ footer > p {
 
 /*
 **********************************
-***********LOGIN************
+***********LOGIN******************
 **********************************
 */
 
@@ -293,6 +293,8 @@ footer > p {
     background-color: var(--fc-light);
     padding: 10px;
     color: black;
+    border: 1px solid #ccc;
+    height: 40px;
     margin-bottom: var(--mb-5);
 
     &::placeholder {
@@ -302,7 +304,7 @@ footer > p {
     }
   }
 
-  button {
+  .login {
     background-color: #cc392b;
     color: white;
     padding: 10px 60px;
@@ -315,7 +317,13 @@ footer > p {
     &:hover {
       background-color: #cc1606;
     }
+    
   }
+  button.togglePassword {
+    padding: 5px 10px;
+    display: flex;
+    border: none;
+    }
 }
 
 #img-connexion {
@@ -324,7 +332,52 @@ footer > p {
   img {
     max-width: 50%;
   }
+  
 }
+.password-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+
+ input {
+  width: 100%;
+  padding-right: 40px;
+  height: 40px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    background-color: var(--fc-light);
+    padding: 10px;
+    color: black;
+    margin-bottom: var(--mb-5);
+
+    &::placeholder {
+      color: #33333371;
+      font-family: var(--ff-barlow);
+      font-weight: 400;
+    }
+}
+
+.togglePassword {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  img {
+    width: 3vh;
+    text-align: center;
+  }
+}
+}
+
+
+
 
 /*
 **********************************
@@ -1222,6 +1275,7 @@ div.mangaPage {
   }
 }
 
+
 // * {
 //     outline: 3px solid green;
 // }
@@ -1321,6 +1375,7 @@ div.mangaPage {
   h1 {
     font-family: var(--ff-bangers);
     letter-spacing: var(--letter-spacing);
+    font-size: 1rem;
   }
   .center {
     display: flex;
@@ -1386,8 +1441,4 @@ div.mangaPage {
   }
 }
 
-/*
-**********************************
-***********LOANS HISTORY************
-**********************************
-*/
+
