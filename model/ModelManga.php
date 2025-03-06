@@ -131,26 +131,26 @@ class ModelManga extends Model {
     public function getMangaById(int $id) {
         $req = $this->getDb()->prepare(
             'SELECT
-    manga.id_manga,
-    manga.name,
-    manga.id_author,
-    manga.description,
-    manga.published_date,
-    manga.thumbnail,
-    author.name AS author_name,
-    GROUP_CONCAT(categories.category_name SEPARATOR \', \') AS category_names
-FROM
-    manga
-INNER JOIN
-    manga_category ON manga.id_manga = manga_category.manga_id
-INNER JOIN
-    categories ON manga_category.category_id = categories.id_category
-INNER JOIN
-    author ON manga.id_author = author.id_author
-WHERE
-    manga.id_manga = :id
-GROUP BY
-    manga.id_manga, manga.name, manga.id_author, manga.description, manga.published_date, manga.thumbnail, author.name;');
+                manga.id_manga,
+                manga.name,
+                manga.id_author,
+                manga.description,
+                manga.published_date,
+                manga.thumbnail,
+                author.name AS author_name,
+                GROUP_CONCAT(categories.category_name SEPARATOR \', \') AS category_names
+            FROM
+                manga
+            INNER JOIN
+                manga_category ON manga.id_manga = manga_category.manga_id
+            INNER JOIN
+                categories ON manga_category.category_id = categories.id_category
+            INNER JOIN
+                author ON manga.id_author = author.id_author
+            WHERE
+                manga.id_manga = :id
+            GROUP BY
+                manga.id_manga, manga.name, manga.id_author, manga.description, manga.published_date, manga.thumbnail, author.name;');
         $req->bindParam(':id', $id, PDO::PARAM_INT);
         $req->execute();
         $data        = $req->fetch(PDO::FETCH_ASSOC);
@@ -200,6 +200,28 @@ GROUP BY
         $req->execute();
 
         return $req->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function searchAdminManga($str) {
+        $str = trim($str);
+        $req = $this->getDb()->prepare(" SELECT
+                manga.id_manga,
+                manga.name,
+                manga.id_author,
+                manga.description,
+                manga.published_date,
+                manga.thumbnail
+            FROM
+                manga
+            WHERE
+                manga.name LIKE :str");
+        $req->bindParam(":str", $str, PDO::PARAM_STR);
+        $req->execute();
+
+        while ($result = $req->fetch(PDO::FETCH_ASSOC)) {
+            $mangas[] = new Manga($result);
+        }
+        return $mangas ?? [];
     }
 
     public function getAuthorById($id) {

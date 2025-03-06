@@ -1,13 +1,13 @@
 <?php
-$title = 'Nihon | Home';
-$meta_description = 'The best place to find your next manga\'s addiction ';
-$scripts = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public/asset/js/dashboard.js"];
-ob_start();
+    $title            = 'Nihon | Home';
+    $meta_description = 'The best place to find your next manga\'s addiction ';
+    $scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public/asset/js/dashboard.js", "public/asset/js/header.js", "public/asset/js/search_admin_dashboard.js"];
+    ob_start();
 ?>
 <div class="headdashboard"></div>
 <main class="dashboard">
 
-<h1>Returns of the Day:</h1> 
+<h1>Returns of the Day:</h1>
 <p>Total:</p>
 
 <table>
@@ -52,6 +52,10 @@ ob_start();
 </div>
 
 <h1>Books</h1>
+<form action="" id="search-form-manga" method="POST">
+    <input type="text" name="search" id="search-manga" placeholder="Search">
+</form>
+<div id="search-results-manga"></div>
 <div class="button-container">
     <button class="button" onclick="openPopup('popupAdd')">Add</button>
     <button class="button" onclick="openPopup('popupModified')">Modified</button>
@@ -90,7 +94,7 @@ ob_start();
     <input type="text">
     <p>Date Return</p>
     <input type="text">
-    <img src="public\asset\img\search.svg" alt=""><p>Loan default</p> 
+    <img src="public\asset\img\search.svg" alt=""><p>Loan default</p>
     <p>User</p>
     <input type="text">
     <p>Loan Date</p>
@@ -126,7 +130,7 @@ ob_start();
     <p>Book category</p>
     <input type="text">
     <p>Book author</p>
-    <input type="text"> 
+    <input type="text">
     <p>Book Editor</p>
     <input type="text">
     <p>Book Summary</p>
@@ -145,14 +149,14 @@ ob_start();
     <p>Book category</p>
     <input type="text">
     <p>Book author</p>
-    <input type="text"> 
+    <input type="text">
     <p>Book Editor</p>
     <input type="text">
     <p>Book Summary</p>
     <input type="text">
     <p>Picture</p>
     <input type="file"accept=".webp">
-    
+
     <button class="button" onclick="closePopup('popupModified')">Modify</button>
 </div>
 
@@ -166,7 +170,7 @@ ob_start();
 </main>
 
 <?php
-$content = ob_get_contents();
-ob_end_clean();
-require_once('view/base_html.php');
+    $content = ob_get_contents();
+    ob_end_clean();
+require_once 'view/base_html.php';
 ?>
