@@ -139,4 +139,8 @@ class ControllerUser extends Controller {
         }
         require_once './view/update.php';
     }
+
+    public function myProfile() {
+        require_once './view/myProfile.php';
+    }
 }
