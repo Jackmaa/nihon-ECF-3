@@ -70,7 +70,7 @@
                 </ul>
                 </div>
                 </figure>
-                <?php elseif ($_SESSION['admin_logged_in']): ?>
+                <?php elseif (isset($_SESSION['admin_logged_in'])): ?>
                     <p>Welcome KAMI</p>
                 <?php else: ?>
                 <figure class="connexion">

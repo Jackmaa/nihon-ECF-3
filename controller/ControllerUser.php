@@ -13,6 +13,7 @@ class ControllerUser extends Controller {
             if (! empty($_POST['credential']) && ! empty($_POST['password'])) {
                 // Fetch the user by email
                 $user = $model->getUser($_POST['credential']);
+                var_dump($user);
                 // Check if the user exists and the password is correct
                 if (password_verify($_POST['password'], $user->getPassword())) {
                     // Set the user ID in the session

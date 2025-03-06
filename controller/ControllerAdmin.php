@@ -16,6 +16,8 @@ class ControllerAdmin extends Controller {
             $model = new ModelUser();
             $user  = $model->getUser($credential);
             if (password_verify($password, $user->getPassword()) && $user->getId_role() === 2) {
+                session_unset();
+                session_start();
                 $_SESSION['admin_logged_in'] = true;
                 $_SESSION['id_admin']        = $user->getId_user();
 
