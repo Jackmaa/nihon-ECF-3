@@ -19,6 +19,7 @@ $router->map("GET|POST", "/register", "ControllerUser#register", "register");
 $router->map("GET", "/verify/*", "ControllerUser#verify", "verify");
 //UPDATE
 $router->map("GET|POST", "/updateUser", "ControllerUser#update", "updateUser");
+$router->map("GET", "/myProfile", "ControllerUser#myProfile", "myProfile");
 
 //MANGA
 //SEARCH
