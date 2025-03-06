@@ -17,24 +17,24 @@
                 <img src="<?php echo BASE_URL ?>public/asset/img/menu_bar.svg" alt="bar menu">
             </figure>
             <figure><a href="<?php echo BASE_URL ?>"><img src="<?php echo BASE_URL ?>public\asset\img\logo.svg" alt="Logo"></a></figure>
-            <figure class="test" >
-                    <img src="<?php echo BASE_URL ?>public\asset\img\search.svg" alt="loup">
-                    <form action="" id="search-form-mobile" method="POST">
-                        <input type="text" name="search" id="search-mobile" placeholder="Search">
-                    </form>
+            <figure class="test">
+                <img src="<?php echo BASE_URL ?>public\asset\img\search.svg" alt="loup">
+                <form action="" id="search-form-mobile" method="POST">
+                    <input type="text" name="search" id="search-mobile" placeholder="Search">
+                </form>
 
-                    <div id="search-results-mobile">
+                <div id="search-results-mobile">
 
-                    </div>
+                </div>
 
-                </figure>
+            </figure>
             <div class="burger-menu menuBurger">
                 <div class="menu-header">
                     <img src="<?php echo BASE_URL ?>public\asset\img\logo.svg" alt="Menu Logo" class="menu-logo">
                     <span class="close-menu">×</span>
                 </div>
                 <ul>
-                    <li><a href="#">Connexion</a></li>
+                    <li><a href="<?php echo BASE_URL ?>myProfile">Profil</a></li>
                     <li><a href="#">Home</a></li>
                     <li><a href="#">My Books</a></li>
                     <li><a href="#">Favorites</a></li>
@@ -58,24 +58,24 @@
 
                 </figure>
                 <?php if (isset($_SESSION['id_user'])): ?>
-                <figure class="profile" >
-                    <a href="#"><img src="<?php echo BASE_URL ?>public\asset\img\profile_picture.webp" alt="profile picture"></a>
-                <div class="dropdown">
-                    <ul>
-                    <li><a href="#">Profil</a></li>
-                    <li><a href="#">My Favorites</a></li>
-                    <li><a href="#">My Boocks</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="<?php echo $this->router->generate('logout') ?>">Déconnexion</a></li>
-                </ul>
-                </div>
-                </figure>
+                    <figure class="profile">
+                        <a href="#"><img src="<?php echo BASE_URL ?>public\asset\img\profile_picture.webp" alt="profile picture"></a>
+                        <div class="dropdown">
+                            <ul>
+                                <li><a href="<?php echo BASE_URL ?>myProfile">Profil</a></li>
+                                <li><a href="#">My Favorites</a></li>
+                                <li><a href="#">My Boocks</a></li>
+                                <li><a href="#">Contact</a></li>
+                                <li><a href="<?php echo $this->router->generate('logout') ?>">Déconnexion</a></li>
+                            </ul>
+                        </div>
+                    </figure>
                 <?php elseif ($_SESSION['admin_logged_in']): ?>
                     <p>Welcome KAMI</p>
                 <?php else: ?>
-                <figure class="connexion">
-                   <a href="<?php echo $this->router->generate('login') ?>">Connexion</a>
-                </figure>
+                    <figure class="connexion">
+                        <a href="<?php echo $this->router->generate('login') ?>">Connexion</a>
+                    </figure>
                 <?php endif; ?>
 
             </div>
