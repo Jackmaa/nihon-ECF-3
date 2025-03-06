@@ -727,10 +727,6 @@ footer > p {
 **********************************
 */
 
-.liked {
-  fill: red;
-}
-
 div.mangaPage {
   position: relative;
   width: 100%;
@@ -772,6 +768,9 @@ div.mangaPage {
     left: 0%;
     transition: all ease 0.3s;
     &:hover {
+      fill: #cc392b;
+    }
+    &.liked {
       fill: #cc392b;
     }
   }
