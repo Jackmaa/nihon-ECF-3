@@ -42,8 +42,10 @@ $router->map("GET", "/delete/[i:id]", "ControllerManga#delete", "delete");
 $router->map("GET", "/author/[i:id]", "ControllerManga#readAuthor", "readAuthor");
 
 //ADMIN = KAMI
+//LOGIN
+$router->map("GET|POST", "/dashboard-access", "ControllerAdmin#login", "admin_login");
 //DASHBOARD
-$router->map("GET | POST", "/dashboard-access", "ControllerAdmin#dashboard", "dashboard");
+$router->map("GET", "/dashboard", "ControllerAdmin#dashboard", "admin_dashboard");
 
 // Match the current request
 $match = $router->match();
