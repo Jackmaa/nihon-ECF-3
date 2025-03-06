@@ -17,24 +17,24 @@
                 <img src="<?php echo BASE_URL ?>public/asset/img/menu_bar.svg" alt="bar menu">
             </figure>
             <figure><a href="<?php echo BASE_URL ?>"><img src="<?php echo BASE_URL ?>public\asset\img\logo.svg" alt="Logo"></a></figure>
-            <figure class="test" >
-                    <img src="<?php echo BASE_URL ?>public\asset\img\search.svg" alt="loup">
-                    <form action="" id="search-form-mobile" method="POST">
-                        <input type="text" name="search" id="search-mobile" placeholder="Search">
-                    </form>
+            <figure class="test">
+                <img src="<?php echo BASE_URL ?>public\asset\img\search.svg" alt="loup">
+                <form action="" id="search-form-mobile" method="POST">
+                    <input type="text" name="search" id="search-mobile" placeholder="Search">
+                </form>
 
-                    <div id="search-results-mobile">
+                <div id="search-results-mobile">
 
-                    </div>
+                </div>
 
-                </figure>
+            </figure>
             <div class="burger-menu menuBurger">
                 <div class="menu-header">
                     <img src="<?php echo BASE_URL ?>public\asset\img\logo.svg" alt="Menu Logo" class="menu-logo">
                     <span class="close-menu">×</span>
                 </div>
                 <ul>
-                    <li><a href="#">Connexion</a></li>
+                    <li><a href="<?php echo BASE_URL ?>myProfile">Profil</a></li>
                     <li><a href="#">Home</a></li>
                     <li><a href="#">My Books</a></li>
                     <li><a href="#">Favorites</a></li>
@@ -73,9 +73,9 @@
                 <?php elseif (isset($_SESSION['admin_logged_in'])): ?>
                     <p>Welcome KAMI</p>
                 <?php else: ?>
-                <figure class="connexion">
-                   <a href="<?php echo $this->router->generate('login') ?>">Connexion</a>
-                </figure>
+                    <figure class="connexion">
+                        <a href="<?php echo $this->router->generate('login') ?>">Connexion</a>
+                    </figure>
                 <?php endif; ?>
 
             </div>
