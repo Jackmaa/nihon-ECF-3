@@ -58,19 +58,19 @@
 
                 </figure>
                 <?php if (isset($_SESSION['id_user'])): ?>
-                    <figure class="profile">
-                        <a href="#"><img src="<?php echo BASE_URL ?>public\asset\img\profile_picture.webp" alt="profile picture"></a>
-                        <div class="dropdown">
-                            <ul>
-                                <li><a href="<?php echo BASE_URL ?>myProfile">Profil</a></li>
-                                <li><a href="#">My Favorites</a></li>
-                                <li><a href="#">My Boocks</a></li>
-                                <li><a href="#">Contact</a></li>
-                                <li><a href="<?php echo $this->router->generate('logout') ?>">Déconnexion</a></li>
-                            </ul>
-                        </div>
-                    </figure>
-                <?php elseif ($_SESSION['admin_logged_in']): ?>
+                <figure class="profile" >
+                    <a href="#"><img src="<?php echo BASE_URL ?>public\asset\img\profile_picture.webp" alt="profile picture"></a>
+                <div class="dropdown">
+                    <ul>
+                    <li><a href="#">Profil</a></li>
+                    <li><a href="#">My Favorites</a></li>
+                    <li><a href="#">My Boocks</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="<?php echo $this->router->generate('logout') ?>">Déconnexion</a></li>
+                </ul>
+                </div>
+                </figure>
+                <?php elseif (isset($_SESSION['admin_logged_in'])): ?>
                     <p>Welcome KAMI</p>
                 <?php else: ?>
                     <figure class="connexion">
