@@ -723,6 +723,7 @@ div.mangaPage svg.liked {
   font-size: 0.8rem;
 }
 .char-manga div {
+  font-size: 1.2rem;
   display: flex;
 }
 .char-manga div a {
@@ -858,6 +859,99 @@ div.mangaPage svg.liked {
   align-items: center;
   flex-wrap: wrap;
   gap: 5vh;
+}
+
+/*
+**********************************
+************MY PROFILE************
+**********************************
+*/
+.head-profile div:first-child {
+  width: 100%;
+  position: relative;
+  height: 40vh;
+  background-color: #cc392b;
+}
+.head-profile div:first-child h2 {
+  display: flex;
+  justify-content: center;
+  padding: 2vh 0;
+  font-weight: 300;
+  color: var(--fc-light);
+  font-family: var(--ff-bangers);
+  letter-spacing: var(--letter-spacing);
+}
+.head-profile div:first-child figure {
+  position: absolute;
+  bottom: -50%;
+  right: 50%;
+  transform: translateX(50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.head-profile div:first-child figure img.profile-picture {
+  margin-bottom: 2vh;
+  width: 25vh;
+  height: 25vh;
+  border-radius: 50%;
+  border: solid 4px #b3b34e;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.head-profile div:first-child figure button {
+  background-color: #cc392b;
+  font-family: var(--ff-barlow);
+  color: var(--fc-light);
+  font-size: 1.2rem;
+  font-weight: 500;
+  padding: 5px 10px;
+  border: solid 2px black;
+  border-radius: 5px;
+  box-shadow: #0e0e0e 0px 2px 5px;
+  width: 100%;
+  cursor: pointer;
+  transition: all ease 0.3s;
+}
+.head-profile div:first-child figure button:hover {
+  background-color: #cc1606;
+  box-shadow: none;
+}
+
+.param-profile {
+  margin-top: 25vh;
+  margin-bottom: 5vh;
+  color: var(--fc-light);
+}
+.param-profile h3 {
+  margin: 2vh 0;
+  font-family: var(--ff-bangers);
+  letter-spacing: var(--letter-spacing);
+  color: var(--fc-black);
+}
+.param-profile div.general-profile .gradient {
+  background: linear-gradient(to bottom, #cc392b, #231b19);
+}
+.param-profile div.general-profile .gradient div {
+  display: flex;
+  align-items: center;
+}
+.param-profile div.general-profile .gradient div a {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  color: var(--fc-light);
+  font-family: var(--ff-barlow);
+  font-size: 1.2rem;
+  transition: all ease 0.3s;
+}
+.param-profile div.general-profile .gradient div a:hover {
+  color: #fcc8e1;
+}
+.param-profile div.general-profile .gradient div a span {
+  font-size: 2rem;
+  font-weight: 600;
 }
 
 /*
