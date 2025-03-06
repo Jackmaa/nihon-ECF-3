@@ -56,11 +56,6 @@
     <input type="text" name="search" id="search-manga" placeholder="Search">
 </form>
 <div id="search-results-manga"></div>
-<div class="button-container">
-    <button class="button" onclick="openPopup('popupAdd')">Add</button>
-    <button class="button" onclick="openPopup('popupModified')">Modified</button>
-    <button class="button" onclick="openPopup('popupDeleteBook')">Delete</button>
-</div>
 
 <!-- Overlay -->
 <div class="overlay" id="overlay" onclick="closePopup('popupLoans'); closePopup('popupReturns'); closePopup('popupHistory'); closePopup('popupCreate'); closePopup('popupBan'); closePopup('popupDelete'); closePopup('popupAdd'); closePopup('popupModified'); closePopup('popupDeleteBook');"></div>
