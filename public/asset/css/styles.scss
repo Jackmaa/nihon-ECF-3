@@ -1252,6 +1252,66 @@ h2 {
       width: 40%;
     }
   }
+
+  /*
+**********************************
+***********MANGA PAGE************
+**********************************
+*/
+
+.mangaPage-frst-section {
+  display: flex;
+  justify-content: center;
+
+  .mangaPage {
+    width: 60vh;
+    height: 60vh;
+  }
+
+  .summary-desktop {
+    width: 60vh;
+    display: flex;
+    flex-direction: column;
+
+    .sum-manga {
+
+      h2 {
+        font-size: 2rem;
+      }
+      
+      P {
+        font-size: 1.5rem;
+      }
+    }
+
+    .char-manga {
+      flex-direction: column;
+      margin: auto;
+    }
+  }
+}
+
+.mangaPage-scd-section {
+  display: flex;
+
+  .comm-desktop {
+    flex-direction: column;
+  }
+}
+
+.also-liked {
+width: 50%;
+display: flex;
+flex-direction: column;
+justify-content: space-around;
+
+  .also-liked-contain {
+  display: flex;
+  justify-content: space-around;
+}
+}
+
+
 }
 
 @media (min-width: 1440px) {
