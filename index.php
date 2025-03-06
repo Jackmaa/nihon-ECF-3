@@ -46,6 +46,8 @@ $router->map("GET", "/author/[i:id]", "ControllerManga#readAuthor", "readAuthor"
 $router->map("GET|POST", "/dashboard-access", "ControllerAdmin#login", "admin_login");
 //DASHBOARD
 $router->map("GET", "/dashboard", "ControllerAdmin#dashboard", "admin_dashboard");
+//SEARCH
+$router->map("GET|POST", "/searchAdmin", "ControllerManga#searchAdmin", "searchAdmin");
 
 // Match the current request
 $match = $router->match();
