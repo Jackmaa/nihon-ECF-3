@@ -1,10 +1,10 @@
 <?php
 
 class ModelUser extends Model {
-    // Retrieve user details by email
-    public function getUser(string $email) {
-        $req = $this->getDb()->prepare('SELECT `id_user`, `username`, `email`, `password` FROM `user` WHERE `email` = :email');
-        $req->bindParam(':email', $email, PDO::PARAM_STR);
+    // Retrieve user details by email or username
+    public function getUser(string $credential) {
+        $req = $this->getDb()->prepare('SELECT `id_user`, `username`, `email`, `password` FROM `user` WHERE `email` = :credential OR `username` = :credential');
+        $req->bindParam(':credential', $credential, PDO::PARAM_STR);
         $req->execute();
 
         $data = $req->fetch(PDO::FETCH_ASSOC);
@@ -54,7 +54,7 @@ class ModelUser extends Model {
             'public\asset\img\profile pic\izuku.webp',
             'public\asset\img\profile pic\luffy.webp',
             'public\asset\img\profile pic\minato.webp',
-            'public\asset\img\profile pic\tanjiro.webp'
+            'public\asset\img\profile pic\tanjiro.webp',
         ];
 
         $random_image = $default_image[array_rand($default_image)];
@@ -104,7 +104,7 @@ class ModelUser extends Model {
         $req->execute([$email]);
     }
 
-    public function updateUser(string $username, string $email, string $password, string $profile_pic){
+    public function updateUser(string $username, string $email, string $password, string $profile_pic) {
         $req = $this->getDb()->prepare('UPDATE `user` SET `username` = :username, `email` = :email, `password` = :password, `profile_pic` = :profile_pic WHERE `id_user` = :id_user');
         $req->bindParam(':username', $username, PDO::PARAM_STR);
         $req->bindParam(':email', $email, PDO::PARAM_STR);

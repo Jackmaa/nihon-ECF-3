@@ -1,3 +1,7 @@
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule . index.php [L]
+# The rule below is just for blocking 
+# any potential route named admin
+# [F] sends a 403 Forbidden
+RewriteRule ^admin(/.*)?$ - [F,L] 

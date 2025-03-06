@@ -9,7 +9,7 @@
         <section class="form-container">
             <h1> Connexion </h1>
             <form action="/login" method="post">
-                <input type="text" name="email" placeholder="Email">
+                <input type="text" name="credential" placeholder="Email or Username">
                 <input type="password" name="password" placeholder="Password">
                 <p>no account yet ? <a class=clickhere href="">Click here</a></p>
                 <button type="submit">LOG IN</button>

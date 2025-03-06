@@ -10,11 +10,9 @@ class ControllerUser extends Controller {
         // On peut maintenant accéder à $this->router
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Check if the email and password are set
-            if (! empty($_POST['email']) && ! empty($_POST['password'])) {
+            if (! empty($_POST['credential']) && ! empty($_POST['password'])) {
                 // Fetch the user by email
-                $user = $model->getUser($_POST['email']);
-                var_dump($_POST['password']);
-                var_dump($user->getPassword());
+                $user = $model->getUser($_POST['credential']);
                 // Check if the user exists and the password is correct
                 if (password_verify($_POST['password'], $user->getPassword())) {
                     // Set the user ID in the session
