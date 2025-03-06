@@ -3,7 +3,7 @@
 class ModelUser extends Model {
     // Retrieve user details by email or username
     public function getUser(string $credential) {
-        $req = $this->getDb()->prepare('SELECT `id_user`, `username`, `email`, `password` FROM `user` WHERE `email` = :credential OR `username` = :credential');
+        $req = $this->getDb()->prepare('SELECT `id_user`, `username`, `email`, `password`, `signing_date`, `id_role`, `profile_pic`, `premium` FROM `user` WHERE `email` = :credential OR `username` = :credential');
         $req->bindParam(':credential', $credential, PDO::PARAM_STR);
         $req->execute();
 
