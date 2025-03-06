@@ -827,7 +827,11 @@ div.mangaPage {
   padding-right: 10px;
   scrollbar-width: thin;
   scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
-
+h2 {
+  margin-top: 40vh;
+  font-family: var(--ff-bangers);
+  letter-spacing: var(--letter-spacing);
+}
   hr {
     margin: 2vh 0;
   }
@@ -874,6 +878,79 @@ div.mangaPage {
   background: transparent;
 }
 
+#leave-review {
+  display: flex;
+  justify-content: center;
+  margin: 2vh 0;
+
+  input {
+    width: 50%;
+    padding: 5px 10px;
+
+    &:focus{
+      outline: none;
+      border: 1px solid #b3b34e;
+    }
+  }
+
+  button {
+    background-color: #cc392b;
+    color: var(--fc-light);
+    font-family: var(--ff-barlow);
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #cc1606;
+    }
+  }
+}
+
+.also-liked {
+  h2 {
+    margin: 2vh 0;
+    font-family: var(--ff-bangers);
+    letter-spacing: var(--letter-spacing);
+  }
+
+  .also-liked-contain{
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    font-family: var(--ff-barlow);
+    font-size: 1.2rem;
+
+    figure {
+      width: 20vh;
+    }
+  }
+}
+
+.see-volume {
+  .all-volume{
+    margin-top: 5vh;
+    display: flex;
+    h2{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      font-family: var(--ff-bangers);
+      letter-spacing: var(--letter-spacing);
+    }
+    img {
+      width: 20vh;
+    }
+  }
+  .list-volume {
+    margin: 2vh 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5vh;
+  }
+}
 /*
 **********************************
 *********MEDIA QUERIES************

@@ -748,6 +748,11 @@ div.mangaPage svg.liked {
   scrollbar-width: thin;
   scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
 }
+.review h2 {
+  margin-top: 40vh;
+  font-family: var(--ff-bangers);
+  letter-spacing: var(--letter-spacing);
+}
 .review hr {
   margin: 2vh 0;
 }
@@ -789,6 +794,70 @@ div.mangaPage svg.liked {
 
 .review::-webkit-scrollbar-track {
   background: transparent;
+}
+
+#leave-review {
+  display: flex;
+  justify-content: center;
+  margin: 2vh 0;
+}
+#leave-review input {
+  width: 50%;
+  padding: 5px 10px;
+}
+#leave-review input:focus {
+  outline: none;
+  border: 1px solid #b3b34e;
+}
+#leave-review button {
+  background-color: #cc392b;
+  color: var(--fc-light);
+  font-family: var(--ff-barlow);
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+#leave-review button:hover {
+  background-color: #cc1606;
+}
+
+.also-liked h2 {
+  margin: 2vh 0;
+  font-family: var(--ff-bangers);
+  letter-spacing: var(--letter-spacing);
+}
+.also-liked .also-liked-contain {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  font-family: var(--ff-barlow);
+  font-size: 1.2rem;
+}
+.also-liked .also-liked-contain figure {
+  width: 20vh;
+}
+
+.see-volume .all-volume {
+  margin-top: 5vh;
+  display: flex;
+}
+.see-volume .all-volume h2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: var(--ff-bangers);
+  letter-spacing: var(--letter-spacing);
+}
+.see-volume .all-volume img {
+  width: 20vh;
+}
+.see-volume .list-volume {
+  margin: 2vh 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5vh;
 }
 
 /*
