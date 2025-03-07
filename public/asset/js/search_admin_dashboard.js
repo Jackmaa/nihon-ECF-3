@@ -26,14 +26,15 @@ searchMangaInput.addEventListener("input", function () {
         addButtonToDiv("Add", "popupAdd");
       } else {
         datas.forEach((manga) => {
+          console.log(manga);
           let mangaDiv = document.createElement("div");
           mangaDiv.classList.add("manga-result");
 
           let mangaTitle = document.createElement("p");
           let mangaThumbnail = document.createElement("img");
-          mangaThumbnail.src = manga.thumbnail;
+          mangaThumbnail.src = manga.manga.thumbnail;
           mangaThumbnail.style.width = "200px";
-          mangaTitle.textContent = manga.name;
+          mangaTitle.textContent = manga.manga.name;
 
           mangaDiv.append(mangaThumbnail, mangaTitle);
           responseMangaDiv.appendChild(mangaDiv);
@@ -61,15 +62,15 @@ function addButtonToDiv(text, popupId) {
 
 function fillModifyPopup(manga) {
   document.querySelector("#popupModified input:nth-of-type(1)").value =
-    manga.id_manga;
+    manga.manga.id_manga;
   document.querySelector("#popupModified input:nth-of-type(2)").value =
-    manga.name;
+    manga.manga.name;
   document.querySelector("#popupModified input:nth-of-type(3)").value =
-    manga.category;
+    manga.categories;
   document.querySelector("#popupModified input:nth-of-type(4)").value =
     manga.author;
   document.querySelector("#popupModified input:nth-of-type(5)").value =
     manga.editor;
   document.querySelector("#popupModified input:nth-of-type(6)").value =
-    manga.description;
+    manga.manga.description;
 }

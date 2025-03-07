@@ -5,7 +5,7 @@ class MangaDTO implements JsonSerializable {
     public readonly string $categories;
     public readonly string $editor;
 
-    public function __construct(Manga $manga, string $author,  $categories, string $editor) {
+    public function __construct(Manga $manga, string $author, string $categories, string $editor) {
         $this->manga = $manga;
         $this->author = $author;
         $this->categories = $categories;
