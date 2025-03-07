@@ -915,6 +915,12 @@ div.mangaPage svg.liked {
 ************MY PROFILE************
 **********************************
 */
+.head-profile p {
+  font-family: var(--ff-bangers);
+  letter-spacing: var(--letter-spacing);
+  font-size: 1.5rem;
+  margin: 2vh 0;
+}
 .head-profile .head-edit-profile {
   position: relative;
   width: 100%;
@@ -948,7 +954,7 @@ div.mangaPage svg.liked {
 }
 .head-profile div:first-child figure {
   position: absolute;
-  bottom: -50%;
+  bottom: -60%;
   right: 50%;
   transform: translateX(50%);
   display: flex;
@@ -1040,10 +1046,34 @@ div.mangaPage svg.liked {
 .modify-profile input {
   width: 50%;
   margin-bottom: 3vh;
+  border-radius: 5px;
   padding: 5px 10px;
+  border: solid 2px rgba(51, 51, 51, 0.6235294118);
+  font-size: 1.5rem;
+  font-family: var(--ff-barlow);
+  transition: all ease 0.3s;
+}
+.modify-profile input:focus {
+  outline: none;
+  border: solid 2px #fcc8e1;
 }
 .modify-profile button {
-  width: 25%;
+  width: 50%;
+  background-color: #fab1d4;
+  font-family: var(--ff-barlow);
+  color: var(--fc-light);
+  font-size: 1.2rem;
+  font-weight: 500;
+  padding: 5px 10px;
+  border: solid 2px rgba(0, 0, 0, 0.774);
+  border-radius: 5px;
+  box-shadow: #0e0e0e 0px 2px 5px;
+  cursor: pointer;
+  transition: all ease 0.3s;
+}
+.modify-profile button:hover {
+  background-color: #fc90c4;
+  box-shadow: none;
 }
 
 /*

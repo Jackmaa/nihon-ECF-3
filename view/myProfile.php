@@ -1,7 +1,7 @@
 <?php
 $title            = 'Nihon | My Profile ';
 $meta_description = 'it\'s your profile, your profile is incredible like a manga';
-$scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public\asset\js\base.js", "public\asset\js\header.js", "public\asset\js\like.js"];
+$scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public\asset\js\base.js", "public\asset\js\header.js", "public\asset\js\like.js", "public\asset\js\profile.js"];
 ob_start();
 ?>
 <main>
@@ -10,7 +10,7 @@ ob_start();
             <h2>My profile</h2>
             <figure>
                 <img class="profile-picture" src="public\asset\img\profile_picture.webp" alt="profile picture">
-                <button>Edit Profile</button>
+                <button data-id="<?= $_SESSION['id_user'] ?>" class="edit-profile" >Edit Profile</button>
             </figure>
         </div>
     </section>
