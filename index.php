@@ -48,7 +48,7 @@ $router->map("GET", "/delete/[i:id]", "ControllerManga#delete", "delete");
 $router->map("GET", "/dashboard","ControllerDashboard#libarian", "dashboard");
 
 //LOANSHISTORY
-$router->map("GET", "/loanshistory","ControllerDashboard#history", "loanshistory");
+$router->map("GET", "/kakoiimode","ControllerDashboard#kakoiimode", "kakoiimode");
 
 //AUTHOR
 //READ

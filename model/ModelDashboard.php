@@ -5,8 +5,8 @@ class ModelDashboard {
     }
 }
 
-class ModelLoanshistory {
-    public function history() {
+class ModelLoanskakoiimode {
+    public function kakoiimode() {
 
     }
 }
