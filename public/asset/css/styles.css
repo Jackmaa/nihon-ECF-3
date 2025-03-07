@@ -698,10 +698,6 @@ footer > p {
 ***********MANGA PAGE************
 **********************************
 */
-.liked {
-  fill: red;
-}
-
 div.mangaPage {
   position: relative;
   width: 100%;
@@ -745,6 +741,9 @@ div.mangaPage svg {
 div.mangaPage svg:hover {
   fill: #cc392b;
 }
+div.mangaPage svg.liked {
+  fill: #cc392b;
+}
 
 .sum-manga {
   margin-top: 5vh;
@@ -773,6 +772,7 @@ div.mangaPage svg:hover {
   font-size: 0.8rem;
 }
 .char-manga div {
+  font-size: 1.2rem;
   display: flex;
 }
 .char-manga div a {
@@ -797,6 +797,11 @@ div.mangaPage svg:hover {
   padding-right: 10px;
   scrollbar-width: thin;
   scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+}
+.review h2 {
+  margin-top: 40vh;
+  font-family: var(--ff-bangers);
+  letter-spacing: var(--letter-spacing);
 }
 .review hr {
   margin: 2vh 0;
@@ -839,6 +844,206 @@ div.mangaPage svg:hover {
 
 .review::-webkit-scrollbar-track {
   background: transparent;
+}
+
+#leave-review {
+  display: flex;
+  justify-content: center;
+  margin: 2vh 0;
+}
+#leave-review input {
+  width: 50%;
+  padding: 5px 10px;
+}
+#leave-review input:focus {
+  outline: none;
+  border: 1px solid #b3b34e;
+}
+#leave-review button {
+  background-color: #cc392b;
+  color: var(--fc-light);
+  font-family: var(--ff-barlow);
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+#leave-review button:hover {
+  background-color: #cc1606;
+}
+
+.also-liked h2 {
+  margin: 2vh 0;
+  font-family: var(--ff-bangers);
+  letter-spacing: var(--letter-spacing);
+}
+.also-liked .also-liked-contain {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  font-family: var(--ff-barlow);
+  font-size: 1.2rem;
+}
+.also-liked .also-liked-contain figure {
+  width: 20vh;
+}
+
+.see-volume .all-volume {
+  margin-top: 5vh;
+  display: flex;
+}
+.see-volume .all-volume h2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: var(--ff-bangers);
+  letter-spacing: var(--letter-spacing);
+}
+.see-volume .all-volume img {
+  width: 20vh;
+}
+.see-volume .list-volume {
+  margin: 2vh 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5vh;
+}
+
+/*
+**********************************
+************MY PROFILE************
+**********************************
+*/
+.head-profile .head-edit-profile {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.head-profile .head-edit-profile svg {
+  position: absolute;
+  margin: 2vh;
+  right: 0;
+}
+.head-profile .head-edit-profile h2 {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.head-profile div:first-child {
+  width: 100%;
+  position: relative;
+  height: 40vh;
+  background-color: #cc392b;
+}
+.head-profile div:first-child h2 {
+  display: flex;
+  justify-content: center;
+  padding: 2vh 0;
+  font-weight: 300;
+  color: var(--fc-light);
+  font-family: var(--ff-bangers);
+  letter-spacing: var(--letter-spacing);
+}
+.head-profile div:first-child figure {
+  position: absolute;
+  bottom: -50%;
+  right: 50%;
+  transform: translateX(50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.head-profile div:first-child figure .change-picture {
+  color: var(--fc-black);
+  background-color: #F2EBE8;
+}
+.head-profile div:first-child figure .change-picture:hover {
+  background-color: #fcc8e1;
+}
+.head-profile div:first-child figure img.profile-picture {
+  margin-bottom: 2vh;
+  width: 25vh;
+  height: 25vh;
+  border-radius: 50%;
+  border: solid 4px #b3b34e;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.head-profile div:first-child figure button {
+  background-color: #cc392b;
+  font-family: var(--ff-barlow);
+  color: var(--fc-light);
+  font-size: 1.2rem;
+  font-weight: 500;
+  padding: 5px 10px;
+  border: solid 2px black;
+  border-radius: 5px;
+  box-shadow: #0e0e0e 0px 2px 5px;
+  width: 100%;
+  cursor: pointer;
+  transition: all ease 0.3s;
+}
+.head-profile div:first-child figure button:hover {
+  background-color: #cc1606;
+  box-shadow: none;
+}
+
+.param-profile {
+  margin-top: 25vh;
+  margin-bottom: 5vh;
+  color: var(--fc-light);
+}
+.param-profile h3 {
+  margin: 2vh 0;
+  font-family: var(--ff-bangers);
+  letter-spacing: var(--letter-spacing);
+  color: var(--fc-black);
+}
+.param-profile div.general-profile .gradient {
+  background: linear-gradient(to bottom, #cc392b, #231b19);
+}
+.param-profile div.general-profile .gradient div {
+  display: flex;
+  align-items: center;
+}
+.param-profile div.general-profile .gradient div a {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  color: var(--fc-light);
+  font-family: var(--ff-barlow);
+  font-size: 1.2rem;
+  transition: all ease 0.3s;
+}
+.param-profile div.general-profile .gradient div a:hover {
+  color: #fcc8e1;
+}
+.param-profile div.general-profile .gradient div a span {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+/*
+**********************************
+************UPDATE PROFILE********
+**********************************
+*/
+.modify-profile {
+  margin-top: 25vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.modify-profile input {
+  width: 50%;
+  margin-bottom: 3vh;
+  padding: 5px 10px;
+}
+.modify-profile button {
+  width: 25%;
 }
 
 /*
@@ -1138,6 +1343,50 @@ div.mangaPage svg:hover {
   .kakkoii .flex {
     display: flex;
     flex-direction: row;
+  }
+  /*
+  **********************************
+  ***********MANGA PAGE************
+  **********************************
+  */
+  .mangaPage-frst-section {
+    display: flex;
+    justify-content: center;
+  }
+  .mangaPage-frst-section .mangaPage {
+    width: 60vh;
+    height: 60vh;
+  }
+  .mangaPage-frst-section .summary-desktop {
+    width: 60vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .mangaPage-frst-section .summary-desktop .sum-manga h2 {
+    font-size: 2rem;
+  }
+  .mangaPage-frst-section .summary-desktop .sum-manga P {
+    font-size: 1.5rem;
+  }
+  .mangaPage-frst-section .summary-desktop .char-manga {
+    flex-direction: column;
+    margin: auto;
+  }
+  .mangaPage-scd-section {
+    display: flex;
+  }
+  .mangaPage-scd-section .comm-desktop {
+    flex-direction: column;
+  }
+  .also-liked {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .also-liked .also-liked-contain {
+    display: flex;
+    justify-content: space-around;
   }
 }
 @media (min-width: 1440px) {

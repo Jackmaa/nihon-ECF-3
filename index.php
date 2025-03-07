@@ -13,34 +13,29 @@ $router->map("GET", "/", "ControllerManga#home", "home");
 $router->map("GET|POST", "/login", "ControllerUser#login", "login");
 //LOGOUT
 $router->map("GET", "/logout", "ControllerUser#logout", "logout");
-
 //REGISTER
 $router->map("GET|POST", "/register", "ControllerUser#register", "register");
 //VERIFY
 $router->map("GET", "/verify/*", "ControllerUser#verify", "verify");
-
 //UPDATE
-$router->map("GET|POST", "/updateUser", "ControllerUser#update", "updateUser");
+$router->map("GET|POST", "/updateUser/[i:id]", "ControllerUser#update", "updateUser");
+//MY PROFILE
+$router->map("GET", "/myProfile", "ControllerUser#myProfile", "myProfile");
 
 //MANGA
-
 //SEARCH
 $router->map("GET|POST", "/search", "ControllerManga#search", "search");
 //CREATE
 $router->map("GET|POST", "/create", "ControllerManga#create", "create");
 $router->map("GET|POST", "/authorAJAX", "ControllerManga#authorAJAX", "authorAJAX");
-
 //LIKE
 $router->map('POST', '/like', 'ControllerManga#likeManga', 'like_manga');
-
 //READ
 $router->map("GET", "/manga/[i:id]", "ControllerManga#read", "read");
-
 //UPDATE MANGA
 $router->map("GET|POST", "/update/[i:id]", "ControllerManga#update", "update");
 //CONTACT
 $router->map("GET|POST", "/contact", "ControllerGeneral#contact", "contact");
-
 //DELETE MANGA
 $router->map("GET", "/delete/[i:id]", "ControllerManga#delete", "delete");
 
@@ -54,6 +49,13 @@ $router->map("GET", "/kakoiimode","ControllerDashboard#kakoiimode", "kakoiimode"
 //READ
 $router->map("GET", "/author/[i:id]", "ControllerManga#readAuthor", "readAuthor");
 
+//ADMIN = KAMI
+//LOGIN
+$router->map("GET|POST", "/dashboard-access", "ControllerAdmin#login", "admin_login");
+//DASHBOARD
+$router->map("GET", "/dashboard", "ControllerAdmin#dashboard", "admin_dashboard");
+//SEARCH
+$router->map("GET|POST", "/searchAdmin", "ControllerManga#searchAdmin", "searchAdmin");
 
 // Match the current request
 $match = $router->match();

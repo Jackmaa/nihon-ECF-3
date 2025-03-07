@@ -5,7 +5,7 @@ class User {
     private $email;
     private $password;
     private $signing_date;
-    private $role;
+    private $id_role;
     private $premium;
     private $profile_pic;
 
@@ -40,8 +40,8 @@ class User {
     public function getSigning_date() {
         return $this->signing_date;
     }
-    public function getRole() {
-        return $this->role;
+    public function getId_role() {
+        return $this->id_role;
     }
     public function getPremium() {
         return $this->premium;
@@ -66,8 +66,8 @@ class User {
     public function setSigning_date(string $signing_date) {
         $this->signing_date = new DateTime($signing_date);
     }
-    public function setRole(int $role) {
-        $this->role = $role;
+    public function setId_role(int $id_role) {
+        $this->id_role = $id_role;
     }
     public function setPremium(bool $premium) {
         $this->premium = $premium;

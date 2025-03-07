@@ -91,8 +91,21 @@ class ControllerManga extends Controller {
         $search        = '%' . $_POST['search'] . '%';
         $model         = new ModelManga();
         $searchResults = $model->searchManga($search);
-        echo json_encode($searchResults);
         header('Content-Type: application/json');
+        echo json_encode($searchResults);
+
+    }
+
+    public function searchAdmin() {
+        $search        = '%' . $_POST['search'] . '%';
+        $model         = new ModelManga();
+        $searchResults = $model->searchAdminManga($search);
+        if (empty($searchResults)) {
+            $searchResults = ['error' => 'No results found'];
+        }
+        header('Content-Type: application/json');
+        echo json_encode($searchResults, JSON_PRETTY_PRINT);
+
     }
 
     // Method to handle AJAX request for author search
@@ -100,8 +113,9 @@ class ControllerManga extends Controller {
         $search  = '%' . $_POST['author'] . '%';
         $model   = new ModelManga();
         $authors = $model->getMangaAuthor($search);
-        echo json_encode($authors);
         header('Content-Type: application/json');
+        echo json_encode($authors);
+
     }
 
     public function readAuthor($id) {
