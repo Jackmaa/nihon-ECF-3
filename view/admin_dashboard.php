@@ -45,11 +45,10 @@
 </div>
 
 <h1>Users Gestion</h1>
-<div class="button-container">
-    <button class="button" onclick="openPopup('popupCreate')">Create</button>
-    <button class="button" onclick="openPopup('popupBan')">Ban</button>
-    <button class="button" onclick="openPopup('popupDelete')">Delete</button>
-</div>
+<form action="" id="search-form-user" method="POST">
+    <input type="text" name="search" id="search-user" placeholder="Search">
+</form>
+<div id="search-results-user"></div>
 
 <h1>Books</h1>
 <form action="" id="search-form-manga" method="POST">

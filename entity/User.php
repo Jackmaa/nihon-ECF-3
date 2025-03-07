@@ -1,5 +1,5 @@
 <?php
-class User {
+class User implements JsonSerializable {
     private $id_user;
     private $username;
     private $email;
@@ -74,5 +74,18 @@ class User {
     }
     public function setProfile_pic(string $profile_pic) {
         $this->profile_pic = $profile_pic;
+    }
+
+    public function jsonSerialize(): mixed {
+        return [
+            'id_user'      => $this->id_user,
+            'username'     => $this->username,
+            'email'        => $this->email,
+            'password'     => $this->password,
+            'signing_date' => $this->signing_date->format('Y-m-d H:i:s'),
+            'id_role'      => $this->id_role,
+            'premium'      => $this->premium,
+            'profile_pic'  => $this->profile_pic,
+        ];
     }
 }
