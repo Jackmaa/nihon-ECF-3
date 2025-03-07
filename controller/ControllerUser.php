@@ -147,4 +147,8 @@ class ControllerUser extends Controller {
         require_once './view/myProfile.php';
         var_dump($data);
     }
+
+    public function currentStorie() {
+        require_once './view/currentStorie.php';
+    }
 }

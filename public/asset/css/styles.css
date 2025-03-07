@@ -1113,6 +1113,27 @@ button:hover {
 
 /*
 **********************************
+*********CURRENT STORIES************
+**********************************
+*/
+.bann-setting {
+  display: flex;
+  align-items: center;
+  background-color: #cc392b;
+  padding: 20px 5px;
+}
+.bann-setting a {
+  color: var(--fc-black);
+  font-family: var(--ff-bangers);
+  letter-spacing: var(--letter-spacing);
+  transition: all ease 0.3s;
+}
+.bann-setting a:hover {
+  color: #333;
+}
+
+/*
+**********************************
 *********MEDIA QUERIES************
 **********************************
 */
