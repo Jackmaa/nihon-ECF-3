@@ -254,7 +254,7 @@ footer > p {
 
 /*
 **********************************
-***********LOGIN************
+***********LOGIN******************
 **********************************
 */
 .connexion {
@@ -275,6 +275,8 @@ footer > p {
   background-color: var(--fc-light);
   padding: 10px;
   color: black;
+  border: 1px solid #ccc;
+  height: 40px;
   margin-bottom: var(--mb-5);
 }
 .connexion input::-moz-placeholder {
@@ -287,7 +289,7 @@ footer > p {
   font-family: var(--ff-barlow);
   font-weight: 400;
 }
-.connexion button {
+.connexion .login {
   background-color: #cc392b;
   color: white;
   padding: 10px 60px;
@@ -297,8 +299,13 @@ footer > p {
   letter-spacing: var(--letter-spacing);
   transition: all ease 0.3s;
 }
-.connexion button:hover {
+.connexion .login:hover {
   background-color: #cc1606;
+}
+.connexion button.togglePassword {
+  padding: 5px 10px;
+  display: flex;
+  border: none;
 }
 
 #img-connexion {
@@ -306,6 +313,48 @@ footer > p {
 }
 #img-connexion img {
   max-width: 50%;
+}
+
+.password-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.password-container input {
+  width: 100%;
+  padding-right: 40px;
+  height: 40px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  background-color: var(--fc-light);
+  padding: 10px;
+  color: black;
+  margin-bottom: var(--mb-5);
+}
+.password-container input::-moz-placeholder {
+  color: rgba(51, 51, 51, 0.4431372549);
+  font-family: var(--ff-barlow);
+  font-weight: 400;
+}
+.password-container input::placeholder {
+  color: rgba(51, 51, 51, 0.4431372549);
+  font-family: var(--ff-barlow);
+  font-weight: 400;
+}
+.password-container .togglePassword {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.password-container .togglePassword img {
+  width: 3vh;
+  text-align: center;
 }
 
 /*
@@ -1466,6 +1515,7 @@ div.mangaPage svg.liked {
 .dashboard h1 {
   font-family: var(--ff-bangers);
   letter-spacing: var(--letter-spacing);
+  font-size: 1rem;
 }
 .dashboard .center {
   display: flex;
@@ -1527,6 +1577,62 @@ div.mangaPage svg.liked {
 
 /*
 **********************************
-***********LOANS HISTORY************
+***********kKAKOII MODE************
 **********************************
-*//*# sourceMappingURL=styles.css.map */
+*/
+.headkakkoii {
+  height: 30vh;
+  background: url(../img/kakoii.svg) no-repeat center center/cover;
+}
+
+.kakkoii {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #a2eefb;
+  margin: 20px;
+  padding: 20px 0;
+  border: 5px solid #ffffff;
+  border-radius: 10px;
+}
+.kakkoii .char-kakkoii {
+  display: flex;
+}
+.kakkoii h1 {
+  font-family: var(--ff-bangers);
+  letter-spacing: var(--letter-spacing);
+  font-size: 1rem;
+  color: #f0f0f0;
+  text-shadow: -2px -2px 0 red, 2px -2px 0 red, -2px 2px 0 red, 2px 2px 0 red;
+}
+.kakkoii .center {
+  text-align: center;
+  border: 2px solid #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px auto;
+}
+.kakkoii .center h2 {
+  color: red;
+  font-family: var(--ff-bangers);
+  letter-spacing: var(--letter-spacing);
+  font-size: 1rem;
+}
+.kakkoii .center p {
+  font-family: var(--ff-barlow);
+  font-size: 1rem;
+}
+.kakkoii .center button {
+  background-color: #fcc8e1;
+  color: #0e0e0e;
+  font-family: var(--ff-bangers);
+  cursor: pointer;
+  transition: all ease 0.3s;
+  border-radius: 10px;
+  border: none;
+  padding: 20px;
+  margin: 10px;
+}
+.kakkoii .center button:hover {
+  background-color: #cc1606;
+}/*# sourceMappingURL=styles.css.map */
