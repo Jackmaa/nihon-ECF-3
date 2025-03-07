@@ -1420,13 +1420,19 @@ button:hover {
   ***********UPDATE USER************
   **********************************
   */
-  .update-user-desktop {
-    display: block;
-    background-color: #008cba;
+  .modify-profile input {
+    width: 30%;
   }
-  .update-user-desktop figure {
-    display: flex;
-    justify-content: center;
+  .modify-profile button {
+    width: 30%;
+  }
+  figure.update-user-desktop {
+    display: block;
+  }
+  figure.update-user-desktop img {
+    width: 100%;
+    -o-object-fit: contain;
+       object-fit: contain;
   }
 }
 @media (min-width: 1440px) {

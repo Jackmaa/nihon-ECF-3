@@ -1596,17 +1596,19 @@ justify-content: space-around;
 ***********UPDATE USER************
 **********************************
 */
-
-.update-user-desktop {
-  display: block;
-background-color: #008cba;
-
-figure {
-  display: flex;
-  justify-content: center;
-  img {
-
+.modify-profile {
+  input {
+    width: 30%;
   }
+  button {
+    width: 30%;
+  }
+}
+figure.update-user-desktop {
+  display: block;
+  img {
+    width: 100%;
+    object-fit: contain;
 }
 }
 
