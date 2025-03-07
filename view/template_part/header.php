@@ -61,7 +61,7 @@
                     <a href="#"><img src="<?php echo BASE_URL ?>public\asset\img\profile_picture.webp" alt="profile picture"></a>
                 <div class="dropdown">
                     <ul>
-                    <li><a href="<?php echo $this->router->generate("myProfile") ?>">Profil</a></li>
+                    <li><a href="<?php echo $this->router->generate("myProfile", ["id" => $_SESSION['id_user']]) ?>">Profil</a></li>
                     <li><a href="#">My Favorites</a></li>
                     <li><a href="#">My Boocks</a></li>
                     <li><a href="#">Contact</a></li>
