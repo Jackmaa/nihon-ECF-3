@@ -123,7 +123,7 @@ class ModelUser extends Model {
     }
 
     public function searchUser($str) {
-        $req = $this->getDb()->prepare('SELECT * FROM `user` WHERE `username` LIKE :str OR `email` LIKE :str');
+        $req = $this->getDb()->prepare('SELECT * FROM `user` WHERE `username` OR `email` LIKE :str');
         $req->bindParam(':str', $str, PDO::PARAM_STR);
         $req->execute();
         while ($data = $req->fetch(PDO::FETCH_ASSOC)) {

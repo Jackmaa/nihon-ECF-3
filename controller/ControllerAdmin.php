@@ -58,7 +58,6 @@ class ControllerAdmin extends Controller {
         $search        = '%' . $_POST['search'] . '%';
         $model         = new ModelUser();
         $searchResults = $model->searchUser($search);
-        var_dump($searchResults);
         if (empty($searchResults)) {
             $searchResults = ['error' => 'No results found'];
         }

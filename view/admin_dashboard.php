@@ -57,7 +57,7 @@
 <div id="search-results-manga"></div>
 
 <!-- Overlay -->
-<div class="overlay" id="overlay" onclick="closePopup('popupLoans'); closePopup('popupReturns'); closePopup('popupHistory'); closePopup('popupCreate'); closePopup('popupBan'); closePopup('popupDelete'); closePopup('popupAdd'); closePopup('popupModified'); closePopup('popupDeleteBook');"></div>
+<div class="overlay" id="overlay" onclick="closePopup('popupLoans'); closePopup('popupReturns'); closePopup('popupHistory'); closePopup('popupCreate'); closePopup('popupBan'); closePopup('popupDelete'); closePopup('popupAdd'); closePopup('popupModified'); closePopup('popupDeleteBook'); closePopup('popupUser')"></div>
 
 <!-- Popups -->
 <div class="popup" id="popupLoans">
@@ -94,6 +94,12 @@
     <p>Loan Date</p>
     <input type="text">
     <button class="button" onclick="closePopup('popupHistory')">Close</button>
+</div>
+
+<div class="popup" id="popupUser">
+    <input type="text">
+    <input type="text">
+    <input type="text">
 </div>
 
 <div class="popup" id="popupCreate">

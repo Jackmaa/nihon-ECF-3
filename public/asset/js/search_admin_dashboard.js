@@ -95,7 +95,6 @@ searchUserInput.addEventListener("input", function () {
   })
     .then((response) => response.json())
     .then((datas) => {
-      console.log(datas);
       responseUserDiv.innerHTML = "";
       if (datas.error || datas.length === 0) {
         let noResult = document.createElement("p");
@@ -107,15 +106,15 @@ searchUserInput.addEventListener("input", function () {
           let userDiv = document.createElement("div");
           userDiv.classList.add("user-result");
 
-          let userTitle = document.createElement("p");
-          userTitle.textContent = user.username;
+          let userName = document.createElement("p");
+          userName.textContent = user.username;
 
-          userDiv.append(userTitle);
+          userDiv.append(userName);
           responseUserDiv.appendChild(userDiv);
 
           userDiv.addEventListener("click", function () {
             fillModifyPopupUser(user);
-            openPopup("popupModifiedUser");
+            openPopup("popupUser");
           });
         });
         addButtonToDiv("Modify", "popupModifiedUser", responseUserDiv);
@@ -123,3 +122,11 @@ searchUserInput.addEventListener("input", function () {
       }
     });
 });
+
+function fillModifyPopupUser(user) {
+  document.querySelector("#popupUser input:nth-of-type(1)").value =
+    user.id_user;
+  document.querySelector("#popupUser input:nth-of-type(2)").value =
+    user.username;
+  document.querySelector("#popupUser input:nth-of-type(3)").value = user.email;
+}
