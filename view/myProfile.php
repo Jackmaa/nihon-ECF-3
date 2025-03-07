@@ -19,7 +19,7 @@
             <h3>General</h3>
             <div class="gradient">
 
-                <div><a href="#">My Current Stories<span>›</span></a></div>
+                <div><a href="<?php echo $this->router->generate("currentStorie") ?>">My Current Stories<span>›</span></a></div>
                 <div><a href="#">My Past Chronicles<span>›</span></a></div>
                 <div><a href="#">My Favorite<span>›</span></a></div>
             </div>

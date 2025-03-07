@@ -22,6 +22,9 @@ $router->map("GET|POST", "/updateUser/[i:id]", "ControllerUser#update", "updateU
 //MY PROFILE
 $router->map("GET", "/myProfile/[i:id]", "ControllerUser#myProfile", "myProfile");
 
+//CURRENT STORIES
+$router->map("GET", "/currentStorie", "ControllerUser#currentStorie", "currentStorie");
+
 //MANGA
 //SEARCH
 $router->map("GET|POST", "/search", "ControllerManga#search", "search");
