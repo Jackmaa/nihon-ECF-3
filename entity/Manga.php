@@ -1,5 +1,5 @@
 <?php
-class Manga {
+class Manga implements JsonSerializable {
     private $id_manga;
     private $name;
     private $description;
@@ -100,5 +100,15 @@ class Manga {
         $count = $req->fetchColumn();
         error_log("Manga_id {$this->id_manga} has $count likes");
         return $count;
+    }
+
+    public function jsonSerialize(): mixed {
+        return [
+            'id_manga'       => $this->id_manga,
+            'name'           => $this->name,
+            'description'    => $this->description,
+            'published_date' => $this->published_date,
+            'thumbnail'      => $this->thumbnail,
+        ];
     }
 }

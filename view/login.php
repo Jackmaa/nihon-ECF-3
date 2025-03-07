@@ -5,7 +5,6 @@ $scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.mi
 ob_start();
 ?>
 <main class="connexion">
-
     <section class="form-container">
         <h1> Connexion </h1>
         <form action="/login" method="post">
