@@ -6,4 +6,9 @@ class ControllerGeneral extends Controller {
     public function contact() {
         require_once './view/contact.php';
     }
+
+    public function kakkoii() {
+        require_once './view/kakoiimode.php';
+    }
+
 }

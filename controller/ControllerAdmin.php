@@ -42,4 +42,27 @@ class ControllerAdmin extends Controller {
 
         require_once './view/admin_dashboard.php';
     }
+
+    public function searchManga() {
+        $search        = '%' . $_POST['search'] . '%';
+        $model         = new ModelManga();
+        $searchResults = $model->searchAdminManga($search);
+        if (empty($searchResults)) {
+            $searchResults = ['error' => 'No results found'];
+        }
+        header('Content-Type: application/json');
+        echo json_encode($searchResults, JSON_PRETTY_PRINT);
+    }
+
+    public function searchUser() {
+        $search        = '%' . $_POST['search'] . '%';
+        $model         = new ModelUser();
+        $searchResults = $model->searchUser($search);
+        var_dump($searchResults);
+        if (empty($searchResults)) {
+            $searchResults = ['error' => 'No results found'];
+        }
+        header('Content-Type: application/json');
+        echo json_encode($searchResults, JSON_PRETTY_PRINT);
+    }
 }
