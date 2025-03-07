@@ -1214,6 +1214,23 @@ button:hover {
   .formulaire {
     margin: 0 auto;
   }
+  /*
+  *******************************
+  ***********kakoii mode***********
+  *******************************
+  */
+  .formkakoii {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .headkakkoii {
+    width: 100%;
+  }
+  .kakkoii {
+    width: 70vh;
+  }
 }
 @media (min-width: 1024px) {
   /*
@@ -1393,6 +1410,27 @@ button:hover {
     width: 40%;
   }
   /*
+  *******************************
+  ***********kakoii mode***********
+  *******************************
+  */
+  .formkakoii {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .headkakkoii {
+    width: 100%;
+  }
+  .kakkoii {
+    width: 70vh;
+  }
+  .kakkoii .flex {
+    display: flex;
+    flex-direction: row;
+  }
+  /*
   **********************************
   ***********MANGA PAGE************
   **********************************
@@ -1553,6 +1591,11 @@ button:hover {
 
 .dashboard {
   /* filepath: /C:/wamp64/www/nihon/public/asset/css/styles.scss */
+  /*
+  *******************************
+  ***********kakoii mode***********
+  *******************************
+  */
 }
 .dashboard table {
   width: 100%;
@@ -1648,6 +1691,12 @@ button:hover {
 .dashboard .overlay.active {
   display: block; /* Afficher lorsque actif */
 }
+.dashboard .kakkoii center {
+  max-width: 600px; /* Réduire la largeur maximale */
+  padding: 20px; /* Ajuster le padding si nécessaire */
+  margin: 20px auto; /* Centrer les éléments */
+  background-color: #cc1606;
+}
 
 /*
 **********************************
@@ -1657,6 +1706,7 @@ button:hover {
 .headkakkoii {
   height: 30vh;
   background: url(../img/kakoii.svg) no-repeat center center/cover;
+  width: 100%;
 }
 
 .kakkoii {
@@ -1709,4 +1759,53 @@ button:hover {
 }
 .kakkoii .center button:hover {
   background-color: #cc1606;
+}
+
+/*
+**********************************
+***********KAKOII MODE************
+**********************************
+*/
+.kakkoii .popup {
+  display: none; /* Masquer par défaut */
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid #ffffff;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  border-radius: 10px;
+}
+.kakkoii .overlay {
+  display: none; /* Masquer par défaut */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+.kakkoii .popup.active,
+.kakkoii .overlay.active {
+  display: block; /* Afficher lorsque actif */
+}
+.kakkoii .flex {
+  display: flex;
+  flex-direction: column;
+}
+.kakkoii h2 {
+  font-family: var(--ff-bangers);
+  letter-spacing: var(--letter-spacing);
+  font-size: 1rem;
+  color: #fa0707;
+}
+.kakkoii .open-popup {
+  background-color: #fcc8e1;
+  color: #0e0e0e;
+  font-family: var(--ff-bangers);
+  cursor: pointer;
 }/*# sourceMappingURL=styles.css.map */
