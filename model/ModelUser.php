@@ -96,7 +96,6 @@ class ModelUser extends Model {
         $req = $this->getDb()->prepare('SELECT `username`, `email`, `password` FROM `email_verify` WHERE `email` = ?');
         $req->execute([$email]);
         $data = $req->fetch(PDO::FETCH_ASSOC);
-        return $data;
     }
 
     public function deleteTempUser(string $email) {
@@ -114,7 +113,12 @@ class ModelUser extends Model {
         $req->execute();
     }
 
-    public function profile(){
+    public function profile(int $id) {
+        $req = $this->getDb()->prepare('SELECT `username`, `email`, `profile_pic` FROM `user` WHERE `id_user` = :id_user');
+        $req->bindParam(':id_user', $id, PDO::PARAM_INT);
+        $req->execute();
+        $data = $req->fetch(PDO::FETCH_ASSOC);
 
+        return $data ? new User($data):null;
     }
 }

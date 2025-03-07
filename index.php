@@ -20,7 +20,7 @@ $router->map("GET", "/verify/*", "ControllerUser#verify", "verify");
 //UPDATE
 $router->map("GET|POST", "/updateUser/[i:id]", "ControllerUser#update", "updateUser");
 //MY PROFILE
-$router->map("GET", "/myProfile", "ControllerUser#myProfile", "myProfile");
+$router->map("GET", "/myProfile/[i:id]", "ControllerUser#myProfile", "myProfile");
 
 //MANGA
 //SEARCH
