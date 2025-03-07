@@ -17,6 +17,7 @@ $router->map("GET", "/logout", "ControllerUser#logout", "logout");
 $router->map("GET|POST", "/register", "ControllerUser#register", "register");
 //VERIFY
 $router->map("GET", "/verify/*", "ControllerUser#verify", "verify");
+$router->map("GET|POST", "/finishsignup/*", "ControllerUser#verifyUser", "verifyUser");
 //UPDATE
 $router->map("GET|POST", "/updateUser/[i:id]", "ControllerUser#update", "updateUser");
 //MY PROFILE
@@ -59,6 +60,8 @@ $router->map("GET", "/dashboard", "ControllerAdmin#dashboard", "admin_dashboard"
 $router->map("GET|POST", "/searchManga", "ControllerAdmin#searchManga", "searchManga");
 //SEARCH USER
 $router->map("GET|POST", "/searchUser", "ControllerAdmin#searchUser", "searchUser");
+//CREATE USER
+$router->map("GET|POST", "/createUser", "ControllerAdmin#createUser", "createUser");
 
 // Match the current request
 $match = $router->match();

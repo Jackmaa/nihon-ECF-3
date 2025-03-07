@@ -85,6 +85,18 @@ class ModelUser extends Model {
 
     }
 
+    public function getEmailByToken($token) {
+        $query = $this->getDb()->prepare("SELECT email FROM email_verify WHERE token = ?");
+        $query->execute([$token]);
+        $email = $query->fetchColumn();
+
+        if (! $email) {
+            error_log("Token not found in DB: " . $token); // Log si le token ne correspond pas
+        }
+
+        return $email;
+    }
+
     public function verifyToken(string $token, string $email) {
         $req = $this->getDb()->prepare('SELECT`expires_at` FROM `email_verify` WHERE `token` = ? AND `email`  = ?');
         $req->execute([$token, $email]);
@@ -114,7 +126,7 @@ class ModelUser extends Model {
     }
 
     public function profile(int $id) {
-        $req = $this->getDb()->prepare('SELECT `id_user`, `username`, `email`, `password`, `profile_pic` FROM `user` WHERE `id_user` = :id_user');//UPDATED EDIT PROFILE METHOD
+        $req = $this->getDb()->prepare('SELECT `id_user`, `username`, `email`, `password`, `profile_pic` FROM `user` WHERE `id_user` = :id_user'); //UPDATED EDIT PROFILE METHOD
         $req->bindParam(':id_user', $id, PDO::PARAM_INT);
         $req->execute();
         $data = $req->fetch(PDO::FETCH_ASSOC);
@@ -129,6 +141,15 @@ class ModelUser extends Model {
         while ($data = $req->fetch(PDO::FETCH_ASSOC)) {
             $users[] = new User($data);
         }
-        return $users;
+        return $users ?? null;
+    }
+
+    public function createUserByAdmin(string $email, string $token) {
+        $expiryTime = time() + (15 * 60);
+        $req        = $this->getDb()->prepare('INSERT INTO `email_verify` (`email`, `token`, `expires_at`) VALUES (:email, :token, :expires_at)');
+        $req->bindParam(':email', $email, PDO::PARAM_STR);
+        $req->bindParam(':token', $token, PDO::PARAM_STR);
+        $req->bindParam(':expires_at', $expiryTime, PDO::PARAM_INT);
+        $req->execute();
     }
 }
