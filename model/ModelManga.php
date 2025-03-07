@@ -217,16 +217,37 @@ class ModelManga extends Model {
                 manga.id_author,
                 manga.description,
                 manga.published_date,
-                manga.thumbnail
+                manga.thumbnail,
+                author.name AS author_name,
+                GROUP_CONCAT(DISTINCT categories.category_name SEPARATOR ', ') AS category_names,
+                editor.name AS editor_name
             FROM
                 manga
+            LEFT JOIN
+                manga_category ON manga.id_manga = manga_category.manga_id
+            LEFT JOIN
+                categories ON manga_category.category_id = categories.id_category
+            INNER JOIN
+                manga_editor ON manga_editor.id_manga = manga.id_manga
+            INNER JOIN
+                editor ON manga_editor.id_editor = editor.id_editor
+            INNER JOIN
+                author ON manga.id_author = author.id_author
+            GROUP BY
+                manga.id_manga, manga.name, manga.id_author, manga.description, manga.published_date, manga.thumbnail, author.name, editor.name;
             WHERE
                 manga.name LIKE :str");
         $req->bindParam(":str", $str, PDO::PARAM_STR);
         $req->execute();
 
         while ($result = $req->fetch(PDO::FETCH_ASSOC)) {
-            $mangas[] = new Manga($result);
+            $author_name = $result['author_name'];
+            $categories  = $result['category_names'];
+            $editor_name = $result['editor_name'];
+            unset($result['author_name']);
+            unset($result['category_names']);
+            unset($result['editor_name']);
+            $mangas[] = new MangaDTO(new Manga($result), $author_name, $categories, $editor_name);
         }
         return $mangas ?? [];
     }

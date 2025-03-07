@@ -1,14 +1,14 @@
 <?php
-$title            = 'Nihon | Login';
-$meta_description = 'log in to your "Nihon" account';
-$scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public/asset/js/base.js", "public/asset/js/header.js", "public/asset/js/login.js"];
-ob_start();
+    $title            = 'Nihon | Login';
+    $meta_description = 'log in to your "Nihon" account';
+    $scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public/asset/js/base.js", "public/asset/js/header.js", "public/asset/js/login.js"];
+    ob_start();
 ?>
 <main class="connexion">
     <section class="form-container">
         <h1> Connexion </h1>
         <form action="/login" method="post">
-            <input type="text" name="email" placeholder="Email">
+            <input type="text" name="credential" placeholder="Email or Username">
             <div class="password-container">
                 <input type="password" name="password" id="password" placeholder="Password" >
                 <button type="button" class="togglePassword"><img src="public\asset\img\oeilferme.svg" alt="oeil" class="eye-icon"> </button>
@@ -22,7 +22,7 @@ ob_start();
     </figure>
 </main>
 <?php
-$content = ob_get_contents();
-ob_end_clean();
+    $content = ob_get_contents();
+    ob_end_clean();
 require_once 'view/base_html.php';
 ?>
