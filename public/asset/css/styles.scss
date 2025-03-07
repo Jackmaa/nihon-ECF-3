@@ -1441,4 +1441,74 @@ div.mangaPage {
   }
 }
 
+/*
+**********************************
+***********kKAKOII MODE************
+**********************************
+*/
 
+.headkakkoii{
+  height: 30vh;
+  background: url(../img/kakoii.svg) no-repeat center center/cover;
+ 
+}
+.kakkoii{
+display: flex;
+flex-direction: column;
+align-items: center;
+    background-color: #a2eefb;
+    margin:20px;
+    padding: 20px 0;
+    border: 5px solid #ffffff;
+    border-radius: 10px;
+
+    .char-kakkoii {
+      display: flex;
+      
+    }
+    
+  h1{
+    font-family: var(--ff-bangers);
+    letter-spacing: var(--letter-spacing);
+    font-size: 1rem;
+    color: #f0f0f0;
+    text-shadow: 
+                -2px -2px 0 red,  
+                2px -2px 0 red,
+                -2px 2px 0 red,
+                2px 2px 0 red;
+  }
+  .center{
+    text-align: center;
+    border: 2px solid #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px auto;
+         
+    h2{
+    color: red;
+    font-family: var(--ff-bangers);
+    letter-spacing: var(--letter-spacing);
+    font-size: 1rem;
+    }
+    p{
+      font-family: var(--ff-barlow);
+      font-size: 1rem;
+        
+    }
+  }
+  .center button {
+    background-color: #fcc8e1;
+      color: #0e0e0e;
+      font-family: var(--ff-bangers);
+      cursor: pointer;
+      transition: all ease 0.3s;
+      border-radius: 10px;
+      border: none;
+      padding: 20px;
+      margin: 10px;
+      &:hover{
+        background-color: #cc1606;
+}
+  }
+}
