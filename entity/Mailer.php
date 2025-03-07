@@ -53,5 +53,30 @@ class Mailer {
             return $this->mail->ErrorInfo;
         }
     }
+
+    public function sendFinishSignupEmail($email, $link) {
+        try {
+            $this->mail->setFrom('do-not-replyNihon@gmail.com', 'Nihon');
+            $this->mail->addAddress($email, 'user');
+            $this->mail->isHTML(true);
+            $this->mail->Subject = 'Bienvenue sur NIHON ! 📖✨';
+            $this->mail->Body    = '<p style="font-family: Arial, sans-serif; font-size: 16px; color: #333;">
+                Salut , <br><br>
+                Bienvenue sur <strong>NIHON</strong>, ta nouvelle mangathèque en ligne ! 🎉 <br>
+                Avant de commencer ton aventure parmi nos milliers de mangas, il ne te reste plus qu’une étape : confirmer ton adresse e-mail. <br><br>
+                Clique sur le bouton ci-dessous pour activer ton compte :<br><br>
+                <a href="' . $link . '" style="background-color: #cc392b; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold;">✅ Confirmer mon compte</a><br><br>
+                Si le bouton ne fonctionne pas, copie et colle ce lien dans ton navigateur :<br>
+                Si tu n’es pas à l’origine de cette inscription, ignore simplement cet e-mail.<br><br>
+                À très bientôt sur <strong>NIHON</strong> ! 📚🔥<br><br>
+                L’équipe <strong>NIHON</strong>
+            </p>';
+            $this->mail->AltBody = 'Salut , Bienvenue sur NIHON. Clique sur ce lien pour vérifier votre email : ' . $link;
+            $this->mail->send();
+            return true;
+        } catch (Exception $e) {
+            return $this->mail->ErrorInfo;
+        }
+    }
 }
 ?>

@@ -62,7 +62,6 @@ class ControllerUser extends Controller {
                             $mailer           = new Mailer($token);
                             $verificationLink = "http://nihon/verify/?email=$email&code=$token";
                             $sendResult       = $mailer->sendVerificationEmail($email, $username, $verificationLink);
-                            var_dump($sendResult);
                             echo "Your account was created! An email has been sent, please check it out to verify your email.";
 
                             header('Location: ' . $this->router->generate('login'));
@@ -96,8 +95,6 @@ class ControllerUser extends Controller {
             $model = new ModelUser();
             $timer = $model->verifyToken($token, $email);
             $now   = time();
-            var_dump($timer);
-            var_dump($now);
             if ($timer['expires_at'] > $now) {
                 // Create a new user from the temporary user data
                 $user = $model->getTempUser($email);
@@ -122,6 +119,30 @@ class ControllerUser extends Controller {
         }
     }
 
+    // Handle user verification from admin dashboard
+    public function verifyUser() {
+        $token = $_GET['code'] ?? '';
+        $email = $_GET['email'] ?? '';
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (! empty($_POST["username"]) && ! empty($_POST["password"]) && ! empty($_POST["password_verify"])) {
+                if ($_POST["password"] === $_POST["password_verify"]) {
+                    $model = new ModelUser();
+                    $model->createUser($_POST["username"], $email, $_POST["email"], $_POST["password"]);
+                    header('Location: ' . $this->router->generate('home'));
+                }
+            }
+        }
+
+        if ($token && $email) {
+            $model = new ModelUser();
+            $timer = $model->verifyToken($token, $email);
+            $now   = time();
+            if ($timer['expires_at'] > $now) {
+                require_once './view/finishsignup.php';
+            }
+        }
+    }
+
     public function update(int $id) {
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -143,7 +164,7 @@ class ControllerUser extends Controller {
 
     public function myProfile($id) {
         $model = new ModelUser();
-        $data = $model->profile($id);
+        $data  = $model->profile($id);
         require_once './view/myProfile.php';
         var_dump($data);
     }

@@ -114,7 +114,7 @@ class ModelUser extends Model {
     }
 
     public function profile(int $id) {
-        $req = $this->getDb()->prepare('SELECT `id_user`, `username`, `email`, `password`, `profile_pic` FROM `user` WHERE `id_user` = :id_user');//UPDATED EDIT PROFILE METHOD
+        $req = $this->getDb()->prepare('SELECT `id_user`, `username`, `email`, `password`, `profile_pic` FROM `user` WHERE `id_user` = :id_user'); //UPDATED EDIT PROFILE METHOD
         $req->bindParam(':id_user', $id, PDO::PARAM_INT);
         $req->execute();
         $data = $req->fetch(PDO::FETCH_ASSOC);
@@ -129,6 +129,15 @@ class ModelUser extends Model {
         while ($data = $req->fetch(PDO::FETCH_ASSOC)) {
             $users[] = new User($data);
         }
-        return $users;
+        return $users ?? null;
+    }
+
+    public function createUserByAdmin(string $email) {
+        $expiryTime = time() + (15 * 60);
+        $req        = $this->getDb()->prepare('INSERT INTO `email_verify` (`email`, `token`, `expires_at`) VALUES (:email, :token, :expires_at)');
+        $req->bindParam(':email', $email, PDO::PARAM_STR);
+        $req->bindParam(':token', $token, PDO::PARAM_STR);
+        $req->bindParam(':expires_at', $expiryTime, PDO::PARAM_INT);
+        $req->execute();
     }
 }
