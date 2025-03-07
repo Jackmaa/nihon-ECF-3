@@ -13,7 +13,6 @@ class ControllerUser extends Controller {
             if (! empty($_POST['credential']) && ! empty($_POST['password'])) {
                 // Fetch the user by email
                 $user = $model->getUser($_POST['credential']);
-                var_dump($user);
                 // Check if the user exists and the password is correct
                 if (password_verify($_POST['password'], $user->getPassword())) {
                     // Set the user ID in the session
@@ -122,25 +121,41 @@ class ControllerUser extends Controller {
     // Handle user verification from admin dashboard
     public function verifyUser() {
         $token = $_GET['code'] ?? '';
-        $email = $_GET['email'] ?? '';
+        $model = new ModelUser();
+
+        // If the request is GET, retrieve the email and store it in session
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $email = $model->getEmailByToken($token);
+            if (! $email) {
+                die('Invalid or expired token.');
+            }
+            $_SESSION['email_verification'] = $email; // Store email in session
+        }
+
+        // Retrieve email from session for POST requests
+        $email = $_SESSION['email_verification'] ?? null;
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (! empty($_POST["username"]) && ! empty($_POST["password"]) && ! empty($_POST["password_verify"])) {
                 if ($_POST["password"] === $_POST["password_verify"]) {
-                    $model = new ModelUser();
-                    $model->createUser($_POST["username"], $email, $_POST["email"], $_POST["password"]);
+                    $password = password_hash($_POST["password"], PASSWORD_BCRYPT);
+
+                    $model->createUser($_POST["username"], $email, $password);
+
+                    // Clean up session after user creation
+                    unset($_SESSION['email_verification']);
+
                     header('Location: ' . $this->router->generate('home'));
+                    exit;
+                } else {
+                    echo "Passwords do not match.";
                 }
+            } else {
+                echo "All fields are required.";
             }
         }
 
-        if ($token && $email) {
-            $model = new ModelUser();
-            $timer = $model->verifyToken($token, $email);
-            $now   = time();
-            if ($timer['expires_at'] > $now) {
-                require_once './view/finishsignup.php';
-            }
-        }
+        require_once './view/finishsignup.php';
     }
 
     public function update(int $id) {

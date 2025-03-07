@@ -50,11 +50,15 @@ searchMangaInput.addEventListener("input", function () {
     });
 });
 
-function addButtonToDiv(text, popupId, responseDiv) {
+function addButtonToDiv(text, popupId, responseDiv, inputValue = "") {
   let button = document.createElement("button");
   button.classList.add("button");
   button.textContent = text;
   button.onclick = function () {
+    if (popupId === "popupCreate") {
+      document.querySelector("#popupCreate input[name='email']").value =
+        inputValue;
+    }
     openPopup(popupId);
   };
   responseDiv.appendChild(button);
@@ -100,7 +104,12 @@ searchUserInput.addEventListener("input", function () {
         let noResult = document.createElement("p");
         noResult.textContent = "No result found";
         responseUserDiv.appendChild(noResult);
-        addButtonToDiv("Add", "popupAddUser", responseUserDiv);
+        addButtonToDiv(
+          "Add",
+          "popupCreate",
+          responseUserDiv,
+          searchUserInput.value
+        );
       } else {
         datas.forEach((user) => {
           let userDiv = document.createElement("div");

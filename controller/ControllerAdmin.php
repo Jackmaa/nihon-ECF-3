@@ -78,5 +78,6 @@ class ControllerAdmin extends Controller {
 
         $mailer = new Mailer($token);
         $link   = "http://nihon/finishsignup/?email=$email&code=$token";
+        $mailer->sendFinishSignupEmail($email, $link);
     }
 }

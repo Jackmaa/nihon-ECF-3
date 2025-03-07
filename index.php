@@ -17,6 +17,7 @@ $router->map("GET", "/logout", "ControllerUser#logout", "logout");
 $router->map("GET|POST", "/register", "ControllerUser#register", "register");
 //VERIFY
 $router->map("GET", "/verify/*", "ControllerUser#verify", "verify");
+$router->map("GET|POST", "/finishsignup/*", "ControllerUser#verifyUser", "verifyUser");
 //UPDATE
 $router->map("GET|POST", "/updateUser/[i:id]", "ControllerUser#update", "updateUser");
 //MY PROFILE

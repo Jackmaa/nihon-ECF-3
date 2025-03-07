@@ -85,6 +85,18 @@ class ModelUser extends Model {
 
     }
 
+    public function getEmailByToken($token) {
+        $query = $this->getDb()->prepare("SELECT email FROM email_verify WHERE token = ?");
+        $query->execute([$token]);
+        $email = $query->fetchColumn();
+
+        if (! $email) {
+            error_log("Token not found in DB: " . $token); // Log si le token ne correspond pas
+        }
+
+        return $email;
+    }
+
     public function verifyToken(string $token, string $email) {
         $req = $this->getDb()->prepare('SELECT`expires_at` FROM `email_verify` WHERE `token` = ? AND `email`  = ?');
         $req->execute([$token, $email]);
@@ -132,7 +144,7 @@ class ModelUser extends Model {
         return $users ?? null;
     }
 
-    public function createUserByAdmin(string $email) {
+    public function createUserByAdmin(string $email, string $token) {
         $expiryTime = time() + (15 * 60);
         $req        = $this->getDb()->prepare('INSERT INTO `email_verify` (`email`, `token`, `expires_at`) VALUES (:email, :token, :expires_at)');
         $req->bindParam(':email', $email, PDO::PARAM_STR);

@@ -6,10 +6,11 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="/createUser" method="POST">
+    <form action="/finishsignup" method="POST">
         <input type="text" name="username">
         <input type="password" name="password">
         <input type="password" name="password_verify">
+        <button type="submit">GO</button>
     </form>
 </body>
 </html>
