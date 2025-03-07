@@ -1,8 +1,8 @@
 <?php
-$title            = 'Nihon | ' . $manga->manga->getName();
-$meta_description = $manga->manga->getName() . 'it a great manga';
-$scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public\asset\js\base.js", "public\asset\js\header.js", "public\asset\js\like.js"];
-ob_start();
+    $title            = 'Nihon | ' . $manga->manga->getName();
+    $meta_description = $manga->manga->getName() . 'it a great manga';
+    $scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public\asset\js\base.js", "public\asset\js\header.js", "public\asset\js\like.js"];
+    ob_start();
 ?>
 <main>
     <section>
@@ -28,7 +28,7 @@ ob_start();
                         <p>Author : </p><a href="#"><?php echo $manga->author ?></a>
                     </div>
                     <div>
-                        <p>Editor : </p><a href="#">EDITOR</a>
+                        <p>Editor : </p><a href="#"><?php echo $manga->editor ?></a>
                     </div>
                 </div>
     </section>
@@ -123,7 +123,7 @@ ob_start();
     </section>
 </main>
 <?php
-$content = ob_get_contents();
-ob_end_clean();
+    $content = ob_get_contents();
+    ob_end_clean();
 require_once 'view\base_html.php';
 ?>
