@@ -34,7 +34,7 @@
                     <span class="close-menu">×</span>
                 </div>
                 <ul>
-                    <li><a href="<?php echo BASE_URL ?>myProfile">Profil</a></li>
+                    <li><a href="<?php echo $this->router->generate("myProfile") ?>">Profil</a></li>
                     <li><a href="#">Home</a></li>
                     <li><a href="#">My Books</a></li>
                     <li><a href="#">Favorites</a></li>
@@ -42,7 +42,6 @@
                 </ul>
             </div>
         </section>
-
         <section class="menu-desktop">
             <div>
                 <figure><a href="<?php echo BASE_URL ?>"><img src="<?php echo BASE_URL ?>public\asset\img\logo.svg" alt="Logo"></a></figure>
@@ -62,7 +61,7 @@
                     <a href="#"><img src="<?php echo BASE_URL ?>public\asset\img\profile_picture.webp" alt="profile picture"></a>
                 <div class="dropdown">
                     <ul>
-                    <li><a href="#">Profil</a></li>
+                    <li><a href="<?php echo $this->router->generate("myProfile", ["id" => $_SESSION['id_user']]) ?>">Profil</a></li>
                     <li><a href="#">My Favorites</a></li>
                     <li><a href="#">My Boocks</a></li>
                     <li><a href="#">Contact</a></li>

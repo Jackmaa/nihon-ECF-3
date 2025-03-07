@@ -1012,11 +1012,19 @@ h2 {
 **********************************
 */
 .head-profile {
+  p {
+      font-family: var(--ff-bangers);
+      letter-spacing: var(--letter-spacing);
+      font-size: 1.5rem;
+      margin: 2vh 0;
+    }
   .head-edit-profile {
     position: relative;
     width: 100%;
     display: flex;
     justify-content: space-between;
+
+
 
     svg {
       position: absolute;
@@ -1048,7 +1056,7 @@ h2 {
 
     figure {
       position: absolute;
-      bottom: -50%;
+      bottom: -60%;
       right: 50%;
       transform: translateX(50%);
       display: flex;
@@ -1144,6 +1152,9 @@ h2 {
 **********************************
 */
 
+.update-user-desktop{
+  display: none;
+}
 .modify-profile {
   margin-top: 25vh;
   display: flex;
@@ -1153,13 +1164,94 @@ h2 {
   input {
     width: 50%;
     margin-bottom: 3vh;
+    border-radius: 5px;
     padding: 5px 10px;
+    border: solid 2px #3333339f;
+    font-size: 1.5rem;
+    font-family: var(--ff-barlow);
+    transition: all ease 0.3s;  
+
+    &:focus {
+      outline: none;
+      border: solid 2px #fcc8e1;
+    }
 
     
 
   }
   button {
-    width: 25%;
+    margin-bottom: 5vh;
+    width: 50%;
+    background-color: #fab1d4;
+    font-family: var(--ff-barlow);
+    color: var(--fc-light);
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: 5px 10px;
+    border: solid 2px rgba(0, 0, 0, 0.774);
+    border-radius: 5px;
+    box-shadow: #0e0e0e 0px 2px 5px;
+    cursor: pointer;
+    transition: all ease 0.3s;
+
+      &:hover {
+        background-color: #fc90c4;
+        box-shadow: none;
+      }
+  }
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal-content {
+    text-align: center;
+}
+
+button {
+    margin-top: 10px;
+    padding: 8px 12px;
+    border: none;
+    background-color: #333;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+
+/*
+**********************************
+*********CURRENT STORIES************
+**********************************
+*/
+
+.bann-setting {
+  display: flex;
+  align-items: center;
+  background-color: #cc392b;
+  padding: 20px 5px;
+
+  a {
+    color: var(--fc-black);
+    font-family: var(--ff-bangers);
+    letter-spacing: var(--letter-spacing);
+    transition: all ease 0.3s;
+    &:hover {
+      color: #333;
+    }
   }
 }
 
@@ -1565,6 +1657,26 @@ justify-content: space-around;
 }
 }
 
+  /*
+**********************************
+***********UPDATE USER************
+**********************************
+*/
+.modify-profile {
+  input {
+    width: 30%;
+  }
+  button {
+    width: 30%;
+  }
+}
+figure.update-user-desktop {
+  display: block;
+  img {
+    width: 100%;
+    object-fit: contain;
+}
+}
 
 }
 

@@ -141,7 +141,14 @@ class ControllerUser extends Controller {
         require_once './view//updateUser.php';
     }
 
-    public function myProfile() {
+    public function myProfile($id) {
+        $model = new ModelUser();
+        $data = $model->profile($id);
         require_once './view/myProfile.php';
+        var_dump($data);
+    }
+
+    public function currentStorie() {
+        require_once './view/currentStorie.php';
     }
 }
