@@ -1,16 +1,16 @@
 <?php
-$title            = 'Nihon | My Profile ';
-$meta_description = 'it\'s your profile, your profile is incredible like a manga';
-$scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public\asset\js\base.js", "public\asset\js\header.js", "public\asset\js\like.js", "public\asset\js\profile.js"];
-ob_start();
+    $title            = 'Nihon | My Profile ';
+    $meta_description = 'it\'s your profile, your profile is incredible like a manga';
+    $scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public\asset\js\base.js", "public\asset\js\header.js", "public\asset\js\like.js", "public\asset\js\profile.js"];
+    ob_start();
 ?>
 <main>
     <section class="head-profile">
         <div>
             <h2>My profile</h2>
             <figure>
-                <img class="profile-picture" src="public\asset\img\profile_picture.webp" alt="profile picture">
-                <button data-id="<?= $_SESSION['id_user'] ?>" class="edit-profile" >Edit Profile</button>
+                <img class="profile-picture" src="<?php echo BASE_URL ?>public\asset\img\profile_picture.webp" alt="profile picture">
+                <button data-id="<?php echo $_SESSION['id_user']?>" class="edit-profile" >Edit Profile</button>
             </figure>
         </div>
     </section>
@@ -43,7 +43,7 @@ ob_start();
     </section>
 </main>
 <?php
-$content = ob_get_contents();
-ob_end_clean();
+    $content = ob_get_contents();
+    ob_end_clean();
 require_once 'view\base_html.php';
 ?>
