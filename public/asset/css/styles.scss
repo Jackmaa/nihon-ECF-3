@@ -1589,14 +1589,15 @@ width: 100%;
 .headkakkoii {
 width: 100%;
 }
-.kakkoii{
-    width: 70vh; 
 
-    .flex{
-      display: flex;
-      flex-direction: row;
-    }
-
+  .kakkoii{
+    .kakoiiflex {
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: #cc392b;
+    width: 100%;
+  }
+  
   }
 
   /*
@@ -1910,6 +1911,14 @@ figure.update-user-desktop {
 **********************************
 */
 
+.headkakkoiilogo {
+  height: 10vh;
+  width: 10vh;
+  background: url(../img/logo.svg) no-repeat center center/cover;
+  display: flex;
+  justify-content: center;
+  }
+
 .headkakkoii{
   height: 30vh;
   background: url(../img/kakoii.svg) no-repeat center center/cover;
@@ -1974,8 +1983,9 @@ align-items: center;
       &:hover{
         background-color: #cc1606;
 }
+  } 
   }
-}
+  
 
 
 
@@ -2228,6 +2238,8 @@ align-items: center;
 */
 
 .kakkoii{
+  display: flex;
+  flex-direction: column;
   
   .popup {
   display: none; /* Masquer par défaut */
@@ -2258,22 +2270,30 @@ align-items: center;
 .overlay.active {
   display: block; /* Afficher lorsque actif */
 }
-.flex{
+.kakoiiflex{
   display: flex;
   flex-direction: column;
 }
-h2{
+h2,h3{
   font-family: var(--ff-bangers);
   letter-spacing: var(--letter-spacing);
   font-size: 1rem;
   color: #fa0707;
   
 }
-.open-popup{
+.close-popup{
   background-color: #fcc8e1;
   color: #0e0e0e;
   font-family: var(--ff-bangers);
   cursor: pointer;
+  transition: all ease 0.3s;
+  border-radius: 10px;  
+  border: none;
+  padding: 20px;
+  margin: 10px;
+    &:hover{
+      background-color: #cc1606;
+    }
 }
 
 }

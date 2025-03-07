@@ -1423,12 +1423,11 @@ button:hover {
   .headkakkoii {
     width: 100%;
   }
-  .kakkoii {
-    width: 70vh;
-  }
-  .kakkoii .flex {
-    display: flex;
+  .kakkoii .kakoiiflex {
     flex-direction: row;
+    justify-content: space-around;
+    background-color: #cc392b;
+    width: 100%;
   }
   /*
   **********************************
@@ -1703,6 +1702,14 @@ button:hover {
 ***********kKAKOII MODE************
 **********************************
 */
+.headkakkoiilogo {
+  height: 10vh;
+  width: 10vh;
+  background: url(../img/logo.svg) no-repeat center center/cover;
+  display: flex;
+  justify-content: center;
+}
+
 .headkakkoii {
   height: 30vh;
   background: url(../img/kakoii.svg) no-repeat center center/cover;
@@ -1766,6 +1773,10 @@ button:hover {
 ***********KAKOII MODE************
 **********************************
 */
+.kakkoii {
+  display: flex;
+  flex-direction: column;
+}
 .kakkoii .popup {
   display: none; /* Masquer par défaut */
   position: fixed;
@@ -1793,19 +1804,27 @@ button:hover {
 .kakkoii .overlay.active {
   display: block; /* Afficher lorsque actif */
 }
-.kakkoii .flex {
+.kakkoii .kakoiiflex {
   display: flex;
   flex-direction: column;
 }
-.kakkoii h2 {
+.kakkoii h2, .kakkoii h3 {
   font-family: var(--ff-bangers);
   letter-spacing: var(--letter-spacing);
   font-size: 1rem;
   color: #fa0707;
 }
-.kakkoii .open-popup {
+.kakkoii .close-popup {
   background-color: #fcc8e1;
   color: #0e0e0e;
   font-family: var(--ff-bangers);
   cursor: pointer;
+  transition: all ease 0.3s;
+  border-radius: 10px;
+  border: none;
+  padding: 20px;
+  margin: 10px;
+}
+.kakkoii .close-popup:hover {
+  background-color: #cc1606;
 }/*# sourceMappingURL=styles.css.map */
