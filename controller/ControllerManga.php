@@ -96,18 +96,6 @@ class ControllerManga extends Controller {
 
     }
 
-    public function searchAdmin() {
-        $search        = '%' . $_POST['search'] . '%';
-        $model         = new ModelManga();
-        $searchResults = $model->searchAdminManga($search);
-        if (empty($searchResults)) {
-            $searchResults = ['error' => 'No results found'];
-        }
-        header('Content-Type: application/json');
-        echo json_encode($searchResults, JSON_PRETTY_PRINT);
-
-    }
-
     // Method to handle AJAX request for author search
     public function authorAJAX() {
         $search  = '%' . $_POST['author'] . '%';

@@ -12,7 +12,7 @@ searchMangaInput.addEventListener("input", function () {
 
   let formData = new FormData(searchFormManga);
 
-  fetch("/searchAdmin", {
+  fetch("/searchManga", {
     method: "POST",
     body: formData,
   })
@@ -23,7 +23,7 @@ searchMangaInput.addEventListener("input", function () {
         let noResult = document.createElement("p");
         noResult.textContent = "No result found";
         responseMangaDiv.appendChild(noResult);
-        addButtonToDiv("Add", "popupAdd");
+        addButtonToDiv("Add", "popupAdd", responseMangaDiv);
       } else {
         datas.forEach((manga) => {
           console.log(manga);
@@ -44,20 +44,20 @@ searchMangaInput.addEventListener("input", function () {
             openPopup("popupModified");
           });
         });
-        addButtonToDiv("Modify", "popupModified");
-        addButtonToDiv("Delete", "popupDeleteBook");
+        addButtonToDiv("Modify", "popupModified", responseMangaDiv);
+        addButtonToDiv("Delete", "popupDeleteBook", responseMangaDiv);
       }
     });
 });
 
-function addButtonToDiv(text, popupId) {
+function addButtonToDiv(text, popupId, responseDiv) {
   let button = document.createElement("button");
   button.classList.add("button");
   button.textContent = text;
   button.onclick = function () {
     openPopup(popupId);
   };
-  responseMangaDiv.appendChild(button);
+  responseDiv.appendChild(button);
 }
 
 function fillModifyPopup(manga) {
@@ -73,4 +73,60 @@ function fillModifyPopup(manga) {
     manga.editor;
   document.querySelector("#popupModified input:nth-of-type(6)").value =
     manga.manga.description;
+}
+
+// SEARCH USER
+let searchFormUser = document.getElementById("search-form-user");
+let searchUserInput = document.getElementById("search-user");
+const responseUserDiv = document.getElementById("search-results-user");
+const buttonContainerUser = document.querySelector(".button-container-user");
+
+searchUserInput.addEventListener("input", function () {
+  if (searchUserInput.value.length < 2) {
+    responseUserDiv.innerHTML = "";
+    return;
+  }
+
+  let formData = new FormData(searchFormUser);
+
+  fetch("/searchUser", {
+    method: "POST",
+    body: formData,
+  })
+    .then((response) => response.json())
+    .then((datas) => {
+      responseUserDiv.innerHTML = "";
+      if (datas.error || datas.length === 0) {
+        let noResult = document.createElement("p");
+        noResult.textContent = "No result found";
+        responseUserDiv.appendChild(noResult);
+        addButtonToDiv("Add", "popupAddUser", responseUserDiv);
+      } else {
+        datas.forEach((user) => {
+          let userDiv = document.createElement("div");
+          userDiv.classList.add("user-result");
+
+          let userName = document.createElement("p");
+          userName.textContent = user.username;
+
+          userDiv.append(userName);
+          responseUserDiv.appendChild(userDiv);
+
+          userDiv.addEventListener("click", function () {
+            fillModifyPopupUser(user);
+            openPopup("popupUser");
+          });
+        });
+        addButtonToDiv("Modify", "popupModifiedUser", responseUserDiv);
+        addButtonToDiv("Delete", "popupDeleteUser", responseUserDiv);
+      }
+    });
+});
+
+function fillModifyPopupUser(user) {
+  document.querySelector("#popupUser input:nth-of-type(1)").value =
+    user.id_user;
+  document.querySelector("#popupUser input:nth-of-type(2)").value =
+    user.username;
+  document.querySelector("#popupUser input:nth-of-type(3)").value = user.email;
 }

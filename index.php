@@ -39,6 +39,10 @@ $router->map("GET", "/manga/[i:id]", "ControllerManga#read", "read");
 $router->map("GET|POST", "/update/[i:id]", "ControllerManga#update", "update");
 //CONTACT
 $router->map("GET|POST", "/contact", "ControllerGeneral#contact", "contact");
+
+//KAKKOII MODe
+$router->map("GET", "/kakkoii", "ControllerGeneral#kakkoii", "kakkoii");
+
 //DELETE MANGA
 $router->map("GET", "/delete/[i:id]", "ControllerManga#delete", "delete");
 
@@ -51,8 +55,10 @@ $router->map("GET", "/author/[i:id]", "ControllerManga#readAuthor", "readAuthor"
 $router->map("GET|POST", "/dashboard-access", "ControllerAdmin#login", "admin_login");
 //DASHBOARD
 $router->map("GET", "/dashboard", "ControllerAdmin#dashboard", "admin_dashboard");
-//SEARCH
-$router->map("GET|POST", "/searchAdmin", "ControllerManga#searchAdmin", "searchAdmin");
+//SEARCH MANGA
+$router->map("GET|POST", "/searchManga", "ControllerAdmin#searchManga", "searchManga");
+//SEARCH USER
+$router->map("GET|POST", "/searchUser", "ControllerAdmin#searchUser", "searchUser");
 
 // Match the current request
 $match = $router->match();

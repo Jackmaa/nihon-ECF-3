@@ -45,11 +45,10 @@
 </div>
 
 <h1>Users Gestion</h1>
-<div class="button-container">
-    <button class="button" onclick="openPopup('popupCreate')">Create</button>
-    <button class="button" onclick="openPopup('popupBan')">Ban</button>
-    <button class="button" onclick="openPopup('popupDelete')">Delete</button>
-</div>
+<form action="" id="search-form-user" method="POST">
+    <input type="text" name="search" id="search-user" placeholder="Search">
+</form>
+<div id="search-results-user"></div>
 
 <h1>Books</h1>
 <form action="" id="search-form-manga" method="POST">
@@ -58,7 +57,7 @@
 <div id="search-results-manga"></div>
 
 <!-- Overlay -->
-<div class="overlay" id="overlay" onclick="closePopup('popupLoans'); closePopup('popupReturns'); closePopup('popupHistory'); closePopup('popupCreate'); closePopup('popupBan'); closePopup('popupDelete'); closePopup('popupAdd'); closePopup('popupModified'); closePopup('popupDeleteBook');"></div>
+<div class="overlay" id="overlay" onclick="closePopup('popupLoans'); closePopup('popupReturns'); closePopup('popupHistory'); closePopup('popupCreate'); closePopup('popupBan'); closePopup('popupDelete'); closePopup('popupAdd'); closePopup('popupModified'); closePopup('popupDeleteBook'); closePopup('popupUser')"></div>
 
 <!-- Popups -->
 <div class="popup" id="popupLoans">
@@ -95,6 +94,12 @@
     <p>Loan Date</p>
     <input type="text">
     <button class="button" onclick="closePopup('popupHistory')">Close</button>
+</div>
+
+<div class="popup" id="popupUser">
+    <input type="text">
+    <input type="text">
+    <input type="text">
 </div>
 
 <div class="popup" id="popupCreate">

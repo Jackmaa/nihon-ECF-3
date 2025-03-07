@@ -114,11 +114,21 @@ class ModelUser extends Model {
     }
 
     public function profile(int $id) {
-        $req = $this->getDb()->prepare('SELECT `username`, `email`, `profile_pic` FROM `user` WHERE `id_user` = :id_user');
+        $req = $this->getDb()->prepare('SELECT `id_user`, `username`, `email`, `password`, `profile_pic` FROM `user` WHERE `id_user` = :id_user');//UPDATED EDIT PROFILE METHOD
         $req->bindParam(':id_user', $id, PDO::PARAM_INT);
         $req->execute();
         $data = $req->fetch(PDO::FETCH_ASSOC);
 
-        return $data ? new User($data):null;
+        return $data ? new User($data) : null;
+    }
+
+    public function searchUser($str) {
+        $req = $this->getDb()->prepare('SELECT * FROM `user` WHERE `username` OR `email` LIKE :str');
+        $req->bindParam(':str', $str, PDO::PARAM_STR);
+        $req->execute();
+        while ($data = $req->fetch(PDO::FETCH_ASSOC)) {
+            $users[] = new User($data);
+        }
+        return $users;
     }
 }
