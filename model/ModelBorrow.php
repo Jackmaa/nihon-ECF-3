@@ -11,7 +11,7 @@ class ModelBurrow extends Model {
         return (int) $req->fetchColumn();
     }
 
-    public function maxBooksAllowed(int $user_id): int {
+    public static function maxBooksAllowed(int $user_id): int {
         $user = new ModelUser();
         $user->getUser($user_id);
         return $user->isPremium($user_id) ? 5 : 3;
