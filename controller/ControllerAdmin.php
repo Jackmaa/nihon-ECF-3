@@ -4,6 +4,7 @@ class ControllerAdmin extends Controller {
         parent::__construct($router);
     }
 
+    // Admin login
     public function login() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (! isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
@@ -34,6 +35,7 @@ class ControllerAdmin extends Controller {
         require_once './view/admin_login.php';
     }
 
+    // Admin dashboard
     public function dashboard() {
         if (! isset($_SESSION['admin_logged_in'])) {
             header('Location: ' . $this->router->generate('admin_login'));
@@ -43,6 +45,7 @@ class ControllerAdmin extends Controller {
         require_once './view/admin_dashboard.php';
     }
 
+    // Search for a manga
     public function searchManga() {
         $search        = '%' . $_POST['search'] . '%';
         $model         = new ModelManga();
@@ -54,6 +57,7 @@ class ControllerAdmin extends Controller {
         echo json_encode($searchResults, JSON_PRETTY_PRINT);
     }
 
+    // Search for a user
     public function searchUser() {
         $search        = '%' . $_POST['search'] . '%';
         $model         = new ModelUser();
@@ -63,5 +67,17 @@ class ControllerAdmin extends Controller {
         }
         header('Content-Type: application/json');
         echo json_encode($searchResults, JSON_PRETTY_PRINT);
+    }
+
+    //Create a User if no results found
+    public function createUser() {
+        $token = bin2hex(random_bytes(32));
+        $email = $_POST['email'];
+        $model = new ModelUser();
+        $model->createUserByAdmin($email, $token);
+
+        $mailer = new Mailer($token);
+        $link   = "http://nihon/finishsignup/?email=$email&code=$token";
+        $mailer->sendFinishSignupEmail($email, $link);
     }
 }

@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".like-btn").forEach((button) => {
-    button.addEventListener("click", function () {
+    button.addEventListener("click", function (event) {
+      event.preventDefault(); // Empêche la redirection du lien parent
+
       const mangaId = this.dataset.mangaId;
       const likeCountElement = this.nextElementSibling;
 

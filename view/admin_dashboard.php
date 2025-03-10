@@ -103,10 +103,12 @@
 </div>
 
 <div class="popup" id="popupCreate">
-    <h3>Create User</h3>
-    <p>User Name</p>
-    <input type="text">
-    <button class="button" onclick="closePopup('popupCreate')">Create</button>
+    <form action="/createUser" method="POST">
+        <h3>Create User</h3>
+        <p>Email</p>
+        <input type="text" name="email">
+        <button class="button" onclick="closePopup('popupCreate')">Create</button>
+    </form>
 </div>
 
 <div class="popup" id="popupBan">
@@ -142,7 +144,6 @@
 
 <div class="popup" id="popupModified">
     <h3>Modify Book</h3>
-    <img src="public\asset\img\search.svg" alt=""><p>ID Book</p>
     <input type="text">
     <p>Book Title</p>
     <input type="text">

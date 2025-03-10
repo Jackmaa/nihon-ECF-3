@@ -648,6 +648,10 @@ footer > p {
       color: var(--fc-black);
       font-size: var(--fs-08);
 
+      .liked {
+        fill: #cc392b;
+      }
+
       img {
         display: block;
       }
@@ -721,6 +725,7 @@ footer > p {
     }
   }
 }
+
 
 // *********************************
 // ****OUR FAVORITE HOMEPAGE*****
@@ -1238,11 +1243,24 @@ button:hover {
 **********************************
 */
 
+.current-desktop {
+  display: none;
+}
+
 .bann-setting {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  border-top: solid 1px #3333339f;
+  border-bottom: solid 1px #3333339f;
   background-color: #cc392b;
   padding: 20px 5px;
+
+  h3 {
+    text-align: center;
+    font-family: var(--ff-bangers);
+    letter-spacing: var(--letter-spacing);
+    font-weight: 400;
+  }
 
   a {
     color: var(--fc-black);
@@ -1255,6 +1273,96 @@ button:hover {
   }
 }
 
+
+.card-current{
+  display: flex;
+  justify-content: space-around;
+
+  .chevron-current{
+    display: flex;
+    margin-top: 10vh;
+
+    p{
+      font-family: var(--ff-barlow);
+      font-size: 1.2rem;
+      span {
+        font-weight: 600
+      }
+    }
+  }
+
+
+.current-storie {
+  display: flex;
+  justify-content: center;
+  margin: 5vh 0;
+
+  h4 {
+    font-family: var(--ff-barlow);
+    font-weight: 400;
+  }
+
+  figure{
+    width: 20vh;
+    img {
+      width: 100%;
+    }
+  }
+
+  .current-info {
+    display: flex;
+    justify-content: space-around;
+    margin-left: 2vw;
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    font-family: var(--ff-barlow);
+    font-size: 1.5rem;
+
+    a{
+      color: var(--fc-black);
+      margin-bottom: 1vh;
+    }
+
+    span {
+      color: #cc392b;
+      transition: all ease 0.3s;
+
+      &:hover {
+        color: #a71103;
+      }
+    }
+  }
+}
+}
+
+.chevron-current {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.chevron-content.open {
+  height: 20vh;
+  max-height: 200%;
+  padding: 10px;
+}
+.chevron-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-out, padding 0.3s ease-out;
+  background: #fcd1e6;
+  padding: 0 10px;
+}
+.rotate {
+  transform: rotate(180deg);
+  transition: all 0.5s;
+}
 /*
 **********************************
 *********MEDIA QUERIES************
@@ -1676,6 +1784,24 @@ figure.update-user-desktop {
     width: 100%;
     object-fit: contain;
 }
+}
+
+/*
+**********************************
+*********CURRENT STORIES************
+**********************************
+*/
+
+.current-desktop {
+  display: block;
+  margin-top: 2vh;
+
+
+  img{
+    width: 100%;
+    object-fit: cover;
+    height: 40vh;
+  }
 }
 
 }
