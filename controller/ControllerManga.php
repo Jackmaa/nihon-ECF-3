@@ -155,4 +155,7 @@ class ControllerManga extends Controller {
         echo json_encode(['liked_mangas' => $likedMangas]);
     }
 
+    public function readCategory() {
+        require_once './view/category.php';
+    }
 }
