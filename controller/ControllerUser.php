@@ -176,7 +176,7 @@ class ControllerUser extends Controller {
                 echo 'All the fields are required.';
             }
         }
-        require_once './view//updateUser.php';
+        require_once './view/updateUser.php';
     }
 
     public function myProfile($id) {
