@@ -181,10 +181,14 @@ class ControllerUser extends Controller {
         $model = new ModelUser();
         $data  = $model->profile($id);
         require_once './view/myProfile.php';
-        var_dump($data);
+        // var_dump($data);
     }
 
     public function currentStorie() {
         require_once './view/currentStorie.php';
+    }
+
+    public function favoriteManga($id) {
+        require_once './view/favoriteManga.php';
     }
 }

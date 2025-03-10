@@ -26,6 +26,9 @@ $router->map("GET", "/myProfile/[i:id]", "ControllerUser#myProfile", "myProfile"
 //CURRENT STORIES
 $router->map("GET", "/currentStorie", "ControllerUser#currentStorie", "currentStorie");
 
+// FAVORITE
+$router->map('GET', "/favorite/[i:id]", 'ControllerUser#favoriteManga', 'favoriteManga');
+
 //MANGA
 //SEARCH
 $router->map("GET|POST", "/search", "ControllerManga#search", "search");

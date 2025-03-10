@@ -72,7 +72,7 @@
             <div>
                 <h3>Naruto</h3>
                 <hr>
-                <p>Twelve years before the start of the series, the Nine-Tails attacked Konohagakure, destroying much of the village and taking many lives. The leader of the village, the Fourth Hokage, sacrificed his life to seal the Nine-Tails into a newborn, Naruto Uzumaki. <a href="#">Read More...</a> </p>
+                <p>Twelve years before the start of the series, the Nine-Tails attacked Konohagakure, destroying much of the village and taking many lives. The leader of the village, the Fourth Hokage, sacrificed his life to seal the Nine-Tails into a newborn, Naruto Uzumaki. <a href="/manga/<?php echo $manga->getId_manga() ?>">Read More...</a> </p>
             </div>
 
         </div>
