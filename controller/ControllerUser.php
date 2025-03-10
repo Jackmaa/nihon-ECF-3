@@ -12,24 +12,26 @@ class ControllerUser extends Controller {
             // Check if the email and password are set
             if (! empty($_POST['credential']) && ! empty($_POST['password'])) {
                 // Fetch the user by email
-                $user = $model->getUser($_POST['credential']);
-                // Check if the user exists and the password is correct
-                if (password_verify($_POST['password'], $user->getPassword())) {
-                    // Set the user ID in the session
-                    $_SESSION['id_user'] = $user->getId_user();
-                    $_SESSION['name']    = $user->getUsername();
-                    header('Location: ' . $this->router->generate('home'));
-                    exit;
+                if ($user = $model->getUser($_POST['credential'])) {
+                    if (password_verify($_POST['password'], $user->getPassword())) {
+                        // Set the user ID in the session
+                        $_SESSION['id_user'] = $user->getId_user();
+                        $_SESSION['name']    = $user->getUsername();
+                        header('Location: ' . $this->router->generate('home'));
+                        exit;
+                    } else {
+                        // Display an error message
+                        echo 'Invalid email or password.';
+                    }
                 } else {
-                    // Display an error message
-                    echo 'Invalid email or password.';
+                    echo 'you are not registered';
                 }
             } else {
-                // Display an error message
                 echo 'Email and password are required.';
             }
+        } else {
+            require_once './view/login.php';
         }
-        require_once './view/login.php';
     }
 
     // Handle user logout
