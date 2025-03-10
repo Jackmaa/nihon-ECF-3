@@ -182,8 +182,8 @@ class ControllerUser extends Controller {
     public function myProfile($id) {
         $model = new ModelUser();
         $data  = $model->profile($id);
+        //var_dump($data);
         require_once './view/myProfile.php';
-        var_dump($data);
     }
 
     public function currentStorie() {
