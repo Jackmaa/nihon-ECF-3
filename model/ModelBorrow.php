@@ -1,12 +1,11 @@
 <?php
-class ModelBurrow extends Model {
-    public function save($id_manga, $id_user, $borrow_date, $return_date) {
-        $req = $this->getDb()->prepare("INSERT INTO borrow (id_manga, id_user, borrow_date, return_date)
-                                        VALUES (:id_manga, :id_user, :borrow_date, :return_date)");
+class ModelBorrow extends Model {
+    public function save($id_manga, $id_volume, $id_user) {
+        $req = $this->getDb()->prepare("INSERT INTO borrow (id_manga, id_user, id_volume, borrow_date, return_date)
+                                        VALUES (:id_manga, :id_user, :id_volume, :borrow_date, :return_date)");
         $req->bindParam(':id_manga', $id_manga, PDO::PARAM_INT);
         $req->bindParam(':id_user', $id_user, PDO::PARAM_INT);
-        $req->bindParam(':borrow_date', $borrow_date, PDO::PARAM_STR);
-        $req->bindParam(':return_date', $return_date, PDO::PARAM_STR);
+        $req->bindParam(':id_volume', $id_volume, PDO::PARAM_INT);
     }
 
     public function userBorrowCount(int $id_user): int {
@@ -40,5 +39,14 @@ class ModelBurrow extends Model {
         $result = $req->fetch(PDO::FETCH_ASSOC);
 
         return $result ? new Manga($result) : null;
+    }
+
+    public function isAvailable(int $id_manga, int $id_volume) {
+        $req = $this->getDb()->prepare(
+            'SELECT `id_manga`, `id_volume`, COUNT(`id_volume`)AS "Borrowed"
+            FROM `borrow`
+            WHERE `id_manga`= :id_manga AND `id_volume` = :id_volume');
+        $req->bindParam(":id_manga", $id_manga, PDO::PARAM_INT);
+        $req->bindParam(":id_volume", $id_volume, PDO::PARAM_INT);
     }
 }
