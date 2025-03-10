@@ -8,6 +8,7 @@ $router = new AltoRouter();
 //HOMEPAGE
 $router->map("GET", "/", "ControllerManga#home", "home");
 
+/*******************************||  USERS  ||**************************************/
 //USER 
 //LOGIN
 $router->map("GET|POST", "/login", "ControllerUser#login", "login");
@@ -29,6 +30,13 @@ $router->map("GET", "/currentStorie", "ControllerUser#currentStorie", "currentSt
 // FAVORITE
 $router->map('GET', "/favorite/[i:id]", 'ControllerUser#favoriteManga', 'favoriteManga');
 
+/*******************************||  CART  ||**************************************/
+
+$router->map('POST', '/cart/add', 'CartController#add', 'cart_add');
+$router->map('POST', '/cart/remove', 'CartController#remove', 'cart_remove');
+$router->map('POST', '/cart/confirm', 'CartController#confirmBorrow', 'cart_confirm');
+
+/*******************************||  MANGAS  ||**************************************/
 //MANGA
 //SEARCH
 $router->map("GET|POST", "/search", "ControllerManga#search", "search");
@@ -53,11 +61,12 @@ $router->map("GET", "/delete/[i:id]", "ControllerManga#delete", "delete");
 // CATEGORY
 $router->map("GET", "/category", "ControllerManga#readCategory", "readCategory");
 
+/*******************************||  AUTHORS  ||**************************************/
 //AUTHOR
 //READ
 $router->map("GET", "/author/[i:id]", "ControllerManga#readAuthor", "readAuthor");
 
-//ADMIN = KAMI
+/*******************************||  ADMIN  ||**************************************/
 //LOGIN
 $router->map("GET|POST", "/dashboard-access", "ControllerAdmin#login", "admin_login");
 //DASHBOARD
@@ -69,6 +78,7 @@ $router->map("GET|POST", "/searchUser", "ControllerAdmin#searchUser", "searchUse
 //CREATE USER
 $router->map("GET|POST", "/createUser", "ControllerAdmin#createUser", "createUser");
 
+/*******************************||  BORROW/RETURNS  ||**************************************/
 //BOOKGestion
 $router->map('POST', '/borrow', 'BorrowController#borrow', 'borrow');
 $router->map('POST', '/return', 'BorrowController#returnManga', 'returnManga');

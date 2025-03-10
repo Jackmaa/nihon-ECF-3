@@ -117,8 +117,15 @@
         </div>
         <div class="list-volume">
             <?php foreach ($volumes as $volume): ?>
-                <h2>Volume&nbsp;<?php echo $volume ?></h2>
-                <button class="borrow-btn" data-manga-id="">Borrow</button>
+                <div class="manga-volume">
+                    <h2>Volume&nbsp;<?php echo $volume ?></h2>
+                    <button
+                        class="cart-btn"
+                        data-id-manga="<?php echo $manga->manga->getId_manga() ?>"
+                        data-id-volume="<?php echo $volume ?>"
+                        >Add to Cart
+                    </button>
+                </div>
             <?php endforeach; ?>
 
         </div>
