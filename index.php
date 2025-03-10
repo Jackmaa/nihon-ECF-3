@@ -63,6 +63,10 @@ $router->map("GET|POST", "/searchUser", "ControllerAdmin#searchUser", "searchUse
 //CREATE USER
 $router->map("GET|POST", "/createUser", "ControllerAdmin#createUser", "createUser");
 
+//BOOKGestion
+$router->map('POST', '/borrow', 'BorrowController#borrow', 'borrow');
+$router->map('POST', '/return', 'BorrowController#returnManga', 'returnManga');
+
 // Match the current request
 $match = $router->match();
 

@@ -152,4 +152,9 @@ class ModelUser extends Model {
         $req->bindParam(':expires_at', $expiryTime, PDO::PARAM_INT);
         $req->execute();
     }
+    public function isPremium(int $id_user): bool {
+        $req = $this->getDb()->prepare("SELECT is_premium FROM users WHERE id = ?");
+        $req->execute([$id_user]);
+        return (bool) $req->fetchColumn();
+    }
 }
