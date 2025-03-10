@@ -1,7 +1,7 @@
 <?php
     $title            = 'Nihon | My Profile ';
     $meta_description = 'it\'s your profile, your profile is incredible like a manga';
-    $scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public\asset\js\base.js", "public\asset\js\header.js", "public\asset\js\like.js", "public\asset\js\profile.js"];
+    $scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public\asset\js\base.js", "public\asset\js\header.js", "public\asset\js\like.js", "public\asset\js\profile.js", "public\asset\js\darkmode.js"];
     ob_start();
 ?>
 <main>
@@ -20,8 +20,8 @@
             <div class="gradient">
 
                 <div><a href="<?php echo $this->router->generate("currentStorie") ?>">My Current Stories<span>›</span></a></div>
-                <div><a href="#">My Past Chronicles<span>›</span></a></div>
-                <div><a href="#">My Favorite<span>›</span></a></div>
+                <div><a href="<?php echo $this->router->generate("pastChronicle") ?>">My Past Chronicles<span>›</span></a></div>
+                <div><a href="<?php echo $this->router->generate("favoriteManga") ?>">My Favorite<span>›</span></a></div>
             </div>
         </div>
         <div class="general-profile">

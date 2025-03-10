@@ -191,7 +191,11 @@ class ControllerUser extends Controller {
         require_once './view/currentStorie.php';
     }
 
-    public function favoriteManga($id) {
+    public function favoriteManga() {
         require_once './view/favoriteManga.php';
+    }
+
+    public function pastChronicle() {
+        require_once './view/pastChronicle.php';
     }
 }

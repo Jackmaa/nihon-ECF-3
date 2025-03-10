@@ -27,8 +27,11 @@ $router->map("GET", "/myProfile/[i:id]", "ControllerUser#myProfile", "myProfile"
 //CURRENT STORIES
 $router->map("GET", "/currentStorie", "ControllerUser#currentStorie", "currentStorie");
 
+// PAST CHRONICLES
+$router->map("GET", "/pastChronicle", "ControllerUser#pastChronicle", "pastChronicle");
+
 // FAVORITE
-$router->map('GET', "/favorite/[i:id]", 'ControllerUser#favoriteManga', 'favoriteManga');
+$router->map('GET', "/favorite", 'ControllerUser#favoriteManga', 'favoriteManga');
 
 /*******************************||  CART  ||**************************************/
 

@@ -79,6 +79,10 @@ h6 {
 ***********GENERAL STYLING************
 **********************************
 */
+svg {
+  transition: transform 0.3s ease;
+}
+
 .p-all-2 {
   padding: 1vw;
 }
