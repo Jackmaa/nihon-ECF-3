@@ -43,10 +43,12 @@ class ModelBorrow extends Model {
 
     public function isAvailable(int $id_manga, int $id_volume) {
         $req = $this->getDb()->prepare(
-            'SELECT `id_manga`, `id_volume`, COUNT(`id_volume`)AS "Borrowed"
+            'SELECT COUNT(`id_volume`) AS "Borrowed"
             FROM `borrow`
             WHERE `id_manga`= :id_manga AND `id_volume` = :id_volume');
         $req->bindParam(":id_manga", $id_manga, PDO::PARAM_INT);
         $req->bindParam(":id_volume", $id_volume, PDO::PARAM_INT);
+        $req->execute();
+        return $result = $req->fetchColumn();
     }
 }
