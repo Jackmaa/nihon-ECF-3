@@ -1,7 +1,7 @@
 <?php
 class BorrowController {
     public function borrow() {
-        $model   = new ModelBurrow();
+        $model   = new ModelBorrow();
         $id_user = $_SESSION['id_user'];
 
         if ($model->userBorrowCount($id_user) >= $model->maxBooksAllowed($id_user)) {
