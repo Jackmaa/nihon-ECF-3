@@ -11,7 +11,7 @@ document.querySelectorAll(".borrow-btn").forEach((button) => {
 
     fetch("/borrow", {
       method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      headers: { "Content-Type": "application/json" },
       body: `manga_id=${mangaId}&extra_week=${extraWeek}`,
     })
       .then((response) => response.json())
