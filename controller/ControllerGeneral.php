@@ -8,7 +8,7 @@ class ControllerGeneral extends Controller {
     }
 
     public function kakkoii() {
-        require_once './view/kakoiimode.php';
+        require_once './view/kakkoiimode.php';
     }
 
 }

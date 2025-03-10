@@ -1426,7 +1426,6 @@ button:hover {
   .kakkoii .kakoiiflex {
     flex-direction: row;
     justify-content: space-around;
-    background-color: #cc392b;
     width: 100%;
   }
   /*
@@ -1816,6 +1815,20 @@ button:hover {
 }
 .kakkoii .close-popup {
   background-color: #fcc8e1;
+  color: #0e0e0e;
+  font-family: var(--ff-bangers);
+  cursor: pointer;
+  transition: all ease 0.3s;
+  border-radius: 10px;
+  border: none;
+  padding: 20px;
+  margin: 10px;
+}
+.kakkoii .close-popup:hover {
+  background-color: #cc1606;
+}
+.kakkoii .close-popup {
+  background-color: #1815df;
   color: #0e0e0e;
   font-family: var(--ff-bangers);
   cursor: pointer;

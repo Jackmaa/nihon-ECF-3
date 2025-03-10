@@ -1594,7 +1594,6 @@ width: 100%;
     .kakoiiflex {
     flex-direction: row;
     justify-content: space-around;
-    background-color: #cc392b;
     width: 100%;
   }
   
@@ -2295,7 +2294,20 @@ h2,h3{
       background-color: #cc1606;
     }
 }
-
+.close-popup{
+  background-color: #1815df;
+  color: #0e0e0e;
+  font-family: var(--ff-bangers);
+  cursor: pointer;
+  transition: all ease 0.3s;
+  border-radius: 10px;  
+  border: none;
+  padding: 20px;
+  margin: 10px;
+    &:hover{
+      background-color: #cc1606;
+    }
+}
 }
 
 
