@@ -100,8 +100,6 @@
                 <p>Dragon Ball follows the adventures of the protagonist Goku, a strong, naive boy who, upon meeting Bulma, sets out to gather the seven Dragon Balls. These Dragon Balls summon a wish-granting dragon when collected. <a href="#">Read More...</a></p>
             </div>
         </div>
-        <button class="prev">❮</button>
-        <button class="next">❯</button>
     </div>
 </div>
 
