@@ -61,8 +61,7 @@ class CartController {
         }
 
         foreach ($cart as $manga) {
-            if ($borrow->isAvailable($manga["id"], $manga["volume"])) {
-                $borrow = new ModelBorrow();
+            if ($borrow->isAvailable($manga["id"], $manga["volume"]) < 3) {
                 $borrow->save($manga["id"], $manga["volume"], $id_user);
             }
         }
