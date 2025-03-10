@@ -75,12 +75,7 @@ class ModelManga extends Model {
         $req->bindParam('id', $id, PDO::PARAM_INT);
         $req->execute();
 
-        $volumes = [];
-        while ($result = $req->fetch(PDO::FETCH_COLUMN)) {
-            $volumes[] = $result;
-        }
-
-        return $volumes;
+        return $volumes = $req->fetchAll(PDO::FETCH_COLUMN);
     }
 
     public function updateManga(int $id, string $name, string $description, string $published_date, string $thumbnail) {
