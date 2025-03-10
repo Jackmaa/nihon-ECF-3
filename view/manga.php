@@ -118,7 +118,6 @@
         <div class="list-volume">
             <?php foreach ($volumes as $volume): ?>
                 <h2>Volume&nbsp;<?php echo $volume ?></h2>
-                <?php var_dump($volume); ?>
                 <button class="borrow-btn" data-manga-id="">Borrow</button>
             <?php endforeach; ?>
 

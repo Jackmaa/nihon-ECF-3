@@ -1229,6 +1229,93 @@ button:hover {
 
 /*
 **********************************
+*********CATEGORY MANGA************
+**********************************
+*/
+.hero_category {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/shonen-hero.svg) no-repeat center bottom/cover;
+  height: 50vh;
+}
+.hero_category .hero_category_txt {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.hero_category .hero_category_txt h1 {
+  padding: 20px 20px;
+}
+.hero_category .hero_category_txt h1 span {
+  background-color: rgba(255, 255, 255, 0.568);
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-family: var(--ff-bangers);
+  letter-spacing: var(--letter-spacing);
+}
+.hero_category .hero_category_txt p {
+  font-size: 1.1rem;
+  padding: 10px 20px;
+  margin: 0 10vw;
+  background-color: rgba(255, 255, 255, 0.568);
+  border-radius: 10px;
+}
+.hero_category .hero_category_txt p span {
+  float: left;
+  padding: 10px 20px;
+  font-family: var(--ff-barlow);
+  font-weight: 500;
+}
+
+.manga_category {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.manga_category div {
+  width: 30vh;
+  position: relative;
+  display: inline-block;
+  margin: 2vh 2vh;
+}
+.manga_category div img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: filter 0.3s ease-in-out;
+}
+.manga_category div figure {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+.manga_category div figure svg {
+  cursor: pointer;
+  width: 8vh;
+  height: 8vh;
+  fill: white;
+  transition: all ease 0.3s;
+}
+.manga_category div figure svg:hover, .manga_category div figure svg.liked {
+  fill: #cc392b;
+}
+.manga_category div:hover img {
+  filter: brightness(0.5);
+}
+.manga_category div:hover figure {
+  opacity: 1;
+}
+
+/*
+**********************************
 *********MEDIA QUERIES************
 **********************************
 */
