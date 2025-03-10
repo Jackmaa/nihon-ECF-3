@@ -30,15 +30,15 @@
             </figure>
             <div class="burger-menu menuBurger">
                 <div class="menu-header">
-                    <img src="<?php echo BASE_URL ?>public\asset\img\logo.svg" alt="Menu Logo" class="menu-logo">
+                    <a href="<?php echo BASE_URL ?>" class="menu-logo"><img src="<?php echo BASE_URL ?>public\asset\img\logo.svg" alt="Menu Logo"></a>
                     <span class="close-menu">×</span>
                 </div>
                 <ul>
-                    <li><a href="<?php echo $this->router->generate("myProfile") ?>">Profil</a></li>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">My Books</a></li>
-                    <li><a href="#">Favorites</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="<?php echo $this->router->generate("myProfile", ["id" => $_SESSION['id_user']]) ?>">Profil</a></li>
+                    <li><a href="<?php echo BASE_URL ?>">Home</a></li>
+                    <li><a href="<?php echo $this->router->generate("currentStorie") ?>">My Books</a></li>
+                    <li><a href="<?php echo $this->router->generate("favoriteManga", ["id" => $_SESSION['id_user']]) ?>">Favorites</a></li>
+                    <li><a href="<?php echo BASE_URL ?>contact">Contact</a></li>
                 </ul>
             </div>
         </section>
@@ -62,9 +62,9 @@
                 <div class="dropdown">
                     <ul>
                     <li><a href="<?php echo $this->router->generate("myProfile", ["id" => $_SESSION['id_user']]) ?>">Profil</a></li>
-                    <li><a href="#">My Favorites</a></li>
-                    <li><a href="#">My Boocks</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="<?php echo $this->router->generate("favoriteManga", ["id" => $_SESSION['id_user']]) ?>">My Favorites</a></li>
+                    <li><a href="<?php echo $this->router->generate("currentStorie") ?>">My Boocks</a></li>
+                    <li><a href="<?php echo BASE_URL ?>contact">Contact</a></li>
                     <li><a href="<?php echo $this->router->generate('logout') ?>">Déconnexion</a></li>
                 </ul>
                 </div>

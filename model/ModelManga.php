@@ -45,16 +45,16 @@ class ModelManga extends Model {
     public function getManga(int $id) {
         $req = $this->getDb()->prepare(
             'SELECT
-                `id_manga`,
-                `name`,
-                `id_author`,
-                `description`,
-                `published_date`,
-                `thumbnail`
-            FROM
-                `manga`
-            WHERE
-                id_manga = :id');
+                    `id_manga`,
+                    `name`,
+                    `id_author`,
+                    `description`,
+                    `published_date`,
+                    `thumbnail`
+                FROM
+                    `manga`
+                WHERE
+                    id_manga = :id');
         $req->bindParam('id', $id, PDO::PARAM_INT);
         $req->execute();
 
@@ -74,7 +74,6 @@ class ModelManga extends Model {
                 id_manga = :id');
         $req->bindParam('id', $id, PDO::PARAM_INT);
         $req->execute();
-
         $volumes = [];
         while ($result = $req->fetch(PDO::FETCH_COLUMN)) {
             $volumes[] = $result;

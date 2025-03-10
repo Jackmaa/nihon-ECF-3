@@ -15,7 +15,7 @@
                 <a href="#">Terms</a>
                 <a href="#">Privacy</a>
                 <a href="#">Security</a>
-                <a href="#">Contact</a>
+                <a href="<?php echo BASE_URL ?>contact">Contact</a>
             </div>        
             <p>© 2025 Nihon. All right reserved.</p>
         </div>
