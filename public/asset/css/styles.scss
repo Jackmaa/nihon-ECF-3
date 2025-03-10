@@ -648,6 +648,10 @@ footer > p {
       color: var(--fc-black);
       font-size: var(--fs-08);
 
+      .liked {
+        fill: #cc392b;
+      }
+
       img {
         display: block;
       }
@@ -721,6 +725,7 @@ footer > p {
     }
   }
 }
+
 
 // *********************************
 // ****OUR FAVORITE HOMEPAGE*****

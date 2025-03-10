@@ -590,6 +590,9 @@ footer > p {
   color: var(--fc-black);
   font-size: var(--fs-08);
 }
+.category-slider .slider .manga .liked {
+  fill: #cc392b;
+}
 .category-slider .slider .manga img {
   display: block;
 }
