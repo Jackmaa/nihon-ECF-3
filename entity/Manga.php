@@ -102,6 +102,12 @@ class Manga implements JsonSerializable {
         return $count;
     }
 
+    public function isLikedByUser($id_user) {
+        $req = $this->getDb()->prepare("SELECT COUNT(*) FROM fav WHERE id_user = ? AND id_manga = ?");
+        $req->execute([$id_user, $this->id_manga]);
+        return $req->fetchColumn() > 0; // Returns true if at least one row exists
+    }
+
     public function jsonSerialize(): mixed {
         return [
             'id_manga'       => $this->id_manga,
