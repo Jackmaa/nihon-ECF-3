@@ -35,6 +35,14 @@ class ControllerAdmin extends Controller {
         require_once './view/admin_login.php';
     }
 
+    // Admin logout
+    public function logout() {
+        session_unset();
+        session_destroy();
+        header('Location: ' . $this->router->generate('home'));
+        exit;
+    }
+
     // Admin dashboard
     public function dashboard() {
         if (! isset($_SESSION['admin_logged_in'])) {
