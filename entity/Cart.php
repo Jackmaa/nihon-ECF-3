@@ -5,20 +5,21 @@ class Cart {
             $_SESSION['cart'] = [];
         }
 
-        // Ensure `$id_res` is an array with exactly two integers
+        // Validation des données
         if (
             count($id_res) === 2 &&
-            is_int($id_res[0]) &&
-            is_int($id_res[1])
+            is_numeric($id_res[0]) &&
+            is_numeric($id_res[1])
         ) {
-            // Check if the item is already in the cart
-            $exists = array_filter($_SESSION['cart'], fn($item) => $item === $id_res);
+            $id_manga  = (int) $id_res[0];
+            $id_volume = (int) $id_res[1];
 
-            if (empty($exists)) {
-                $_SESSION['cart'][] = $id_res;
+            // Vérifier si l'élément est déjà dans le panier
+            if (! in_array([$id_manga, $id_volume], $_SESSION['cart'])) {
+                $_SESSION['cart'][] = [$id_manga, $id_volume];
             }
         } else {
-            throw new InvalidArgumentException("Invalid cart entry. Expected an array with two integers.");
+            throw new InvalidArgumentException("Invalid cart entry. Expected an array with two numeric values.");
         }
 
         return $_SESSION['cart'];
@@ -26,7 +27,7 @@ class Cart {
 
     public static function removeFromCart(array $id_res): array {
         if (isset($_SESSION['cart'])) {
-            $_SESSION['cart'] = array_filter($_SESSION['cart'], fn($item) => $item !== $id_res);
+            $_SESSION['cart'] = array_values(array_filter($_SESSION['cart'], fn($item) => $item !== $id_res));
         }
 
         return $_SESSION['cart'];

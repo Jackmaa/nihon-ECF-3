@@ -34,8 +34,8 @@ $router->map("GET", "/pastChronicle", "ControllerUser#pastChronicle", "pastChron
 $router->map('GET', "/favorite", 'ControllerUser#favoriteManga', 'favoriteManga');
 
 /*******************************||  CART  ||**************************************/
-
-$router->map('POST', '/cart/add', 'CartController#add', 'cart_add');
+$router->map("GET", "/cart", "CartController#cart", "cart");
+$router->map('GET|POST', '/cart/add', 'CartController#add', 'cart_add');
 $router->map('POST', '/cart/remove', 'CartController#remove', 'cart_remove');
 $router->map('POST', '/cart/confirm', 'CartController#confirmBorrow', 'cart_confirm');
 
