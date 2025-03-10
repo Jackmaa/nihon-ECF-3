@@ -74,8 +74,11 @@ class ModelManga extends Model {
                 id_manga = :id');
         $req->bindParam('id', $id, PDO::PARAM_INT);
         $req->execute();
-
-        return $volumes = $req->fetchAll(PDO::FETCH_COLUMN);
+        $volumes = [];
+        while ($result = $req->fetch(PDO::FETCH_COLUMN)) {
+            $volumes[] = $result;
+        }
+        return $volumes;
     }
 
     public function updateManga(int $id, string $name, string $description, string $published_date, string $thumbnail) {
@@ -204,6 +207,30 @@ class ModelManga extends Model {
         return $req->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function mangaReview($id){
+        $req = $this->getDb()->prepare(
+            "SELECT review.*, user.username, user.profile_pic
+            FROM `review` 
+            INNER JOIN `user` ON review.id_user = user.id_user 
+            WHERE `id_manga` = :id"
+        );
+        $req->bindParam(':id', $id, PDO::PARAM_INT);
+        $req->execute();
+        return $req->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function addReview($review, $id_manga, $id_user){
+        if(isset($_POST['review'])){
+        $req = $this->getDb()->prepare(
+            "INSERT INTO `review` (`review`, `id_manga`, `id_user`, `published_date`) VALUES (:review, :id_manga, :id_user, NOW())"
+        );
+        $req->bindParam(':review', $_POST['review'], PDO::PARAM_STR);
+        $req->bindParam(':id_manga', $_POST['id_manga'], PDO::PARAM_INT);
+        $req->bindParam(':id_user', $_SESSION['id_user'], PDO::PARAM_INT);
+        $req->execute();
+        }
+    }
+    
     public function searchAdminManga($str) {
         $str = trim($str);
         $req = $this->getDb()->prepare(
