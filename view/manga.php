@@ -1,8 +1,8 @@
 <?php
-$title            = 'Nihon | ' . $manga->manga->getName();
-$meta_description = $manga->manga->getName() . 'it a great manga';
-$scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public\asset\js\base.js", "public\asset\js\header.js", "public/asset/js/like.js"];
-ob_start();
+    $title            = 'Nihon | ' . $manga->manga->getName();
+    $meta_description = $manga->manga->getName() . 'it a great manga';
+    $scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public\asset\js\base.js", "public\asset\js\header.js", "public/asset/js/like.js", "public/asset/js/review.js"];
+    ob_start();
 ?>
 <main>
     <section>
@@ -70,30 +70,25 @@ ob_start();
                     </div>
                 </div>
                 <hr>
-                <div class="cadre-review">
-                    <div class="cadre-profile">
-                        <img class="profile-picture" src="<?php echo BASE_URL ?>public\asset\img\profile_picture.webp" alt="profile picture">
-                        <p>DarkSasuke78</p>
+                <?php foreach ($review as $rev): ?>
+                    <div class="cadre-review">
+                        <div class="cadre-profile">
+                            <img class="profile-picture" src="<?php echo BASE_URL ?>public\asset\img\profile_picture.webp" alt="profile picture">
+                            <p><?php echo htmlspecialchars($rev['username']); ?></p>
+                        </div>
+                        <div class="comm">
+                            <p><?php echo htmlspecialchars($rev['review']); ?></p>
+                        </div>
                     </div>
-                    <div class="comm">
-                        <p>Naruto is more than a manga, it's a life lesson! His journey, his determination, his values… It’s impossible not to be inspired!</p>
-                    </div>
-                </div>
+                    <hr>
+                <?php endforeach; ?>
                 <hr>
-                <div class="cadre-review">
-                    <div class="cadre-profile">
-                        <img class="profile-picture" src="<?php echo BASE_URL ?>public\asset\img\profile_picture.webp" alt="profile picture">
-                        <p>DarkSasuke78</p>
-                    </div>
-                    <div class="comm">
-                        <p>Naruto is more than a manga, it's a life lesson! His journey, his determination, his values… It’s impossible not to be inspired!</p>
-                    </div>
-                </div>
-                <hr>
-            </section>
-            <div id="leave-review">
-                <input type="text"><button>Leave a review</button>
-            </div>
+        </section>
+        <form id="leave-review" method="post" action="/manga/<?php echo $manga->manga->getId_manga(); ?>">
+            <input type="hidden" name="id_manga" id="id_manga" value="<?php echo $manga->manga->getId_manga(); ?>">
+            <input type="text" name="review" id="review" placeholder="Leave a review">
+            <button type="submit">Post your review</button>
+        </form>
         </div>
         <section class="also-liked">
             <h2><?php echo $manga->manga->getName() ?> Readers also liked</h2>
