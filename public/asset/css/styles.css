@@ -79,94 +79,6 @@ h6 {
 ***********GENERAL STYLING************
 **********************************
 */
-body {
-  transition: background-color 0.3s, color 0.3s;
-}
-
-body.dark-mode {
-  background-color: #202024;
-  color: white;
-}
-body.dark-mode .resaux-sociaux a svg path {
-  transition: all ease 0.3s;
-  fill: white;
-}
-body.dark-mode .resaux-sociaux a:hover path {
-  fill: #cc392b;
-}
-body.dark-mode .hero_category_txt {
-  color: var(--fc-black);
-}
-body.dark-mode input {
-  background-color: #ccc;
-}
-body.dark-mode .general-profile h3 {
-  color: white;
-}
-body.dark-mode .chevron-current svg path {
-  stroke: white;
-}
-body.dark-mode .current-info div a {
-  color: white;
-}
-body.dark-mode .copyright a {
-  color: white;
-  transition: all ease 0.3s;
-}
-body.dark-mode .copyright a:hover {
-  color: #cc392b;
-}
-body.dark-mode .category-slider .category-title a {
-  margin: 8% 3%;
-  font-family: var(--ff-barlow);
-  color: var(--fc-white);
-  border: #ffffff 1px solid;
-  padding: 5px 10px;
-  transition: all ease 0.3s;
-}
-body.dark-mode .category-slider .category-title a:hover {
-  color: #cc392b;
-  border: #cc392b 1px solid;
-}
-body.dark-mode .logo-footer img {
-  content: url(../img/logo_footer.svg);
-}
-body.dark-mode .logo img {
-  content: url(../img/logo_dark_theme.svg);
-}
-body.dark-mode .logoo img {
-  content: url(../img/logo_dark_theme.svg);
-  width: 15vh;
-}
-body.dark-mode .loup {
-  content: url(../img/search_sark_theme.svg);
-}
-body.dark-mode .menu-desktop .profile .dropdown {
-  background-color: #38383f;
-}
-body.dark-mode .menu-desktop .profile .dropdown a {
-  width: 100%;
-  color: white;
-}
-body.dark-mode .menu-desktop .profile .dropdown li {
-  transition: all 0.3s ease;
-}
-body.dark-mode .menu-desktop .profile .dropdown li:hover {
-  background-color: #cc392b;
-}
-
-.mode-icon {
-  transition: transform 0.3s ease-in-out;
-}
-
-body.dark-mode .mode-icon {
-  transform: rotate(180deg);
-}
-
-svg {
-  transition: transform 0.3s ease;
-}
-
 .p-all-2 {
   padding: 1vw;
 }
@@ -304,22 +216,18 @@ footer > p {
   padding: 0 20px;
 }
 
-.resaux-sociaux {
+.flex {
   display: flex;
 }
-.resaux-sociaux a {
+.flex a,
+.flex img {
   width: 100%;
-}
-.resaux-sociaux a svg {
-  width: 5vh;
-  height: 5vh;
-  margin-right: 1vw;
-}
-.resaux-sociaux a svg path {
+  margin-right: 1.5vw;
   transition: all ease 0.3s;
 }
-.resaux-sociaux a:hover path {
-  fill: #cc392b;
+.flex a:hover,
+.flex img:hover {
+  background-color: #333;
 }
 
 .flex1 {
@@ -467,7 +375,7 @@ footer > p {
 .carousel {
   position: relative;
   overflow: hidden;
-  height: 75vh;
+  height: 40vh;
 }
 
 .carousel-wrapper {
@@ -490,10 +398,6 @@ footer > p {
 }
 .carousel-item p {
   margin-bottom: var(--mb-5);
-}
-
-button {
-  transition: all ease 0.3s;
 }
 
 .prev,
@@ -751,45 +655,45 @@ button {
   cursor: not-allowed;
 }
 
-.card-fav {
+#our-fav div:first-child {
+  display: flex;
+  padding: 10px;
+  font-family: var(--ff-bangers);
+  letter-spacing: var(--letter-spacing);
+}
+#our-fav div:first-child h2 {
+  margin: var(--m-all-5);
+}
+#our-fav .bubble-fav {
   display: flex;
   flex-direction: column;
-  justify-content: start;
-}
-.card-fav h2 {
-  font-size: 1rem;
-}
-.card-fav .bubble-fav {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: center;
+  font-size: 1.1rem;
+  padding: 10px 20px;
+}
+#our-fav .bubble-fav a {
+  color: #cc392b;
+}
+#our-fav .bubble-fav a:hover {
+  color: #cc1606;
+}
+#our-fav .bubble-fav h3 {
+  font-family: var(--ff-bangers);
+  letter-spacing: var(--letter-spacing);
+  margin-bottom: var(--mb-5);
+}
+#our-fav .bubble-fav hr {
+  margin-bottom: var(--mb-5);
+  background-color: black;
+  height: 1px;
+}
+#our-fav .bubble-fav p {
   font-family: var(--ff-barlow);
-  font-weight: 400;
 }
-.card-fav .bubble-fav figure {
-  width: -moz-fit-content;
-  width: fit-content;
-  margin: 0 auto;
-}
-.card-fav .bubble-fav figure img {
-  width: 20vh;
-}
-.card-fav .bubble-fav hr {
-  margin: 2% auto;
-  width: 80%;
-}
-.card-fav .bubble-fav p {
-  margin: auto;
-  width: 80%;
-  font-size: 1.2rem;
-}
-.card-fav .bubble-fav p a {
-  color: black;
-  transition: all ease 0.3s;
-}
-.card-fav .bubble-fav p a:hover {
-  color: #202024;
+#our-fav .bubble-fav figure {
+  padding: 10px 20px;
+  width: 40%;
 }
 
 /*
@@ -1325,93 +1229,6 @@ button:hover {
 
 /*
 **********************************
-*********CATEGORY MANGA************
-**********************************
-*/
-.hero_category {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/shonen-hero.svg) no-repeat center bottom/cover;
-  height: 50vh;
-}
-.hero_category .hero_category_txt {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.hero_category .hero_category_txt h1 {
-  padding: 20px 20px;
-}
-.hero_category .hero_category_txt h1 span {
-  background-color: rgba(255, 255, 255, 0.568);
-  border-radius: 5px;
-  padding: 10px 20px;
-  font-family: var(--ff-bangers);
-  letter-spacing: var(--letter-spacing);
-}
-.hero_category .hero_category_txt p {
-  font-size: 1.1rem;
-  padding: 10px 20px;
-  margin: 0 10vw;
-  background-color: rgba(255, 255, 255, 0.568);
-  border-radius: 10px;
-}
-.hero_category .hero_category_txt p span {
-  float: left;
-  padding: 10px 20px;
-  font-family: var(--ff-barlow);
-  font-weight: 500;
-}
-
-.manga_category {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-.manga_category div {
-  width: 30vh;
-  position: relative;
-  display: inline-block;
-  margin: 2vh 2vh;
-}
-.manga_category div img {
-  display: block;
-  width: 100%;
-  height: auto;
-  transition: filter 0.3s ease-in-out;
-}
-.manga_category div figure {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-}
-.manga_category div figure svg {
-  cursor: pointer;
-  width: 8vh;
-  height: 8vh;
-  fill: white;
-  transition: all ease 0.3s;
-}
-.manga_category div figure svg:hover, .manga_category div figure svg.liked {
-  fill: #cc392b;
-}
-.manga_category div:hover img {
-  filter: brightness(0.5);
-}
-.manga_category div:hover figure {
-  opacity: 1;
-}
-
-/*
-**********************************
 *********MEDIA QUERIES************
 **********************************
 */
@@ -1505,33 +1322,17 @@ button:hover {
   }
   .headkakkoii {
     width: 100%;
+    height: auto;
   }
   .kakkoii {
     width: 70vh;
   }
+  .kakkoii div.kakoiiflex {
+    flex-direction: row;
+    gap: 1rem;
+  }
 }
 @media (min-width: 1024px) {
-  /*
-  **********************************
-  ***********CAROUSSEL************
-  **********************************
-  */
-  .carousel {
-    height: 60vh;
-  }
-  .carousel .custom-btn {
-    margin-top: 2%;
-    width: 20%;
-    height: 10%;
-  }
-  .carousel p {
-    margin: 1%;
-    font-size: 1.5rem;
-  }
-  .carousel .next, .carousel .prev {
-    width: 5vh;
-    height: 5vh;
-  }
   /*
   **********************************
   ***********LOGIN/REGISTER************
@@ -1568,7 +1369,6 @@ button:hover {
   */
   .formulaire {
     margin: 0 auto;
-    max-width: 24px;
   }
   /*
   **********************************
@@ -1694,9 +1494,6 @@ button:hover {
   ***** SLIDER CATEGORY HOMEPAGE*******
   **********************************
   */
-  .category-slider {
-    margin: 2% 3%;
-  }
   .category-slider .slider {
     max-width: 1400px; /* Augmente la largeur du slider */
   }
@@ -1725,12 +1522,10 @@ button:hover {
   .headkakkoii {
     width: 100%;
   }
-  .kakkoii {
-    width: 70vh;
-  }
-  .kakkoii .flex {
-    display: flex;
+  .kakkoii .kakoiiflex {
     flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
   }
   /*
   **********************************
@@ -1810,6 +1605,9 @@ button:hover {
        object-fit: cover;
     height: 40vh;
   }
+  .backgroundimage .content h1 {
+    font-size: 3rem;
+  }
 }
 @media (min-width: 1440px) {
   /*
@@ -1829,11 +1627,11 @@ button:hover {
   .form-container {
     width: auto;
   }
-  .form-container h1 {
+  h1 {
     font-size: 2rem;
   }
-  .form-container input,
-  .form-container button {
+  input,
+  button {
     font-size: 1.5rem;
     margin-bottom: 2.5vh;
   }
@@ -1849,6 +1647,14 @@ button:hover {
   div.headdashboard {
     height: 70vh;
   }
+  /*
+  **********************************
+  ***********404********************
+  **********************************
+  */
+  .backgroundimage h1 {
+    font-size: 10rem;
+  }
 }
 /*
 **********************************
@@ -1863,14 +1669,14 @@ button:hover {
   border-radius: 10px;
   outline: 3px solid #ffffff;
   max-width: 600px;
-  margin: 20px;
+  margin: 20px auto;
 }
 .formulaire h2 {
   text-align: center;
   font-family: var(--ff-bangers);
   margin: 1%;
   color: #ffffff;
-  -webkit-text-stroke: 2px red;
+  -webkit-text-stroke: 1px red;
 }
 .formulaire input,
 .formulaire textarea {
@@ -1907,7 +1713,6 @@ button:hover {
 }
 
 .dashboard {
-  /* filepath: /C:/wamp64/www/nihon/public/asset/css/styles.scss */
   /*
   *******************************
   ***********kakoii mode***********
@@ -2017,9 +1822,19 @@ button:hover {
 
 /*
 **********************************
-***********kKAKOII MODE************
+***********KAKOII MODE************
 **********************************
 */
+.headkakkoiilogo {
+  height: 10vh;
+  width: 10vh;
+  background: url(../img/logo.svg) no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
 .headkakkoii {
   height: 30vh;
   background: url(../img/kakoii.svg) no-repeat center center/cover;
@@ -2044,7 +1859,7 @@ button:hover {
   letter-spacing: var(--letter-spacing);
   font-size: 1rem;
   color: #f0f0f0;
-  text-shadow: -2px -2px 0 red, 2px -2px 0 red, -2px 2px 0 red, 2px 2px 0 red;
+  text-shadow: -1px -1px 0 red, 1px -1px 0 red, -1px 1px 0 red, 1px 1px 0 red;
 }
 .kakkoii .center {
   text-align: center;
@@ -2057,7 +1872,7 @@ button:hover {
   color: red;
   font-family: var(--ff-bangers);
   letter-spacing: var(--letter-spacing);
-  font-size: 1rem;
+  font-size: 0.8rem;
 }
 .kakkoii .center p {
   font-family: var(--ff-barlow);
@@ -2083,6 +1898,10 @@ button:hover {
 ***********KAKOII MODE************
 **********************************
 */
+.kakkoii {
+  display: flex;
+  flex-direction: column;
+}
 .kakkoii .popup {
   display: none; /* Masquer par défaut */
   position: fixed;
@@ -2110,19 +1929,107 @@ button:hover {
 .kakkoii .overlay.active {
   display: block; /* Afficher lorsque actif */
 }
-.kakkoii .flex {
+.kakkoii .kakoiiflex {
   display: flex;
   flex-direction: column;
 }
-.kakkoii h2 {
+.kakkoii h2, .kakkoii h3 {
   font-family: var(--ff-bangers);
   letter-spacing: var(--letter-spacing);
   font-size: 1rem;
-  color: #fa0707;
+  color: #0a0a0a;
 }
-.kakkoii .open-popup {
-  background-color: #fcc8e1;
-  color: #0e0e0e;
+.kakkoii .close-popup {
+  width: 100%;
+  background-color: #0555EB;
+  color: #ffffff;
   font-family: var(--ff-bangers);
   cursor: pointer;
+  transition: all ease 0.3s;
+  border-radius: 10px;
+  border: none;
+  padding: 20px;
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.kakkoii .close-popup:hover {
+  background-color: #4c00ff;
+}
+.kakkoii input {
+  padding: 10px;
+}
+.kakkoii .form-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.kakkoii .form-group img {
+  margin: 1vh 0;
+}
+
+/*
+**********************************
+***********404********************
+**********************************
+*/
+.backgroundimage {
+  position: relative;
+  background: linear-gradient(90deg, rgb(255, 0, 0) 0%, rgb(138, 20, 20) 50%, rgb(153, 0, 0) 100%);
+  height: 100vh;
+  background-size: cover; /* Assurez-vous que l'image couvre tout l'arrière-plan */
+  background-position: 0% 0%; /* Position initiale de l'arrière-plan */
+  overflow: hidden; /* Empêcher le défilement */
+}
+.backgroundimage .content {
+  text-align: center;
+  position: relative; /* Positionner le texte par rapport à l'élément parent */
+  z-index: 2; /* Assurez-vous que le contenu est au-dessus des shurikens */
+  top: 50%; /* Centrer verticalement */
+  left: 50%; /* Centrer horizontalement */
+  transform: translate(-50%, -50%); /* Ajuster pour centrer parfaitement */
+  color: white; /* Couleur du texte */
+  font-family: var(--ff-barlow); /* Police de caractères */
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent pour améliorer la lisibilité */
+  border-radius: 10px;
+  max-width: 600px; /* Limiter la largeur maximale */
+  width: auto; /* Utiliser la largeur automatique */
+  margin: 0 auto; /* Centrer horizontalement */
+  display: inline-block; /* Réduire la largeur au contenu */
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px); /* Ajouter un flou au fond */
+}
+.backgroundimage .shuriken {
+  height: 10vw; /* Ajustez la hauteur selon vos besoins */
+  width: 10vw; /* Ajustez la largeur selon vos besoins */
+  position: absolute; /* Pour permettre le positionnement */
+  z-index: 1; /* Positionner les shurikens derrière le contenu */
+}
+.backgroundimage .shuriken.top {
+  top: 10px; /* Positionner en haut */
+  left: 50%;
+  transform: translateX(-50%);
+}
+.backgroundimage .shuriken.bottom {
+  bottom: 10px; /* Positionner en bas */
+  left: 50%;
+  transform: translateX(-50%);
+}
+.backgroundimage .button {
+  color: rgb(230, 10, 10);
+  font-weight: 400;
+}
+.backgroundimage h1 {
+  font-family: var(--ff-bangers);
+  letter-spacing: var(--letter-spacing);
+  font-size: 2rem;
+  color: #f0f0f0;
+  text-shadow: -1px -1px 10px red, 1px -1px 10px red, -1px 1px 10px red, 1px 1px 10px red;
+}
+.backgroundimage p {
+  font-family: var(--ff-barlow);
+  font-size: 1rem;
+  color: #ffffff;
 }/*# sourceMappingURL=styles.css.map */
