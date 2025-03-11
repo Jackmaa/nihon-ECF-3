@@ -153,7 +153,7 @@ class ModelUser extends Model {
         $req->execute();
     }
     public function isPremium(int $id_user): bool {
-        $req = $this->getDb()->prepare("SELECT premium FROM user WHERE id = ?");
+        $req = $this->getDb()->prepare("SELECT premium FROM user WHERE id_user = ?");
         $req->execute([$id_user]);
         return (bool) $req->fetchColumn();
     }

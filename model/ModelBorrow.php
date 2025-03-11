@@ -51,4 +51,15 @@ class ModelBorrow extends Model {
         $req->execute();
         return $result = $req->fetchColumn();
     }
+
+    public function addToReservationTable(int $id_user, int $id_manga, int $id_volume) {
+        $req = $this->getDb()->prepare(
+            "INSERT INTO `reservation`
+            (`id_user`, `id_manga`, `id_volume`, `placed`, `exp_date`)
+            VALUES
+            (':id_user',':id_manga','id_volume', CURDATE(),CURDATE() + 1)");
+        $req->bindParam(":id_user", $id_user, PDO::PARAM_INT);
+        $req->bindParam(":id_manga", $id_manga, PDO::PARAM_INT);
+        $req->bindParam(":id_volume", $id_volume, PDO::PARAM_INT);
+    }
 }
