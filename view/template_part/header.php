@@ -24,7 +24,6 @@
                 </form>
 
                 <div id="search-results-mobile">
-
                 </div>
 
             </figure>
@@ -33,6 +32,7 @@
                     <a href="<?php echo BASE_URL ?>" class="menu-logo"><img src="<?php echo BASE_URL ?>public\asset\img\logo.svg" alt="Logo"></a>
                     <span class="close-menu">×</span>
                 </div>
+                <?php if (isset($_SESSION['id_user'])): ?>
                 <ul>
                     <li><a href="<?php echo $this->router->generate("myProfile", ["id" => $_SESSION['id_user']]) ?>">Profil</a></li>
                     <li><a href="<?php echo BASE_URL ?>">Home</a></li>
@@ -40,6 +40,15 @@
                     <li><a href="<?php echo $this->router->generate("favoriteManga", ["id" => $_SESSION['id_user']]) ?>">Favorites</a></li>
                     <li><a href="<?php echo BASE_URL ?>contact">Contact</a></li>
                 </ul>
+                <?php else: ?>
+                    <ul>
+                    <li><a href="<?php echo $this->router->generate("login") ?>">Login</a></li>
+                    <li><a href="<?php echo $this->router->generate("register") ?>">Register</a></li>
+                    <li><a href="<?php echo BASE_URL ?>">Home</a></li>
+                    <li><a href="<?php echo BASE_URL ?>contact">Contact</a></li>
+                </ul>
+                <?php endif; ?>
+                
             </div>
         </section>
         <section class="menu-desktop">
