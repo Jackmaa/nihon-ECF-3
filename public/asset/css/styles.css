@@ -87,6 +87,13 @@ body.dark-mode {
   background-color: #202024;
   color: white;
 }
+body.dark-mode .resaux-sociaux a svg path {
+  transition: all ease 0.3s;
+  fill: white;
+}
+body.dark-mode .resaux-sociaux a:hover path {
+  fill: #cc392b;
+}
 body.dark-mode .hero_category_txt {
   color: var(--fc-black);
 }
@@ -307,9 +314,11 @@ footer > p {
   width: 5vh;
   height: 5vh;
   margin-right: 1vw;
+}
+.resaux-sociaux a svg path {
   transition: all ease 0.3s;
 }
-.resaux-sociaux a svg:hover path {
+.resaux-sociaux a:hover path {
   fill: #cc392b;
 }
 
