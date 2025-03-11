@@ -65,4 +65,15 @@ class ModelBorrow extends Model {
         $req->bindParam(":id_volume", $id_volume, PDO::PARAM_INT);
         $req->execute();
     }
+
+    public function removeFromReservationTable(int $id_user, int $id_manga, int $id_volume) {
+        $req = $this->getDb()->prepare(
+            "DELETE FROM reservation
+             WHERE id_user = :id_user AND id_manga = :id_manga AND id_volume = :id_volume"
+        );
+        $req->bindParam(":id_user", $id_user, PDO::PARAM_INT);
+        $req->bindParam(":id_manga", $id_manga, PDO::PARAM_INT);
+        $req->bindParam(":id_volume", $id_volume, PDO::PARAM_INT);
+        $req->execute();
+    }
 }
