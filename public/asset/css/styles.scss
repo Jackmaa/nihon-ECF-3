@@ -1517,8 +1517,7 @@ width: 100%;
 */
   .formulaire {
     margin: 0 auto;
-    max-width: 024px;
-  }
+    }
 
   /*
 **********************************
@@ -1699,6 +1698,7 @@ width: 100%;
 }
 
   .kakkoii{
+
     .kakoiiflex {
     flex-direction: row;
     justify-content: space-around;
@@ -1889,14 +1889,14 @@ figure.update-user-desktop {
   border-radius: 10px;
   outline: 3px solid #ffffff;
   max-width: 600px;
-  margin: 20px;
+  margin: 20px auto;
 
   h2 {
     text-align: center;
     font-family: var(--ff-bangers);
     margin: 1%;
     color: #ffffff;
-    -webkit-text-stroke: 2px red;
+    -webkit-text-stroke: 1px red;
   }
 
   input,
@@ -2096,10 +2096,10 @@ align-items: center;
     font-size: 1rem;
     color: #f0f0f0;
     text-shadow: 
-                -2px -2px 0 red,  
-                2px -2px 0 red,
-                -2px 2px 0 red,
-                2px 2px 0 red;
+                -1px -1px 0 red,  
+                1px -1px 0 red,
+                -1px 1px 0 red,
+                1px 1px 0 red;
   }
   .center{
     text-align: center;
@@ -2112,7 +2112,7 @@ align-items: center;
     color: red;
     font-family: var(--ff-bangers);
     letter-spacing: var(--letter-spacing);
-    font-size: 1rem;
+    font-size: 0.8rem;
     }
     p{
       font-family: var(--ff-barlow);
@@ -2473,7 +2473,6 @@ input{
 ***********404********************
 **********************************
 */
-/* filepath: /C:/wamp64/www/nihon/public/asset/css/styles.scss */
 .backgroundimage {
   position: relative;
   background: linear-gradient(90deg, rgba(255,0,0,1) 0%, rgb(138, 20, 20) 50%, rgba(153,0,0,1) 100%);
@@ -2540,23 +2539,6 @@ input{
   font-size: 1rem;
   color: #ffffff;}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
