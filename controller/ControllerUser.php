@@ -98,6 +98,7 @@ class ControllerUser extends Controller {
             $now   = time();
             if ($timer['expires_at'] > $now) {
                 // Create a new user from the temporary user data
+                $model = new ModelUser();
                 $user = $model->getTempUser($email);
                 $model->createUser($user['username'], $user['email'], $user['password']);
                 $model->deleteTempUser($email);

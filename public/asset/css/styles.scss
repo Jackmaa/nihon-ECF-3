@@ -532,7 +532,7 @@ footer > p {
 .carousel {
   position: relative;
   overflow: hidden;
-  height: 40vh;
+  height: 75vh;
 }
 
 .carousel-wrapper {
@@ -556,6 +556,10 @@ footer > p {
   & p {
     margin-bottom: var(--mb-5);
   }
+}
+
+button{
+  transition: all ease 0.3s;
 }
 
 .prev,
@@ -864,53 +868,47 @@ footer > p {
 // ****OUR FAVORITE HOMEPAGE*****
 // *********************************
 
-#our-fav {
-  div:first-child {
-    display: flex;
-    padding: 10px;
-    font-family: var(--ff-bangers);
-    letter-spacing: var(--letter-spacing);
-
-    h2 {
-      margin: var(--m-all-5);
-    }
+.card-fav {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  h2{
+    font-size: 1rem;
   }
   .bubble-fav {
+    height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    font-size: 1.1rem;
-    padding: 10px 20px;
+    font-family: var(--ff-barlow);
+    font-weight: 400;
+  figure {
+    width: fit-content;
+    margin: 0 auto;
+    img {
+      width: 20vh;
+    }
+  }
+  hr{
+    margin: 2% auto;
+    width: 80%;
+  }
+  p {
+    margin: auto;
+    width: 80%;
+    font-size: 1.2rem;
 
     a {
-      color: #cc392b;
-
-      &:hover {
-        color: #cc1606;
+      color: black;
+      transition: all ease 0.3s;
+      &:hover{
+        color: #202024;
       }
-    }
-    h3 {
-      font-family: var(--ff-bangers);
-      letter-spacing: var(--letter-spacing);
-      margin-bottom: var(--mb-5);
-    }
-
-    hr {
-      margin-bottom: var(--mb-5);
-      background-color: black;
-      height: 1px;
-    }
-    p {
-      font-family: var(--ff-barlow);
-    }
-
-    figure {
-      padding: 10px 20px;
-      width: 40%;
     }
   }
 }
+}
+
 
 /*
 **********************************
@@ -1721,6 +1719,29 @@ width: 100%;
 @media (min-width: 1024px) {
   /*
 **********************************
+***********CAROUSSEL************
+**********************************
+*/
+  .carousel {
+    height: 60vh;
+
+    .custom-btn{
+      margin-top: 2%;
+      width: 20%;
+      height: 10%;
+    }
+    p{
+      margin: 1%;
+      font-size: 1.5rem;
+    }
+
+  .next, .prev {
+    width: 5vh;
+    height: 5vh;
+  }
+  }
+  /*
+**********************************
 ***********LOGIN/REGISTER************
 **********************************
 */
@@ -1911,6 +1932,9 @@ width: 100%;
 ***** SLIDER CATEGORY HOMEPAGE*******
 **********************************
 */
+.category-slider{
+  margin: 2% 3%;
+}
   .category-slider .slider {
     max-width: 1400px; /* Augmente la largeur du slider */
   }

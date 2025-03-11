@@ -467,7 +467,7 @@ footer > p {
 .carousel {
   position: relative;
   overflow: hidden;
-  height: 40vh;
+  height: 75vh;
 }
 
 .carousel-wrapper {
@@ -490,6 +490,10 @@ footer > p {
 }
 .carousel-item p {
   margin-bottom: var(--mb-5);
+}
+
+button {
+  transition: all ease 0.3s;
 }
 
 .prev,
@@ -747,45 +751,45 @@ footer > p {
   cursor: not-allowed;
 }
 
-#our-fav div:first-child {
-  display: flex;
-  padding: 10px;
-  font-family: var(--ff-bangers);
-  letter-spacing: var(--letter-spacing);
-}
-#our-fav div:first-child h2 {
-  margin: var(--m-all-5);
-}
-#our-fav .bubble-fav {
+.card-fav {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: start;
+}
+.card-fav h2 {
+  font-size: 1rem;
+}
+.card-fav .bubble-fav {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  font-size: 1.1rem;
-  padding: 10px 20px;
-}
-#our-fav .bubble-fav a {
-  color: #cc392b;
-}
-#our-fav .bubble-fav a:hover {
-  color: #cc1606;
-}
-#our-fav .bubble-fav h3 {
-  font-family: var(--ff-bangers);
-  letter-spacing: var(--letter-spacing);
-  margin-bottom: var(--mb-5);
-}
-#our-fav .bubble-fav hr {
-  margin-bottom: var(--mb-5);
-  background-color: black;
-  height: 1px;
-}
-#our-fav .bubble-fav p {
   font-family: var(--ff-barlow);
+  font-weight: 400;
 }
-#our-fav .bubble-fav figure {
-  padding: 10px 20px;
-  width: 40%;
+.card-fav .bubble-fav figure {
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0 auto;
+}
+.card-fav .bubble-fav figure img {
+  width: 20vh;
+}
+.card-fav .bubble-fav hr {
+  margin: 2% auto;
+  width: 80%;
+}
+.card-fav .bubble-fav p {
+  margin: auto;
+  width: 80%;
+  font-size: 1.2rem;
+}
+.card-fav .bubble-fav p a {
+  color: black;
+  transition: all ease 0.3s;
+}
+.card-fav .bubble-fav p a:hover {
+  color: #202024;
 }
 
 /*
@@ -1509,6 +1513,27 @@ button:hover {
 @media (min-width: 1024px) {
   /*
   **********************************
+  ***********CAROUSSEL************
+  **********************************
+  */
+  .carousel {
+    height: 60vh;
+  }
+  .carousel .custom-btn {
+    margin-top: 2%;
+    width: 20%;
+    height: 10%;
+  }
+  .carousel p {
+    margin: 1%;
+    font-size: 1.5rem;
+  }
+  .carousel .next, .carousel .prev {
+    width: 5vh;
+    height: 5vh;
+  }
+  /*
+  **********************************
   ***********LOGIN/REGISTER************
   **********************************
   */
@@ -1669,6 +1694,9 @@ button:hover {
   ***** SLIDER CATEGORY HOMEPAGE*******
   **********************************
   */
+  .category-slider {
+    margin: 2% 3%;
+  }
   .category-slider .slider {
     max-width: 1400px; /* Augmente la largeur du slider */
   }
