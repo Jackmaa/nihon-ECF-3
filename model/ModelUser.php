@@ -108,6 +108,7 @@ class ModelUser extends Model {
         $req = $this->getDb()->prepare('SELECT `username`, `email`, `password` FROM `email_verify` WHERE `email` = ?');
         $req->execute([$email]);
         $data = $req->fetch(PDO::FETCH_ASSOC);
+        return $data;
     }
 
     public function deleteTempUser(string $email) {
