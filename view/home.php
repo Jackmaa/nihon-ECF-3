@@ -8,12 +8,12 @@ ob_start();
 <section class="hero-mobile">
     <div class="carousel">
         <div class="carousel-wrapper">
-            <div class="carousel-item">
+            <div class="carousel-item red-background">
                 <p>“Now more books to borrow: 5 instead of 3!”</p>
                 <p>“Extended loan duration: 4 weeks instead of 3!”</p>
                 <button class="custom-btn btn-green"> <span>Kakkoii mode</span></button>
             </div>
-            <div class="carousel-item card-fav">
+            <div class="carousel-item card-fav black-background">
                 <div class="bubble-fav">
                     <figure><img src="public\asset\img\naruto.webp" alt="Naruto"></figure>
                     <div>
