@@ -163,4 +163,10 @@ class CartController extends Controller {
     public function cart() {
         require_once './view/cart.php';
     }
+
+    public function cartState() {
+        $model = new ModelUser;
+        $cart  = $model->fetchCartData($_SESSION['id_user']);
+        echo json_encode(["success" => true, "cart" => $cart]);
+    }
 }
