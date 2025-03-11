@@ -58,7 +58,7 @@
                 </figure>
                 <?php if (isset($_SESSION['id_user'])): ?>
                 <figure class="profile" >
-                    <a href="#"><img src="<?php echo BASE_URL ?>public\asset\img\profile_picture.webp" alt="profile picture"></a>
+                    <a href="#">pipi<img src="<?php echo BASE_URL ?>public\asset\img\profile_picture.webp" alt="profile picture"></a>
                 <div class="dropdown">
                     <ul>
                     <li><a href="<?php echo $this->router->generate("myProfile", ["id" => $_SESSION['id_user']]) ?>">Profil</a></li>
