@@ -1,7 +1,7 @@
 <?php
     $title            = 'Nihon | ' . $manga->manga->getName();
     $meta_description = $manga->manga->getName() . 'it a great manga';
-    $scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public\asset\js\base.js", "public\asset\js\header.js", "public/asset/js/like.js", "public/asset/js/cart.js", "public/asset/js/like.js", "public/asset/js/review.js"];
+    $scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public\asset\js\base.js", "public\asset\js\header.js", "public/asset/js/like.js", "public/asset/js/cart.js", "public/asset/js/like.js", "public/asset/js/review.js", "public\asset\js\darkmode.js"];
     ob_start();
 ?>
 <main>

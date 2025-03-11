@@ -1,7 +1,7 @@
 <?php
     $title            = 'Nihon | Register';
     $meta_description = 'Register your "Nihon" account';
-    $scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public\asset\js\base.js","public\asset\js\login.js"];
+    $scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public\asset\js\base.js","public\asset\js\login.js", "public\asset\js\darkmode.js"];
     ob_start();
 ?>
     <main class=connexion>

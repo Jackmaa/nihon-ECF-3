@@ -79,6 +79,62 @@ h6 {
 ***********GENERAL STYLING************
 **********************************
 */
+/* Style par défaut */
+body {
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+  background-color: #202024;
+  color: white;
+}
+body.dark-mode .category-slider .category-title a {
+  margin: 8% 3%;
+  font-family: var(--ff-barlow);
+  color: var(--fc-white);
+  border: #ffffff 1px solid;
+  padding: 5px 10px;
+  transition: all ease 0.3s;
+}
+body.dark-mode .category-slider .category-title a:hover {
+  color: #cc392b;
+  border: #cc392b 1px solid;
+}
+body.dark-mode .logo-footer img {
+  content: url(../img/logo_footer.svg);
+}
+body.dark-mode .logo img {
+  content: url(../img/logo_dark_theme.svg);
+}
+body.dark-mode .logoo img {
+  content: url(../img/logo_dark_theme.svg);
+  width: 15vh;
+}
+body.dark-mode .loup {
+  content: url(../img/search_sark_theme.svg);
+}
+body.dark-mode .menu-desktop .profile .dropdown {
+  background-color: #38383f;
+}
+body.dark-mode .menu-desktop .profile .dropdown a {
+  width: 100%;
+  color: white;
+}
+body.dark-mode .menu-desktop .profile .dropdown li {
+  transition: all 0.3s ease;
+}
+body.dark-mode .menu-desktop .profile .dropdown li:hover {
+  background-color: #cc392b;
+}
+
+.mode-icon {
+  transition: transform 0.3s ease-in-out;
+}
+
+body.dark-mode .mode-icon {
+  transform: rotate(180deg);
+}
+
 svg {
   transition: transform 0.3s ease;
 }

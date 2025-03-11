@@ -7,7 +7,7 @@
                 <a href="#"><img src="<?= BASE_URL ?>public\asset\img\x.svg" alt="twitter"></a>
             </div>
             <div>
-                <a href="#"><img src="<?= BASE_URL ?>public\asset\img\logo.svg" class=logo alt="logo"></a>
+                <a class="logo-footer" href="#"><img src="<?= BASE_URL ?>public\asset\img\logo.svg" class=logo alt="logo"></a>
             </div>
         </div>
         <div class="copyright">
