@@ -36,7 +36,7 @@
                 <ul>
                     <li><a href="<?php echo $this->router->generate("myProfile", ["id" => $_SESSION['id_user']]) ?>">Profil</a></li>
                     <li><a href="<?php echo BASE_URL ?>">Home</a></li>
-                    <li><a href="<?php echo $this->router->generate("currentStorie") ?>">My Books</a></li>
+                    <li><a href="<?php echo $this->router->generate("currentStorie") ?>">My Boock</a></li>
                     <li><a href="<?php echo $this->router->generate("favoriteManga", ["id" => $_SESSION['id_user']]) ?>">Favorites</a></li>
                     <li><a href="<?php echo BASE_URL ?>contact">Contact</a></li>
                 </ul>
@@ -72,7 +72,7 @@
                     <ul>
                     <li><a href="<?php echo $this->router->generate("myProfile", ["id" => $_SESSION['id_user']]) ?>">Profil</a></li>
                     <li><a href="<?php echo $this->router->generate("favoriteManga", ["id" => $_SESSION['id_user']]) ?>">My Favorites</a></li>
-                    <li><a href="<?php echo $this->router->generate("currentStorie") ?>">My Boocks</a></li>
+                    <li><a href="<?php echo $this->router->generate("currentStorie") ?>">My Boock</a></li>
                     <li><a href="<?php echo BASE_URL ?>contact">Contact</a></li>
                     <li><a href="<?php echo $this->router->generate('logout') ?>">Déconnexion</a></li>
                 </ul>

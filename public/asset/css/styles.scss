@@ -405,6 +405,13 @@ footer > p {
 .carousel-wrapper {
   display: flex;
   height: 100%;
+
+  .red-background {
+    background-color: var(--primary-clr-red);
+  }
+  .black-background{
+    background-color: #38383f;
+  }
 }
 
 .carousel-item {
@@ -416,7 +423,6 @@ footer > p {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: var(--primary-clr-red);
   font-size: 1.4rem;
   text-align: center;
 
@@ -446,6 +452,9 @@ footer > p {
 }
 
 .custom-btn {
+  font-family: var(--ff-barlow);
+  text-transform: uppercase;
+  font-size: 1.5rem;
   width: 130px;
   height: 40px;
   color: #fff;
@@ -462,7 +471,7 @@ footer > p {
   outline: none;
 
   &.btn-green {
-    background: #b3b34e;
+    background: #2bbecc;
     padding: 0;
     border: none;
 
@@ -489,7 +498,7 @@ footer > p {
         content: "";
         left: 0;
         bottom: 0;
-        background: #231b19;
+        background: #10474d;
         transition: all 0.3s ease;
       }
 
@@ -518,7 +527,7 @@ footer > p {
       content: "";
       right: 0;
       top: 0;
-      background: #231b19;
+      background: #10474d;
       transition: all 0.3s ease;
     }
 
@@ -533,7 +542,7 @@ footer > p {
     }
 
     &:hover {
-      background: #b3b34e;
+      background: #2bbecc;
       box-shadow: none;
 
       &:before {
@@ -751,10 +760,10 @@ footer > p {
     padding: 10px 20px;
 
     a {
-      color: #cc392b;
-
-      &:hover {
-        color: #cc1606;
+      color:#cc1606;
+      transition: all ease 0.3s;
+      &:hover{
+        color: #fab1d4;
       }
     }
     h3 {
