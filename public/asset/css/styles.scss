@@ -85,6 +85,128 @@ h6 {
 **********************************
 */
 
+body {
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+  background-color: #202024;
+  color: white;
+
+  .resaux-sociaux {
+    a {
+      svg {
+        path {
+        transition: all ease 0.3s;
+        fill: white;
+        }
+      }
+      &:hover {
+        path {
+          fill: #cc392b;
+        }
+      }
+    }
+  }
+
+  .hero_category_txt {
+    color:var(--fc-black);
+  }
+
+  input {
+    background-color: #ccc;
+  }
+
+  .general-profile {
+    h3 {
+      color: white;
+    }
+  }
+
+  .chevron-current {
+    svg {
+      path {
+        stroke: white;
+      }
+    }
+  }
+
+  .current-info {
+
+    div{
+          a{
+      color: white;
+    }
+    }
+
+    
+  }
+
+  .copyright{
+    a {
+      color: white;
+      transition: all ease 0.3s;
+
+      &:hover {
+        color: #cc392b;
+      }
+    }
+  }
+  .category-slider .category-title a {
+    margin: 8% 3%;
+    font-family: var(--ff-barlow);
+    color: var(--fc-white);
+    border: #ffffff 1px solid;
+    padding: 5px 10px;
+    transition: all ease 0.3s;
+    &:hover{
+      color: #cc392b;
+      border: #cc392b 1px solid;
+    }
+}
+
+.logo-footer img {
+  content: url(../img/logo_footer.svg);
+}
+.logo img {
+content: url(../img/logo_dark_theme.svg);
+}
+
+.logoo img {
+content: url(../img/logo_dark_theme.svg);
+width: 15vh;
+}
+
+.loup{
+  content: url(../img/search_sark_theme.svg);
+}
+
+.menu-desktop .profile .dropdown{
+  background-color: #38383f;
+
+  a{
+    width: 100%;
+    color: white;
+  }
+  li {
+
+    transition: all 0.3s ease;
+    &:hover {
+      background-color: #cc392b;
+    }
+  }
+}
+}
+
+.mode-icon {
+  transition: transform 0.3s ease-in-out;
+}
+
+body.dark-mode .mode-icon {
+  transform: rotate(180deg);
+}
+
+
 svg {
   transition: transform 0.3s ease;
 }
@@ -235,18 +357,25 @@ footer > p {
   margin-bottom: 1%;
   padding: 0 20px;
 }
-.flex {
+.resaux-sociaux {
   display: flex;
 
-  a,
-  img {
+  a {
     width: 100%;
-    margin-right: 1.5vw;
-    transition: all ease 0.3s;
-
-    &:hover {
-      background-color: #333;
+      svg {
+    width: 5vh;
+    height: 5vh;
+    margin-right: 1vw;
+    path {
+      transition: all ease 0.3s;
     }
+}
+    &:hover {
+      path {
+        fill: #cc392b;
+      }
+    }
+  
   }
 }
 .flex1 {

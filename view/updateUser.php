@@ -1,7 +1,7 @@
 <?php
 $title            = 'Nihon | My Profile ';
 $meta_description = 'it\'s your profile, your profile is incredible like a manga';
-$scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public\asset\js\base.js", "public\asset\js\header.js", "public\asset\js\like.js", "public\asset\js\update-profile.js"];
+$scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public\asset\js\base.js", "public\asset\js\header.js", "public\asset\js\like.js", "public\asset\js\update-profile.js", "public\asset\js\darkmode.js"];
 ob_start();
 ?>
 <main class="update-user" >

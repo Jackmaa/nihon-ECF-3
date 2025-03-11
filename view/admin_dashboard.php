@@ -1,7 +1,7 @@
 <?php
     $title            = 'Nihon | Home';
     $meta_description = 'The best place to find your next manga\'s addiction ';
-    $scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public/asset/js/dashboard.js", "public/asset/js/header.js", "public/asset/js/search_admin_dashboard.js"];
+    $scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public/asset/js/dashboard.js", "public/asset/js/header.js", "public/asset/js/search_admin_dashboard.js", "public\asset\js\darkmode.js"];
     ob_start();
 ?>
 <div class="headdashboard"></div>

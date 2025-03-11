@@ -1,7 +1,7 @@
 <?php
     $title            = 'Nihon | My Past Chronicles';
     $meta_description = 'where you can see all your past chronicles';
-    $scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public\asset\js\base.js", "public\asset\js\home.js", "public/asset/js/header.js", "public/asset/js/like.js", "public\asset\js\current.js"];
+    $scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public\asset\js\base.js", "public\asset\js\home.js", "public/asset/js/header.js", "public/asset/js/like.js", "public\asset\js\current.js", "public\asset\js\darkmode.js"];
     ob_start();
 ?>
 <main>

@@ -1,7 +1,7 @@
 <?php
     $title            = 'Nihon | Register';
     $meta_description = 'Register your "Nihon" account';
-    $scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public\asset\js\base.js","public\asset\js\login.js"];
+    $scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public\asset\js\base.js","public\asset\js\login.js", "public\asset\js\darkmode.js"];
     ob_start();
 ?>
     <main class=connexion>
@@ -17,7 +17,7 @@
                 <input type="password" name="password_verify" placeholder="Confirm Password">
                 
                 <p>(8 caractères minimums)</p>
-                <p>You have already an account ? <a href="">Click here</a></p>
+                <p>You have already an account ? <a href="<?php echo $this->router->generate("login") ?>">Click here</a></p>
                 <button class="login" type="submit">SUBSCRIRE</button>
             </form>
         </div>

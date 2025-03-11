@@ -79,6 +79,90 @@ h6 {
 ***********GENERAL STYLING************
 **********************************
 */
+body {
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+  background-color: #202024;
+  color: white;
+}
+body.dark-mode .resaux-sociaux a svg path {
+  transition: all ease 0.3s;
+  fill: white;
+}
+body.dark-mode .resaux-sociaux a:hover path {
+  fill: #cc392b;
+}
+body.dark-mode .hero_category_txt {
+  color: var(--fc-black);
+}
+body.dark-mode input {
+  background-color: #ccc;
+}
+body.dark-mode .general-profile h3 {
+  color: white;
+}
+body.dark-mode .chevron-current svg path {
+  stroke: white;
+}
+body.dark-mode .current-info div a {
+  color: white;
+}
+body.dark-mode .copyright a {
+  color: white;
+  transition: all ease 0.3s;
+}
+body.dark-mode .copyright a:hover {
+  color: #cc392b;
+}
+body.dark-mode .category-slider .category-title a {
+  margin: 8% 3%;
+  font-family: var(--ff-barlow);
+  color: var(--fc-white);
+  border: #ffffff 1px solid;
+  padding: 5px 10px;
+  transition: all ease 0.3s;
+}
+body.dark-mode .category-slider .category-title a:hover {
+  color: #cc392b;
+  border: #cc392b 1px solid;
+}
+body.dark-mode .logo-footer img {
+  content: url(../img/logo_footer.svg);
+}
+body.dark-mode .logo img {
+  content: url(../img/logo_dark_theme.svg);
+}
+body.dark-mode .logoo img {
+  content: url(../img/logo_dark_theme.svg);
+  width: 15vh;
+}
+body.dark-mode .loup {
+  content: url(../img/search_sark_theme.svg);
+}
+body.dark-mode .menu-desktop .profile .dropdown {
+  background-color: #38383f;
+}
+body.dark-mode .menu-desktop .profile .dropdown a {
+  width: 100%;
+  color: white;
+}
+body.dark-mode .menu-desktop .profile .dropdown li {
+  transition: all 0.3s ease;
+}
+body.dark-mode .menu-desktop .profile .dropdown li:hover {
+  background-color: #cc392b;
+}
+
+.mode-icon {
+  transition: transform 0.3s ease-in-out;
+}
+
+body.dark-mode .mode-icon {
+  transform: rotate(180deg);
+}
+
 svg {
   transition: transform 0.3s ease;
 }
@@ -220,18 +304,22 @@ footer > p {
   padding: 0 20px;
 }
 
-.flex {
+.resaux-sociaux {
   display: flex;
 }
-.flex a,
-.flex img {
+.resaux-sociaux a {
   width: 100%;
-  margin-right: 1.5vw;
+}
+.resaux-sociaux a svg {
+  width: 5vh;
+  height: 5vh;
+  margin-right: 1vw;
+}
+.resaux-sociaux a svg path {
   transition: all ease 0.3s;
 }
-.flex a:hover,
-.flex img:hover {
-  background-color: #333;
+.resaux-sociaux a:hover path {
+  fill: #cc392b;
 }
 
 .flex1 {
