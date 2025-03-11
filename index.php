@@ -36,8 +36,10 @@ $router->map('GET', "/favorite", 'ControllerUser#favoriteManga', 'favoriteManga'
 /*******************************||  CART  ||**************************************/
 $router->map("GET", "/cart", "CartController#cart", "cart");
 $router->map('GET|POST', '/cart/add', 'CartController#add', 'cart_add');
-$router->map('POST', '/cart/remove', 'CartController#remove', 'cart_remove');
+$router->map('GET|POST', '/cart/remove', 'CartController#remove', 'cart_remove');
 $router->map('POST', '/cart/confirm', 'CartController#confirmBorrow', 'cart_confirm');
+$router->map('POST', '/cart/clear', 'CartController#clearCart', 'clearCart');
+$router->map('GET', '/cart/state', 'CartController#cartState');
 
 /*******************************||  MANGAS  ||**************************************/
 //MANGA

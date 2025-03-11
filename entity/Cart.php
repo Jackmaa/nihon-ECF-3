@@ -9,23 +9,31 @@ class Cart {
 
         // Validate the input data
         if (
-            count($id_res) === 2 &&   // Ensure the array has exactly 2 elements
-            is_numeric($id_res[0]) && // Ensure the first element is numeric (manga ID)
-            is_numeric($id_res[1])    // Ensure the second element is numeric (volume ID)
+            count($id_res) !== 2 ||    // Ensure the array has exactly 2 elements
+            ! is_numeric($id_res[0]) || // Ensure the first element is numeric (manga ID)
+            ! is_numeric($id_res[1])    // Ensure the second element is numeric (volume ID)
         ) {
-            // Cast the IDs to integers
-            $id_manga  = (int) $id_res[0];
-            $id_volume = (int) $id_res[1];
-
-            // Check if the item is already in the cart
-            if (! in_array([$id_manga, $id_volume], $_SESSION['cart'])) {
-                // Add the item to the cart
-                $_SESSION['cart'][] = [$id_manga, $id_volume];
-            }
-        } else {
-            // Throw an exception if the input data is invalid
             throw new InvalidArgumentException("Invalid cart entry. Expected an array with two numeric values.");
         }
+
+        // Cast the IDs to integers
+        $id_manga  = (int) $id_res[0];
+        $id_volume = (int) $id_res[1];
+
+        // Ensure IDs are valid
+        if ($id_manga <= 0 || $id_volume <= 0) {
+            throw new InvalidArgumentException("Invalid manga or volume ID.");
+        }
+
+        // Check if the item is already in the cart
+        foreach ($_SESSION['cart'] as $item) {
+            if ($item[0] === $id_manga && $item[1] === $id_volume) {
+                throw new Exception("This manga volume is already in your cart.");
+            }
+        }
+
+        // Add the item to the cart
+        $_SESSION['cart'][] = [$id_manga, $id_volume];
 
         // Return the updated cart
         return $_SESSION['cart'];

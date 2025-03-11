@@ -153,8 +153,19 @@ class ModelUser extends Model {
         $req->execute();
     }
     public function isPremium(int $id_user): bool {
-        $req = $this->getDb()->prepare("SELECT premium FROM user WHERE id = ?");
+        $req = $this->getDb()->prepare("SELECT premium FROM user WHERE id_user = ?");
         $req->execute([$id_user]);
         return (bool) $req->fetchColumn();
+    }
+
+    public function fetchCartData($id_user) {
+        // Fetch cart data from the database
+        $req = $this->getDb()->prepare(
+            "SELECT id_manga, id_volume FROM reservation WHERE id_user = :id_user"
+        );
+        $req->bindParam(":id_user", $id_user, PDO::PARAM_INT);
+        $req->execute();
+
+        return $req->fetchAll(PDO::FETCH_ASSOC);
     }
 }
