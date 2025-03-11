@@ -1804,6 +1804,14 @@ figure.update-user-desktop {
   }
 }
 
+
+.backgroundimage {
+  .content{
+  h1{
+    font-size: 3rem;
+    }
+}
+}
 }
 
 @media (min-width: 1440px) {
@@ -1825,6 +1833,7 @@ figure.update-user-desktop {
 
   .form-container {
     width: auto;
+  }
 
     h1 {
       font-size: 2rem;
@@ -1834,7 +1843,7 @@ figure.update-user-desktop {
       font-size: 1.5rem;
       margin-bottom: 2.5vh;
     }
-  }
+  
   #img-subscrire {
     display: block;
     width: 60vw;
@@ -1848,6 +1857,17 @@ figure.update-user-desktop {
   div.headdashboard {
     height: 70vh;
   }
+
+ /*
+**********************************
+***********404********************
+**********************************
+*/
+.backgroundimage {
+  h1{
+    font-size: 10rem;
+    } 
+}
 }
 
 
@@ -1905,6 +1925,9 @@ figure.update-user-desktop {
     }
   }
 }
+
+
+
 /*
 **********************************
 ***********DASHBOARD************
@@ -1985,7 +2008,7 @@ figure.update-user-desktop {
       }
     }
   }
-  /* filepath: /C:/wamp64/www/nihon/public/asset/css/styles.scss */
+  
   .popup {
     display: none; /* Masquer par défaut */
     position: fixed;
@@ -2032,16 +2055,18 @@ figure.update-user-desktop {
 
 /*
 **********************************
-***********kKAKOII MODE************
+***********KAKOII MODE************
 **********************************
 */
 
 .headkakkoiilogo {
   height: 10vh;
   width: 10vh;
-  background: url(../img/logo.svg) no-repeat center center/cover;
+  background: url(../img/logo.svg) no-repeat;
   display: flex;
   justify-content: center;
+  align-items: center;
+  margin: 0 auto;
   }
 
 .headkakkoii{
@@ -2403,88 +2428,118 @@ h2,h3{
   font-family: var(--ff-bangers);
   letter-spacing: var(--letter-spacing);
   font-size: 1rem;
-  color: #fa0707;
+  color: #0a0a0a;
   
 }
+
 .close-popup{
-  background-color: #fcc8e1;
-  color: #0e0e0e;
+  width: 100%;
+  background-color: #0555EB;
+  color: #ffffff;
   font-family: var(--ff-bangers);
   cursor: pointer;
   transition: all ease 0.3s;
   border-radius: 10px;  
   border: none;
   padding: 20px;
-  margin: 10px;
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
     &:hover{
-      background-color: #cc1606;
+      background-color: #4c00ff;
     }
 }
-.close-popup{
-  background-color: #1815df;
-  color: #0e0e0e;
-  font-family: var(--ff-bangers);
-  cursor: pointer;
-  transition: all ease 0.3s;
-  border-radius: 10px;  
-  border: none;
-  padding: 20px;
-  margin: 10px;
-    &:hover{
-      background-color: #cc1606;
-    }
-}
+input{
+  padding: 10px;
+  
+
 }
 
+.form-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
+  img {
+    margin: 1vh 0;
+  }
+} 
+}
 
+/*
+**********************************
+***********404********************
+**********************************
+*/
+/* filepath: /C:/wamp64/www/nihon/public/asset/css/styles.scss */
+.backgroundimage {
+  position: relative;
+  background: linear-gradient(90deg, rgba(255,0,0,1) 0%, rgb(138, 20, 20) 50%, rgba(153,0,0,1) 100%);
+  height: 100vh; 
+  background-size: cover; /* Assurez-vous que l'image couvre tout l'arrière-plan */
+  background-position: 0% 0%; /* Position initiale de l'arrière-plan */
+  overflow: hidden; /* Empêcher le défilement */
 
+  .content {
+    text-align: center;
+    position: relative; /* Positionner le texte par rapport à l'élément parent */
+    z-index: 2; /* Assurez-vous que le contenu est au-dessus des shurikens */
+    top: 50%; /* Centrer verticalement */
+    left: 50%; /* Centrer horizontalement */
+    transform: translate(-50%, -50%); /* Ajuster pour centrer parfaitement */
+    color: white; /* Couleur du texte */
+    font-family: var(--ff-barlow); /* Police de caractères */
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent pour améliorer la lisibilité */
+    border-radius: 10px;
+    max-width: 600px; /* Limiter la largeur maximale */
+    width: auto; /* Utiliser la largeur automatique */
+    margin: 0 auto; /* Centrer horizontalement */
+    display: inline-block; /* Réduire la largeur au contenu */
+    backdrop-filter: blur(10px); /* Ajouter un flou au fond */
+  }
 
+  .shuriken {
+    height: 10vw; /* Ajustez la hauteur selon vos besoins */
+    width: 10vw; /* Ajustez la largeur selon vos besoins */
+    position: absolute; /* Pour permettre le positionnement */
+    z-index: 1; /* Positionner les shurikens derrière le contenu */
+  }
 
+  .shuriken.top {
+    top: 10px; /* Positionner en haut */
+    left: 50%;
+    transform: translateX(-50%);
+  }
 
+  .shuriken.bottom {
+    bottom: 10px; /* Positionner en bas */
+    left: 50%;
+    transform: translateX(-50%);
+  }
+.button {
+  color: rgb(230, 10, 10);
+  font-weight: 400;
+  }
+  h1{
+    font-family: var(--ff-bangers);
+    letter-spacing: var(--letter-spacing);
+    font-size: 2rem;
+    color: #f0f0f0;
+    text-shadow: 
+                -1px -1px 10px red,  
+                1px -1px 10px red,
+                -1px 1px 10px red,
+                1px 1px 10px red;
+  } 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  p{
+  font-family: var(--ff-barlow);
+  font-size: 1rem;
+  color: #ffffff;}
+}
 
 
 

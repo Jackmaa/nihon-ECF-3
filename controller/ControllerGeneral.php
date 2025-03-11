@@ -11,4 +11,7 @@ class ControllerGeneral extends Controller {
         require_once './view/kakkoiimode.php';
     }
 
+    public function page404() {
+        require_once './view/page404.php';
+    }
 }

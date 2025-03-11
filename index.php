@@ -67,6 +67,9 @@ $router->map("GET|POST", "/createUser", "ControllerAdmin#createUser", "createUse
 $router->map('POST', '/borrow', 'BorrowController#borrow', 'borrow');
 $router->map('POST', '/return', 'BorrowController#returnManga', 'returnManga');
 
+//page404
+$router->map("GET", "/404", "ControllerGeneral#page404", "page404");
+
 // Match the current request
 $match = $router->match();
 
