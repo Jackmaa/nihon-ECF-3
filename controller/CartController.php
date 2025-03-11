@@ -156,6 +156,8 @@ class CartController extends Controller {
 
     public function clearCart() {
         Cart::clearCart();
+        $borrow = new ModelBorrow();
+        $borrow->clearCart($_SESSION['id_user']);
         require_once './view/cart.php';
     }
 

@@ -76,4 +76,12 @@ class ModelBorrow extends Model {
         $req->bindParam(":id_volume", $id_volume, PDO::PARAM_INT);
         $req->execute();
     }
+
+    public function clearCart(int $id_user) {
+        $req = $this->getDb()->prepare(
+            "DELETE FROM reservation
+             WHERE id_user = :id_user");
+        $req->bindParam(":id_user", $id_user, PDO::PARAM_INT);
+        $req->execute();
+    }
 }
