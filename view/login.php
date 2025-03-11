@@ -13,7 +13,7 @@
                 <input type="password" name="password" id="password" placeholder="Password" >
                 <button type="button" class="togglePassword"><img src="public\asset\img\oeilferme.svg" alt="oeil" class="eye-icon"> </button>
             </div>
-            <p>no account yet ? <a class="clickhere" href="">Click here</a></p>
+            <p>no account yet ? <a class="clickhere" href="<?php echo $this->router->generate("register") ?>">Click here</a></p>
             <button class="login" type="submit">LOG IN</button>
         </form>
     </section>

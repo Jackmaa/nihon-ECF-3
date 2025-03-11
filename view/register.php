@@ -17,7 +17,7 @@
                 <input type="password" name="password_verify" placeholder="Confirm Password">
                 
                 <p>(8 caractères minimums)</p>
-                <p>You have already an account ? <a href="">Click here</a></p>
+                <p>You have already an account ? <a href="<?php echo $this->router->generate("login") ?>">Click here</a></p>
                 <button class="login" type="submit">SUBSCRIRE</button>
             </form>
         </div>
