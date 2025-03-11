@@ -18,3 +18,5 @@
     <script src="./public/asset/js/ajax.js"></script>
 </body>
 </html>
+
+<!--Add to dashboard admin -->
