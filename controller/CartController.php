@@ -51,6 +51,7 @@ class CartController extends Controller {
         try {
             // Add the item to the cart
             $cart = Cart::addToCart([$id_manga, $id_volume]);
+            // Add the item to the reservation table
             $borrow->addToReservationTable($_SESSION['id_user'], $id_manga, $id_volume);
             echo json_encode(["success" => "Manga volume added to cart", "cart" => $cart]);
         } catch (InvalidArgumentException $e) {
@@ -58,31 +59,32 @@ class CartController extends Controller {
             echo json_encode(["error" => $e->getMessage()]);
         } catch (Exception $e) {
             http_response_code(400);                         // Bad Request
-            echo json_encode(["error" => $e->getMessage()]); // Now catches duplicate cart items
+            echo json_encode(["error" => $e->getMessage()]); // Catches duplicate cart items or other exceptions
         }
     }
+
     // Handles removing an item from the cart
     public function remove() {
         $_SESSION['cart'] = [];
         // Check if the user is logged in and the required data is provided
-        if (! isset($_SESSION['id_user']) || ! isset($_POST['id_manga']) || ! isset($_POST['id_volume'])) {
-            http_response_code(400); // Bad Request
-            echo json_encode(["error" => "Invalid data"]);
-            return;
-        }
+        //     if (! isset($_SESSION['id_user']) || ! isset($_POST['id_manga']) || ! isset($_POST['id_volume'])) {
+        //         http_response_code(400); // Bad Request
+        //         echo json_encode(["error" => "Invalid data"]);
+        //         return;
+        //     }
 
-        // Extract manga and volume IDs from the input
-        $id_manga  = (int) $_POST['id_manga'];
-        $id_volume = (int) $_POST['id_volume'];
+        //     // Extract manga and volume IDs from the input
+        //     $id_manga  = (int) $_POST['id_manga'];
+        //     $id_volume = (int) $_POST['id_volume'];
 
-        try {
-            // Remove the item from the cart
-            $cart = Cart::removeFromCart([$id_manga, $id_volume]);
-            echo json_encode(["Success" => "Manga volume removed from cart", "cart" => $cart]);
-        } catch (InvalidArgumentException $e) {
-            http_response_code(400); // Bad Request
-            echo json_encode(["error" => $e->getMessage()]);
-        }
+        //     try {
+        //         // Remove the item from the cart
+        //         $cart = Cart::removeFromCart([$id_manga, $id_volume]);
+        //         echo json_encode(["Success" => "Manga volume removed from cart", "cart" => $cart]);
+        //     } catch (InvalidArgumentException $e) {
+        //         http_response_code(400); // Bad Request
+        //         echo json_encode(["error" => $e->getMessage()]);
+        //     }
     }
 
     // Handles confirming a borrow request
