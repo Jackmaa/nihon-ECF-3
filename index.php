@@ -8,6 +8,7 @@ $router = new AltoRouter();
 //HOMEPAGE
 $router->map("GET", "/", "ControllerManga#home", "home");
 
+/*******************************||  USERS  ||**************************************/
 //USER 
 //LOGIN
 $router->map("GET|POST", "/login", "ControllerUser#login", "login");
@@ -26,6 +27,21 @@ $router->map("GET", "/myProfile/[i:id]", "ControllerUser#myProfile", "myProfile"
 //CURRENT STORIES
 $router->map("GET", "/currentStorie", "ControllerUser#currentStorie", "currentStorie");
 
+// PAST CHRONICLES
+$router->map("GET", "/pastChronicle", "ControllerUser#pastChronicle", "pastChronicle");
+
+// FAVORITE
+$router->map('GET', "/favorite", 'ControllerUser#favoriteManga', 'favoriteManga');
+
+/*******************************||  CART  ||**************************************/
+$router->map("GET", "/cart", "CartController#cart", "cart");
+$router->map('GET|POST', '/cart/add', 'CartController#add', 'cart_add');
+$router->map('GET|POST', '/cart/remove', 'CartController#remove', 'cart_remove');
+$router->map('POST', '/cart/confirm', 'CartController#confirmBorrow', 'cart_confirm');
+$router->map('POST', '/cart/clear', 'CartController#clearCart', 'clearCart');
+$router->map('GET', '/cart/state', 'CartController#cartState');
+
+/*******************************||  MANGAS  ||**************************************/
 //MANGA
 //SEARCH
 $router->map("GET|POST", "/search", "ControllerManga#search", "search");
@@ -34,8 +50,9 @@ $router->map("GET|POST", "/create", "ControllerManga#create", "create");
 $router->map("GET|POST", "/authorAJAX", "ControllerManga#authorAJAX", "authorAJAX");
 //LIKE
 $router->map('POST', '/like', 'ControllerManga#likeManga', 'like_manga');
+$router->map("POST", "/getLikedMangas", "ControllerManga#getUserLikedMangas", "like_user");
 //READ
-$router->map("GET", "/manga/[i:id]", "ControllerManga#read", "read");
+$router->map("GET|POST", "/manga/[i:id]", "ControllerManga#read", "read");
 //UPDATE MANGA
 $router->map("GET|POST", "/update/[i:id]", "ControllerManga#update", "update");
 //CONTACT
@@ -47,11 +64,15 @@ $router->map("GET", "/kakkoii", "ControllerGeneral#kakkoii", "kakkoii");
 //DELETE MANGA
 $router->map("GET", "/delete/[i:id]", "ControllerManga#delete", "delete");
 
+// CATEGORY
+$router->map("GET", "/category", "ControllerManga#readCategory", "readCategory");
+
+/*******************************||  AUTHORS  ||**************************************/
 //AUTHOR
 //READ
 $router->map("GET", "/author/[i:id]", "ControllerManga#readAuthor", "readAuthor");
 
-//ADMIN = KAMI
+/*******************************||  ADMIN  ||**************************************/
 //LOGIN
 $router->map("GET|POST", "/dashboard-access", "ControllerAdmin#login", "admin_login");
 //DASHBOARD
@@ -63,6 +84,7 @@ $router->map("GET|POST", "/searchUser", "ControllerAdmin#searchUser", "searchUse
 //CREATE USER
 $router->map("GET|POST", "/createUser", "ControllerAdmin#createUser", "createUser");
 
+/*******************************||  BORROW/RETURNS  ||**************************************/
 //BOOKGestion
 $router->map('POST', '/borrow', 'BorrowController#borrow', 'borrow');
 $router->map('POST', '/return', 'BorrowController#returnManga', 'returnManga');

@@ -1,7 +1,7 @@
 <?php
 $title = 'Nihon | CONTACT';
 $meta_description = 'Contact us for any questions or suggestions';
-$scripts = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public\asset\js\base.js", "public\asset\js\home.js"];
+$scripts = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public\asset\js\base.js", "public\asset\js\home.js", "public\asset\js\darkmode.js"];
 ob_start();
 ?>
 

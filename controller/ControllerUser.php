@@ -17,6 +17,7 @@ class ControllerUser extends Controller {
                         // Set the user ID in the session
                         $_SESSION['id_user'] = $user->getId_user();
                         $_SESSION['name']    = $user->getUsername();
+                        $_SESSION['cart']    = $model->fetchCartData($user->getId_user());
                         header('Location: ' . $this->router->generate('home'));
                         exit;
                     } else {
@@ -98,6 +99,7 @@ class ControllerUser extends Controller {
             $now   = time();
             if ($timer['expires_at'] > $now) {
                 // Create a new user from the temporary user data
+                $model = new ModelUser();
                 $user = $model->getTempUser($email);
                 $model->createUser($user['username'], $user['email'], $user['password']);
                 $model->deleteTempUser($email);
@@ -184,9 +186,18 @@ class ControllerUser extends Controller {
         $data  = $model->profile($id);
         //var_dump($data);
         require_once './view/myProfile.php';
+
     }
 
     public function currentStorie() {
         require_once './view/currentStorie.php';
+    }
+
+    public function favoriteManga() {
+        require_once './view/favoriteManga.php';
+    }
+
+    public function pastChronicle() {
+        require_once './view/pastChronicle.php';
     }
 }

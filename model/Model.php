@@ -1,6 +1,5 @@
 <?php
 abstract class Model {
-
     private static $db;
     private $cost;
 
@@ -9,34 +8,32 @@ abstract class Model {
         if (self::$db == null) {
             self::setDb();
         }
-
         return self::$db;
     }
 
     // Set the database connection
     private static function setDb() {
         try {
-            //charset utf8mb4 enables the storage of emoji (may not use it)
+            // Initialize the PDO connection with UTF-8 encoding
             self::$db = new PDO("mysql:host=localhost;dbname=nihon;charset=utf8mb4", "root", "");
+            self::$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Enable exceptions for errors
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
     }
 
     // Function to get the optimal hashing cost for a password
-    public function setCost($timeTarget) {
-        // By default the hashing is 10
-        $cost = 10;
+    public function setCost($timeTarget = 0.05) {
+        $cost = 10; // Default cost
 
         do {
-            //So try hashing the password with a ++ value
             $cost++;
-            $start = microtime(true); // we start a timer (timestamp)
+            $start = microtime(true); // Start timer
             password_hash("test", PASSWORD_BCRYPT, ["cost" => $cost]);
-            $end = microtime(true);                  // we stop the timer (timestamp)
-        } while (($end - $start) < $timeTarget); // so while the timer is less than our timeTarget
+            $end = microtime(true);                  // End timer
+        } while (($end - $start) < $timeTarget); // Continue until the target time is reached
 
         $this->cost = $cost;
-        return $cost; // then we return the cost so we can hash accordingly
+        return $cost;
     }
 }

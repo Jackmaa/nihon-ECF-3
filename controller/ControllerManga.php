@@ -13,7 +13,6 @@ class ControllerManga extends Controller {
         foreach ($categories as $category) {
             $mangas[$category['category_name']] = $model->getMangaListByCat($category['category_name']);
         }
-
         require_once './view/home.php';
     }
 
@@ -77,6 +76,11 @@ class ControllerManga extends Controller {
         $model   = new ModelManga();
         $manga   = $model->getMangaById($id);
         $volumes = $model->getMangaVolumes($id);
+        $review = $model->mangaReview($id);
+        $revAdd = null;
+        if (isset($_POST['review']) && isset($_POST['id_manga'])) {
+            $revAdd = $model->addReview($_POST['review'], $_POST['id_manga'], $_SESSION['id_user']);
+        }
         require_once './view/manga.php';
     }
 
@@ -115,24 +119,54 @@ class ControllerManga extends Controller {
     public function likeManga() {
         header('Content-Type: application/json');
 
+        $data     = json_decode(file_get_contents("php://input"), true);
+        $manga_id = $data['manga_id'] ?? null;
+
         if (! isset($_SESSION['id_user'])) {
             echo json_encode(['error' => 'Not logged in']);
             exit;
         }
 
-        $data     = json_decode(file_get_contents("php://input"), true);
-        $manga_id = $data['manga_id'] ?? null;
+        $id_user = $_SESSION['id_user'];
 
         if (! $manga_id) {
             echo json_encode(['error' => 'Invalid request']);
             exit;
         }
-
-        // Instantiate Manga object with ID only
-        $manga      = new Manga(['id_manga' => $manga_id]);
-        $liked      = $manga->toggleLike($_SESSION['id_user']);
+        $manga = new Manga(['id_manga' => $manga_id]);
+        // Toggle like
+        $liked      = $manga->toggleLike($id_user);
         $like_count = $manga->getLikesCount();
+        echo json_encode([
+            'liked'      => $liked,
+            'like_count' => $like_count,
+        ]);
+    }
 
-        echo json_encode(['liked' => $liked, 'like_count' => $like_count]);
+    public function getUserLikedMangas() {
+        header('Content-Type: application/json');
+        $data     = json_decode(file_get_contents("php://input"), true);
+        $manga_id = $data['manga_id'] ?? null;
+        // Instantiate Manga object
+        $manga = new Manga(['id_manga' => $manga_id]);
+
+        if (! isset($_SESSION['id_user'])) {
+            echo json_encode(['liked_mangas' => []]);
+            exit;
+        }
+
+        $likedMangas = $manga->isLikedByUser($_SESSION['id_user']);
+
+        echo json_encode(['liked_mangas' => $likedMangas]);
+    }
+
+    public function readCategory() {
+        require_once './view/category.php';
+    }
+
+    public function addRev(){
+        $model = new ModelManga();
+        $model->addReview($_POST['review'], $_POST['id_manga'], $_SESSION['id_user']);
+        header('Location: /manga/' . $_POST['id_manga']);
     }
 }
