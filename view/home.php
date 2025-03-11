@@ -38,7 +38,7 @@
 			    <div class="category-slider">
 			        <div class="category-title">
 			            <h2><?php echo $category ?></h2>
-			            <a href="#">See all</a>
+			            <a href="<?php echo $this->router->generate("readCategory") ?>">See all</a>
 			        </div>
 			        <div class="slider">
 			            <div class="slider-wrapper">
