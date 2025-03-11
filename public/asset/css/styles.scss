@@ -84,132 +84,6 @@ h6 {
 ***********GENERAL STYLING************
 **********************************
 */
-
-body {
-  transition: background-color 0.3s, color 0.3s;
-}
-
-body.dark-mode {
-  background-color: #202024;
-  color: white;
-
-  .resaux-sociaux {
-    a {
-      svg {
-        path {
-        transition: all ease 0.3s;
-        fill: white;
-        }
-      }
-      &:hover {
-        path {
-          fill: #cc392b;
-        }
-      }
-    }
-  }
-
-  .hero_category_txt {
-    color:var(--fc-black);
-  }
-
-  input {
-    background-color: #ccc;
-  }
-
-  .general-profile {
-    h3 {
-      color: white;
-    }
-  }
-
-  .chevron-current {
-    svg {
-      path {
-        stroke: white;
-      }
-    }
-  }
-
-  .current-info {
-
-    div{
-          a{
-      color: white;
-    }
-    }
-
-    
-  }
-
-  .copyright{
-    a {
-      color: white;
-      transition: all ease 0.3s;
-
-      &:hover {
-        color: #cc392b;
-      }
-    }
-  }
-  .category-slider .category-title a {
-    margin: 8% 3%;
-    font-family: var(--ff-barlow);
-    color: var(--fc-white);
-    border: #ffffff 1px solid;
-    padding: 5px 10px;
-    transition: all ease 0.3s;
-    &:hover{
-      color: #cc392b;
-      border: #cc392b 1px solid;
-    }
-}
-
-.logo-footer img {
-  content: url(../img/logo_footer.svg);
-}
-.logo img {
-content: url(../img/logo_dark_theme.svg);
-}
-
-.logoo img {
-content: url(../img/logo_dark_theme.svg);
-width: 15vh;
-}
-
-.loup{
-  content: url(../img/search_sark_theme.svg);
-}
-
-.menu-desktop .profile .dropdown{
-  background-color: #38383f;
-
-  a{
-    width: 100%;
-    color: white;
-  }
-  li {
-
-    transition: all 0.3s ease;
-    &:hover {
-      background-color: #cc392b;
-    }
-  }
-}
-}
-
-.mode-icon {
-  transition: transform 0.3s ease-in-out;
-}
-
-body.dark-mode .mode-icon {
-  transform: rotate(180deg);
-}
-
-
-svg {
-  transition: transform 0.3s ease;
-}
 .p-all-2 {
   padding: 1vw;
 }
@@ -357,25 +231,18 @@ footer > p {
   margin-bottom: 1%;
   padding: 0 20px;
 }
-.resaux-sociaux {
+.flex {
   display: flex;
 
-  a {
+  a,
+  img {
     width: 100%;
-      svg {
-    width: 5vh;
-    height: 5vh;
-    margin-right: 1vw;
-    path {
-      transition: all ease 0.3s;
-    }
-}
+    margin-right: 1.5vw;
+    transition: all ease 0.3s;
+
     &:hover {
-      path {
-        fill: #cc392b;
-      }
+      background-color: #333;
     }
-  
   }
 }
 .flex1 {
@@ -532,7 +399,7 @@ footer > p {
 .carousel {
   position: relative;
   overflow: hidden;
-  height: 75vh;
+  height: 40vh;
 }
 
 .carousel-wrapper {
@@ -556,10 +423,6 @@ footer > p {
   & p {
     margin-bottom: var(--mb-5);
   }
-}
-
-button{
-  transition: all ease 0.3s;
 }
 
 .prev,
@@ -868,47 +731,53 @@ button{
 // ****OUR FAVORITE HOMEPAGE*****
 // *********************************
 
-.card-fav {
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  h2{
-    font-size: 1rem;
+#our-fav {
+  div:first-child {
+    display: flex;
+    padding: 10px;
+    font-family: var(--ff-bangers);
+    letter-spacing: var(--letter-spacing);
+
+    h2 {
+      margin: var(--m-all-5);
+    }
   }
   .bubble-fav {
-    height: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
-    font-family: var(--ff-barlow);
-    font-weight: 400;
-  figure {
-    width: fit-content;
-    margin: 0 auto;
-    img {
-      width: 20vh;
-    }
-  }
-  hr{
-    margin: 2% auto;
-    width: 80%;
-  }
-  p {
-    margin: auto;
-    width: 80%;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    padding: 10px 20px;
 
     a {
-      color: black;
-      transition: all ease 0.3s;
-      &:hover{
-        color: #202024;
+      color: #cc392b;
+
+      &:hover {
+        color: #cc1606;
       }
+    }
+    h3 {
+      font-family: var(--ff-bangers);
+      letter-spacing: var(--letter-spacing);
+      margin-bottom: var(--mb-5);
+    }
+
+    hr {
+      margin-bottom: var(--mb-5);
+      background-color: black;
+      height: 1px;
+    }
+    p {
+      font-family: var(--ff-barlow);
+    }
+
+    figure {
+      padding: 10px 20px;
+      width: 40%;
     }
   }
 }
-}
-
 
 /*
 **********************************
@@ -1494,116 +1363,6 @@ button:hover {
   transform: rotate(180deg);
   transition: all 0.5s;
 }
-
-/*
-**********************************
-*********CATEGORY MANGA************
-**********************************
-*/
-
-.hero_category {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/shonen-hero.svg) no-repeat center bottom/cover;
-  height: 50vh;
-
-  .hero_category_txt{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-  h1 {
-    padding: 20px 20px;
-
-    span{
-    background-color: rgba(255, 255, 255, 0.568);
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-family: var(--ff-bangers);
-    letter-spacing: var(--letter-spacing);
-    }
-
-  }
-
-  p{
-    font-size: 1.1rem;
-    padding: 10px 20px;
-    margin: 0 10vw;
-    background-color: rgba(255, 255, 255, 0.568);
-    border-radius: 10px;
-    span {
-      float: left;
-      padding: 10px 20px;
-      font-family: var(--ff-barlow);
-      font-weight: 500
-    }
-  }
-}
-
-}
-
-.manga_category {
-  display: flex; 
-  flex-wrap: wrap;
-  justify-content: center;
-
-  div {
-    width: 30vh;
-    position: relative;
-    display: inline-block;
-    margin: 2vh 2vh;
-
-    img {
-      display: block;
-      width: 100%;
-      height: auto;
-      transition: filter 0.3s ease-in-out;
-    }
-
-    figure {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      transition: opacity 0.3s ease-in-out;
-
-      svg {
-        cursor: pointer;
-        width: 8vh;
-        height: 8vh;
-        fill: white;
-        transition: all ease 0.3s;
-
-        &:hover,
-        &.liked {
-          fill: #cc392b;
-        }
-      }
-    }
-
-    &:hover {
-      img {
-        filter: brightness(0.5);
-      }
-
-      figure {
-        opacity: 1;
-      }
-    }
-  }
-}
-
-
-
-
-
-
 /*
 **********************************
 *********MEDIA QUERIES************
@@ -1708,38 +1467,20 @@ button:hover {
 }
 .headkakkoii {
 width: 100%;
+height: auto;
 }
 .kakkoii{
     width: 70vh; 
-
+    div.kakoiiflex {
+    flex-direction: row;
+    gap: 1rem;
+    }
   }
+
 
 }
 
 @media (min-width: 1024px) {
-  /*
-**********************************
-***********CAROUSSEL************
-**********************************
-*/
-  .carousel {
-    height: 60vh;
-
-    .custom-btn{
-      margin-top: 2%;
-      width: 20%;
-      height: 10%;
-    }
-    p{
-      margin: 1%;
-      font-size: 1.5rem;
-    }
-
-  .next, .prev {
-    width: 5vh;
-    height: 5vh;
-  }
-  }
   /*
 **********************************
 ***********LOGIN/REGISTER************
@@ -1931,9 +1672,6 @@ width: 100%;
 ***** SLIDER CATEGORY HOMEPAGE*******
 **********************************
 */
-.category-slider{
-  margin: 2% 3%;
-}
   .category-slider .slider {
     max-width: 1400px; /* Augmente la largeur du slider */
   }
