@@ -154,6 +154,11 @@ class CartController extends Controller {
         echo json_encode(["success" => "Borrow confirmed"]);
     }
 
+    public function clearCart() {
+        Cart::clearCart();
+        require_once './view/cart.php';
+    }
+
     // Renders the cart view
     public function cart() {
         require_once './view/cart.php';
