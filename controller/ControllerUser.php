@@ -100,7 +100,7 @@ class ControllerUser extends Controller {
             if ($timer['expires_at'] > $now) {
                 // Create a new user from the temporary user data
                 $model = new ModelUser();
-                $user = $model->getTempUser($email);
+                $user  = $model->getTempUser($email);
                 $model->createUser($user['username'], $user['email'], $user['password']);
                 $model->deleteTempUser($email);
                 header('Location: ' . $this->router->generate('login'));
@@ -143,7 +143,7 @@ class ControllerUser extends Controller {
             if (! empty($_POST["username"]) && ! empty($_POST["password"]) && ! empty($_POST["password_verify"])) {
                 if ($_POST["password"] === $_POST["password_verify"]) {
                     $password = password_hash($_POST["password"], PASSWORD_BCRYPT);
-
+                    $model->deleteTempUser($email);
                     $model->createUser($_POST["username"], $email, $password);
 
                     // Clean up session after user creation
