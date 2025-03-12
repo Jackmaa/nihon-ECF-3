@@ -154,14 +154,15 @@ class CartController extends Controller {
             $id_volume = $manga["id_volume"];
             if ($borrow->isAvailable($id_manga, $id_volume) > 0) { // Check if the item is available
                 $borrow->save($id_manga, $id_volume, $id_user);        // Save the borrow record
+                $borrow->removeFromReservationTable($id_user, $id_manga, $id_volume);
             }
         }
 
         // Clear the cart after confirming the borrow
         Cart::clearCart();
 
-        $message = "Your validation has been validated, check your emails for your QR code to retrieve your books.";
-        require_once './view/home.php';
+        $_SESSION["message"] = "Your validation has been validated, check your emails for your QR code to retrieve your books.";
+        header("location:" . $this->router->generate("home"));
     }
 
     public function clearCart() {
