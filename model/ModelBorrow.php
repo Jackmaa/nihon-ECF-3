@@ -3,11 +3,11 @@ class ModelBorrow extends Model {
     // Save a borrow record
     public function save($id_manga, $id_volume, $id_user) {
         $req = $this->getDb()->prepare(
-            "INSERT INTO borrow (id_manga, id_user, id_volume, borrow_date, return_date)
-             VALUES (:id_manga, :id_user, :id_volume, NOW(), DATE_ADD(NOW(), INTERVAL 14 DAY))"
+            "INSERT INTO borrow (id_user,id_manga, id_volume, borrow_date, return_date)
+             VALUES ( :id_user, :id_manga, :id_volume, CURDATE(), DATE_ADD(CURDATE(), INTERVAL 21 DAY))"
         );
-        $req->bindParam(':id_manga', $id_manga, PDO::PARAM_INT);
         $req->bindParam(':id_user', $id_user, PDO::PARAM_INT);
+        $req->bindParam(':id_manga', $id_manga, PDO::PARAM_INT);
         $req->bindParam(':id_volume', $id_volume, PDO::PARAM_INT);
         $req->execute();
     }
