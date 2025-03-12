@@ -1,10 +1,13 @@
 <?php
-$title            = 'Nihon | Home';
-$meta_description = 'The best place to find your next manga\'s addiction ';
-$scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public\asset\js\base.js", "public\asset\js\home.js", "public/asset/js/header.js", "public/asset/js/like.js", "public\asset\js\darkmode.js"];
-ob_start();
+    $title            = 'Nihon | Home';
+    $meta_description = 'The best place to find your next manga\'s addiction ';
+    $scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public\asset\js\base.js", "public\asset\js\home.js", "public/asset/js/header.js", "public/asset/js/like.js", "public\asset\js\darkmode.js"];
+    ob_start();
 ?>
 
+<?php if (isset($_SESSION["message"])): ?>
+    <span><?php echo $_SESSION["message"] ?></span>
+<?php endif; ?>
 <section class="hero-mobile">
     <div class="carousel">
         <div class="carousel-wrapper">
@@ -36,9 +39,21 @@ ob_start();
 
 <section>
     <?php foreach ($mangas as $category => $manga):
-        if (count($manga) == 0) {
-            continue;
-        }
+            if (count($manga) == 0) {
+                continue;
+            }
+        ?>
+			        <div class="category-slider">
+			            <div class="category-title">
+			                <h2><?php echo $category ?></h2>
+			                <a href="<?php echo $this->router->generate("readCategory") ?>">See all</a>
+			            </div>
+			            <div class="slider">
+			                <div class="slider-wrapper">
+			                    <?php foreach ($manga as $manga): ?>
+<?php
+        $isLiked    = isset($_SESSION['id_user']) && $manga->isLikedByUser($_SESSION['id_user']);
+        $likedClass = $isLiked ? 'liked' : '';
     ?>
         <div class="category-slider">
             <div class="category-title">
@@ -75,7 +90,7 @@ ob_start();
 </section>
 
     <?php
-    $content = ob_get_contents();
-    ob_end_clean();
+        $content = ob_get_contents();
+        ob_end_clean();
     require_once 'view\base_html.php';
     ?>

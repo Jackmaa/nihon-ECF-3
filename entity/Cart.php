@@ -27,13 +27,15 @@ class Cart {
 
         // Check if the item is already in the cart
         foreach ($_SESSION['cart'] as $item) {
-            if ($item[0] === $id_manga && $item[1] === $id_volume) {
+            if ($item["id_volume"] === $id_manga && $item["id_manga"] === $id_volume) {
                 throw new Exception("This manga volume is already in your cart.");
             }
         }
 
         // Add the item to the cart
-        $_SESSION['cart'][] = [$id_manga, $id_volume];
+        $_SESSION['cart'][] = [
+            "id_manga"  => $id_manga,
+            "id_volume" => $id_volume];
 
         // Return the updated cart
         return $_SESSION['cart'];
@@ -41,13 +43,19 @@ class Cart {
 
     // Removes an item from the cart
     public static function removeFromCart(array $id_res): array {
-        // Check if the cart exists in the session
-        if (isset($_SESSION['cart'])) {
-            // Filter out the item to be removed and reindex the array
-            $_SESSION['cart'] = array_values(array_filter($_SESSION['cart'], fn($item) => $item !== $id_res));
+        if (! isset($_SESSION['cart'])) {
+            return [];
         }
 
-        // Return the updated cart
+        // Ensure the array keys exist before using them
+        if (! isset($id_res['id_manga'], $id_res['id_volume'])) {
+            throw new InvalidArgumentException("Invalid input: Missing manga or volume ID.");
+        }
+
+        $_SESSION['cart'] = array_values(array_filter($_SESSION['cart'], function ($item) use ($id_res) {
+            return ! ($item['id_manga'] == $id_res['id_manga'] && $item['id_volume'] == $id_res['id_volume']);
+        }));
+
         return $_SESSION['cart'];
     }
 
