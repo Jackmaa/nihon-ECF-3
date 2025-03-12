@@ -4,7 +4,7 @@
     $scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public/asset/js/base.js", "public/asset/js/header.js", "public/asset/js/login.js", "public\asset\js\darkmode.js"];
     ob_start();
 ?>
-<main class="connexion">
+<main class="login">
     <section class="form-container">
         <h1> Connexion </h1>
         <form action="/login" method="post">
