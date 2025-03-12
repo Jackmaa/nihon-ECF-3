@@ -120,4 +120,15 @@ class ModelBorrow extends Model {
         // Return the extracted ENUM values as an array
         return $enumValues;
     }
+
+    public function updateStatus(int $id_borrow, string $status) {
+        $req = $this->getDb()->prepare("UPDATE borrows SET status = :status WHERE id_borrow = :id_borrow");
+        $req->bindParam(":id_borrow", $id_borrow, PDO::PARAM_INT);
+        $req->bindParam(":status", $status);
+        if ($req->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
