@@ -182,14 +182,6 @@ svg {
 ***********HEADER************
 **********************************
 */
-#user-pic-mobile {
-  -o-object-fit: cover;
-     object-fit: cover;
-  border-radius: 100px;
-  width: 8vh;
-  height: 8vh;
-}
-
 .menu-mobile {
   display: flex;
   justify-content: space-between;
