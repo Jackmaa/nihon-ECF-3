@@ -1942,7 +1942,7 @@ width: 100%;
 
     input {
       color: #333;
-      width: 22%;
+      width: 100%;
       height: 5vh;
       padding: 0 10px;
       font-size: 1.2rem;
@@ -1953,7 +1953,6 @@ width: 100%;
       &:focus {
         border: 1px solid #cc392b;
         border-radius: 50px;
-        width: 100%;
         outline: none;
       }
     }
