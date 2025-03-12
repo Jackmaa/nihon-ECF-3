@@ -5,9 +5,6 @@
     ob_start();
 ?>
 
-<?php if (isset($_SESSION["message"])): ?>
-    <span><?php echo $_SESSION["message"] ?></span>
-<?php endif; ?>
 <section class="hero-mobile">
     <div class="carousel">
         <div class="carousel-wrapper">
@@ -43,14 +40,14 @@
                 continue;
             }
         ?>
-			        <div class="category-slider">
-			            <div class="category-title">
-			                <h2><?php echo $category ?></h2>
-			                <a href="<?php echo $this->router->generate("readCategory") ?>">See all</a>
-			            </div>
-			            <div class="slider">
-			                <div class="slider-wrapper">
-			                    <?php foreach ($manga as $manga): ?>
+	        <div class="category-slider">
+	            <div class="category-title">
+	                <h2><?php echo $category ?></h2>
+	                <a href="<?php echo $this->router->generate("readCategory", ['category_name' => $category]) ?>">See all</a>
+	            </div>
+	            <div class="slider">
+	                <div class="slider-wrapper">
+	                    <?php foreach ($manga as $manga): ?>
 <?php
         $isLiked    = isset($_SESSION['id_user']) && $manga->isLikedByUser($_SESSION['id_user']);
         $likedClass = $isLiked ? 'liked' : '';
