@@ -37,11 +37,11 @@ class Borrow {
     }
 
     public function getBorrow_date() {
-        return $this->borrow_date;
+        return $this->borrow_date->format('d-m-Y');
     }
 
     public function getReturn_date() {
-        return $this->return_date;
+        return $this->return_date->format('d-m-Y');
     }
 //SETTERS
     public function setId_borrow(int $id_borrow) {
@@ -64,7 +64,7 @@ class Borrow {
         $this->borrow_date = new DateTime($borrow_date);
     }
 
-    public function setReturn_date($return_date) {
+    public function setReturn_date(string $return_date) {
         $this->return_date = new DateTime($return_date);
     }
 }

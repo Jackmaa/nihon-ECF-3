@@ -90,9 +90,13 @@ class ModelBorrow extends Model {
             'SELECT id_borrow, id_user, id_manga, id_volume, borrow_date, return_date
             FROM borrow
             LIMIT 3');
-        while ($data = $req->fetch(PDO::FETCH_ASSOC)) {
-            $borrows[] = new Borrow($data);
+        $req->execute();
+        $results = $req->fetchAll(PDO::FETCH_ASSOC);
+        $borrows = [];
+        foreach ($results as $borrow) {
+            $borrows[] = new Borrow($borrow);
         }
+
         return $borrows;
     }
 }
