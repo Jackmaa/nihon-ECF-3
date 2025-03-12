@@ -1852,6 +1852,25 @@ width: 100%;
     }
   }
 
+  #username-picture {
+    a:first-child{
+      font-family: var(--ff-barlow);
+      margin-right: 1vh;
+      color: var(--fc-black);
+      
+      transition: all 0.3s ease;
+      &:hover{
+        color: #cc392b;
+      }
+    }
+    a{
+      img{
+        width: 10vh;
+        height: 10vh;
+      }
+    }
+  }
+
   .menu-desktop {
     display: block;
 

@@ -1626,6 +1626,19 @@ button:hover {
   .menu-mobile.active {
     display: none;
   }
+  #username-picture a:first-child {
+    font-family: var(--ff-barlow);
+    margin-right: 1vh;
+    color: var(--fc-black);
+    transition: all 0.3s ease;
+  }
+  #username-picture a:first-child:hover {
+    color: #cc392b;
+  }
+  #username-picture a img {
+    width: 10vh;
+    height: 10vh;
+  }
   .menu-desktop {
     display: block;
   }
