@@ -43,7 +43,7 @@ ob_start();
         <div class="category-slider">
             <div class="category-title">
                 <h2><?php echo $category ?></h2>
-                <a href="<?php echo $this->router->generate("readCategory") ?>">See all</a>
+                <a href="<?php echo $this->router->generate("readCategory", ['category_name' => $category]) ?>">See all</a>
             </div>
             <div class="slider">
                 <div class="slider-wrapper">
