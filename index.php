@@ -37,7 +37,7 @@ $router->map('GET', "/favorite", 'ControllerUser#favoriteManga', 'favoriteManga'
 $router->map("GET", "/cart", "CartController#cart", "cart");
 $router->map('GET|POST', '/cart/add', 'CartController#add', 'cart_add');
 $router->map('GET|POST', '/cart/remove', 'CartController#remove', 'cart_remove');
-$router->map('POST', '/cart/confirm', 'CartController#confirmBorrow', 'cart_confirm');
+$router->map('POST', '/cart/validate', 'CartController#validateCart', 'cart_validate');
 $router->map('POST', '/cart/clear', 'CartController#clearCart', 'clearCart');
 $router->map('GET', '/cart/state', 'CartController#cartState');
 
@@ -65,7 +65,7 @@ $router->map("GET", "/kakkoii", "ControllerGeneral#kakkoii", "kakkoii");
 $router->map("GET", "/delete/[i:id]", "ControllerManga#delete", "delete");
 
 // CATEGORY
-$router->map("GET", "/category", "ControllerManga#readCategory", "readCategory");
+$router->map("GET", "/category/[a:category_name]", "ControllerManga#readCategory", "readCategory");
 
 /*******************************||  AUTHORS  ||**************************************/
 //AUTHOR

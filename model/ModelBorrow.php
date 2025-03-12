@@ -3,11 +3,11 @@ class ModelBorrow extends Model {
     // Save a borrow record
     public function save($id_manga, $id_volume, $id_user) {
         $req = $this->getDb()->prepare(
-            "INSERT INTO borrow (id_manga, id_user, id_volume, borrow_date, return_date)
-             VALUES (:id_manga, :id_user, :id_volume, NOW(), DATE_ADD(NOW(), INTERVAL 14 DAY))"
+            "INSERT INTO borrow (id_user,id_manga, id_volume, borrow_date, return_date)
+             VALUES ( :id_user, :id_manga, :id_volume, CURDATE(), DATE_ADD(CURDATE(), INTERVAL 21 DAY))"
         );
-        $req->bindParam(':id_manga', $id_manga, PDO::PARAM_INT);
         $req->bindParam(':id_user', $id_user, PDO::PARAM_INT);
+        $req->bindParam(':id_manga', $id_manga, PDO::PARAM_INT);
         $req->bindParam(':id_volume', $id_volume, PDO::PARAM_INT);
         $req->execute();
     }
@@ -83,5 +83,41 @@ class ModelBorrow extends Model {
              WHERE id_user = :id_user");
         $req->bindParam(":id_user", $id_user, PDO::PARAM_INT);
         $req->execute();
+    }
+
+    public function getBorrowedBooks() {
+        $req = $this->getDb()->prepare(
+            'SELECT id_borrow, id_user, id_manga, id_volume, borrow_date, return_date, `status`
+            FROM borrow
+            LIMIT 3');
+        $req->execute();
+        $results = $req->fetchAll(PDO::FETCH_ASSOC);
+        $borrows = [];
+        foreach ($results as $borrow) {
+            $borrows[] = new Borrow($borrow);
+        }
+
+        return $borrows;
+    }
+
+    public function getStatusEnum() {
+        // Execute a query to get the column information for the 'status' field in the 'borrow' table
+        $req = $this->getDb()->query("SHOW COLUMNS FROM borrow WHERE Field = 'status'");
+
+        // Fetch the result as an associative array
+        $row = $req->fetch(PDO::FETCH_ASSOC);
+
+        // Initialize an empty array to store the ENUM values
+        $enumValues = [];
+
+        // Check if the 'Type' field matches the pattern of an ENUM definition (e.g., enum('value1','value2',...))
+        if (preg_match("/^enum\((.*)\)$/", $row['Type'], $matches)) {
+            // Extract the ENUM values and store them as an array
+            // str_getcsv() properly handles the extraction by splitting values at commas and removing surrounding quotes
+            $enumValues = str_getcsv($matches[1], ",", "'");
+        }
+
+        // Return the extracted ENUM values as an array
+        return $enumValues;
     }
 }

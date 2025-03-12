@@ -187,7 +187,10 @@ svg {
   justify-content: space-between;
   margin: 0 2vh;
 }
-.menu-mobile .mobile-input-header input {
+.menu-mobile .test {
+  display: flex;
+}
+.menu-mobile .test input {
   color: #333;
   width: 7vh;
   height: 5vh;
@@ -198,7 +201,7 @@ svg {
   border-radius: 50px;
   transition: all ease 0.8s;
 }
-.menu-mobile .mobile-input-header input:focus {
+.menu-mobile .test input:focus {
   border: 1px solid #cc392b;
   border-radius: 50px;
   width: 20vh;
@@ -344,21 +347,21 @@ footer > p {
 
 /*
 **********************************
-***********LOGIN******************
+***********LOGIN/REGISTER*********
 **********************************
 */
-.connexion {
+.connexion, .login {
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
 }
-.connexion h1 {
+.connexion h1, .login h1 {
   font-family: var(--ff-bangers);
   letter-spacing: var(--letter-spacing);
   margin-bottom: 1.5rem;
 }
-.connexion input {
+.connexion input, .login input {
   display: flex;
   flex-direction: column;
   border-radius: 10px;
@@ -369,17 +372,17 @@ footer > p {
   height: 40px;
   margin-bottom: var(--mb-5);
 }
-.connexion input::-moz-placeholder {
+.connexion input::-moz-placeholder, .login input::-moz-placeholder {
   color: rgba(51, 51, 51, 0.4431372549);
   font-family: var(--ff-barlow);
   font-weight: 400;
 }
-.connexion input::placeholder {
+.connexion input::placeholder, .login input::placeholder {
   color: rgba(51, 51, 51, 0.4431372549);
   font-family: var(--ff-barlow);
   font-weight: 400;
 }
-.connexion .login {
+.connexion .loginregister, .login .loginregister {
   background-color: #cc392b;
   color: white;
   padding: 10px 60px;
@@ -389,10 +392,23 @@ footer > p {
   letter-spacing: var(--letter-spacing);
   transition: all ease 0.3s;
 }
-.connexion .login:hover {
+.connexion .loginregister:hover, .login .loginregister:hover {
   background-color: #cc1606;
 }
-.connexion button.togglePassword {
+.connexion .loginconnexion, .login .loginconnexion {
+  background-color: #cc392b;
+  color: white;
+  padding: 10px 60px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-family: var(--ff-bangers);
+  letter-spacing: var(--letter-spacing);
+  transition: all ease 0.3s;
+}
+.connexion .loginconnexion:hover, .login .loginconnexion:hover {
+  background-color: #cc1606;
+}
+.connexion button.togglePassword, .login button.togglePassword {
   padding: 5px 10px;
   display: flex;
   border: none;
@@ -452,9 +468,250 @@ footer > p {
 *************REGISTER*************
 **********************************
 */
-#img-subscrire {
+main.connexion, main.login {
+  /* Cloud Objects */
+  /* KEYFRAMES */
+  /* Responsive media query */
+}
+main.connexion #img-subscrire, main.login #img-subscrire {
   max-width: 90%;
   display: none;
+}
+main.connexion .form-container, main.login .form-container {
+  position: relative;
+  z-index: 9999;
+  opacity: 0;
+  /* Initialement invisible */
+  transform: translateY(50px);
+  /* Position initiale en dehors de l'écran */
+}
+main.connexion .form-container input,
+main.connexion .form-container button, main.login .form-container input,
+main.login .form-container button {
+  opacity: 0;
+  /* Initialement invisible */
+  transform: translateY(20px);
+  /* Position initiale en dehors de l'écran */
+}
+main.connexion #img-subscrire, main.login #img-subscrire {
+  opacity: 0;
+  /* Initialement invisible */
+  transform: translateY(50px);
+  /* Position initiale en dehors de l'écran */
+}
+main.connexion .cloud-content, main.login .cloud-content {
+  bottom: 0;
+  left: 0;
+  padding-top: 50px;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: -999;
+}
+main.connexion .cloud-block, main.login .cloud-block {
+  position: absolute;
+  opacity: 0.8;
+}
+main.connexion .cloud-1, main.login .cloud-1 {
+  top: 50px;
+}
+main.connexion .cloud-2, main.login .cloud-2 {
+  top: 40vh;
+}
+main.connexion .cloud-3, main.login .cloud-3 {
+  top: 20vh;
+}
+main.connexion .cloud-4, main.login .cloud-4 {
+  top: 40vh;
+}
+main.connexion .cloud-5, main.login .cloud-5 {
+  top: 65vh;
+}
+main.connexion .cloud-6, main.login .cloud-6 {
+  top: 35vh;
+}
+main.connexion .cloud-7, main.login .cloud-7 {
+  bottom: 30px;
+}
+main.connexion .cloud-1, main.login .cloud-1 {
+  animation: animate-1 32s linear infinite;
+  -webkit-animation: animate-1 32s linear infinite;
+  transform: scale(0.65);
+  -webkit-transform: scale(0.65);
+}
+main.connexion .cloud-2, main.login .cloud-2 {
+  animation: animate-2 37s linear infinite;
+  -webkit-animation: animate-2 37s linear infinite;
+  transform: scale(0.45);
+  -webkit-transform: scale(0.45);
+}
+main.connexion .cloud-3, main.login .cloud-3 {
+  animation: animate-3 45s linear infinite;
+  -webkit-animation: animate-3 45s linear infinite;
+  transform: scale(0.5);
+  -webkit-transform: scale(0.5);
+}
+main.connexion .cloud-4, main.login .cloud-4 {
+  animation: animate-4 50s linear infinite;
+  -webkit-animation: animate-4 50s linear infinite;
+  transform: scale(0.4);
+  -webkit-transform: scale(0.4);
+}
+main.connexion .cloud-5, main.login .cloud-5 {
+  animation: animate-5 55s linear infinite;
+  -webkit-animation: animate-5 55s linear infinite;
+  transform: scale(0.55);
+  -webkit-transform: scale(0.55);
+}
+main.connexion .cloud-6, main.login .cloud-6 {
+  animation: animate-6 60s linear infinite;
+  -webkit-animation: animate-6 60s linear infinite;
+  transform: scale(0.45);
+  -webkit-transform: scale(0.45);
+}
+main.connexion .cloud-7, main.login .cloud-7 {
+  animation: animate-7 65s linear infinite;
+  -webkit-animation: animate-7 65s linear infinite;
+  transform: scale(0.5);
+  -webkit-transform: scale(0.5);
+}
+main.connexion .cloud, main.login .cloud {
+  width: 350px;
+  height: 120px;
+  border-radius: 100px;
+  box-shadow: 0 16px 16px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 16px 16px rgba(0, 0, 0, 0.1);
+  position: relative;
+  background: #fff;
+}
+main.connexion .cloud:after,
+main.connexion .cloud:before, main.login .cloud:after,
+main.login .cloud:before {
+  background: #fff;
+  content: "";
+  position: absolute;
+  z-index: -1;
+}
+main.connexion .cloud:after, main.login .cloud:after {
+  width: 100px;
+  height: 100px;
+  left: 50px;
+  top: -50px;
+  border-radius: 100px;
+}
+main.connexion .cloud:before, main.login .cloud:before {
+  width: 180px;
+  height: 180px;
+  right: 50px;
+  top: -90px;
+  border-radius: 200px;
+}
+@keyframes animate-1 {
+  0% {
+    left: 90%;
+  }
+  10% {
+    left: 110%;
+  }
+  10.001% {
+    left: -10%;
+  }
+  100% {
+    left: 90%;
+  }
+}
+@keyframes animate-2 {
+  0% {
+    left: 75%;
+  }
+  25% {
+    left: 110%;
+  }
+  25.001% {
+    left: -10%;
+  }
+  100% {
+    left: 75%;
+  }
+}
+@keyframes animate-3 {
+  0% {
+    left: 60%;
+  }
+  40% {
+    left: 110%;
+  }
+  40.001% {
+    left: -10%;
+  }
+  100% {
+    left: 60%;
+  }
+}
+@keyframes animate-4 {
+  0% {
+    left: 45%;
+  }
+  55% {
+    left: 110%;
+  }
+  55.001% {
+    left: -10%;
+  }
+  100% {
+    left: 45%;
+  }
+}
+@keyframes animate-5 {
+  0% {
+    left: 30%;
+  }
+  70% {
+    left: 110%;
+  }
+  70.001% {
+    left: -10%;
+  }
+  100% {
+    left: 30%;
+  }
+}
+@keyframes animate-6 {
+  0% {
+    left: 10%;
+  }
+  90% {
+    left: 110%;
+  }
+  90.001% {
+    left: -10%;
+  }
+  100% {
+    left: 10%;
+  }
+}
+@keyframes animate-7 {
+  0% {
+    left: -10%;
+  }
+  99.99% {
+    left: 110%;
+  }
+  100% {
+    left: -10%;
+  }
+}
+@media screen and (max-width: 767px) {
+  main.connexion .cloud, main.login .cloud {
+    width: 300px;
+    height: 70px;
+  }
+  main.connexion .cloud:before, main.login .cloud:before {
+    width: 120px;
+    height: 120px;
+    top: -80px;
+    right: 50px;
+  }
 }
 
 /*
@@ -1431,7 +1688,8 @@ button:hover {
 ***********SEARCH RESULT************
 **********************************
 */
-#search-bar-desktop, #search-bar-mobile {
+#search-bar-desktop,
+#search-bar-mobile {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1441,27 +1699,32 @@ button:hover {
   display: flex;
 }
 
-#search-results-mobile, #search-results-desktop {
+#search-results-mobile,
+#search-results-desktop {
   width: 110%;
   background-color: #fab1d4;
   justify-content: center;
   margin-top: 1vh;
   border-radius: 5px;
 }
-#search-results-mobile ul, #search-results-desktop ul {
+#search-results-mobile ul,
+#search-results-desktop ul {
   padding: 5px 10px;
 }
-#search-results-mobile ul li a:first-child, #search-results-desktop ul li a:first-child {
+#search-results-mobile ul li a:first-child,
+#search-results-desktop ul li a:first-child {
   font-weight: bold;
   margin-right: 1vh;
 }
-#search-results-mobile ul li a, #search-results-desktop ul li a {
+#search-results-mobile ul li a,
+#search-results-desktop ul li a {
   color: #0e0e0e;
   margin: 1vh 0;
   font-family: var(--ff-barlow);
   transition: all 0.3s ease;
 }
-#search-results-mobile ul li a:hover, #search-results-desktop ul li a:hover {
+#search-results-mobile ul li a:hover,
+#search-results-desktop ul li a:hover {
   color: #cc392b;
 }
 
@@ -1583,7 +1846,8 @@ button:hover {
     margin: 1%;
     font-size: 1.5rem;
   }
-  .carousel .next, .carousel .prev {
+  .carousel .next,
+  .carousel .prev {
     width: 5vh;
     height: 5vh;
   }
@@ -1765,7 +2029,8 @@ button:hover {
     margin: 2% 3%;
   }
   .category-slider .slider {
-    max-width: 1400px; /* Augmente la largeur du slider */
+    max-width: 1400px;
+    /* Augmente la largeur du slider */
   }
   .slider-wrapper {
     max-width: -moz-max-content;
@@ -1792,12 +2057,12 @@ button:hover {
   .headkakkoii {
     width: 100%;
   }
-  .kakkoii {
+  main.kakkoii {
     width: 70vh;
   }
-  .kakkoii .flex {
+  main.kakkoii div.kakkoiiflex {
     display: flex;
-    flex-direction: row;
+    gap: 2vh;
   }
   /*
   **********************************
@@ -2050,7 +2315,8 @@ button:hover {
   background-color: #cc1606;
 }
 .dashboard .popup {
-  display: none; /* Masquer par défaut */
+  display: none;
+  /* Masquer par défaut */
   position: fixed;
   left: 50%;
   top: 50%;
@@ -2062,7 +2328,8 @@ button:hover {
   z-index: 1000;
 }
 .dashboard .overlay {
-  display: none; /* Masquer par défaut */
+  display: none;
+  /* Masquer par défaut */
   position: fixed;
   top: 0;
   left: 0;
@@ -2073,7 +2340,8 @@ button:hover {
 }
 .dashboard .popup.active,
 .dashboard .overlay.active {
-  display: block; /* Afficher lorsque actif */
+  display: block;
+  /* Afficher lorsque actif */
 }
 .dashboard .kakkoii center {
   max-width: 600px; /* Réduire la largeur maximale */
@@ -2082,11 +2350,6 @@ button:hover {
   background-color: #cc1606;
 }
 
-/*
-**********************************
-***********kKAKOII MODE************
-**********************************
-*/
 .headkakkoii {
   height: 30vh;
   background: url(../img/kakoii.svg) no-repeat center center/cover;
@@ -2143,6 +2406,71 @@ button:hover {
 }
 .kakkoii .center button:hover {
   background-color: #cc1606;
+}
+
+/*
+**********************************
+***********404********************
+**********************************
+*/
+.backgroundimage {
+  position: relative;
+  background: linear-gradient(90deg, rgb(255, 0, 0) 0%, rgb(138, 20, 20) 50%, rgb(153, 0, 0) 100%);
+  height: 100vh;
+  background-size: cover; /* Assurez-vous que l'image couvre tout l'arrière-plan */
+  background-position: 0% 0%; /* Position initiale de l'arrière-plan */
+  overflow: hidden; /* Empêcher le défilement */
+}
+.backgroundimage .content {
+  text-align: center;
+  position: relative; /* Positionner le texte par rapport à l'élément parent */
+  z-index: 2; /* Assurez-vous que le contenu est au-dessus des shurikens */
+  top: 50%; /* Centrer verticalement */
+  left: 50%; /* Centrer horizontalement */
+  transform: translate(-50%, -50%); /* Ajuster pour centrer parfaitement */
+  color: white; /* Couleur du texte */
+  font-family: var(--ff-barlow); /* Police de caractères */
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent pour améliorer la lisibilité */
+  border-radius: 10px;
+  max-width: 600px; /* Limiter la largeur maximale */
+  width: auto; /* Utiliser la largeur automatique */
+  margin: 0 auto; /* Centrer horizontalement */
+  display: inline-block; /* Réduire la largeur au contenu */
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px); /* Ajouter un flou au fond */
+}
+.backgroundimage .shuriken {
+  height: 10vw; /* Ajustez la hauteur selon vos besoins */
+  width: 10vw; /* Ajustez la largeur selon vos besoins */
+  position: absolute; /* Pour permettre le positionnement */
+  z-index: 1; /* Positionner les shurikens derrière le contenu */
+}
+.backgroundimage .shuriken.top {
+  top: 10px; /* Positionner en haut */
+  left: 50%;
+  transform: translateX(-50%);
+}
+.backgroundimage .shuriken.bottom {
+  bottom: 10px; /* Positionner en bas */
+  left: 50%;
+  transform: translateX(-50%);
+}
+.backgroundimage .button {
+  color: rgb(230, 10, 10);
+  font-weight: 400;
+}
+.backgroundimage h1 {
+  font-family: var(--ff-bangers);
+  letter-spacing: var(--letter-spacing);
+  font-size: 2rem;
+  color: #f0f0f0;
+  text-shadow: -1px -1px 10px red, 1px -1px 10px red, -1px 1px 10px red, 1px 1px 10px red;
+}
+.backgroundimage p {
+  font-family: var(--ff-barlow);
+  font-size: 1rem;
+  color: #ffffff;
 }
 
 /*
