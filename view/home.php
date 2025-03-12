@@ -28,12 +28,6 @@ ob_start();
                 
             </div>
             <?php endforeach; ?>
-            <figure class="carousel-item"><img src="public\asset\img\ppkpojoi.png" alt="">
-                <figure><img src="public\asset\img\heart_black_stroke.svg" alt="">300</figure>
-            </figure>
-            <figure class="carousel-item"><img src="public\asset\img\ouou.png" alt="">
-                <figure><img src="public\asset\img\heart_black_stroke.svg" alt="">300</figure>
-            </figure>
         </div>
         <button class="prev">❮</button>
         <button class="next">❯</button>
