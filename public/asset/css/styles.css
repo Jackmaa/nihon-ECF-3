@@ -185,13 +185,11 @@ svg {
 .menu-mobile {
   display: flex;
   justify-content: space-between;
+  margin: 0 2vh;
 }
-.menu-mobile .test {
-  display: flex;
-}
-.menu-mobile .test input {
+.menu-mobile .mobile-input-header input {
   color: #333;
-  width: 22%;
+  width: 7vh;
   height: 5vh;
   padding: 0 10px;
   font-size: 1.2rem;
@@ -200,10 +198,10 @@ svg {
   border-radius: 50px;
   transition: all ease 0.8s;
 }
-.menu-mobile .test input:focus {
+.menu-mobile .mobile-input-header input:focus {
   border: 1px solid #cc392b;
   border-radius: 50px;
-  width: 80%;
+  width: 20vh;
   outline: none;
 }
 
@@ -1416,7 +1414,7 @@ div.mangaPage svg.liked {
 }
 .head-profile div:first-child figure .change-picture {
   color: var(--fc-black);
-  background-color: #F2EBE8;
+  background-color: #f2ebe8;
 }
 .head-profile div:first-child figure .change-picture:hover {
   background-color: #fcc8e1;
@@ -1766,6 +1764,51 @@ button:hover {
 
 /*
 **********************************
+***********SEARCH RESULT************
+**********************************
+*/
+#search-bar-desktop,
+#search-bar-mobile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.loup-search {
+  display: flex;
+}
+
+#search-results-mobile,
+#search-results-desktop {
+  width: 110%;
+  background-color: #fab1d4;
+  justify-content: center;
+  margin-top: 1vh;
+  border-radius: 5px;
+}
+#search-results-mobile ul,
+#search-results-desktop ul {
+  padding: 5px 10px;
+}
+#search-results-mobile ul li a:first-child,
+#search-results-desktop ul li a:first-child {
+  font-weight: bold;
+  margin-right: 1vh;
+}
+#search-results-mobile ul li a,
+#search-results-desktop ul li a {
+  color: #0e0e0e;
+  margin: 1vh 0;
+  font-family: var(--ff-barlow);
+  transition: all 0.3s ease;
+}
+#search-results-mobile ul li a:hover,
+#search-results-desktop ul li a:hover {
+  color: #cc392b;
+}
+
+/*
+**********************************
 *********MEDIA QUERIES************
 **********************************
 */
@@ -1936,6 +1979,19 @@ button:hover {
   .menu-mobile.active {
     display: none;
   }
+  #username-picture a:first-child {
+    font-family: var(--ff-barlow);
+    margin-right: 1vh;
+    color: var(--fc-black);
+    transition: all 0.3s ease;
+  }
+  #username-picture a:first-child:hover {
+    color: #cc392b;
+  }
+  #username-picture a img {
+    width: 10vh;
+    height: 10vh;
+  }
   .menu-desktop {
     display: block;
   }
@@ -1997,7 +2053,7 @@ button:hover {
   }
   .menu-desktop input {
     color: #333;
-    width: 22%;
+    width: 100%;
     height: 5vh;
     padding: 0 10px;
     font-size: 1.2rem;
@@ -2009,7 +2065,6 @@ button:hover {
   .menu-desktop input:focus {
     border: 1px solid #cc392b;
     border-radius: 50px;
-    width: 100%;
     outline: none;
   }
   /*
@@ -2438,6 +2493,71 @@ button:hover {
 }
 .kakkoii .center button:hover {
   background-color: #cc1606;
+}
+
+/*
+**********************************
+***********404********************
+**********************************
+*/
+.backgroundimage {
+  position: relative;
+  background: linear-gradient(90deg, rgb(255, 0, 0) 0%, rgb(138, 20, 20) 50%, rgb(153, 0, 0) 100%);
+  height: 100vh;
+  background-size: cover; /* Assurez-vous que l'image couvre tout l'arrière-plan */
+  background-position: 0% 0%; /* Position initiale de l'arrière-plan */
+  overflow: hidden; /* Empêcher le défilement */
+}
+.backgroundimage .content {
+  text-align: center;
+  position: relative; /* Positionner le texte par rapport à l'élément parent */
+  z-index: 2; /* Assurez-vous que le contenu est au-dessus des shurikens */
+  top: 50%; /* Centrer verticalement */
+  left: 50%; /* Centrer horizontalement */
+  transform: translate(-50%, -50%); /* Ajuster pour centrer parfaitement */
+  color: white; /* Couleur du texte */
+  font-family: var(--ff-barlow); /* Police de caractères */
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent pour améliorer la lisibilité */
+  border-radius: 10px;
+  max-width: 600px; /* Limiter la largeur maximale */
+  width: auto; /* Utiliser la largeur automatique */
+  margin: 0 auto; /* Centrer horizontalement */
+  display: inline-block; /* Réduire la largeur au contenu */
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px); /* Ajouter un flou au fond */
+}
+.backgroundimage .shuriken {
+  height: 10vw; /* Ajustez la hauteur selon vos besoins */
+  width: 10vw; /* Ajustez la largeur selon vos besoins */
+  position: absolute; /* Pour permettre le positionnement */
+  z-index: 1; /* Positionner les shurikens derrière le contenu */
+}
+.backgroundimage .shuriken.top {
+  top: 10px; /* Positionner en haut */
+  left: 50%;
+  transform: translateX(-50%);
+}
+.backgroundimage .shuriken.bottom {
+  bottom: 10px; /* Positionner en bas */
+  left: 50%;
+  transform: translateX(-50%);
+}
+.backgroundimage .button {
+  color: rgb(230, 10, 10);
+  font-weight: 400;
+}
+.backgroundimage h1 {
+  font-family: var(--ff-bangers);
+  letter-spacing: var(--letter-spacing);
+  font-size: 2rem;
+  color: #f0f0f0;
+  text-shadow: -1px -1px 10px red, 1px -1px 10px red, -1px 1px 10px red, 1px 1px 10px red;
+}
+.backgroundimage p {
+  font-family: var(--ff-barlow);
+  font-size: 1rem;
+  color: #ffffff;
 }
 
 /*

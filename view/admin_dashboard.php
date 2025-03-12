@@ -13,27 +13,23 @@
 <table>
     <thead>
         <tr>
-            <th>User</th>
-            <th>Title</th>
-            <th>Validation</th>
+            <th>id_user</th>
+            <th>id_manga</th>
+            <th>id_volume</th>
+            <th>date_return</th>
+            <th>validation</th>
         </tr>
     </thead>
     <tbody>
+    <?php foreach ($borrows as $borrow): ?>
         <tr>
-            <td>Norauto</td>
-            <td>Demon Slayer</td>
-            <td><input type="checkbox" id="check1"></td>
-        </tr>
-        <tr>
-            <td>Norauto</td>
-            <td>Demon Slayer</td>
-            <td><input type="checkbox" id="check2"></td>
-        </tr>
-        <tr>
-            <td>Norauto</td>
-            <td>Demon Slayer</td>
+            <td><?php echo $borrow->getId_user(); ?></td>
+            <td><?php echo $borrow->getId_manga(); ?></td>
+            <td><?php echo $borrow->getId_volume(); ?></td>
+            <td><?php echo $borrow->getReturn_date(); ?></td>
             <td><input type="checkbox" id="check3"></td>
         </tr>
+    <?php endforeach; ?>
     </tbody>
 </table>
 
