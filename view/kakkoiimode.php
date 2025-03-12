@@ -29,7 +29,7 @@ ob_start();
                 <p>Personalized notifications for new arrivals !</p>
             </div>
         </div>
-        <div class="kakoiiflex">
+        <div class="kakkoiiflex">
             <div class="center">
                 <h2>KAKKOII MONTHLY</h2>
                 <p>9.99$</p>
