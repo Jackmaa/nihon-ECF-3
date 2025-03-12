@@ -41,8 +41,9 @@ class ControllerAdmin extends Controller {
             header('Location: ' . $this->router->generate('admin_login'));
             exit;
         }
-        $model   = new ModelBorrow();
-        $borrows = $model->getBorrowedBooks();
+        $model      = new ModelBorrow();
+        $borrows    = $model->getBorrowedBooks();
+        $enumValues = $model->getStatusEnum();
         require_once './view/admin_dashboard.php';
     }
 

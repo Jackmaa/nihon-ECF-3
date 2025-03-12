@@ -99,4 +99,25 @@ class ModelBorrow extends Model {
 
         return $borrows;
     }
+
+    public function getStatusEnum() {
+        // Execute a query to get the column information for the 'status' field in the 'borrow' table
+        $req = $this->getDb()->query("SHOW COLUMNS FROM borrow WHERE Field = 'status'");
+
+        // Fetch the result as an associative array
+        $row = $req->fetch(PDO::FETCH_ASSOC);
+
+        // Initialize an empty array to store the ENUM values
+        $enumValues = [];
+
+        // Check if the 'Type' field matches the pattern of an ENUM definition (e.g., enum('value1','value2',...))
+        if (preg_match("/^enum\((.*)\)$/", $row['Type'], $matches)) {
+            // Extract the ENUM values and store them as an array
+            // str_getcsv() properly handles the extraction by splitting values at commas and removing surrounding quotes
+            $enumValues = str_getcsv($matches[1], ",", "'");
+        }
+
+        // Return the extracted ENUM values as an array
+        return $enumValues;
+    }
 }
