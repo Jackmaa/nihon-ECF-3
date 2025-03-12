@@ -1,7 +1,7 @@
 <?php
 $title = 'Nihon | Kakoii Mode';
 $meta_description = 'Activate Kakoii Mode';
-$scripts = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public/asset/js/base.js", "public/asset/js/header.js", "public/asset/js/kakoii.js"];
+$scripts = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public/asset/js/base.js", "public/asset/js/header.js", "public/asset/js/kakoii.js", "public\asset\js\darkmode.js"];
 ob_start();
 ?>
 <section class="formkakoii">
@@ -29,7 +29,7 @@ ob_start();
                 <p>Personalized notifications for new arrivals !</p>
             </div>
         </div>
-        <div class="kakoiiflex">
+        <div class="kakkoiiflex">
             <div class="center">
                 <h2>KAKKOII MONTHLY</h2>
                 <p>9.99$</p>
