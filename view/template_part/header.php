@@ -14,7 +14,7 @@
     <header class="p-all-2">
         <section class="menu-mobile">
             <figure class="menu-burger menuToggle">
-                <img src="<?php echo BASE_URL ?>public/asset/img/menu_bar.svg" alt="bar menu">
+            <img id="user-pic-mobile" src="<?php echo BASE_URL ?>public\asset\img\profile_picture.webp" alt="profile picture">
             </figure>
             <figure class="logoo"><a href="<?php echo BASE_URL ?>"><img src="<?php echo BASE_URL ?>public\asset\img\logo.svg" alt="Logo"></a></figure>
             <figure id="#search-bar-mobile" class="mobile-input-header">

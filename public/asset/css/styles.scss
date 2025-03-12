@@ -224,6 +224,13 @@ svg {
 ***********HEADER************
 **********************************
 */
+
+#user-pic-mobile {
+  object-fit: cover;
+  border-radius: 100px;
+  width: 8vh;
+  height: 8vh;
+}
 .menu-mobile {
   display: flex;
   justify-content: space-between;
