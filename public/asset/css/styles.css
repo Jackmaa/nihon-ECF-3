@@ -185,13 +185,11 @@ svg {
 .menu-mobile {
   display: flex;
   justify-content: space-between;
+  margin: 0 2vh;
 }
-.menu-mobile .test {
-  display: flex;
-}
-.menu-mobile .test input {
+.menu-mobile .mobile-input-header input {
   color: #333;
-  width: 22%;
+  width: 7vh;
   height: 5vh;
   padding: 0 10px;
   font-size: 1.2rem;
@@ -200,10 +198,10 @@ svg {
   border-radius: 50px;
   transition: all ease 0.8s;
 }
-.menu-mobile .test input:focus {
+.menu-mobile .mobile-input-header input:focus {
   border: 1px solid #cc392b;
   border-radius: 50px;
-  width: 80%;
+  width: 20vh;
   outline: none;
 }
 
@@ -1420,6 +1418,45 @@ button:hover {
 
 /*
 **********************************
+***********SEARCH RESULT************
+**********************************
+*/
+#search-bar-desktop, #search-bar-mobile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.loup-search {
+  display: flex;
+}
+
+#search-results-mobile, #search-results-desktop {
+  width: 110%;
+  background-color: #fab1d4;
+  justify-content: center;
+  margin-top: 1vh;
+  border-radius: 5px;
+}
+#search-results-mobile ul, #search-results-desktop ul {
+  padding: 5px 10px;
+}
+#search-results-mobile ul li a:first-child, #search-results-desktop ul li a:first-child {
+  font-weight: bold;
+  margin-right: 1vh;
+}
+#search-results-mobile ul li a, #search-results-desktop ul li a {
+  color: #0e0e0e;
+  margin: 1vh 0;
+  font-family: var(--ff-barlow);
+  transition: all 0.3s ease;
+}
+#search-results-mobile ul li a:hover, #search-results-desktop ul li a:hover {
+  color: #cc392b;
+}
+
+/*
+**********************************
 *********MEDIA QUERIES************
 **********************************
 */
@@ -1589,6 +1626,19 @@ button:hover {
   .menu-mobile.active {
     display: none;
   }
+  #username-picture a:first-child {
+    font-family: var(--ff-barlow);
+    margin-right: 1vh;
+    color: var(--fc-black);
+    transition: all 0.3s ease;
+  }
+  #username-picture a:first-child:hover {
+    color: #cc392b;
+  }
+  #username-picture a img {
+    width: 10vh;
+    height: 10vh;
+  }
   .menu-desktop {
     display: block;
   }
@@ -1650,7 +1700,7 @@ button:hover {
   }
   .menu-desktop input {
     color: #333;
-    width: 22%;
+    width: 100%;
     height: 5vh;
     padding: 0 10px;
     font-size: 1.2rem;
@@ -1662,7 +1712,6 @@ button:hover {
   .menu-desktop input:focus {
     border: 1px solid #cc392b;
     border-radius: 50px;
-    width: 100%;
     outline: none;
   }
   /*
