@@ -22,7 +22,7 @@ body {
   box-sizing: border-box;
   scroll-behavior: smooth;
   min-height: 100vh;
-  background-color: var(--primacy-clr-light);
+  background-color: #fddfdf;
 }
 
 img {
@@ -813,7 +813,9 @@ button{
           filter: brightness(50%);
         }
         img {
-          width: 100%;
+          width: 30vh;
+          height: 45vh;
+          object-fit: cover;
           transition: all 0.5s ease;
         }
       }

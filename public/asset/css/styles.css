@@ -21,7 +21,7 @@ body {
   box-sizing: border-box;
   scroll-behavior: smooth;
   min-height: 100vh;
-  background-color: var(--primacy-clr-light);
+  background-color: #fddfdf;
 }
 
 img {
@@ -709,7 +709,10 @@ button {
   filter: brightness(50%);
 }
 .category-slider .slider .manga a img {
-  width: 100%;
+  width: 30vh;
+  height: 45vh;
+  -o-object-fit: cover;
+     object-fit: cover;
   transition: all 0.5s ease;
 }
 .category-slider .slider .manga figure {
