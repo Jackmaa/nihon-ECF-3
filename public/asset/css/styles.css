@@ -1733,12 +1733,12 @@ button:hover {
   .headkakkoii {
     width: 100%;
   }
-  .kakkoii {
+  main.kakkoii {
     width: 70vh;
   }
-  .kakkoii .flex {
+  main.kakkoii div.kakkoiiflex {
     display: flex;
-    flex-direction: row;
+    gap: 2vh;
   }
   /*
   **********************************

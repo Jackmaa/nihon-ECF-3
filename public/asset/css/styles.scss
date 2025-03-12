@@ -1974,12 +1974,12 @@ width: 100%;
 .headkakkoii {
 width: 100%;
 }
-.kakkoii{
+main.kakkoii{
     width: 70vh; 
 
-    .flex{
+    div.kakkoiiflex{
       display: flex;
-      flex-direction: row;
+      gap: 2vh;
     }
 
   }
