@@ -84,4 +84,19 @@ class ModelBorrow extends Model {
         $req->bindParam(":id_user", $id_user, PDO::PARAM_INT);
         $req->execute();
     }
+
+    public function getBorrowedBooks() {
+        $req = $this->getDb()->prepare(
+            'SELECT id_borrow, id_user, id_manga, id_volume, borrow_date, return_date
+            FROM borrow
+            LIMIT 3');
+        $req->execute();
+        $results = $req->fetchAll(PDO::FETCH_ASSOC);
+        $borrows = [];
+        foreach ($results as $borrow) {
+            $borrows[] = new Borrow($borrow);
+        }
+
+        return $borrows;
+    }
 }
