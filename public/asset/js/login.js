@@ -30,4 +30,6 @@ document.addEventListener('DOMContentLoaded', function() {
             eyeIcon.src = 'public/asset/img/oeilferme.svg'; // Remet l'image pour oeil fermé
         }
     });
+    
 });
+
