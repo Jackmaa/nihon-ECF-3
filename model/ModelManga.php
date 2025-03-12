@@ -172,6 +172,30 @@ class ModelManga extends Model {
         $req->execute();
     }
 
+    // public function getCategoryDatas($id){
+    //     $req = $this->getDb()->prepare("SELECT * FROM category WHERE id_category = :id_category");
+    //     $req->execute(['id_category' => $id]);
+    //     $category = $req->fetch();
+    //     return $category;
+    // }
+
+    public function getCategoryDatas($name){
+        $req = $this->getDb()->prepare("SELECT `id_category`, `category_name`, `description` FROM categories WHERE category_name = :category_name");
+        $req->execute(['category_name' => $name]);
+        $category = $req->fetch(PDO::FETCH_ASSOC);
+        return new Category($category);
+    }
+
+    public function getCategoryMangas($id) {
+        $req = $this->getDb()->prepare("SELECT `manga`.* FROM manga INNER JOIN manga_category ON `manga`.`id_manga` = `manga_category`.`manga_id` INNER JOIN `categories` ON `manga_category`.`category_id` = `categories`.`id_category` WHERE `manga_category`.`category_id` = :id_category");
+        $req->execute([':id_category' => $id]);
+        $mangas = [];
+        while ($result = $req->fetch(PDO::FETCH_ASSOC)) {
+            $mangas[] = new Manga($result);
+        }
+        return $mangas;
+    }
+
     public function createAuthor($authorName) {
         $req = $this->getDb()->prepare("INSERT INTO author (name) VALUES (:name)");
         $req->bindParam(':name', $authorName);
