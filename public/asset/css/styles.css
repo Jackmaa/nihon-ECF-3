@@ -346,7 +346,7 @@ footer > p {
 
 /*
 **********************************
-***********LOGIN******************
+***********LOGIN/REGISTER*********
 **********************************
 */
 .connexion {
@@ -564,17 +564,23 @@ footer > p {
   display: none;
 }
 .connexion .form-container {
-  opacity: 0; /* Initialement invisible */
-  transform: translateY(50px); /* Position initiale en dehors de l'écran */
+  opacity: 0;
+  /* Initialement invisible */
+  transform: translateY(50px);
+  /* Position initiale en dehors de l'écran */
 }
 .connexion .form-container input,
 .connexion .form-container button {
-  opacity: 0; /* Initialement invisible */
-  transform: translateY(20px); /* Position initiale en dehors de l'écran */
+  opacity: 0;
+  /* Initialement invisible */
+  transform: translateY(20px);
+  /* Position initiale en dehors de l'écran */
 }
 .connexion #img-subscrire {
-  opacity: 0; /* Initialement invisible */
-  transform: translateY(50px); /* Position initiale en dehors de l'écran */
+  opacity: 0;
+  /* Initialement invisible */
+  transform: translateY(50px);
+  /* Position initiale en dehors de l'écran */
 }
 .connexion .connexion {
   background: #ade5f5;
@@ -1876,7 +1882,8 @@ button:hover {
     margin: 1%;
     font-size: 1.5rem;
   }
-  .carousel .next, .carousel .prev {
+  .carousel .next,
+  .carousel .prev {
     width: 5vh;
     height: 5vh;
   }
@@ -2046,7 +2053,8 @@ button:hover {
     margin: 2% 3%;
   }
   .category-slider .slider {
-    max-width: 1400px; /* Augmente la largeur du slider */
+    max-width: 1400px;
+    /* Augmente la largeur du slider */
   }
   .slider-wrapper {
     max-width: -moz-max-content;
@@ -2331,7 +2339,8 @@ button:hover {
   background-color: #cc1606;
 }
 .dashboard .popup {
-  display: none; /* Masquer par défaut */
+  display: none;
+  /* Masquer par défaut */
   position: fixed;
   left: 50%;
   top: 50%;
@@ -2343,7 +2352,8 @@ button:hover {
   z-index: 1000;
 }
 .dashboard .overlay {
-  display: none; /* Masquer par défaut */
+  display: none;
+  /* Masquer par défaut */
   position: fixed;
   top: 0;
   left: 0;
@@ -2354,12 +2364,16 @@ button:hover {
 }
 .dashboard .popup.active,
 .dashboard .overlay.active {
-  display: block; /* Afficher lorsque actif */
+  display: block;
+  /* Afficher lorsque actif */
 }
 .dashboard .kakkoii center {
-  max-width: 600px; /* Réduire la largeur maximale */
-  padding: 20px; /* Ajuster le padding si nécessaire */
-  margin: 20px auto; /* Centrer les éléments */
+  max-width: 600px;
+  /* Réduire la largeur maximale */
+  padding: 20px;
+  /* Ajuster le padding si nécessaire */
+  margin: 20px auto;
+  /* Centrer les éléments */
   background-color: #cc1606;
 }
 
@@ -2432,7 +2446,8 @@ button:hover {
 **********************************
 */
 .kakkoii .popup {
-  display: none; /* Masquer par défaut */
+  display: none;
+  /* Masquer par défaut */
   position: fixed;
   left: 50%;
   top: 50%;
@@ -2445,7 +2460,8 @@ button:hover {
   border-radius: 10px;
 }
 .kakkoii .overlay {
-  display: none; /* Masquer par défaut */
+  display: none;
+  /* Masquer par défaut */
   position: fixed;
   top: 0;
   left: 0;
@@ -2456,7 +2472,8 @@ button:hover {
 }
 .kakkoii .popup.active,
 .kakkoii .overlay.active {
-  display: block; /* Afficher lorsque actif */
+  display: block;
+  /* Afficher lorsque actif */
 }
 .kakkoii .flex {
   display: flex;

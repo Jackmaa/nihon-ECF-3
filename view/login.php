@@ -5,6 +5,29 @@
     ob_start();
 ?>
 <main class="login">
+<div class="cloud-content">
+    <div class="cloud-1 cloud-block">
+      <div class="cloud"></div>
+    </div>
+    <div class="cloud-2 cloud-block">
+      <div class="cloud"></div>
+    </div>
+    <div class="cloud-3 cloud-block">
+      <div class="cloud"></div>
+    </div>
+    <div class="cloud-4 cloud-block">
+      <div class="cloud"></div>
+    </div>
+    <div class="cloud-5 cloud-block">
+      <div class="cloud"></div>
+    </div>
+    <div class="cloud-6 cloud-block">
+      <div class="cloud"></div>
+    </div>
+    <div class="cloud-7 cloud-block">
+      <div class="cloud"></div>
+    </div>
+  </div>
     <section class="form-container">
         <h1> Connexion </h1>
         <form action="/login" method="post">
@@ -18,8 +41,8 @@
         </form>
     </section>
     <figure>
-        <img id="img-connexion" src="public/asset/img/connexion.webp" alt="image connexion">
-    </figure>
+        <!-- <img id="img-connexion" src="public/asset/img/connexion.webp" alt="image connexion">
+    </figure> -->
 </main>
 <?php
     $content = ob_get_contents();
