@@ -27,7 +27,16 @@
             <td><?php echo $borrow->getId_manga(); ?></td>
             <td><?php echo $borrow->getId_volume(); ?></td>
             <td><?php echo $borrow->getReturn_date(); ?></td>
-            <td><input type="checkbox" id="check3"></td>
+            <td>
+                <select name="status" id="status-borrow-<?php echo $borrow->getId_borrow(); ?>">
+                    <?php foreach ($enumValues as $value): ?>
+                    <option value="<?php echo $value; ?>"
+                        <?php echo($borrow->getStatus() == $value) ? 'selected' : ''; ?>>
+                        <?php echo ucfirst(strtolower($value)); ?>
+                    </option>
+                    <?php endforeach; ?>
+                </select>
+            </td>
         </tr>
     <?php endforeach; ?>
     </tbody>

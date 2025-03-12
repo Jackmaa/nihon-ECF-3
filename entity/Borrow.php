@@ -6,6 +6,7 @@ class Borrow {
     private int $id_volume;
     private DateTime $borrow_date;
     private DateTime $return_date;
+    private string $status;
 
     public function __construct(array $datas) {
         $this->hydrate($datas);
@@ -43,6 +44,9 @@ class Borrow {
     public function getReturn_date() {
         return $this->return_date->format('d-m-Y');
     }
+    public function getStatus() {
+        return $this->status;
+    }
 //SETTERS
     public function setId_borrow(int $id_borrow) {
         $this->id_borrow = $id_borrow;
@@ -66,5 +70,9 @@ class Borrow {
 
     public function setReturn_date(string $return_date) {
         $this->return_date = new DateTime($return_date);
+    }
+
+    public function setStatus(string $status) {
+        $this->status = $status;
     }
 }

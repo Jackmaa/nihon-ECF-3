@@ -65,7 +65,7 @@ $router->map("GET", "/kakkoii", "ControllerGeneral#kakkoii", "kakkoii");
 $router->map("GET", "/delete/[i:id]", "ControllerManga#delete", "delete");
 
 // CATEGORY
-$router->map("GET", "/category", "ControllerManga#readCategory", "readCategory");
+$router->map("GET", "/category/[a:category_name]", "ControllerManga#readCategory", "readCategory");
 
 /*******************************||  AUTHORS  ||**************************************/
 //AUTHOR

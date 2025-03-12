@@ -8,7 +8,7 @@ class ControllerManga extends Controller {
     // Method to display the home page
     public function home() {
         $model          = new ModelManga();
-        $recommendation = $model->getMangaRecommendation();
+        $recommendations = $model->getMangaRecommendation();
         $categories     = $model->getCategories();
         foreach ($categories as $category) {
             $mangas[$category['category_name']] = $model->getMangaListByCat($category['category_name']);
@@ -160,7 +160,17 @@ class ControllerManga extends Controller {
         echo json_encode(['liked_mangas' => $likedMangas]);
     }
 
-    public function readCategory() {
+    // public function readCategory($id){
+    //     $model = new ModelManga();
+    //     $category = $model->getCategoryDatas($id);
+    //     $mangas = $model->getCategoryMangas($id);
+    //     require_once './view/category.php';
+    // }
+
+    public function readCategory($category_name){
+        $model = new ModelManga();
+        $category = $model->getCategoryDatas($category_name);
+        $mangas = $model->getCategoryMangas($category->getId_category());
         require_once './view/category.php';
     }
 

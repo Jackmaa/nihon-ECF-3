@@ -8,6 +8,7 @@ const prevButton = document.querySelector('.prev');
 const nextButton = document.querySelector('.next');
 
 let currentIndex = 0;
+let autoSlideInterval;
 
 function updateCarousel() {
     gsap.to(wrapper, {
@@ -17,16 +18,35 @@ function updateCarousel() {
     });
 }
 
+function startAutoSlide() {
+    autoSlideInterval = setInterval(() => {
+        currentIndex = (currentIndex + 1) % items.length;
+        updateCarousel();
+    }, 3000); // Change slide every 3 seconds
+}
+
+function stopAutoSlide() {
+    clearInterval(autoSlideInterval);
+}
+
 nextButton.addEventListener('click', () => {
     currentIndex = (currentIndex + 1) % items.length;
     updateCarousel();
+    stopAutoSlide();
+    startAutoSlide();
 });
 
 prevButton.addEventListener('click', () => {
     currentIndex = (currentIndex - 1 + items.length) % items.length;
     updateCarousel();
+    stopAutoSlide();
+    startAutoSlide();
 });
 
+wrapper.addEventListener('mouseenter', stopAutoSlide);
+wrapper.addEventListener('mouseleave', startAutoSlide);
+
+startAutoSlide();
 
 
 

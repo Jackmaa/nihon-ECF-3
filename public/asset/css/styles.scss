@@ -22,7 +22,7 @@ body {
   box-sizing: border-box;
   scroll-behavior: smooth;
   min-height: 100vh;
-  background-color: var(--primacy-clr-light);
+  background-color: #fddfdf;
 }
 
 img {
@@ -214,7 +214,7 @@ svg {
 }
 
 .p-all-2 {
-  padding: 1vw;
+  padding: .5vh 2vh;
 }
 
 .flexcenter {
@@ -1063,29 +1063,38 @@ button {
 }
 
 .category-slider {
-  margin: 10% 3%;
+  background-color: #85650b41;
+  border-radius: 50px;
+  margin: 5vh 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 
   .category-title {
+    width: 100%;
     display: flex;
     justify-content: space-between;
+    
+    
 
     a {
-      margin: 8% 3%;
       font-family: var(--ff-barlow);
       color: var(--fc-black);
       border: #231b19 1px solid;
       padding: 5px 10px;
+      margin: 3vh 5vh;
       transition: all ease 0.3s;
 
       &:hover {
         color: #cc392b;
-        border: #cc392b 1px solid;
+        border: #cc392b 2px solid;
       }
     }
 
     h2 {
+      margin:  3vh 5vh;
       text-align: justify;
-      margin: 8% 3%;
       font-family: var(--ff-bangers);
       letter-spacing: var(--letter-spacing);
     }
@@ -1096,7 +1105,7 @@ button {
     overflow: hidden;
     width: 100%;
     max-width: 800px;
-    margin: auto;
+    margin: 3vh auto;
 
     .slider-wrapper {
       display: flex;
@@ -1137,7 +1146,9 @@ button {
         }
 
         img {
-          width: 100%;
+          width: 30vh;
+          height: 45vh;
+          object-fit: cover;
           transition: all 0.5s ease;
         }
       }
@@ -2981,9 +2992,64 @@ h2{
 
 
 
+/*
+**********************************
+********ANIMATION HOMEPAGE********
+**********************************
+*/
 
-
-
+.wrap {
+  overflow: hidden;
+  position:fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  height: 120px;
+  width: 100%;
+}
+.bgWave {
+  position: absolute;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  background-repeat: repeat;
+  background-position: left bottom;
+  transform-origin: left bottom;
+  
+}
+.waveOne {
+  background-image: url(../img/wave.svg);
+  animation: wave 12s linear infinite;
+}
+.waveTwo {
+  background-image: url(../img/wave.svg);
+  animation: wave-reverse 6s linear infinite;
+  right: 0;
+  left: auto;
+}
+@keyframes wave {
+    0% {
+        transform: translateX(0)
+    }
+    50% {
+        transform: translateX(-25%)
+    }
+    100% {
+        transform: translateX(-50%)
+    }
+}
+@keyframes wave-reverse {
+    0% {
+        transform: translateX(0) scaleY(1)
+    }
+    50% {
+        transform: translateX(25%) scaleY(0.55)
+    }
+    100% {
+        transform: translateX(50%) scaleY(1)
+    }
+}
 
 
 
