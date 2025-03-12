@@ -21,7 +21,7 @@ body {
   box-sizing: border-box;
   scroll-behavior: smooth;
   min-height: 100vh;
-  background-color: var(--primacy-clr-light);
+  background-color: #fddfdf;
 }
 
 img {
@@ -168,7 +168,7 @@ svg {
 }
 
 .p-all-2 {
-  padding: 1vw;
+  padding: 0.5vh 2vh;
 }
 
 .flexcenter {
@@ -900,27 +900,34 @@ button {
 }
 
 .category-slider {
-  margin: 10% 3%;
+  background-color: rgba(133, 101, 11, 0.2549019608);
+  border-radius: 50px;
+  margin: 5vh 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 .category-slider .category-title {
+  width: 100%;
   display: flex;
   justify-content: space-between;
 }
 .category-slider .category-title a {
-  margin: 8% 3%;
   font-family: var(--ff-barlow);
   color: var(--fc-black);
   border: #231b19 1px solid;
   padding: 5px 10px;
+  margin: 3vh 5vh;
   transition: all ease 0.3s;
 }
 .category-slider .category-title a:hover {
   color: #cc392b;
-  border: #cc392b 1px solid;
+  border: #cc392b 2px solid;
 }
 .category-slider .category-title h2 {
+  margin: 3vh 5vh;
   text-align: justify;
-  margin: 8% 3%;
   font-family: var(--ff-bangers);
   letter-spacing: var(--letter-spacing);
 }
@@ -929,7 +936,7 @@ button {
   overflow: hidden;
   width: 100%;
   max-width: 800px;
-  margin: auto;
+  margin: 3vh auto;
 }
 .category-slider .slider .slider-wrapper {
   display: flex;
@@ -966,7 +973,10 @@ button {
   filter: brightness(50%);
 }
 .category-slider .slider .manga a img {
-  width: 100%;
+  width: 30vh;
+  height: 45vh;
+  -o-object-fit: cover;
+     object-fit: cover;
   transition: all 0.5s ease;
 }
 .category-slider .slider .manga figure {
@@ -2510,4 +2520,65 @@ button:hover {
   color: #0e0e0e;
   font-family: var(--ff-bangers);
   cursor: pointer;
+}
+
+/*
+**********************************
+********ANIMATION HOMEPAGE********
+**********************************
+*/
+.wrap {
+  overflow: hidden;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  height: 120px;
+  width: 100%;
+}
+
+.bgWave {
+  position: absolute;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  background-repeat: repeat;
+  background-position: left bottom;
+  transform-origin: left bottom;
+}
+
+.waveOne {
+  background-image: url(../img/wave.svg);
+  animation: wave 12s linear infinite;
+}
+
+.waveTwo {
+  background-image: url(../img/wave.svg);
+  animation: wave-reverse 6s linear infinite;
+  right: 0;
+  left: auto;
+}
+
+@keyframes wave {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-25%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+@keyframes wave-reverse {
+  0% {
+    transform: translateX(0) scaleY(1);
+  }
+  50% {
+    transform: translateX(25%) scaleY(0.55);
+  }
+  100% {
+    transform: translateX(50%) scaleY(1);
+  }
 }/*# sourceMappingURL=styles.css.map */

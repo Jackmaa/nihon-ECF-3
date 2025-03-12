@@ -4,7 +4,10 @@
     $scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public\asset\js\base.js", "public\asset\js\home.js", "public/asset/js/header.js", "public/asset/js/like.js", "public\asset\js\darkmode.js"];
     ob_start();
 ?>
-
+<div class="wrap">
+  <div class="bgWave waveOne"></div>
+  <div class="bgWave waveTwo"></div>
+</div>
 <section class="hero-mobile">
     <div class="carousel">
         <div class="carousel-wrapper">
@@ -13,21 +16,18 @@
                 <p>“Extended loan duration: 4 weeks instead of 3!”</p>
                 <button class="custom-btn btn-green"> <span>Kakkoii mode</span></button>
             </div>
+            <?php foreach ($recommendations as $recommendation): ?>
             <div class="carousel-item card-fav black-background">
                 <div class="bubble-fav">
-                    <figure><img src="public\asset\img\naruto.webp" alt="Naruto"></figure>
+                    <figure><img src="<?= $recommendation->manga->getThumbnail()?>" alt="Naruto"></figure>
                     <div>
                         <hr>
-                        <p>Twelve years before the start of the series, the Nine-Tails attacked Konohagakure, destroying much of the village and taking many lives. The leader of the village, the Fourth Hokage, sacrificed his life to seal the Nine-Tails into a newborn, Naruto Uzumaki. <a href="#">Read More...</a> </p>
+                        <p><?= $recommendation->message ?><a href="<?= $this->router->generate("read", ["id" => $recommendation->manga->getId_manga()]) ?>">Read More...</a> </p>
                     </div>
                 </div>
+                
             </div>
-            <figure class="carousel-item"><img src="public\asset\img\ppkpojoi.png" alt="">
-                <figure><img src="public\asset\img\heart_black_stroke.svg" alt="">300</figure>
-            </figure>
-            <figure class="carousel-item"><img src="public\asset\img\ouou.png" alt="">
-                <figure><img src="public\asset\img\heart_black_stroke.svg" alt="">300</figure>
-            </figure>
+            <?php endforeach; ?>
         </div>
         <button class="prev">❮</button>
         <button class="next">❯</button>
