@@ -41,7 +41,7 @@
                 
                 <p>(8 caractères minimums)</p>
                 <p>You have already an account ? <a href="<?php echo $this->router->generate("login") ?>">Click here</a></p>
-                <button class="login" type="submit">SUBSCRIRE</button>
+                <button class="loginregister" type="submit">SUBSCRIRE</button>
             </form>
         </div>
         <!-- <figure><img id="img-subscrire" src="public/asset/img/subscrire.webp" alt="image subscrire"></figure> -->

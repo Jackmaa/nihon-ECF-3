@@ -417,7 +417,7 @@ footer>p {
 **********************************
 */
 
-.connexion {
+.connexion , .login{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -447,7 +447,22 @@ footer>p {
     }
   }
 
-  .login {
+  .loginregister {
+    background-color: #cc392b;
+    color: white;
+    padding: 10px 60px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-family: var(--ff-bangers);
+    letter-spacing: var(--letter-spacing);
+    transition: all ease 0.3s;
+
+    &:hover {
+      background-color: #cc1606;
+    }
+    
+  }
+  .loginconnexion {
     background-color: #cc392b;
     color: white;
     padding: 10px 60px;
@@ -530,16 +545,15 @@ footer>p {
 **********************************
 */
 
-.connexion {
-
-
-
+main.connexion, main.login{
   #img-subscrire {
     max-width: 90%;
     display: none;
   }
 
   .form-container {
+    position: relative;
+    z-index: 9999;
     opacity: 0;
     /* Initialement invisible */
     transform: translateY(50px);
@@ -561,16 +575,6 @@ footer>p {
     /* Position initiale en dehors de l'écran */
   }
 
-  .connexion {
-    background: #ade5f5;
-    color: #333;
-    font: 100% Arial, Sans Serif;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-  }
-
   .cloud-content {
     bottom: 0;
     left: 0;
@@ -578,7 +582,7 @@ footer>p {
     position: fixed;
     right: 0;
     top: 0;
-    z-index: -1;
+    z-index: -999;
   }
 
   .cloud-block {
@@ -2738,12 +2742,6 @@ figure.update-user-desktop {
   }
 }
 
-/*
-**********************************
-***********kKAKOII MODE************
-**********************************
-*/
-
 .headkakkoii {
   height: 30vh;
   background: url(../img/kakoii.svg) no-repeat center center/cover;
@@ -2890,7 +2888,7 @@ align-items: center;
     font-size: 1rem;
     color: #ffffff;
   }
-}
+ }
 
 /*
 **********************************

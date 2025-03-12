@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Animation de survol pour le bouton de soumission
-    const submitButton = document.querySelector(".login");
+    const submitButton = document.querySelector(".loginconnexion, .loginregister");
     submitButton.addEventListener("mouseenter", () => {
         gsap.to(submitButton, {
             duration: 0.3,
