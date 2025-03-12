@@ -741,28 +741,36 @@ button{
 }
 
 .category-slider {
-  margin: 10% 3%;
+  background-color: #008cba;
+  margin: 5vh 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 
   .category-title {
+    width: 100%;
     display: flex;
     justify-content: space-between;
+    
+    
 
     a {
-      margin: 8% 3%;
       font-family: var(--ff-barlow);
       color: var(--fc-black);
       border: #231b19 1px solid;
       padding: 5px 10px;
+      margin: 3vh 5vh;
       transition: all ease 0.3s;
 
       &:hover {
         color: #cc392b;
-        border: #cc392b 1px solid;
+        border: #cc392b 2px solid;
       }
     }
     h2 {
+      margin:  3vh 5vh;
       text-align: justify;
-      margin: 8% 3%;
       font-family: var(--ff-bangers);
       letter-spacing: var(--letter-spacing);
     }
@@ -773,7 +781,7 @@ button{
     overflow: hidden;
     width: 100%;
     max-width: 800px;
-    margin: auto;
+    margin: 3vh auto;
 
     .slider-wrapper {
       display: flex;

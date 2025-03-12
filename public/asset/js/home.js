@@ -14,24 +14,13 @@ function updateCarousel() {
     gsap.to(wrapper, {
         x: -currentIndex * 100 + '%',
         duration: 0.5,
-        ease: 'power2.inOut',
-        onComplete: () => {
-            if (currentIndex === items.length) {
-                wrapper.style.transition = 'none';
-                currentIndex = 0;
-                gsap.set(wrapper, { x: -currentIndex * 100 + '%' });
-            } else if (currentIndex === -1) {
-                wrapper.style.transition = 'none';
-                currentIndex = items.length - 1;
-                gsap.set(wrapper, { x: -currentIndex * 100 + '%' });
-            }
-        }
+        ease: 'power2.inOut'
     });
 }
 
 function startAutoSlide() {
     autoSlideInterval = setInterval(() => {
-        currentIndex++;
+        currentIndex = (currentIndex + 1) % items.length;
         updateCarousel();
     }, 3000); // Change slide every 3 seconds
 }
@@ -41,14 +30,14 @@ function stopAutoSlide() {
 }
 
 nextButton.addEventListener('click', () => {
-    currentIndex++;
+    currentIndex = (currentIndex + 1) % items.length;
     updateCarousel();
     stopAutoSlide();
     startAutoSlide();
 });
 
 prevButton.addEventListener('click', () => {
-    currentIndex--;
+    currentIndex = (currentIndex - 1 + items.length) % items.length;
     updateCarousel();
     stopAutoSlide();
     startAutoSlide();
