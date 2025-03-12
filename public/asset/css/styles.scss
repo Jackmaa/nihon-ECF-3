@@ -211,7 +211,7 @@ svg {
   transition: transform 0.3s ease;
 }
 .p-all-2 {
-  padding: 1vw;
+  padding: .5vh 2vh;
 }
 .flexcenter {
   display: flex;
@@ -741,7 +741,8 @@ button{
 }
 
 .category-slider {
-  background-color: #008cba;
+  background-color: #85650b41;
+  border-radius: 50px;
   margin: 5vh 0;
   display: flex;
   justify-content: center;
