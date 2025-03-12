@@ -73,6 +73,12 @@ class CartController extends Controller {
 
         $data = json_decode(file_get_contents("php://input"), true);
 
+        if (! is_array($data)) {
+            http_response_code(400);
+            echo json_encode(["error" => "Invalid request data."]);
+            return;
+        }
+
         // Check if the required data is provided
         if (empty($data['id_manga']) || empty($data['id_volume'])) {
             http_response_code(400); // Bad Request
@@ -93,7 +99,7 @@ class CartController extends Controller {
 
         try {
             // Remove the item from the cart
-            $cart = Cart::removeFromCart([$id_manga, $id_volume]);
+            $cart = Cart::removeFromCart(["id_manga" => $id_manga, "id_volume" => $id_volume]);
 
             // Optionally, remove the item from the reservation table
             $borrow = new ModelBorrow();
@@ -112,7 +118,7 @@ class CartController extends Controller {
     }
 
     // Handles confirming a borrow request
-    public function confirmBorrow() {
+    public function validateCart() {
         // Check if the user is logged in
         if (! isset($_SESSION['id_user'])) {
             http_response_code(400); // Bad Request
@@ -143,7 +149,9 @@ class CartController extends Controller {
 
         // Process each item in the cart
         foreach ($cart as $manga) {
-            list($id_manga, $id_volume) = $manga;                  // Extract manga and volume IDs
+            var_dump($manga);
+            $id_manga  = $manga["id_manga"];
+            $id_volume = $manga["id_volume"];
             if ($borrow->isAvailable($id_manga, $id_volume) > 0) { // Check if the item is available
                 $borrow->save($id_manga, $id_volume, $id_user);        // Save the borrow record
             }
@@ -151,7 +159,9 @@ class CartController extends Controller {
 
         // Clear the cart after confirming the borrow
         Cart::clearCart();
-        echo json_encode(["success" => "Borrow confirmed"]);
+
+        $message = "Your validation has been validated, check your emails for your QR code to retrieve your books.";
+        require_once './view/home.php';
     }
 
     public function clearCart() {
