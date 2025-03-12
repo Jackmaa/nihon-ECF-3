@@ -87,7 +87,7 @@ class ModelBorrow extends Model {
 
     public function getBorrowedBooks() {
         $req = $this->getDb()->prepare(
-            'SELECT id_borrow, id_user, id_manga, id_volume, borrow_date, return_date
+            'SELECT id_borrow, id_user, id_manga, id_volume, borrow_date, return_date, `status`
             FROM borrow
             LIMIT 3');
         $req->execute();

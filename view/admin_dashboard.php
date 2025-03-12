@@ -27,7 +27,7 @@
             <td><?php echo $borrow->getId_manga(); ?></td>
             <td><?php echo $borrow->getId_volume(); ?></td>
             <td><?php echo $borrow->getReturn_date(); ?></td>
-            <td><input type="checkbox" id="check3"></td>
+            <td><?php echo $borrow->getStatus(); ?></td>
         </tr>
     <?php endforeach; ?>
     </tbody>
