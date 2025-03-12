@@ -1813,6 +1813,7 @@ button:hover {
   }
   .headkakkoii {
     width: 100%;
+    height: auto;
   }
   .kakkoii {
     width: 70vh;
@@ -2364,7 +2365,7 @@ button:hover {
   letter-spacing: var(--letter-spacing);
   font-size: 1rem;
   color: #f0f0f0;
-  text-shadow: -2px -2px 0 red, 2px -2px 0 red, -2px 2px 0 red, 2px 2px 0 red;
+  text-shadow: -1px -1px 0 red, 1px -1px 0 red, -1px 1px 0 red, 1px 1px 0 red;
 }
 .kakkoii .center {
   text-align: center;
@@ -2374,7 +2375,7 @@ button:hover {
   margin: 20px auto;
 }
 .kakkoii .center h2 {
-  color: red;
+  color: #0555EB;
   font-family: var(--ff-bangers);
   letter-spacing: var(--letter-spacing);
   font-size: 1rem;
@@ -2396,6 +2397,22 @@ button:hover {
 }
 .kakkoii .center button:hover {
   background-color: #cc1606;
+}
+
+.close-popup {
+  background-color: #0555EB;
+  color: #0e0e0e;
+  font-family: var(--ff-bangers);
+  cursor: pointer;
+  transition: all ease 0.3s;
+  border-radius: 10px;
+  border: none;
+  padding: 20px;
+  margin: 10px;
+}
+.close-popup:hover {
+  background-color: #210be2;
+  text-align: center;
 }
 
 /*
