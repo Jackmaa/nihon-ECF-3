@@ -4,7 +4,10 @@ $meta_description = 'The best place to find your next manga\'s addiction ';
 $scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public\asset\js\base.js", "public\asset\js\home.js", "public/asset/js/header.js", "public/asset/js/like.js", "public\asset\js\darkmode.js"];
 ob_start();
 ?>
-
+<div class="wrap">
+  <div class="bgWave waveOne"></div>
+  <div class="bgWave waveTwo"></div>
+</div>
 <section class="hero-mobile">
     <div class="carousel">
         <div class="carousel-wrapper">

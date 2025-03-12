@@ -2182,4 +2182,60 @@ button:hover {
   color: #0e0e0e;
   font-family: var(--ff-bangers);
   cursor: pointer;
+}
+
+.wrap {
+  overflow: hidden;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  height: 120px;
+  width: 100%;
+}
+
+.bgWave {
+  position: absolute;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  background-repeat: repeat;
+  background-position: left bottom;
+  transform-origin: left bottom;
+}
+
+.waveOne {
+  background-image: url(../img/wave.svg);
+  animation: wave 12s linear infinite;
+}
+
+.waveTwo {
+  background-image: url(../img/wave.svg);
+  animation: wave-reverse 6s linear infinite;
+  right: 0;
+  left: auto;
+}
+
+@keyframes wave {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-25%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+@keyframes wave-reverse {
+  0% {
+    transform: translateX(0) scaleY(1);
+  }
+  50% {
+    transform: translateX(25%) scaleY(0.55);
+  }
+  100% {
+    transform: translateX(50%) scaleY(1);
+  }
 }/*# sourceMappingURL=styles.css.map */
