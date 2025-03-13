@@ -2227,6 +2227,18 @@ button:hover {
   }
   .mangaPage-scd-section .comm-desktop {
     flex-direction: column;
+    width: 50%;
+  }
+  .mangaPage-scd-section .comm-desktop .review hr {
+    width: 90vh;
+  }
+  .mangaPage-scd-section .comm-desktop .review .cadre-review {
+    justify-content: start;
+    width: 50vh;
+    height: 20vh;
+  }
+  .mangaPage-scd-section .comm-desktop .review .cadre-review div {
+    margin: 0 1rem;
   }
   .also-liked {
     width: 50%;

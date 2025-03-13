@@ -2525,6 +2525,21 @@ button:hover {
 
     .comm-desktop {
       flex-direction: column;
+      width: 50%;
+
+      .review{
+        hr {
+          width: 90vh;
+        }
+        .cadre-review{
+          justify-content:start;
+          width: 50vh;
+          height: 20vh;
+          div {
+            margin: 0 1rem;
+          }
+        }
+      }
     }
   }
 
