@@ -87,6 +87,9 @@ body.dark-mode {
   background-color: #202024;
   color: white;
 }
+body.dark-mode label {
+  color: #0e0e0e;
+}
 body.dark-mode .resaux-sociaux a svg path {
   transition: all ease 0.3s;
   fill: white;
@@ -2379,11 +2382,6 @@ button:hover {
 
 .dashboard {
   /* filepath: /C:/wamp64/www/nihon/public/asset/css/styles.scss */
-  /*
-  *******************************
-  ***********kakoii mode***********
-  *******************************
-  */
 }
 .dashboard table {
   width: 100%;
@@ -2484,6 +2482,9 @@ button:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   z-index: 1000;
 }
+.dashboard .popup.hidden {
+  display: none;
+}
 .dashboard .overlay {
   display: none;
   /* Masquer par défaut */
@@ -2500,13 +2501,26 @@ button:hover {
   display: block;
   /* Afficher lorsque actif */
 }
-.dashboard .kakkoii center {
-  max-width: 600px;
-  /* Réduire la largeur maximale */
-  padding: 20px;
-  /* Ajuster le padding si nécessaire */
-  margin: 20px auto;
-  /* Centrer les éléments */
+
+form fieldset {
+  height: 20rem;
+  width: -moz-fit-content;
+  width: fit-content;
+  overflow-y: scroll;
+}
+form fieldset label input[type=checkbox] {
+  color: #0e0e0e;
+}
+
+/*
+*******************************
+***********kakoii mode***********
+*******************************
+*/
+.kakkoii center {
+  max-width: 600px; /* Réduire la largeur maximale */
+  padding: 20px; /* Ajuster le padding si nécessaire */
+  margin: 20px auto; /* Centrer les éléments */
   background-color: #cc1606;
 }
 
@@ -2828,7 +2842,7 @@ button:hover {
   100% {
     transform: translateX(50%) scaleY(1);
   }
-}
+
 /*
 **********************************
 ***********CART*******************
