@@ -1040,7 +1040,8 @@ button {
   margin: 0 3%;
   font-family: var(--ff-barlow);
   color: var(--fc-black);
-  border: #231b19 1px solid;
+  border: #231b19 2px solid;
+  border-radius: 10px;
   padding: 5px 10px;
   transition: all ease 0.3s;
 }
