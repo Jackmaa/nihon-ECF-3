@@ -2880,7 +2880,7 @@ form fieldset label input[type=checkbox] {
 }
 .pagecart .panier {
   height: 60vh;
-  background: url("../img/panier\\(1).webp") no-repeat center center/cover;
+  background: url("../img/panier.webp") no-repeat center center/cover;
   width: 100%;
 }
 .pagecart .cartbutton {
