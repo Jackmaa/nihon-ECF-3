@@ -5,6 +5,11 @@ class ModelManga extends Model {
         $req = $this->getDb()->query('SELECT categories.id_category, categories.category_name, categories.description FROM categories');
         return $req->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function getEditorList() {
+        $req = $this->getDb()->query("SELECT id_editor, `name` FROM editor");
+        return $req->fetchAll(PDO::FETCH_ASSOC);
+    }
     // Get all mangas from the database by category (shonen)
     public function getMangaListByCat(string $category) {
         $req = $this->getDb()->prepare(
@@ -309,6 +314,13 @@ class ModelManga extends Model {
         $req = $this->getDb()->prepare("INSERT INTO manga_category(manga_id, category_id) VALUES (:id_manga,:id_category)");
         $req->bindParam(":id_manga", $id_manga, PDO::PARAM_INT);
         $req->bindParam(":id_category", $id_category, PDO::PARAM_INT);
+        $req->execute();
+    }
+
+    public function addEditor($id_manga, $id_editor) {
+        $req = $this->getDb()->prepare("INSERT INTO manga_editor(id_manga, id_editor) VALUES (:id_manga,:id_editor)");
+        $req->bindParam(":id_manga", $id_manga, PDO::PARAM_INT);
+        $req->bindParam(":id_editor", $id_editor, PDO::PARAM_INT);
         $req->execute();
     }
 }

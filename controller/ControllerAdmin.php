@@ -43,6 +43,7 @@ class ControllerAdmin extends Controller {
         }
         $category   = new ModelManga();
         $categories = $category->getCategories();
+        $editors    = $category->getEditorList();
         $model      = new ModelBorrow();
         $borrows    = $model->getBorrowedBooks();
         $enumValues = $model->getStatusEnum();

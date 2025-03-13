@@ -65,6 +65,8 @@ class ControllerManga extends Controller {
                 // Create new manga entry in the database
                 $model->createManga($name, $authorId, $description, $published_date, $thumbnail);
                 $id_manga = $model->getMangaByName($name);
+                $editor   = $_POST["editor"];
+                $model->addEditor($id_manga, $editor);
                 // Handle multiple categories (min 1, max 3)
                 if (isset($_POST["category"]) && is_array($_POST["category"])) {
                     $selectedCategories = array_slice($_POST["category"], 0, 3); // Limit to 3 categories
