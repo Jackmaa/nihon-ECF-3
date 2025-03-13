@@ -2272,6 +2272,15 @@ button:hover {
        object-fit: cover;
     height: 40vh;
   }
+  /*
+  **********************************
+  ***********CART*******************
+  **********************************
+  */
+  .cartgrid {
+    display: flex;
+    justify-content: center;
+  }
 }
 @media (min-width: 1440px) {
   /*
@@ -2492,9 +2501,12 @@ button:hover {
   /* Afficher lorsque actif */
 }
 .dashboard .kakkoii center {
-  max-width: 600px; /* Réduire la largeur maximale */
-  padding: 20px; /* Ajuster le padding si nécessaire */
-  margin: 20px auto; /* Centrer les éléments */
+  max-width: 600px;
+  /* Réduire la largeur maximale */
+  padding: 20px;
+  /* Ajuster le padding si nécessaire */
+  margin: 20px auto;
+  /* Centrer les éléments */
   background-color: #cc1606;
 }
 
@@ -2605,42 +2617,64 @@ button:hover {
   position: relative;
   background: linear-gradient(90deg, rgb(255, 0, 0) 0%, rgb(138, 20, 20) 50%, rgb(153, 0, 0) 100%);
   height: 100vh;
-  background-size: cover; /* Assurez-vous que l'image couvre tout l'arrière-plan */
-  background-position: 0% 0%; /* Position initiale de l'arrière-plan */
-  overflow: hidden; /* Empêcher le défilement */
+  background-size: cover;
+  /* Assurez-vous que l'image couvre tout l'arrière-plan */
+  background-position: 0% 0%;
+  /* Position initiale de l'arrière-plan */
+  overflow: hidden;
+  /* Empêcher le défilement */
 }
 .backgroundimage .content {
   text-align: center;
-  position: relative; /* Positionner le texte par rapport à l'élément parent */
-  z-index: 2; /* Assurez-vous que le contenu est au-dessus des shurikens */
-  top: 50%; /* Centrer verticalement */
-  left: 50%; /* Centrer horizontalement */
-  transform: translate(-50%, -50%); /* Ajuster pour centrer parfaitement */
-  color: white; /* Couleur du texte */
-  font-family: var(--ff-barlow); /* Police de caractères */
+  position: relative;
+  /* Positionner le texte par rapport à l'élément parent */
+  z-index: 2;
+  /* Assurez-vous que le contenu est au-dessus des shurikens */
+  top: 50%;
+  /* Centrer verticalement */
+  left: 50%;
+  /* Centrer horizontalement */
+  transform: translate(-50%, -50%);
+  /* Ajuster pour centrer parfaitement */
+  color: white;
+  /* Couleur du texte */
+  font-family: var(--ff-barlow);
+  /* Police de caractères */
   padding: 20px;
-  background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent pour améliorer la lisibilité */
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Fond semi-transparent pour améliorer la lisibilité */
   border-radius: 10px;
-  max-width: 600px; /* Limiter la largeur maximale */
-  width: auto; /* Utiliser la largeur automatique */
-  margin: 0 auto; /* Centrer horizontalement */
-  display: inline-block; /* Réduire la largeur au contenu */
+  max-width: 600px;
+  /* Limiter la largeur maximale */
+  width: auto;
+  /* Utiliser la largeur automatique */
+  margin: 0 auto;
+  /* Centrer horizontalement */
+  display: inline-block;
+  /* Réduire la largeur au contenu */
   -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px); /* Ajouter un flou au fond */
+          backdrop-filter: blur(10px);
+  /* Ajouter un flou au fond */
 }
 .backgroundimage .shuriken {
-  height: 10vw; /* Ajustez la hauteur selon vos besoins */
-  width: 10vw; /* Ajustez la largeur selon vos besoins */
-  position: absolute; /* Pour permettre le positionnement */
-  z-index: 1; /* Positionner les shurikens derrière le contenu */
+  height: 10vw;
+  /* Ajustez la hauteur selon vos besoins */
+  width: 10vw;
+  /* Ajustez la largeur selon vos besoins */
+  position: absolute;
+  /* Pour permettre le positionnement */
+  z-index: 1;
+  /* Positionner les shurikens derrière le contenu */
 }
 .backgroundimage .shuriken.top {
-  top: 10px; /* Positionner en haut */
+  top: 10px;
+  /* Positionner en haut */
   left: 50%;
   transform: translateX(-50%);
 }
 .backgroundimage .shuriken.bottom {
-  bottom: 10px; /* Positionner en bas */
+  bottom: 10px;
+  /* Positionner en bas */
   left: 50%;
   transform: translateX(-50%);
 }
@@ -2667,7 +2701,8 @@ button:hover {
 **********************************
 */
 .kakkoii .popup {
-  display: none; /* Masquer par défaut */
+  display: none;
+  /* Masquer par défaut */
   position: fixed;
   left: 50%;
   top: 50%;
@@ -2680,7 +2715,8 @@ button:hover {
   border-radius: 10px;
 }
 .kakkoii .overlay {
-  display: none; /* Masquer par défaut */
+  display: none;
+  /* Masquer par défaut */
   position: fixed;
   top: 0;
   left: 0;
@@ -2691,7 +2727,8 @@ button:hover {
 }
 .kakkoii .popup.active,
 .kakkoii .overlay.active {
-  display: block; /* Afficher lorsque actif */
+  display: block;
+  /* Afficher lorsque actif */
 }
 .kakkoii .flex {
   display: flex;
@@ -2791,4 +2828,56 @@ button:hover {
   100% {
     transform: translateX(50%) scaleY(1);
   }
+}
+/*
+**********************************
+***********CART*******************
+**********************************
+*/
+.pagecart .form-cart {
+  margin: 2rem;
+}
+.pagecart .panier {
+  height: 60vh;
+  background: url(../img/panier\ \(1\).webp) no-repeat center center/cover;
+  width: 100%;
+}
+.pagecart .cartbutton {
+  width: 100%;
+  padding: 5px;
+  background-color: #FCC8E1;
+  color: #141414;
+  border-radius: 5px;
+  border: solid 2px rgba(51, 51, 51, 0.6235294118);
+  font-size: 1.5rem;
+  font-family: var(--ff-barlow);
+  transition: all ease 0.3s;
+}
+.pagecart .cartbutton:hover {
+  background-color: #cc1606;
+}
+.pagecart H1 {
+  font-family: var(--ff-bangers);
+  letter-spacing: var(--letter-spacing);
+  font-size: 2rem;
+  color: #070707;
+  margin-left: 20px;
+}
+.pagecart p {
+  font-family: var(--ff-barlow);
+  font-size: 1.5rem;
+  color: #070707;
+}
+.pagecart .trash {
+  width: 2vh;
+  height: 2vh;
+}
+.pagecart .battle {
+  display: block;
+  margin: 2rem auto;
+  /* Centrer l'image horizontalement */
+  max-width: 100%;
+}
+.pagecart .gap {
+  margin: 20px;
 }/*# sourceMappingURL=styles.css.map */
