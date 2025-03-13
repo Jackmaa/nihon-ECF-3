@@ -116,6 +116,13 @@
     </form>
 </div>
 
+<div class="popup" id="popupUser">
+    <input type="text">
+    <input type="text">
+    <input type="text">
+    <button type="submit" class="button" onclick="closePopup('popupUser')">Modify</button>
+</div>
+
 <div class="popup" id="popupBan">
     <h3>Ban User</h3>
     <p>User Name</p>
