@@ -21,7 +21,7 @@ body {
   box-sizing: border-box;
   scroll-behavior: smooth;
   min-height: 100vh;
-  background-color: #fddfdf;
+  background-color: var(--primacy-clr-light);
 }
 
 img {
@@ -168,7 +168,7 @@ svg {
 }
 
 .p-all-2 {
-  padding: 0.5vh 2vh;
+  padding: 1vw;
 }
 
 .flexcenter {
@@ -900,34 +900,27 @@ button {
 }
 
 .category-slider {
-  background-color: rgba(133, 101, 11, 0.2549019608);
-  border-radius: 50px;
-  margin: 5vh 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  margin: 10% 3%;
 }
 .category-slider .category-title {
-  width: 100%;
   display: flex;
   justify-content: space-between;
 }
 .category-slider .category-title a {
+  margin: 8% 3%;
   font-family: var(--ff-barlow);
   color: var(--fc-black);
   border: #231b19 1px solid;
   padding: 5px 10px;
-  margin: 3vh 5vh;
   transition: all ease 0.3s;
 }
 .category-slider .category-title a:hover {
   color: #cc392b;
-  border: #cc392b 2px solid;
+  border: #cc392b 1px solid;
 }
 .category-slider .category-title h2 {
-  margin: 3vh 5vh;
   text-align: justify;
+  margin: 8% 3%;
   font-family: var(--ff-bangers);
   letter-spacing: var(--letter-spacing);
 }
@@ -936,7 +929,7 @@ button {
   overflow: hidden;
   width: 100%;
   max-width: 800px;
-  margin: 3vh auto;
+  margin: auto;
 }
 .category-slider .slider .slider-wrapper {
   display: flex;
@@ -973,10 +966,7 @@ button {
   filter: brightness(50%);
 }
 .category-slider .slider .manga a img {
-  width: 30vh;
-  height: 45vh;
-  -o-object-fit: cover;
-     object-fit: cover;
+  width: 100%;
   transition: all 0.5s ease;
 }
 .category-slider .slider .manga figure {
@@ -2352,7 +2342,7 @@ button:hover {
 }
 
 .headkakkoii {
-  height: 30vh;
+  height: 60vh;
   background: url(../img/kakoii.svg) no-repeat center center/cover;
   width: 100%;
 }
@@ -2373,7 +2363,7 @@ button:hover {
 .kakkoii h1 {
   font-family: var(--ff-bangers);
   letter-spacing: var(--letter-spacing);
-  font-size: 1rem;
+  font-size: 2rem;
   color: #f0f0f0;
   text-shadow: -1px -1px 0 red, 1px -1px 0 red, -1px 1px 0 red, 1px 1px 0 red;
 }
@@ -2385,7 +2375,7 @@ button:hover {
   margin: 20px auto;
 }
 .kakkoii .center h2 {
-  color: #0555EB;
+  color: red;
   font-family: var(--ff-bangers);
   letter-spacing: var(--letter-spacing);
   font-size: 1rem;
@@ -2408,21 +2398,35 @@ button:hover {
 .kakkoii .center button:hover {
   background-color: #cc1606;
 }
-
-.close-popup {
-  background-color: #0555EB;
-  color: #0e0e0e;
+.kakkoii .close-popup {
+  background-color: #0b7cec;
+  color: var(--fc-light);
   font-family: var(--ff-bangers);
+  letter-spacing: var(--letter-spacing);
   cursor: pointer;
   transition: all ease 0.3s;
   border-radius: 10px;
   border: none;
   padding: 20px;
-  margin: 10px;
+  width: 100%;
+  font-size: 1.1rem;
 }
-.close-popup:hover {
-  background-color: #210be2;
-  text-align: center;
+.kakkoii .close-popup:hover {
+  background-color: #2d1ccc;
+  align-items: center;
+}
+.kakkoii h3 {
+  font-family: var(--ff-bangers);
+  letter-spacing: var(--letter-spacing);
+  font-size: 1rem;
+  color: #f70707;
+}
+.kakkoii input {
+  display: flex;
+  justify-content: center;
+}
+.kakkoii .form-group {
+  padding: 10px;
 }
 
 /*
@@ -2537,65 +2541,4 @@ button:hover {
   color: #0e0e0e;
   font-family: var(--ff-bangers);
   cursor: pointer;
-}
-
-/*
-**********************************
-********ANIMATION HOMEPAGE********
-**********************************
-*/
-.wrap {
-  overflow: hidden;
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-  height: 120px;
-  width: 100%;
-}
-
-.bgWave {
-  position: absolute;
-  left: 0;
-  width: 200%;
-  height: 100%;
-  background-repeat: repeat;
-  background-position: left bottom;
-  transform-origin: left bottom;
-}
-
-.waveOne {
-  background-image: url(../img/wave.svg);
-  animation: wave 12s linear infinite;
-}
-
-.waveTwo {
-  background-image: url(../img/wave.svg);
-  animation: wave-reverse 6s linear infinite;
-  right: 0;
-  left: auto;
-}
-
-@keyframes wave {
-  0% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(-25%);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-@keyframes wave-reverse {
-  0% {
-    transform: translateX(0) scaleY(1);
-  }
-  50% {
-    transform: translateX(25%) scaleY(0.55);
-  }
-  100% {
-    transform: translateX(50%) scaleY(1);
-  }
 }/*# sourceMappingURL=styles.css.map */
