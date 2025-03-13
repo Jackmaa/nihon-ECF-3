@@ -7,9 +7,9 @@ class ControllerManga extends Controller {
 
     // Method to display the home page
     public function home() {
-        $model          = new ModelManga();
+        $model           = new ModelManga();
         $recommendations = $model->getMangaRecommendation();
-        $categories     = $model->getCategories();
+        $categories      = $model->getCategories();
         foreach ($categories as $category) {
             $mangas[$category['category_name']] = $model->getMangaListByCat($category['category_name']);
         }
@@ -76,8 +76,8 @@ class ControllerManga extends Controller {
         $model   = new ModelManga();
         $manga   = $model->getMangaById($id);
         $volumes = $model->getMangaVolumes($id);
-        $review = $model->mangaReview($id);
-        $revAdd = null;
+        $review  = $model->mangaReview($id);
+        $revAdd  = null;
         if (isset($_POST['review']) && isset($_POST['id_manga'])) {
             $revAdd = $model->addReview($_POST['review'], $_POST['id_manga'], $_SESSION['id_user']);
         }
@@ -167,14 +167,14 @@ class ControllerManga extends Controller {
     //     require_once './view/category.php';
     // }
 
-    public function readCategory($category_name){
-        $model = new ModelManga();
+    public function readCategory($category_name) {
+        $model    = new ModelManga();
         $category = $model->getCategoryDatas($category_name);
-        $mangas = $model->getCategoryMangas($category->getId_category());
+        $mangas   = $model->getCategoryMangas($category->getId_category());
         require_once './view/category.php';
     }
 
-    public function addRev(){
+    public function addRev() {
         $model = new ModelManga();
         $model->addReview($_POST['review'], $_POST['id_manga'], $_SESSION['id_user']);
         header('Location: /manga/' . $_POST['id_manga']);

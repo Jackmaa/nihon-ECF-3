@@ -1,7 +1,7 @@
 <?php
     $title            = 'Nihon | Home';
     $meta_description = 'The best place to find your next manga\'s addiction ';
-    $scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public/asset/js/dashboard.js", "public/asset/js/header.js", "public/asset/js/search_admin_dashboard.js", "public\asset\js\darkmode.js", "public/asset/js/borrowAdminValidation"];
+    $scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public/asset/js/dashboard.js", "public/asset/js/header.js", "public/asset/js/search_admin_dashboard.js", "public\asset\js\darkmode.js", "public/asset/js/borrowAdminValidation", "public/asset/js/ajax.js"];
     ob_start();
 ?>
 <div class="headdashboard"></div>
@@ -107,12 +107,6 @@
     <button class="button" onclick="closePopup('popupHistory')">Close</button>
 </div>
 
-<div class="popup" id="popupUser">
-    <input type="text">
-    <input type="text">
-    <input type="text">
-</div>
-
 <div class="popup" id="popupCreate">
     <form action="/createUser" method="POST">
         <h3>Create User</h3>
@@ -137,20 +131,15 @@
 </div>
 
 <div class="popup" id="popupAdd">
-    <h3>Add Book</h3>
-    <p>Book Title</p>
-    <input type="text">
-    <p>Book category</p>
-    <input type="text">
-    <p>Book author</p>
-    <input type="text">
-    <p>Book Editor</p>
-    <input type="text">
-    <p>Book Summary</p>
-    <input type="text">
-    <p>Picture</p>
-    <input type="file" accept=".webp">
-    <button class="button" onclick="closePopup('popupAdd')">Add</button>
+    <form action="/create" method="post" enctype="multipart/form-data" id="create-form">
+        <input type="text" name="name" placeholder="Title">
+        <input type="text" name="author" placeholder="Author" id="author">
+        <div id="response"></div>
+        <textarea type="text" name="description" placeholder="Description"></textarea>
+        <input type="date" name="published_date" id="published_date">
+        <input type="file" name="thumbnail" id="thumbnail">
+        <button type="submit" class="button" onclick="closePopup('popupAdd')">Add</button>
+    </form>
 </div>
 
 <div class="popup" id="popupModified">
