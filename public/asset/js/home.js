@@ -85,11 +85,9 @@ document.querySelectorAll('.category-slider').forEach(slider => {
             if (currentIndex === totalSlides) { 
                 sliderWrapper.style.transition = 'none';
                 currentIndex = 0;
-                sliderWrapper.style.transform = `translateX(${-currentIndex * slideWidth}px)`;
             } else if (currentIndex === -1) { 
                 sliderWrapper.style.transition = 'none';
                 currentIndex = totalSlides - 1;
-                sliderWrapper.style.transform = `translateX(${-currentIndex * slideWidth}px)`;
             }
             isTransitioning = false;
         }, 300);
@@ -112,6 +110,52 @@ document.querySelectorAll('.category-slider').forEach(slider => {
         currentIndex = 0;
         updateSlider();
     });
-
-    sliderWrapper.style.transform = `translateX(${-currentIndex * slideWidth}px)`;
 });
+
+
+// *********************************
+// ***********WAVE***********
+// ********************************* 
+
+window.addEventListener("scroll", () => {
+    const wrap = document.querySelector(".wrap");
+    const scrollPosition = window.innerHeight + window.scrollY;
+    const documentHeight = document.documentElement.scrollHeight;
+  
+    if (scrollPosition >= documentHeight) {
+      wrap.style.display = "none";
+    } else {
+      wrap.style.display = "block";
+    }
+  });
+  
+
+const audio = new Audio('public/asset/img/anime-wow-sound-effect.mp3');
+
+// Sélectionne le bouton avec la bonne classe
+const button = document.getElementById('myButton');
+
+// Vérifie si le bouton existe
+if (button) {
+  button.addEventListener('mouseenter', () => {
+    audio.play();
+  });
+}
+
+
+// *********************************
+// ***********CART******************
+// ********************************* 
+
+  window.addEventListener('scroll', function() {
+    const cart = document.querySelector('.cart');
+    const scrollPosition = window.scrollY + window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+
+    // Vérifiez si l'utilisateur a atteint le bas de la page
+    if (scrollPosition >= documentHeight) {
+      cart.style.display = 'none';
+    } else {
+      cart.style.display = 'block'; // Réaffiche si l'utilisateur n'est pas en bas
+    }
+  });
