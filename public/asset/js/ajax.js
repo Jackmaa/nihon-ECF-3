@@ -2,7 +2,7 @@ window.addEventListener("load", function () {
   // Get references to the form, input field, and response container
   let createForm = document.getElementById("create-form");
   let createAuthorInput = document.getElementById("author");
-  let response = document.getElementById("response");
+  let response = document.getElementById("response-author");
 
   // Add event listener to the input field for user input
   createAuthorInput.addEventListener("input", function () {
