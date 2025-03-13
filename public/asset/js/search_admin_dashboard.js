@@ -7,6 +7,7 @@ let searchFormUser = document.getElementById("search-form-user");
 let searchUserInput = document.getElementById("search-user");
 const responseUserDiv = document.getElementById("search-results-user");
 const buttonContainerUser = document.querySelector(".button-container-user");
+
 function addButtonToDiv(text, popupId, responseDiv, onClickCallback) {
   let button = document.createElement("button");
   button.classList.add("button");
@@ -15,13 +16,17 @@ function addButtonToDiv(text, popupId, responseDiv, onClickCallback) {
     if (onClickCallback) {
       onClickCallback();
     }
-    openPopup(popupId);
+    if (popupId) {
+      // ✅ Ne tente d'ouvrir un popup que si `popupId` est défini
+      openPopup(popupId);
+    }
   };
   responseDiv.appendChild(button);
 }
 
 function handleMangaResults(datas) {
   responseMangaDiv.innerHTML = "";
+
   if (datas.error || datas.length === 0) {
     responseMangaDiv.innerHTML = "<p>No result found</p>";
     addButtonToDiv("Add", "popupAdd", responseMangaDiv);
@@ -29,6 +34,7 @@ function handleMangaResults(datas) {
     datas.forEach((manga) => {
       let mangaDiv = document.createElement("div");
       mangaDiv.classList.add("manga-result");
+      mangaDiv.setAttribute("data-id", manga.manga.id_manga); // Stocker l'ID du manga
 
       let mangaTitle = document.createElement("p");
       let mangaThumbnail = document.createElement("img");
@@ -39,16 +45,41 @@ function handleMangaResults(datas) {
       mangaDiv.append(mangaThumbnail, mangaTitle);
       responseMangaDiv.appendChild(mangaDiv);
 
-      mangaDiv.addEventListener("click", function () {
+      // Modifier
+      addButtonToDiv("Modify", "popupModified", mangaDiv, () => {
+        fillModifyPopup(manga);
+        openPopup("popupModified");
+      });
+
+      // Supprimer
+      addButtonToDiv("Delete", null, mangaDiv, () => {
+        let mangaId = manga.manga.id_manga;
+        if (!mangaId) {
+          console.error("Manga ID not found");
+          return;
+        }
+
+        if (!confirm("Are you sur you want to delete this manga ?")) {
+          return;
+        }
+        fetch(`/delete/${mangaId}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            mangaDiv.remove(); // Supprimer l'élément du DOM
+          });
+      });
+
+      // Ouvrir le popup de modification en cliquant sur le manga
+      mangaThumbnail.addEventListener("click", function () {
         fillModifyPopup(manga);
         openPopup("popupModified");
       });
     });
-
-    addButtonToDiv("Modify", "popupModified", responseMangaDiv, () => {
-      fillModifyPopup(datas[0]);
-    });
-    addButtonToDiv("Delete", "popupDeleteBook", responseMangaDiv);
   }
 }
 
@@ -129,4 +160,14 @@ function fillModifyPopup(manga) {
     manga.editor;
   document.querySelector("#popupModified input:nth-of-type(6)").value =
     manga.manga.description;
+}
+
+function limitSelection(checkbox) {
+  let checkedBoxes = document.querySelectorAll(
+    'input[name="category[]"]:checked'
+  );
+  if (checkedBoxes.length > 3) {
+    checkbox.checked = false; // Prevent selecting more than 3
+    alert("You can select up to 3 categories only.");
+  }
 }

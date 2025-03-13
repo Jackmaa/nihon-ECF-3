@@ -94,6 +94,9 @@ body.dark-mode {
   background-color: #202024;
   color: white;
 
+  label {
+    color: #0e0e0e;
+  }
   .resaux-sociaux {
     a {
       svg {
@@ -159,6 +162,7 @@ body.dark-mode {
     border: #ffffff 1px solid;
     padding: 5px 10px;
     transition: all ease 0.3s;
+
     &:hover {
       color: #cc392b;
       border: #cc392b 1px solid;
@@ -168,6 +172,7 @@ body.dark-mode {
   .logo-footer img {
     content: url(../img/logo_footer.svg);
   }
+
   .logo img {
     content: url(../img/logo_dark_theme.svg);
   }
@@ -188,8 +193,10 @@ body.dark-mode {
       width: 100%;
       color: white;
     }
+
     li {
       transition: all 0.3s ease;
+
       &:hover {
         background-color: #cc392b;
       }
@@ -232,6 +239,7 @@ svg {
 
   .test {
     display: flex;
+
     input {
       color: #333;
       width: 7vh;
@@ -366,14 +374,17 @@ footer > p {
 
   a {
     width: 100%;
+
     svg {
       width: 5vh;
       height: 5vh;
       margin-right: 1vw;
+
       path {
         transition: all ease 0.3s;
       }
     }
+
     &:hover {
       path {
         fill: #cc392b;
@@ -458,6 +469,7 @@ footer > p {
       background-color: #cc1606;
     }
   }
+
   .loginconnexion {
     background-color: #cc392b;
     color: white;
@@ -849,7 +861,7 @@ main.login {
   transform: translateX(-50%);
   width: 200px;
   height: 200px;
-  background: radial-gradient(circle, #FFD700, #FFA500);
+  background: radial-gradient(circle, #ffd700, #ffa500);
   border-radius: 50%;
   box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
   animation: sunrise 3.5s ease-in-out;
@@ -857,21 +869,21 @@ main.login {
 
 @keyframes sunrise {
   from {
-      top: 50%;
-      opacity: 0;
+    top: 50%;
+    opacity: 0;
   }
   to {
-      top: 10%;
-      opacity: 1;
+    top: 10%;
+    opacity: 1;
   }
 }
 
 @keyframes float {
   from {
-      transform: translateX(-10vw);
+    transform: translateX(-10vw);
   }
   to {
-      transform: translateX(110vw);
+    transform: translateX(110vw);
   }
 }
 
@@ -901,21 +913,21 @@ main.login {
 
 @keyframes moonrise {
   from {
-      top: 50%;
-      opacity: 0;
+    top: 50%;
+    opacity: 0;
   }
   to {
-      top: 10%;
-      opacity: 1;
+    top: 10%;
+    opacity: 1;
   }
 }
 
 @keyframes float {
   from {
-      transform: translateX(-10vw);
+    transform: translateX(-10vw);
   }
   to {
-      transform: translateX(110vw);
+    transform: translateX(110vw);
   }
 }
 
@@ -938,6 +950,7 @@ main.login {
   .red-background {
     background-color: var(--primary-clr-red);
   }
+
   .black-background {
     background-color: #38383f;
   }
@@ -1088,12 +1101,11 @@ button {
     }
   }
 }
-.container-homepage{
+.container-homepage {
   background-image: url(../img/vignette.svg);
-  background-color: #f2ebe8e3; 
+  background-color: #f2ebe8e3;
   background-blend-mode: overlay;
 }
-
 
 // *********************************
 // ****SLIDER CATEGORY HOMEPAGE*****
@@ -1298,6 +1310,7 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: start;
+
   h2 {
     font-size: 1rem;
   }
@@ -1309,17 +1322,21 @@ button {
     justify-content: center;
     font-family: var(--ff-barlow);
     font-weight: 400;
+
     figure {
       width: fit-content;
       margin: 0 auto;
+
       img {
         width: 20vh;
       }
     }
+
     hr {
       margin: 2% auto;
       width: 80%;
     }
+
     p {
       margin: auto;
       width: 80%;
@@ -1328,6 +1345,7 @@ button {
       a {
         color: #cc1606;
         transition: all ease 0.3s;
+
         &:hover {
           color: #fab1d4;
         }
@@ -1452,11 +1470,13 @@ div.mangaPage {
   padding-right: 10px;
   scrollbar-width: thin;
   scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+
   h2 {
     margin-top: 40vh;
     font-family: var(--ff-bangers);
     letter-spacing: var(--letter-spacing);
   }
+
   hr {
     margin: 2vh 0;
   }
@@ -1557,6 +1577,7 @@ div.mangaPage {
   .all-volume {
     margin-top: 5vh;
     display: flex;
+
     h2 {
       display: flex;
       flex-direction: column;
@@ -1592,6 +1613,7 @@ div.mangaPage {
     font-size: 1.5rem;
     margin: 2vh 0;
   }
+
   .head-edit-profile {
     position: relative;
     width: 100%;
@@ -1639,6 +1661,7 @@ div.mangaPage {
       .change-picture {
         color: var(--fc-black);
         background-color: #f2ebe8;
+
         &:hover {
           background-color: #fcc8e1;
         }
@@ -1680,6 +1703,7 @@ div.mangaPage {
   margin-top: 25vh;
   margin-bottom: 5vh;
   color: var(--fc-light);
+
   h3 {
     margin: 2vh 0;
     font-family: var(--ff-bangers);
@@ -1708,6 +1732,7 @@ div.mangaPage {
           &:hover {
             color: #fcc8e1;
           }
+
           span {
             font-size: 2rem;
             font-weight: 600;
@@ -1869,6 +1894,7 @@ button:hover {
 
     figure {
       width: 20vh;
+
       img {
         width: 100%;
       }
@@ -1967,6 +1993,7 @@ button:hover {
       margin: 0 10vw;
       background-color: rgba(255, 255, 255, 0.568);
       border-radius: 10px;
+
       span {
         float: left;
         padding: 10px 20px;
@@ -2061,9 +2088,11 @@ button:hover {
   flex-direction: column;
   justify-content: center;
 }
+
 .loup-search {
   display: flex;
 }
+
 #search-results-mobile,
 #search-results-desktop {
   width: 110%;
@@ -2080,11 +2109,13 @@ button:hover {
         font-weight: bold;
         margin-right: 1vh;
       }
+
       a {
         color: #0e0e0e;
         margin: 1vh 0;
         font-family: var(--ff-barlow);
         transition: all 0.3s ease;
+
         &:hover {
           color: #cc392b;
         }
@@ -2234,6 +2265,7 @@ button:hover {
       width: 20%;
       height: 10%;
     }
+
     p {
       margin: 1%;
       font-size: 1.5rem;
@@ -2312,10 +2344,12 @@ button:hover {
       color: var(--fc-black);
 
       transition: all 0.3s ease;
+
       &:hover {
         color: #cc392b;
       }
     }
+
     a {
       img {
         width: 10vh;
@@ -2465,6 +2499,7 @@ button:hover {
   .category-slider {
     margin: 2% 3%;
   }
+
   .category-slider .slider {
     max-width: 1400px;
     /* Augmente la largeur du slider */
@@ -2478,6 +2513,7 @@ button:hover {
     flex: 0 0 calc(100% / 5 - 10px);
     max-width: calc(100% / 5 - 10px);
   }
+
   /*
 *******************************
 ***********kakoii mode***********
@@ -2489,9 +2525,11 @@ button:hover {
     justify-content: center;
     align-items: center;
   }
+
   .headkakkoii {
     width: 100%;
   }
+
   main.kakkoii {
     width: 70vh;
 
@@ -2582,12 +2620,15 @@ button:hover {
     input {
       width: 30%;
     }
+
     button {
       width: 30%;
     }
   }
+
   figure.update-user-desktop {
     display: block;
+
     img {
       width: 100%;
       object-fit: contain;
@@ -2609,6 +2650,16 @@ button:hover {
       object-fit: cover;
       height: 40vh;
     }
+  }
+  /*
+**********************************
+***********CART*******************
+**********************************
+*/
+
+  .cartgrid {
+    display: flex;
+    justify-content: center;
   }
 }
 
@@ -2837,6 +2888,10 @@ button:hover {
     z-index: 1000;
   }
 
+  .popup.hidden {
+    display: none;
+  }
+
   .overlay {
     display: none;
     /* Masquer par défaut */
@@ -2854,27 +2909,38 @@ button:hover {
     display: block;
     /* Afficher lorsque actif */
   }
-
-  /*
+}
+form {
+  fieldset {
+    height: 20rem;
+    width: fit-content;
+    overflow-y: scroll;
+    label {
+      input[type="checkbox"] {
+        color: #0e0e0e;
+      }
+    }
+  }
+} /*
 *******************************
 ***********kakoii mode***********
 *******************************
 */
-  .kakkoii {
-    center {
-      max-width: 600px; /* Réduire la largeur maximale */
-      padding: 20px; /* Ajuster le padding si nécessaire */
-      margin: 20px auto; /* Centrer les éléments */
-      background-color: #cc1606;
-    }
+
+.kakkoii {
+  center {
+    max-width: 600px; /* Réduire la largeur maximale */
+    padding: 20px; /* Ajuster le padding si nécessaire */
+    margin: 20px auto; /* Centrer les éléments */
+    background-color: #cc1606;
   }
 }
-
 .headkakkoii {
   height: 60vh;
   background: url(../img/kakoii.svg) no-repeat center center/cover;
   width: 100%;
 }
+
 .kakkoii {
   display: flex;
   flex-direction: column;
@@ -2896,6 +2962,7 @@ button:hover {
     color: #f0f0f0;
     text-shadow: -1px -1px 0 red, 1px -1px 0 red, -1px 1px 0 red, 1px 1px 0 red;
   }
+
   .center {
     text-align: center;
     border: 2px solid #ffffff;
@@ -2909,6 +2976,7 @@ button:hover {
       letter-spacing: var(--letter-spacing);
       font-size: 1rem;
     }
+
     p {
       font-family: var(--ff-barlow);
       font-size: 1rem;
@@ -2925,10 +2993,12 @@ button:hover {
     border: none;
     padding: 20px;
     margin: 10px;
+
     &:hover {
       background-color: #cc1606;
     }
   }
+
   .close-popup {
     background-color: #0b7cec;
     color: var(--fc-light);
@@ -2952,6 +3022,7 @@ button:hover {
     font-size: 1rem;
     color: #f70707;
   }
+
   input {
     display: flex;
     justify-content: center;
@@ -2992,56 +3063,75 @@ button:hover {
     rgba(153, 0, 0, 1) 100%
   );
   height: 100vh;
-  background-size: cover; /* Assurez-vous que l'image couvre tout l'arrière-plan */
-  background-position: 0% 0%; /* Position initiale de l'arrière-plan */
-  overflow: hidden; /* Empêcher le défilement */
+  background-size: cover;
+  /* Assurez-vous que l'image couvre tout l'arrière-plan */
+  background-position: 0% 0%;
+  /* Position initiale de l'arrière-plan */
+  overflow: hidden;
+  /* Empêcher le défilement */
 
   .content {
     text-align: center;
-    position: relative; /* Positionner le texte par rapport à l'élément parent */
-    z-index: 2; /* Assurez-vous que le contenu est au-dessus des shurikens */
-    top: 50%; /* Centrer verticalement */
-    left: 50%; /* Centrer horizontalement */
-    transform: translate(-50%, -50%); /* Ajuster pour centrer parfaitement */
-    color: white; /* Couleur du texte */
-    font-family: var(--ff-barlow); /* Police de caractères */
+    position: relative;
+    /* Positionner le texte par rapport à l'élément parent */
+    z-index: 2;
+    /* Assurez-vous que le contenu est au-dessus des shurikens */
+    top: 50%;
+    /* Centrer verticalement */
+    left: 50%;
+    /* Centrer horizontalement */
+    transform: translate(-50%, -50%);
+    /* Ajuster pour centrer parfaitement */
+    color: white;
+    /* Couleur du texte */
+    font-family: var(--ff-barlow);
+    /* Police de caractères */
     padding: 20px;
-    background-color: rgba(
-      0,
-      0,
-      0,
-      0.5
-    ); /* Fond semi-transparent pour améliorer la lisibilité */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Fond semi-transparent pour améliorer la lisibilité */
     border-radius: 10px;
-    max-width: 600px; /* Limiter la largeur maximale */
-    width: auto; /* Utiliser la largeur automatique */
-    margin: 0 auto; /* Centrer horizontalement */
-    display: inline-block; /* Réduire la largeur au contenu */
-    backdrop-filter: blur(10px); /* Ajouter un flou au fond */
+    max-width: 600px;
+    /* Limiter la largeur maximale */
+    width: auto;
+    /* Utiliser la largeur automatique */
+    margin: 0 auto;
+    /* Centrer horizontalement */
+    display: inline-block;
+    /* Réduire la largeur au contenu */
+    backdrop-filter: blur(10px);
+    /* Ajouter un flou au fond */
   }
 
   .shuriken {
-    height: 10vw; /* Ajustez la hauteur selon vos besoins */
-    width: 10vw; /* Ajustez la largeur selon vos besoins */
-    position: absolute; /* Pour permettre le positionnement */
-    z-index: 1; /* Positionner les shurikens derrière le contenu */
+    height: 10vw;
+    /* Ajustez la hauteur selon vos besoins */
+    width: 10vw;
+    /* Ajustez la largeur selon vos besoins */
+    position: absolute;
+    /* Pour permettre le positionnement */
+    z-index: 1;
+    /* Positionner les shurikens derrière le contenu */
   }
 
   .shuriken.top {
-    top: 10px; /* Positionner en haut */
+    top: 10px;
+    /* Positionner en haut */
     left: 50%;
     transform: translateX(-50%);
   }
 
   .shuriken.bottom {
-    bottom: 10px; /* Positionner en bas */
+    bottom: 10px;
+    /* Positionner en bas */
     left: 50%;
     transform: translateX(-50%);
   }
+
   .button {
     color: rgb(230, 10, 10);
     font-weight: 400;
   }
+
   h1 {
     font-family: var(--ff-bangers);
     letter-spacing: var(--letter-spacing);
@@ -3066,7 +3156,8 @@ button:hover {
 
 .kakkoii {
   .popup {
-    display: none; /* Masquer par défaut */
+    display: none;
+    /* Masquer par défaut */
     position: fixed;
     left: 50%;
     top: 50%;
@@ -3080,7 +3171,8 @@ button:hover {
   }
 
   .overlay {
-    display: none; /* Masquer par défaut */
+    display: none;
+    /* Masquer par défaut */
     position: fixed;
     top: 0;
     left: 0;
@@ -3092,18 +3184,22 @@ button:hover {
 
   .popup.active,
   .overlay.active {
-    display: block; /* Afficher lorsque actif */
+    display: block;
+    /* Afficher lorsque actif */
   }
+
   .flex {
     display: flex;
     flex-direction: column;
   }
+
   h2 {
     font-family: var(--ff-bangers);
     letter-spacing: var(--letter-spacing);
     font-size: 1rem;
     color: #fa0707;
   }
+
   .open-popup {
     background-color: #fcc8e1;
     color: #0e0e0e;
@@ -3134,6 +3230,7 @@ button:hover {
   svg {
     width: 4vh;
     height: 4vh;
+
     path {
       transition: all 0.3s ease;
     }
@@ -3156,6 +3253,7 @@ button:hover {
   height: 120px;
   width: 100%;
 }
+
 .bgWave {
   position: absolute;
   left: 0;
@@ -3165,35 +3263,106 @@ button:hover {
   background-position: left bottom;
   transform-origin: left bottom;
 }
+
 .waveOne {
   background-image: url(../img/wave.svg);
   animation: wave 12s linear infinite;
 }
+
 .waveTwo {
   background-image: url(../img/wave.svg);
   animation: wave-reverse 6s linear infinite;
   right: 0;
   left: auto;
 }
+
 @keyframes wave {
   0% {
     transform: translateX(0);
   }
+
   50% {
     transform: translateX(-25%);
   }
+
   100% {
     transform: translateX(-50%);
   }
 }
+
 @keyframes wave-reverse {
   0% {
     transform: translateX(0) scaleY(1);
   }
+
   50% {
     transform: translateX(25%) scaleY(0.55);
   }
+
   100% {
     transform: translateX(50%) scaleY(1);
+  }
+}
+
+/*
+**********************************
+***********CART*******************
+**********************************
+*/
+
+.pagecart {
+  .form-cart {
+    margin: 2rem;
+  }
+
+  .panier {
+    height: 60vh;
+    background: url("../img/panier\\(1\).webp") no-repeat center center/cover;
+    width: 100%;
+  }
+
+  .cartbutton {
+    width: 100%;
+    padding: 5px;
+    background-color: #fcc8e1;
+    color: #141414;
+    border-radius: 5px;
+    border: solid 2px #3333339f;
+    font-size: 1.5rem;
+    font-family: var(--ff-barlow);
+    transition: all ease 0.3s;
+
+    &:hover {
+      background-color: #cc1606;
+    }
+  }
+
+  H1 {
+    font-family: var(--ff-bangers);
+    letter-spacing: var(--letter-spacing);
+    font-size: 2rem;
+    color: #070707;
+    margin-left: 20px;
+  }
+
+  p {
+    font-family: var(--ff-barlow);
+    font-size: 1.5rem;
+    color: #070707;
+  }
+
+  .trash {
+    width: 2vh;
+    height: 2vh;
+  }
+
+  .battle {
+    display: block;
+    margin: 2rem auto;
+    /* Centrer l'image horizontalement */
+    max-width: 100%;
+  }
+  .gap {
+    margin: 20px;
   }
 }

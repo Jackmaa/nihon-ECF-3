@@ -2,12 +2,12 @@ window.addEventListener("load", function () {
   // Get references to the form, input field, and response container
   let createForm = document.getElementById("create-form");
   let createAuthorInput = document.getElementById("author");
-  let response = document.getElementById("response");
+  let response = document.getElementById("response-author");
 
   // Add event listener to the input field for user input
   createAuthorInput.addEventListener("input", function () {
     // Clear response if input length is less than or equal to 3
-    if (createAuthorInput.value.length <= 3) {
+    if (createAuthorInput.value.length <= 2) {
       response.innerHTML = "";
       return;
     }
@@ -29,7 +29,7 @@ window.addEventListener("load", function () {
         for (let author of datas) {
           let suggestionList = document.createElement("li");
           suggestionList.innerHTML = author.name;
-
+          suggestionList.style.color = "black";
           // Add click event listener to each suggestion
           suggestionList.addEventListener("click", function () {
             createAuthorInput.value = author.name; // Set input value to the selected suggestion

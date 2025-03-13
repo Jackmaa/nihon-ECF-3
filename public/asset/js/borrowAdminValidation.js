@@ -18,15 +18,34 @@ document.querySelectorAll(".status-borrow").forEach((select) => {
       });
   });
 });
+// Track the sorting state for each column
+let sortStates = {};
+
 function sortTable(colIndex) {
   let table = document.querySelector("table tbody");
   let rows = Array.from(table.rows);
 
+  // Determine the current sorting state for the column
+  if (!sortStates[colIndex]) {
+    sortStates[colIndex] = "asc"; // Default to ascending order
+  } else if (sortStates[colIndex] === "asc") {
+    sortStates[colIndex] = "desc"; // Switch to descending order
+  } else {
+    sortStates[colIndex] = "asc"; // Switch back to ascending order
+  }
+
+  // Sort the rows based on the column and sorting state
   rows.sort((a, b) => {
     let valA = a.cells[colIndex].textContent.trim();
     let valB = b.cells[colIndex].textContent.trim();
-    return valA.localeCompare(valB);
+
+    if (sortStates[colIndex] === "asc") {
+      return valA.localeCompare(valB);
+    } else {
+      return valB.localeCompare(valA);
+    }
   });
 
+  // Re-append the sorted rows to the table
   rows.forEach((row) => table.appendChild(row));
 }
