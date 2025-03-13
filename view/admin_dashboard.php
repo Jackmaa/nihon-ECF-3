@@ -9,7 +9,11 @@
 
 <h1>Returns of the Day:</h1>
 <p>Total:</p>
-
+<div class="filters">
+    <button onclick="sortTable(0)">Sort by User</button>
+    <button onclick="sortTable(1)">Sort by Manga</button>
+    <button onclick="sortTable(3)">Sort by Return Date</button>
+</div>
 <table>
     <thead>
         <tr>
