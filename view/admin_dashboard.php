@@ -1,7 +1,7 @@
 <?php
     $title            = 'Nihon | Home';
     $meta_description = 'The best place to find your next manga\'s addiction ';
-    $scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public/asset/js/dashboard.js", "public/asset/js/header.js", "public/asset/js/search_admin_dashboard.js", "public\asset\js\darkmode.js"];
+    $scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public/asset/js/dashboard.js", "public/asset/js/header.js", "public/asset/js/search_admin_dashboard.js", "public\asset\js\darkmode.js", "public/asset/js/borrowAdminValidation"];
     ob_start();
 ?>
 <div class="headdashboard"></div>
@@ -28,7 +28,9 @@
             <td><?php echo $borrow->getId_volume(); ?></td>
             <td><?php echo $borrow->getReturn_date(); ?></td>
             <td>
-                <select name="status" id="status-borrow-<?php echo $borrow->getId_borrow(); ?>">
+            <select name="status"
+                        class="status-borrow"
+                        data-id="<?php echo $borrow->getId_borrow(); ?>">
                     <?php foreach ($enumValues as $value): ?>
                     <option value="<?php echo $value; ?>"
                         <?php echo($borrow->getStatus() == $value) ? 'selected' : ''; ?>>

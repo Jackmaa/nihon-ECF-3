@@ -82,4 +82,20 @@ class ControllerAdmin extends Controller {
         $link   = "http://nihon/finishsignup/?email=$email&code=$token";
         $mailer->sendFinishSignupEmail($email, $link);
     }
+
+    public function adminBorrowStatus() {
+        $data = json_decode(file_get_contents("php://input"), true);
+        if (isset($data['id_borrow']) && isset($data['status'])) {
+            $id_borrow = intval($data['id_borrow']);
+            $status    = htmlspecialchars($data['status']);
+            $model     = new ModelBorrow;
+            if ($model->updateStatus($id_borrow, $status)) {
+                echo json_encode(["success" => true]);
+            } else {
+                echo json_encode(["success" => false]);
+            }
+        } else {
+            echo json_encode(["success" => false]);
+        }
+    }
 }

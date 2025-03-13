@@ -134,14 +134,11 @@ body.dark-mode {
   }
 
   .current-info {
-
-    div{
-          a{
-      color: white;
+    div {
+      a {
+        color: white;
+      }
     }
-    }
-
-    
   }
 
   .copyright {
@@ -162,18 +159,18 @@ body.dark-mode {
     border: #ffffff 1px solid;
     padding: 5px 10px;
     transition: all ease 0.3s;
-    &:hover{
+    &:hover {
       color: #cc392b;
       border: #cc392b 1px solid;
     }
   }
 
-.logo-footer img {
-  content: url(../img/logo_footer.svg);
-}
-.logo img {
-content: url(../img/logo_dark_theme.svg);
-}
+  .logo-footer img {
+    content: url(../img/logo_footer.svg);
+  }
+  .logo img {
+    content: url(../img/logo_dark_theme.svg);
+  }
 
   .logoo img {
     content: url(../img/logo_dark_theme.svg);
@@ -187,18 +184,17 @@ content: url(../img/logo_dark_theme.svg);
   .menu-desktop .profile .dropdown {
     background-color: #38383f;
 
-  a{
-    width: 100%;
-    color: white;
-  }
-  li {
-
-    transition: all 0.3s ease;
-    &:hover {
-      background-color: #cc392b;
+    a {
+      width: 100%;
+      color: white;
+    }
+    li {
+      transition: all 0.3s ease;
+      &:hover {
+        background-color: #cc392b;
+      }
     }
   }
-}
 }
 
 .mode-icon {
@@ -214,7 +210,7 @@ svg {
 }
 
 .p-all-2 {
-  padding: .5vh 2vh;
+  padding: 0.5vh 2vh;
 }
 
 .flexcenter {
@@ -359,7 +355,7 @@ svg {
 **********************************
 */
 
-footer>p {
+footer > p {
   margin-bottom: 1%;
   padding: 0 20px;
 }
@@ -369,20 +365,19 @@ footer>p {
 
   a {
     width: 100%;
-      svg {
-    width: 5vh;
-    height: 5vh;
-    margin-right: 1vw;
-    path {
-      transition: all ease 0.3s;
+    svg {
+      width: 5vh;
+      height: 5vh;
+      margin-right: 1vw;
+      path {
+        transition: all ease 0.3s;
+      }
     }
-}
     &:hover {
       path {
         fill: #cc392b;
       }
     }
-  
   }
 }
 
@@ -417,7 +412,8 @@ footer>p {
 **********************************
 */
 
-.connexion , .login{
+.connexion,
+.login {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -460,7 +456,6 @@ footer>p {
     &:hover {
       background-color: #cc1606;
     }
-    
   }
   .loginconnexion {
     background-color: #cc392b;
@@ -475,7 +470,6 @@ footer>p {
     &:hover {
       background-color: #cc1606;
     }
-    
   }
 
   button.togglePassword {
@@ -491,7 +485,6 @@ footer>p {
   img {
     max-width: 50%;
   }
-  
 }
 
 .password-container {
@@ -499,14 +492,13 @@ footer>p {
   display: flex;
   align-items: center;
 
-
- input {
-  width: 100%;
-  padding-right: 40px;
-  height: 40px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding-left: 10px;
+  input {
+    width: 100%;
+    padding-right: 40px;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding-left: 10px;
     display: flex;
     flex-direction: column;
     border-radius: 10px;
@@ -536,16 +528,14 @@ footer>p {
   }
 }
 
-
-
-
 /*
 **********************************
 *************REGISTER*************
 **********************************
 */
 
-main.connexion, main.login{
+main.connexion,
+main.login {
   #img-subscrire {
     max-width: 90%;
     display: none;
@@ -840,10 +830,8 @@ main.connexion, main.login{
       top: -80px;
       right: 50px;
     }
-
   }
 }
-
 
 /*
 **********************************
@@ -864,7 +852,7 @@ main.connexion, main.login{
   .red-background {
     background-color: var(--primary-clr-red);
   }
-  .black-background{
+  .black-background {
     background-color: #38383f;
   }
 }
@@ -1075,8 +1063,6 @@ button {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    
-    
 
     a {
       font-family: var(--ff-barlow);
@@ -1093,7 +1079,7 @@ button {
     }
 
     h2 {
-      margin:  3vh 5vh;
+      margin: 3vh 5vh;
       text-align: justify;
       font-family: var(--ff-bangers);
       letter-spacing: var(--letter-spacing);
@@ -1217,43 +1203,42 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: start;
-  h2{
+  h2 {
     font-size: 1rem;
   }
 
   .bubble-fav {
-    
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     font-family: var(--ff-barlow);
     font-weight: 400;
-  figure {
-    width: fit-content;
-    margin: 0 auto;
-    img {
-      width: 20vh;
+    figure {
+      width: fit-content;
+      margin: 0 auto;
+      img {
+        width: 20vh;
+      }
     }
-  }
-  hr{
-    margin: 2% auto;
-    width: 80%;
-  }
-  p {
-    margin: auto;
-    width: 80%;
-    font-size: 1.2rem;
+    hr {
+      margin: 2% auto;
+      width: 80%;
+    }
+    p {
+      margin: auto;
+      width: 80%;
+      font-size: 1.2rem;
 
-    a {
-      color:#cc1606;
-      transition: all ease 0.3s;
-      &:hover{
-        color: #fab1d4;
+      a {
+        color: #cc1606;
+        transition: all ease 0.3s;
+        &:hover {
+          color: #fab1d4;
+        }
       }
     }
   }
-}
 }
 
 /*
@@ -1372,11 +1357,11 @@ div.mangaPage {
   padding-right: 10px;
   scrollbar-width: thin;
   scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
-h2 {
-  margin-top: 40vh;
-  font-family: var(--ff-bangers);
-  letter-spacing: var(--letter-spacing);
-}
+  h2 {
+    margin-top: 40vh;
+    font-family: var(--ff-bangers);
+    letter-spacing: var(--letter-spacing);
+  }
   hr {
     margin: 2vh 0;
   }
@@ -1477,7 +1462,7 @@ h2 {
   .all-volume {
     margin-top: 5vh;
     display: flex;
-    h2{
+    h2 {
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -1507,11 +1492,11 @@ h2 {
 */
 .head-profile {
   p {
-      font-family: var(--ff-bangers);
-      letter-spacing: var(--letter-spacing);
-      font-size: 1.5rem;
-      margin: 2vh 0;
-    }
+    font-family: var(--ff-bangers);
+    letter-spacing: var(--letter-spacing);
+    font-size: 1.5rem;
+    margin: 2vh 0;
+  }
   .head-edit-profile {
     position: relative;
     width: 100%;
@@ -1558,7 +1543,7 @@ h2 {
 
       .change-picture {
         color: var(--fc-black);
-        background-color: #F2EBE8;
+        background-color: #f2ebe8;
         &:hover {
           background-color: #fcc8e1;
         }
@@ -1600,12 +1585,12 @@ h2 {
   margin-top: 25vh;
   margin-bottom: 5vh;
   color: var(--fc-light);
-      h3 {
-      margin: 2vh 0;
-      font-family: var(--ff-bangers);
-      letter-spacing: var(--letter-spacing);
-      color: var(--fc-black);
-    }
+  h3 {
+    margin: 2vh 0;
+    font-family: var(--ff-bangers);
+    letter-spacing: var(--letter-spacing);
+    color: var(--fc-black);
+  }
 
   div.general-profile {
     .gradient {
@@ -1617,27 +1602,25 @@ h2 {
 
         a {
           width: 100%;
-        padding: 10px;
-        display: flex;
-        justify-content: space-between;
-        color: var(--fc-light);
-        font-family: var(--ff-barlow);
-        font-size: 1.2rem;
-        transition: all ease 0.3s;
-        
-        &:hover {
-          color: #fcc8e1;
-        }
-        span {
-          font-size: 2rem;
-          font-weight: 600;
-        }
+          padding: 10px;
+          display: flex;
+          justify-content: space-between;
+          color: var(--fc-light);
+          font-family: var(--ff-barlow);
+          font-size: 1.2rem;
+          transition: all ease 0.3s;
 
-
+          &:hover {
+            color: #fcc8e1;
+          }
+          span {
+            font-size: 2rem;
+            font-weight: 600;
+          }
+        }
       }
     }
   }
-}
 }
 
 /*
@@ -1670,9 +1653,6 @@ h2 {
       outline: none;
       border: solid 2px #fcc8e1;
     }
-
-    
-
   }
 
   button {
@@ -1764,8 +1744,7 @@ button:hover {
   }
 }
 
-
-.card-current{
+.card-current {
   display: flex;
   justify-content: space-around;
 
@@ -1783,23 +1762,22 @@ button:hover {
     }
   }
 
-
-.current-storie {
-  display: flex;
-  justify-content: center;
-  margin: 5vh 0;
+  .current-storie {
+    display: flex;
+    justify-content: center;
+    margin: 5vh 0;
 
     h4 {
       font-family: var(--ff-barlow);
       font-weight: 400;
     }
 
-  figure{
-    width: 20vh;
-    img {
-      width: 100%;
+    figure {
+      width: 20vh;
+      img {
+        width: 100%;
+      }
     }
-  }
 
     .current-info {
       display: flex;
@@ -1879,31 +1857,29 @@ button:hover {
     h1 {
       padding: 20px 20px;
 
-    span{
-    background-color: rgba(255, 255, 255, 0.568);
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-family: var(--ff-bangers);
-    letter-spacing: var(--letter-spacing);
+      span {
+        background-color: rgba(255, 255, 255, 0.568);
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-family: var(--ff-bangers);
+        letter-spacing: var(--letter-spacing);
+      }
     }
 
-  }
-
-  p{
-    font-size: 1.1rem;
-    padding: 10px 20px;
-    margin: 0 10vw;
-    background-color: rgba(255, 255, 255, 0.568);
-    border-radius: 10px;
-    span {
-      float: left;
+    p {
+      font-size: 1.1rem;
       padding: 10px 20px;
-      font-family: var(--ff-barlow);
-      font-weight: 500
+      margin: 0 10vw;
+      background-color: rgba(255, 255, 255, 0.568);
+      border-radius: 10px;
+      span {
+        float: left;
+        padding: 10px 20px;
+        font-family: var(--ff-barlow);
+        font-weight: 500;
+      }
     }
   }
-}
-
 }
 
 .manga_category {
@@ -2014,7 +1990,6 @@ button:hover {
 */
 
 @media (min-width: 600px) {
-
   /*
 **********************************
 ***********LOGIN/REGISTER************
@@ -2061,7 +2036,6 @@ button:hover {
 }
 
 @media (min-width: 768px) {
-
   /*
 **********************************
 ***********LOGIN/REGISTER************
@@ -2111,23 +2085,21 @@ button:hover {
 ***********kakoii mode***********
 *******************************
 */
-.formkakoii{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.headkakkoii {
-width: 100%;
-}
-.kakkoii{
-    width: 70vh; 
-
+  .formkakoii {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .headkakkoii {
+    width: 100%;
+  }
+  .kakkoii {
+    width: 70vh;
   }
 }
 
 @media (min-width: 1024px) {
-
   /*
 **********************************
 ***********CAROUSSEL************
@@ -2141,7 +2113,7 @@ width: 100%;
       width: 20%;
       height: 10%;
     }
-    p{
+    p {
       margin: 1%;
       font-size: 1.5rem;
     }
@@ -2368,9 +2340,9 @@ width: 100%;
 ***** SLIDER CATEGORY HOMEPAGE*******
 **********************************
 */
-.category-slider{
-  margin: 2% 3%;
-}
+  .category-slider {
+    margin: 2% 3%;
+  }
   .category-slider .slider {
     max-width: 1400px;
     /* Augmente la largeur du slider */
@@ -2388,22 +2360,22 @@ width: 100%;
       width: 40%;
     }
   }
-    /*
+  /*
 *******************************
 ***********kakoii mode***********
 *******************************
 */
-.formkakoii{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.headkakkoii {
-width: 100%;
-}
-main.kakkoii{
-    width: 70vh; 
+  .formkakoii {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .headkakkoii {
+    width: 100%;
+  }
+  main.kakkoii {
+    width: 70vh;
 
     div.kakkoiiflex {
       display: flex;
@@ -2431,16 +2403,15 @@ main.kakkoii{
       display: flex;
       flex-direction: column;
 
-    .sum-manga {
+      .sum-manga {
+        h2 {
+          font-size: 2rem;
+        }
 
-      h2 {
-        font-size: 2rem;
+        P {
+          font-size: 1.5rem;
+        }
       }
-      
-      P {
-        font-size: 1.5rem;
-      }
-    }
 
       .char-manga {
         flex-direction: column;
@@ -2474,21 +2445,21 @@ main.kakkoii{
 ***********UPDATE USER************
 **********************************
 */
-.modify-profile {
-  input {
-    width: 30%;
+  .modify-profile {
+    input {
+      width: 30%;
+    }
+    button {
+      width: 30%;
+    }
   }
-  button {
-    width: 30%;
+  figure.update-user-desktop {
+    display: block;
+    img {
+      width: 100%;
+      object-fit: contain;
+    }
   }
-}
-figure.update-user-desktop {
-  display: block;
-  img {
-    width: 100%;
-    object-fit: contain;
-}
-}
 
   /*
 **********************************
@@ -2500,18 +2471,15 @@ figure.update-user-desktop {
     display: block;
     margin-top: 2vh;
 
-
-  img{
-    width: 100%;
-    object-fit: cover;
-    height: 40vh;
+    img {
+      width: 100%;
+      object-fit: cover;
+      height: 40vh;
+    }
   }
 }
 
-}
-
 @media (min-width: 1440px) {
-
   /*
 **********************************
 ***********LOGIN/REGISTER************
@@ -2635,15 +2603,31 @@ figure.update-user-desktop {
     border: 1px solid #ccc;
     padding: 10px;
     text-align: left;
+
+    select.status-borrow {
+      padding: 5px;
+      border-radius: 5px;
+    }
+
+    .status-borrow option[value="PENDING"] {
+      background-color: orange;
+    }
+
+    .status-borrow option[value="APPROVED"] {
+      background-color: green;
+      color: white;
+    }
+
+    .status-borrow option[value="REJECTED"],
+    .status-borrow option[value="LATE"] {
+      background-color: red;
+      color: white;
+    }
   }
 
   th {
     background-color: #cc392b;
     color: white;
-  }
-
-  tr:nth-child(even) {
-    background-color: #f2f2f2;
   }
 
   .color-button {
@@ -2743,13 +2727,13 @@ figure.update-user-desktop {
 ***********kakoii mode***********
 *******************************
 */
-.kakkoii{
-  center {
-    max-width: 600px; /* Réduire la largeur maximale */
-    padding: 20px; /* Ajuster le padding si nécessaire */
-    margin: 20px auto; /* Centrer les éléments */
-    background-color: #cc1606;
-  }
+  .kakkoii {
+    center {
+      max-width: 600px; /* Réduire la largeur maximale */
+      padding: 20px; /* Ajuster le padding si nécessaire */
+      margin: 20px auto; /* Centrer les éléments */
+      background-color: #cc1606;
+    }
   }
 }
 
@@ -2757,35 +2741,29 @@ figure.update-user-desktop {
   height: 30vh;
   background: url(../img/kakoii.svg) no-repeat center center/cover;
   width: 100%;
- 
 }
-.kakkoii{
-display: flex;
-flex-direction: column;
-align-items: center;
-    background-color: #a2eefb;
-    margin:20px;
-    padding: 20px 0;
-    border: 5px solid #ffffff;
-    border-radius: 10px;
+.kakkoii {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #a2eefb;
+  margin: 20px;
+  padding: 20px 0;
+  border: 5px solid #ffffff;
+  border-radius: 10px;
 
-    .char-kakkoii {
-      display: flex;
-      
-    }
-    
-  h1{
+  .char-kakkoii {
+    display: flex;
+  }
+
+  h1 {
     font-family: var(--ff-bangers);
     letter-spacing: var(--letter-spacing);
     font-size: 1rem;
     color: #f0f0f0;
-    text-shadow: 
-                -2px -2px 0 red,  
-                2px -2px 0 red,
-                -2px 2px 0 red,
-                2px 2px 0 red;
+    text-shadow: -2px -2px 0 red, 2px -2px 0 red, -2px 2px 0 red, 2px 2px 0 red;
   }
-  .center{
+  .center {
     text-align: center;
     border: 2px solid #ffffff;
     border-radius: 10px;
@@ -2798,26 +2776,25 @@ align-items: center;
       letter-spacing: var(--letter-spacing);
       font-size: 1rem;
     }
-    p{
+    p {
       font-family: var(--ff-barlow);
       font-size: 1rem;
-        
     }
   }
 
   .center button {
     background-color: #fcc8e1;
-      color: #0e0e0e;
-      font-family: var(--ff-bangers);
-      cursor: pointer;
-      transition: all ease 0.3s;
-      border-radius: 10px;
-      border: none;
-      padding: 20px;
-      margin: 10px;
-      &:hover{
-        background-color: #cc1606;
-}
+    color: #0e0e0e;
+    font-family: var(--ff-bangers);
+    cursor: pointer;
+    transition: all ease 0.3s;
+    border-radius: 10px;
+    border: none;
+    padding: 20px;
+    margin: 10px;
+    &:hover {
+      background-color: #cc1606;
+    }
   }
 }
 
@@ -2899,7 +2876,7 @@ align-items: center;
     font-size: 1rem;
     color: #ffffff;
   }
- }
+}
 
 /*
 **********************************
@@ -2907,73 +2884,53 @@ align-items: center;
 **********************************
 */
 
-.kakkoii{
-  
+.kakkoii {
   .popup {
-  display: none; /* Masquer par défaut */
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  border: 2px solid #ffffff;
-  padding: 20px;
-  background-color: #ffffff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  z-index: 1000;
-  border-radius: 10px;
+    display: none; /* Masquer par défaut */
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid #ffffff;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    border-radius: 10px;
+  }
+
+  .overlay {
+    display: none; /* Masquer par défaut */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+
+  .popup.active,
+  .overlay.active {
+    display: block; /* Afficher lorsque actif */
+  }
+  .flex {
+    display: flex;
+    flex-direction: column;
+  }
+  h2 {
+    font-family: var(--ff-bangers);
+    letter-spacing: var(--letter-spacing);
+    font-size: 1rem;
+    color: #fa0707;
+  }
+  .open-popup {
+    background-color: #fcc8e1;
+    color: #0e0e0e;
+    font-family: var(--ff-bangers);
+    cursor: pointer;
+  }
 }
-
-.overlay {
-  display: none; /* Masquer par défaut */
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 999;
-}
-
-.popup.active,
-.overlay.active {
-  display: block; /* Afficher lorsque actif */
-}
-.flex{
-  display: flex;
-  flex-direction: column;
-}
-h2{
-  font-family: var(--ff-bangers);
-  letter-spacing: var(--letter-spacing);
-  font-size: 1rem;
-  color: #fa0707;
-  
-}
-.open-popup{
-  background-color: #fcc8e1;
-  color: #0e0e0e;
-  font-family: var(--ff-bangers);
-  cursor: pointer;
-}
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*
 **********************************
@@ -2983,7 +2940,7 @@ h2{
 
 .wrap {
   overflow: hidden;
-  position:fixed;
+  position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
@@ -2999,7 +2956,6 @@ h2{
   background-repeat: repeat;
   background-position: left bottom;
   transform-origin: left bottom;
-  
 }
 .waveOne {
   background-image: url(../img/wave.svg);
@@ -3012,106 +2968,24 @@ h2{
   left: auto;
 }
 @keyframes wave {
-    0% {
-        transform: translateX(0)
-    }
-    50% {
-        transform: translateX(-25%)
-    }
-    100% {
-        transform: translateX(-50%)
-    }
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-25%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 @keyframes wave-reverse {
-    0% {
-        transform: translateX(0) scaleY(1)
-    }
-    50% {
-        transform: translateX(25%) scaleY(0.55)
-    }
-    100% {
-        transform: translateX(50%) scaleY(1)
-    }
+  0% {
+    transform: translateX(0) scaleY(1);
+  }
+  50% {
+    transform: translateX(25%) scaleY(0.55);
+  }
+  100% {
+    transform: translateX(50%) scaleY(1);
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

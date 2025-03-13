@@ -88,8 +88,7 @@ class ModelBorrow extends Model {
     public function getBorrowedBooks() {
         $req = $this->getDb()->prepare(
             'SELECT id_borrow, id_user, id_manga, id_volume, borrow_date, return_date, `status`
-            FROM borrow
-            LIMIT 3');
+            FROM borrow');
         $req->execute();
         $results = $req->fetchAll(PDO::FETCH_ASSOC);
         $borrows = [];
@@ -119,5 +118,16 @@ class ModelBorrow extends Model {
 
         // Return the extracted ENUM values as an array
         return $enumValues;
+    }
+
+    public function updateStatus(int $id_borrow, string $status) {
+        $req = $this->getDb()->prepare("UPDATE borrow SET status = :status WHERE id_borrow = :id_borrow");
+        $req->bindParam(":id_borrow", $id_borrow, PDO::PARAM_INT);
+        $req->bindParam(":status", $status);
+        if ($req->execute()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
