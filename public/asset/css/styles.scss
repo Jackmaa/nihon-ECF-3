@@ -1058,15 +1058,17 @@ button {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  padding: 1rem;
 
   .category-title {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding-block: 1rem;
 
     a {
-      margin: 8% 3%;
+      margin: 0 3%;
       font-family: var(--ff-barlow);
       color: var(--fc-black);
       border: #231b19 1px solid;
@@ -1080,7 +1082,7 @@ button {
     }
 
     h2 {
-      margin: 3vh 5vh;
+      margin: 0 3%;
       text-align: justify;
       font-family: var(--ff-bangers);
       letter-spacing: var(--letter-spacing);
@@ -1102,7 +1104,7 @@ button {
     .manga {
       position: relative;
       text-align: center;
-      flex: 0 0 calc(100% / 2 - 10px);
+      flex: 0 0 calc(100% / 1 - 10px);
       box-sizing: border-box;
       margin: 0 2vw;
       display: flex;
@@ -1133,8 +1135,10 @@ button {
         }
 
         img {
-          width: 100%;
           transition: all 0.5s ease;
+          object-fit: cover;
+          width: 35vh;
+          height: 50vh;
         }
       }
 
@@ -2037,6 +2041,16 @@ button:hover {
 @media (min-width: 768px) {
   /*
 **********************************
+***********HOMEPAGE************
+**********************************
+*/
+
+  .manga {
+    flex: 0 0 calc(100% / 3 - 10px);
+    max-width: calc(100% / 3 - 10px);
+  }
+  /*
+**********************************
 ***********LOGIN/REGISTER************
 **********************************
 */
@@ -2355,10 +2369,6 @@ button:hover {
   .manga {
     flex: 0 0 calc(100% / 5 - 10px);
     max-width: calc(100% / 5 - 10px);
-
-    img {
-      width: 40%;
-    }
   }
   /*
 *******************************
@@ -2825,6 +2835,23 @@ button:hover {
   }
   .form-group {
     padding: 10px;
+  }
+}
+
+@media (min-width: 2560px) {
+  div.slider {
+    div.slider-wrapper {
+      div.manga {
+        flex: 0 0 calc(100% / 5 - 10px);
+        max-width: calc(100% / 5 - 10px);
+        a {
+          img {
+            width: 80vh;
+            height: 70vh;
+          }
+        }
+      }
+    }
   }
 }
 

@@ -943,15 +943,17 @@ button {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  padding: 1rem;
 }
 .category-slider .category-title {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding-block: 1rem;
 }
 .category-slider .category-title a {
-  margin: 8% 3%;
+  margin: 0 3%;
   font-family: var(--ff-barlow);
   color: var(--fc-black);
   border: #231b19 1px solid;
@@ -963,7 +965,7 @@ button {
   border: #cc392b 1px solid;
 }
 .category-slider .category-title h2 {
-  margin: 3vh 5vh;
+  margin: 0 3%;
   text-align: justify;
   font-family: var(--ff-bangers);
   letter-spacing: var(--letter-spacing);
@@ -982,7 +984,7 @@ button {
 .category-slider .slider .manga {
   position: relative;
   text-align: center;
-  flex: 0 0 calc(50% - 10px);
+  flex: 0 0 calc(100% - 10px);
   box-sizing: border-box;
   margin: 0 2vw;
   display: flex;
@@ -1010,8 +1012,11 @@ button {
   filter: brightness(50%);
 }
 .category-slider .slider .manga a img {
-  width: 100%;
   transition: all 0.5s ease;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 35vh;
+  height: 50vh;
 }
 .category-slider .slider .manga figure {
   position: absolute;
@@ -1809,6 +1814,15 @@ button:hover {
 @media (min-width: 768px) {
   /*
   **********************************
+  ***********HOMEPAGE************
+  **********************************
+  */
+  .manga {
+    flex: 0 0 calc(33.3333333333% - 10px);
+    max-width: calc(33.3333333333% - 10px);
+  }
+  /*
+  **********************************
   ***********LOGIN/REGISTER************
   **********************************
   */
@@ -2074,9 +2088,6 @@ button:hover {
   .manga {
     flex: 0 0 calc(20% - 10px);
     max-width: calc(20% - 10px);
-  }
-  .manga img {
-    width: 40%;
   }
   /*
   *******************************
@@ -2491,6 +2502,16 @@ button:hover {
   padding: 10px;
 }
 
+@media (min-width: 2560px) {
+  div.slider div.slider-wrapper div.manga {
+    flex: 0 0 calc(20% - 10px);
+    max-width: calc(20% - 10px);
+  }
+  div.slider div.slider-wrapper div.manga a img {
+    width: 80vh;
+    height: 70vh;
+  }
+}
 /*
 **********************************
 ***********404********************

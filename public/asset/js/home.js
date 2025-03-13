@@ -85,11 +85,9 @@ document.querySelectorAll('.category-slider').forEach(slider => {
             if (currentIndex === totalSlides) { 
                 sliderWrapper.style.transition = 'none';
                 currentIndex = 0;
-                sliderWrapper.style.transform = `translateX(${-currentIndex * slideWidth}px)`;
             } else if (currentIndex === -1) { 
                 sliderWrapper.style.transition = 'none';
                 currentIndex = totalSlides - 1;
-                sliderWrapper.style.transform = `translateX(${-currentIndex * slideWidth}px)`;
             }
             isTransitioning = false;
         }, 300);
@@ -112,6 +110,4 @@ document.querySelectorAll('.category-slider').forEach(slider => {
         currentIndex = 0;
         updateSlider();
     });
-
-    sliderWrapper.style.transform = `translateX(${-currentIndex * slideWidth}px)`;
 });
