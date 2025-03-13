@@ -767,7 +767,7 @@ main.login .cloud:before {
   transform: translateX(-50%);
   width: 200px;
   height: 200px;
-  background: radial-gradient(circle, #FFD700, #FFA500);
+  background: radial-gradient(circle, #ffd700, #ffa500);
   border-radius: 50%;
   box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
   animation: sunrise 3.5s ease-in-out;
@@ -2842,7 +2842,7 @@ form fieldset label input[type=checkbox] {
   100% {
     transform: translateX(50%) scaleY(1);
   }
-
+}
 /*
 **********************************
 ***********CART*******************
@@ -2853,13 +2853,13 @@ form fieldset label input[type=checkbox] {
 }
 .pagecart .panier {
   height: 60vh;
-  background: url(../img/panier\ \(1\).webp) no-repeat center center/cover;
+  background: url("../img/panier\\(1).webp") no-repeat center center/cover;
   width: 100%;
 }
 .pagecart .cartbutton {
   width: 100%;
   padding: 5px;
-  background-color: #FCC8E1;
+  background-color: #fcc8e1;
   color: #141414;
   border-radius: 5px;
   border: solid 2px rgba(51, 51, 51, 0.6235294118);
