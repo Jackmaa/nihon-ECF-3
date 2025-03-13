@@ -2067,7 +2067,7 @@ button:hover {
 **********************************
 */
 
-#search-form-mobile{
+#search-form-mobile {
   input {
     color: #333;
     width: 90%;
@@ -2078,9 +2078,8 @@ button:hover {
     font-family: var(--ff-barlow);
     border-radius: 50px;
     transition: all ease 0.8s;
-}
   }
-
+}
 
 #search-bar-desktop,
 #search-bar-mobile {
@@ -2583,12 +2582,12 @@ button:hover {
       flex-direction: column;
       width: 50%;
 
-      .review{
+      .review {
         hr {
           width: 90vh;
         }
-        .cadre-review{
-          justify-content:start;
+        .cadre-review {
+          justify-content: start;
           width: 50vh;
           height: 20vh;
           div {
@@ -3317,7 +3316,7 @@ form {
 
   .panier {
     height: 60vh;
-    background: url("../img/panier\\(1\).webp") no-repeat center center/cover;
+    background: url("../img/panier.webp") no-repeat center center/cover;
     width: 100%;
   }
 
