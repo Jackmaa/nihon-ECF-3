@@ -1047,7 +1047,7 @@ button {
 }
 .category-slider .category-title a:hover {
   color: #cc392b;
-  border: #cc392b 1px solid;
+  border: #cc392b 2px solid;
 }
 .category-slider .category-title h2 {
   margin: 0 3%;
