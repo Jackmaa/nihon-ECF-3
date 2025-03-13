@@ -43,7 +43,7 @@ class ControllerManga extends Controller {
 
     // Method to create a new manga entry
     public function create() {
-        if ($_SESSION["admin_is_logged_in"] === true) {
+        if ($_SESSION["admin_logged_in"] === true) {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $model  = new ModelManga();
                 $author = $model->getMangaAuthorByName($_POST['author']);
@@ -62,11 +62,10 @@ class ControllerManga extends Controller {
                 $tmp_thumbnail  = $_FILES['thumbnail']['tmp_name'];
                 move_uploaded_file($tmp_thumbnail, './public/asset/img/' . $thumbnail);
                 $thumbnail = './public/asset/img/' . $thumbnail;
-
-                $category = $_POST["category"];
-
                 // Create new manga entry in the database
                 $model->createManga($name, $authorId, $description, $published_date, $thumbnail);
+                $id_manga = $model->getMangaByName($name);
+                $model->addCategory($id_manga, $_POST["category"]);
                 $_SESSION["message"] = 'Manga created successfully.';
                 exit;
             }

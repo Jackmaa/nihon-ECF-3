@@ -304,4 +304,11 @@ class ModelManga extends Model {
         $req->execute();
         return new Author($req->fetch(PDO::FETCH_ASSOC));
     }
+
+    public function addCategory($id_manga, $id_category) {
+        $req = $this->getDb()->prepare("INSERT INTO manga_category(manga_id, category_id) VALUES (:id_manga,:id_category)");
+        $req->bindParam(":id_manga", $id_manga, PDO::PARAM_INT);
+        $req->bindParam(":id_category", $id_category, PDO::PARAM_INT);
+        $req->execute();
+    }
 }
