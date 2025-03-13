@@ -141,3 +141,21 @@ if (button) {
     audio.play();
   });
 }
+
+
+// *********************************
+// ***********CART******************
+// ********************************* 
+
+  window.addEventListener('scroll', function() {
+    const cart = document.querySelector('.cart');
+    const scrollPosition = window.scrollY + window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+
+    // Vérifiez si l'utilisateur a atteint le bas de la page
+    if (scrollPosition >= documentHeight) {
+      cart.style.display = 'none';
+    } else {
+      cart.style.display = 'block'; // Réaffiche si l'utilisateur n'est pas en bas
+    }
+  });
