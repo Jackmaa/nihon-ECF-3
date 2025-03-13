@@ -2318,9 +2318,6 @@ button:hover {
   background-color: #cc392b;
   color: white;
 }
-.dashboard tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
 .dashboard .color-button {
   background-color: #008cba;
   color: white;
