@@ -129,3 +129,15 @@ window.addEventListener("scroll", () => {
     }
   });
   
+
+const audio = new Audio('public/asset/img/anime-wow-sound-effect.mp3');
+
+// Sélectionne le bouton avec la bonne classe
+const button = document.getElementById('myButton');
+
+// Vérifie si le bouton existe
+if (button) {
+  button.addEventListener('mouseenter', () => {
+    audio.play();
+  });
+}

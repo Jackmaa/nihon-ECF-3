@@ -19,7 +19,7 @@
             <div class="carousel-item red-background">
                 <p>“Now more books to borrow: 5 instead of 3!”</p>
                 <p>“Extended loan duration: 4 weeks instead of 3!”</p>
-                <button class="custom-btn btn-green"> <span>Kakkoii mode</span></button>
+                <button id="myButton" class="custom-btn btn-green"> <span>Kakkoii mode</span></button>
             </div>
             <?php foreach ($recommendations as $recommendation): ?>
             <div class="carousel-item card-fav black-background">
