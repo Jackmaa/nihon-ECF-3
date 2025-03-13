@@ -22,7 +22,7 @@ body {
   box-sizing: border-box;
   scroll-behavior: smooth;
   min-height: 100vh;
-  background-color: #fddfdf;
+  background-color: var(--primacy-clr-light);
 }
 
 img {
@@ -1051,30 +1051,23 @@ button {
 }
 
 .category-slider {
-  background-color: #85650b41;
-  border-radius: 50px;
-  margin: 5vh 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  margin: 10% 3%;
 
   .category-title {
-    width: 100%;
     display: flex;
     justify-content: space-between;
 
     a {
+      margin: 8% 3%;
       font-family: var(--ff-barlow);
       color: var(--fc-black);
       border: #231b19 1px solid;
       padding: 5px 10px;
-      margin: 3vh 5vh;
       transition: all ease 0.3s;
 
       &:hover {
         color: #cc392b;
-        border: #cc392b 2px solid;
+        border: #cc392b 1px solid;
       }
     }
 
@@ -1091,7 +1084,7 @@ button {
     overflow: hidden;
     width: 100%;
     max-width: 800px;
-    margin: 3vh auto;
+    margin: auto;
 
     .slider-wrapper {
       display: flex;
@@ -1132,9 +1125,7 @@ button {
         }
 
         img {
-          width: 30vh;
-          height: 45vh;
-          object-fit: cover;
+          width: 100%;
           transition: all 0.5s ease;
         }
       }
@@ -2085,17 +2076,19 @@ button:hover {
 ***********kakoii mode***********
 *******************************
 */
-  .formkakoii {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  .headkakkoii {
-    width: 100%;
-  }
-  .kakkoii {
-    width: 70vh;
+.formkakoii{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.headkakkoii {
+width: 100%;
+height: auto;
+ 
+}
+.kakkoii{
+    width: 70vh; 
   }
 }
 
@@ -2738,7 +2731,7 @@ button:hover {
 }
 
 .headkakkoii {
-  height: 30vh;
+  height: 60vh;
   background: url(../img/kakoii.svg) no-repeat center center/cover;
   width: 100%;
 }
@@ -2759,9 +2752,13 @@ button:hover {
   h1 {
     font-family: var(--ff-bangers);
     letter-spacing: var(--letter-spacing);
-    font-size: 1rem;
+    font-size: 2rem;
     color: #f0f0f0;
-    text-shadow: -2px -2px 0 red, 2px -2px 0 red, -2px 2px 0 red, 2px 2px 0 red;
+    text-shadow: 
+                -1px -1px 0 red,  
+                1px -1px 0 red,
+                -1px 1px 0 red,
+                1px 1px 0 red;
   }
   .center {
     text-align: center;
@@ -2796,7 +2793,37 @@ button:hover {
       background-color: #cc1606;
     }
   }
-}
+  .close-popup{
+    background-color: #0b7cec;
+    color:var(--fc-light);
+    font-family: var(--ff-bangers);
+    letter-spacing: var(--letter-spacing);
+    cursor: pointer;
+    transition: all ease 0.3s;
+    border-radius: 10px;
+    border: none;
+    padding: 20px;
+    width: 100%;
+    font-size: 1.1rem;
+    &:hover{
+      background-color: #2d1ccc;
+      align-items: center;
+    }
+  }
+  h3{
+    font-family: var(--ff-bangers);
+    letter-spacing: var(--letter-spacing);
+    font-size: 1rem;
+    color: #f70707;
+    }
+    input{
+      display: flex;
+      justify-content: center;
+    }
+    .form-group{
+      padding: 10px;
+    }
+    }
 
 /*
 **********************************
@@ -2931,6 +2958,77 @@ button:hover {
     cursor: pointer;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
 **********************************

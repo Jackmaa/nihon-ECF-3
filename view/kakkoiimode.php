@@ -33,6 +33,7 @@ ob_start();
             <div class="center">
                 <h2>KAKKOII MONTHLY</h2>
                 <p>9.99$</p>
+                <p>Amazing !</p>
                 <button class="open-popup" data-popup="popupMonthly">Buy now</button>
             </div>
 
@@ -53,8 +54,7 @@ ob_start();
             <h2>Formulaire de Paiement</h2>
             <form action="/submit-payment" method="post">
                 <div class="form-group">
-                    <label for="card-number"> <img src="public\asset\img\carte.svg" alt="carte"> Numéro de Carte de
-                        Crédit:</label>
+                    <label for="card-number"> <img src="public\asset\img\carte.svg" alt="carte"> Numéro de Carte :</label>
                     <input type="number" id="card-number" name="card-number" required>
                 </div>
                 <div class="form-group">
@@ -63,8 +63,7 @@ ob_start();
                     <input type="text" id="expiry-date" name="expiry-date" placeholder="MM/AA" required>
                 </div>
                 <div class="form-group">
-                    <label for="cvv"> <img src="public\asset\img\codesecu.svg" alt="code"> Code de Sécurité
-                        (CVV):</label>
+                    <label for="cvv"> <img src="public\asset\img\codesecu.svg" alt="code"> Code de Sécurité :</label>
                     <input type="password" id="cvv" name="cvv" required>
                 </div>
             </form>
@@ -78,7 +77,7 @@ ob_start();
             <h2>Formulaire de Paiement</h2>
             <form action="/submit-payment" method="post">
                 <div class="form-group">
-                    <label for="card-number"> <img src="public\asset\img\carte.svg" alt="carte"> Numéro de Carte de Crédit:</label>
+                    <label for="card-number"> <img src="public\asset\img\carte.svg" alt="carte"> Numéro de Carte :</label>
                     <input type="number" id="card-number" name="card-number" required>
                 </div>
                 <div class="form-group">
@@ -86,7 +85,7 @@ ob_start();
                     <input type="text" id="expiry-date" name="expiry-date" placeholder="MM/AA" required>
                 </div>
                 <div class="form-group">
-                    <label for="cvv"> <img src="public\asset\img\codesecu.svg" alt="code">Code de Sécurité (CVV):</label>
+                    <label for="cvv"> <img src="public\asset\img\codesecu.svg" alt="code">Code de Sécurité :</label>
                     <input type="password" id="cvv" name="cvv" required>
                 </div>
             </form>
