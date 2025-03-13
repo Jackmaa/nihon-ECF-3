@@ -1063,7 +1063,7 @@ button {
 }
 
 .category-slider {
-  background-color: #85650b41;
+  background-color: #0b818541;
   border-radius: 50px;
   margin: 5vh 0;
   display: flex;
@@ -3089,26 +3089,20 @@ h2{
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.cart{
+  position: fixed;
+    z-index: 50;
+    right: 50px;
+    bottom: 50px;
+    background-color: #fcc8e185;
+    border-radius: 100px;
+    width: 8vh;
+    height: 8vh;
+    padding: 20px;
+  img{
+    width: 100%;
+  }
+}
 
 
 

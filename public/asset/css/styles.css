@@ -900,7 +900,7 @@ button {
 }
 
 .category-slider {
-  background-color: rgba(133, 101, 11, 0.2549019608);
+  background-color: rgba(11, 129, 133, 0.2549019608);
   border-radius: 50px;
   margin: 5vh 0;
   display: flex;
@@ -2581,4 +2581,18 @@ button:hover {
   100% {
     transform: translateX(50%) scaleY(1);
   }
+}
+.cart {
+  position: fixed;
+  z-index: 50;
+  right: 50px;
+  bottom: 50px;
+  background-color: rgba(252, 200, 225, 0.5215686275);
+  border-radius: 100px;
+  width: 8vh;
+  height: 8vh;
+  padding: 20px;
+}
+.cart img {
+  width: 100%;
 }/*# sourceMappingURL=styles.css.map */
