@@ -363,7 +363,7 @@ svg {
 **********************************
 */
 
-footer>p {
+footer > p {
   margin-bottom: 1%;
   padding: 0 20px;
 }
@@ -860,7 +860,7 @@ main.login {
   transform: translateX(-50%);
   width: 200px;
   height: 200px;
-  background: radial-gradient(circle, #FFD700, #FFA500);
+  background: radial-gradient(circle, #ffd700, #ffa500);
   border-radius: 50%;
   box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
   animation: sunrise 3.5s ease-in-out;
@@ -868,21 +868,21 @@ main.login {
 
 @keyframes sunrise {
   from {
-      top: 50%;
-      opacity: 0;
+    top: 50%;
+    opacity: 0;
   }
   to {
-      top: 10%;
-      opacity: 1;
+    top: 10%;
+    opacity: 1;
   }
 }
 
 @keyframes float {
   from {
-      transform: translateX(-10vw);
+    transform: translateX(-10vw);
   }
   to {
-      transform: translateX(110vw);
+    transform: translateX(110vw);
   }
 }
 
@@ -912,21 +912,21 @@ main.login {
 
 @keyframes moonrise {
   from {
-      top: 50%;
-      opacity: 0;
+    top: 50%;
+    opacity: 0;
   }
   to {
-      top: 10%;
-      opacity: 1;
+    top: 10%;
+    opacity: 1;
   }
 }
 
 @keyframes float {
   from {
-      transform: translateX(-10vw);
+    transform: translateX(-10vw);
   }
   to {
-      transform: translateX(110vw);
+    transform: translateX(110vw);
   }
 }
 
@@ -1100,12 +1100,11 @@ button {
     }
   }
 }
-.container-homepage{
+.container-homepage {
   background-image: url(../img/vignette.svg);
-  background-color: #f2ebe8e3; 
+  background-color: #f2ebe8e3;
   background-blend-mode: overlay;
 }
-
 
 // *********************************
 // ****SLIDER CATEGORY HOMEPAGE*****
@@ -2115,7 +2114,6 @@ button:hover {
 */
 
 @media (min-width: 600px) {
-
   /*
 **********************************
 ***********LOGIN/REGISTER************
@@ -2162,7 +2160,6 @@ button:hover {
 }
 
 @media (min-width: 768px) {
-
   /*
 **********************************
 ***********HOMEPAGE************
@@ -2238,7 +2235,6 @@ button:hover {
 }
 
 @media (min-width: 1024px) {
-
   /*
 **********************************
 ***********CAROUSSEL************
@@ -2628,15 +2624,13 @@ button:hover {
 **********************************
 */
 
-.cartgrid{
-  display: flex;
-  justify-content: center;
+  .cartgrid {
+    display: flex;
+    justify-content: center;
+  }
 }
-}
-
 
 @media (min-width: 1440px) {
-
   /*
 **********************************
 ***********LOGIN/REGISTER************
@@ -3029,10 +3023,12 @@ form {
 */
 .backgroundimage {
   position: relative;
-  background: linear-gradient(90deg,
-      rgba(255, 0, 0, 1) 0%,
-      rgb(138, 20, 20) 50%,
-      rgba(153, 0, 0, 1) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 1) 0%,
+    rgb(138, 20, 20) 50%,
+    rgba(153, 0, 0, 1) 100%
+  );
   height: 100vh;
   background-size: cover;
   /* Assurez-vous que l'image couvre tout l'arrière-plan */
@@ -3058,10 +3054,7 @@ form {
     font-family: var(--ff-barlow);
     /* Police de caractères */
     padding: 20px;
-    background-color: rgba(0,
-        0,
-        0,
-        0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     /* Fond semi-transparent pour améliorer la lisibilité */
     border-radius: 10px;
     max-width: 600px;
@@ -3278,32 +3271,27 @@ form {
   }
 }
 
-
 /*
 **********************************
 ***********CART*******************
 **********************************
 */
 
-
 .pagecart {
-
-
-
   .form-cart {
     margin: 2rem;
   }
 
   .panier {
     height: 60vh;
-    background: url('../img/panier\ \(1\).webp') no-repeat center center/cover;
+    background: url("../img/panier\\(1\).webp") no-repeat center center/cover;
     width: 100%;
   }
 
   .cartbutton {
     width: 100%;
     padding: 5px;
-    background-color: #FCC8E1;
+    background-color: #fcc8e1;
     color: #141414;
     border-radius: 5px;
     border: solid 2px #3333339f;
@@ -3313,7 +3301,6 @@ form {
 
     &:hover {
       background-color: #cc1606;
-
     }
   }
 
@@ -3323,7 +3310,6 @@ form {
     font-size: 2rem;
     color: #070707;
     margin-left: 20px;
-
   }
 
   p {
@@ -3343,7 +3329,7 @@ form {
     /* Centrer l'image horizontalement */
     max-width: 100%;
   }
-.gap{
-  margin: 20px;
-}
+  .gap {
+    margin: 20px;
+  }
 }
