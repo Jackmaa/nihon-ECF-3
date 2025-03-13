@@ -43,32 +43,34 @@ class ControllerManga extends Controller {
 
     // Method to create a new manga entry
     public function create() {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $model  = new ModelManga();
-            $author = $model->getMangaAuthorByName($_POST['author']);
-            if (! $author) {
-                // Author does not exist, create a new author
-                $model->createAuthor($_POST['author']);
+        if ($_SESSION["admin_is_logged_in"] === true) {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $model  = new ModelManga();
                 $author = $model->getMangaAuthorByName($_POST['author']);
+                if (! $author) {
+                    // Author does not exist, create a new author
+                    $model->createAuthor($_POST['author']);
+                    $author = $model->getMangaAuthorByName($_POST['author']);
+                }
+
+                // Get author ID and other manga details from the form
+                $authorId       = $author['id_author'];
+                $name           = $_POST['name'];
+                $description    = $_POST['description'];
+                $published_date = $_POST['published_date'];
+                $thumbnail      = $_FILES['thumbnail']['name'];
+                $tmp_thumbnail  = $_FILES['thumbnail']['tmp_name'];
+                move_uploaded_file($tmp_thumbnail, './public/asset/img/' . $thumbnail);
+                $thumbnail = './public/asset/img/' . $thumbnail;
+
+                // Create new manga entry in the database
+                $model->createManga($name, $authorId, $description, $published_date, $thumbnail);
+                $_SESSION["message"] = 'Manga created successfully.';
+                exit;
             }
-
-            // Get author ID and other manga details from the form
-            $authorId       = $author['id_author'];
-            $name           = $_POST['name'];
-            $description    = $_POST['description'];
-            $published_date = $_POST['published_date'];
-            $thumbnail      = $_FILES['thumbnail']['name'];
-            $tmp_thumbnail  = $_FILES['thumbnail']['tmp_name'];
-            move_uploaded_file($tmp_thumbnail, './public/asset/img/' . $thumbnail);
-            $thumbnail = './public/asset/img/' . $thumbnail;
-
-            // Create new manga entry in the database
-            $model->createManga($name, $authorId, $description, $published_date, $thumbnail);
-            $message = 'Manga created successfully.';
-            header('Location: ' . $this->router->generate('home'));
-            exit;
+        } else {
+            echo "Bish you ain't no Kami, you just a NINGEN";
         }
-        require_once './view/createmanga.php';
     }
 
     // Method to read a manga entry by ID
