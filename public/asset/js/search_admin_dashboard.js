@@ -143,6 +143,16 @@ function handleUserResults(datas) {
         fillModifyPopupUser(user);
         openPopup("popupUser");
       });
+
+      // Add a "View Borrowed Items" button
+      addButtonToDiv("View Borrowed Items", null, userDiv, () => {
+        fetchUserBorrowedItems(user.id_user);
+      });
+
+      // Add a "View Cart Items" button
+      addButtonToDiv("View Cart Items", null, userDiv, () => {
+        fetchUserCartItems(user.id_user);
+      });
     });
 
     // Add "Modify" and "Delete" buttons for the user
@@ -202,4 +212,60 @@ function limitSelection(checkbox) {
     checkbox.checked = false; // Prevent selecting more than 3
     alert("You can select up to 3 categories only.");
   }
+}
+
+function fetchUserBorrowedItems(userId) {
+  // Send a GET request to fetch the borrowed items for the user
+  fetch(`/getBorrowedItems.php?userId=${userId}`)
+    .then((response) => response.json())
+    .then((data) => {
+      displayUserItems(data, "Borrowed Items");
+    })
+    .catch((error) => {
+      console.error("Error fetching borrowed items:", error);
+    });
+}
+
+function fetchUserCartItems(userId) {
+  // Send a GET request to fetch the cart items for the user
+  fetch(`/getCartItems.php?userId=${userId}`)
+    .then((response) => response.json())
+    .then((data) => {
+      displayUserItems(data, "Cart Items");
+    })
+    .catch((error) => {
+      console.error("Error fetching cart items:", error);
+    });
+}
+
+function displayUserItems(items, title) {
+  // Create a new div to display the items
+  const itemsDiv = document.createElement("div");
+  itemsDiv.classList.add("user-items");
+
+  // Clear any previous items
+  itemsDiv.innerHTML = `<h3>${title}</h3>`; // Add a title for clarity
+
+  // Check if there are any items
+  if (items.length === 0) {
+    itemsDiv.innerHTML += "<p>No items found.</p>";
+  } else {
+    // Loop through each item and create a div for it
+    items.forEach((item) => {
+      let itemDiv = document.createElement("div");
+      itemDiv.classList.add("item");
+
+      let itemName = document.createElement("p");
+      itemName.textContent = `Name: ${item.name}`;
+
+      let itemDetails = document.createElement("p");
+      itemDetails.textContent = `Details: ${item.details}`; // Adjust based on your data
+
+      itemDiv.append(itemName, itemDetails);
+      itemsDiv.appendChild(itemDiv);
+    });
+  }
+
+  // Append the items div to the responseUserDiv or open it in a popup
+  responseUserDiv.appendChild(itemsDiv);
 }
