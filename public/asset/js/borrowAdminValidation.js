@@ -18,3 +18,15 @@ document.querySelectorAll(".status-borrow").forEach((select) => {
       });
   });
 });
+function sortTable(colIndex) {
+  let table = document.querySelector("table tbody");
+  let rows = Array.from(table.rows);
+
+  rows.sort((a, b) => {
+    let valA = a.cells[colIndex].textContent.trim();
+    let valB = b.cells[colIndex].textContent.trim();
+    return valA.localeCompare(valB);
+  });
+
+  rows.forEach((row) => table.appendChild(row));
+}
