@@ -2370,6 +2370,9 @@ button:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   z-index: 1000;
 }
+.dashboard .popup.hidden {
+  display: none;
+}
 .dashboard .overlay {
   display: none;
   /* Masquer par défaut */

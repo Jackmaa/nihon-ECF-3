@@ -16,7 +16,10 @@ function addButtonToDiv(text, popupId, responseDiv, onClickCallback) {
     if (onClickCallback) {
       onClickCallback();
     }
-    openPopup(popupId);
+    if (popupId) {
+      // ✅ Ne tente d'ouvrir un popup que si `popupId` est défini
+      openPopup(popupId);
+    }
   };
   responseDiv.appendChild(button);
 }
@@ -67,11 +70,7 @@ function handleMangaResults(datas) {
         })
           .then((response) => response.json())
           .then((data) => {
-            if (data.success) {
-              mangaDiv.remove(); // Supprimer uniquement ce manga de l'affichage
-            } else {
-              console.error("Failed to delete manga:", data.message);
-            }
+            mangaDiv.remove(); // Supprimer l'élément du DOM
           });
       });
 

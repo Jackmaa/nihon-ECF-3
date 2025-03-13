@@ -78,7 +78,7 @@ class ControllerManga extends Controller {
                     exit;
                 }
                 $_SESSION["message"] = 'Manga created successfully.';
-                header("location:" . $this->router->generate("home"));
+                header("location:" . $this->router->generate("admin_dashboard"));
             }
         } else {
             echo "Bish you ain't no Kami, you just a NINGEN";
