@@ -83,6 +83,8 @@ $router->map("GET|POST", "/searchManga", "ControllerAdmin#searchManga", "searchM
 $router->map("GET|POST", "/searchUser", "ControllerAdmin#searchUser", "searchUser");
 //CREATE USER
 $router->map("GET|POST", "/createUser", "ControllerAdmin#createUser", "createUser");
+//Validate Borrows
+$router->map("POST", "/adminBorrowStatus", "ControllerAdmin#adminBorrowStatus");
 
 /*******************************||  BORROW/RETURNS  ||**************************************/
 //BOOKGestion

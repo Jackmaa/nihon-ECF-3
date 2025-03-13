@@ -82,4 +82,36 @@ class ControllerAdmin extends Controller {
         $link   = "http://nihon/finishsignup/?email=$email&code=$token";
         $mailer->sendFinishSignupEmail($email, $link);
     }
+
+    public function adminBorrowStatus() {
+        $data = json_decode(file_get_contents("php://input"), true);
+        if (isset($data['id_borrow']) && isset($data['status'])) {
+            $id_borrow = intval($data['id_borrow']);
+            $status    = htmlspecialchars($data['status']);
+            $model     = new ModelBorrow;
+            if ($model->updateStatus($id_borrow, $status)) {
+                echo json_encode(["success" => true]);
+            } else {
+                echo json_encode(["success" => false]);
+            }
+        } else {
+            echo json_encode(["success" => false]);
+        }
+    }
 }
+
+// $query = "SELECT COUNT(*) as late FROM borrows WHERE return_date < CURDATE() AND status = 'pending'";
+// $stmt = $pdo->query($query);
+// $lateCount = $stmt->fetch(PDO::FETCH_ASSOC)['late'];
+
+// <div id="late-alert" style="display:none; background-color: red; color: white; padding: 10px;">
+//     Warning: <span id="late-count"></span> overdue books!
+// </div>
+
+/*<script>
+    let lateCount = <?php echo $lateCount; ?>;
+    if (lateCount > 0) {
+        document.getElementById("late-count").textContent = lateCount;
+        document.getElementById("late-alert").style.display = "block";
+    }
+</script>*/
