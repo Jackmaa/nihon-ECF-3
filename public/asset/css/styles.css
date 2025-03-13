@@ -117,7 +117,7 @@ body.dark-mode .copyright a:hover {
   color: #cc392b;
 }
 body.dark-mode .category-slider .category-title a {
-  margin: 8% 3%;
+  margin: 1rem 2rem;
   font-family: var(--ff-barlow);
   color: var(--fc-white);
   border: #ffffff 1px solid;
@@ -168,7 +168,7 @@ svg {
 }
 
 .p-all-2 {
-  padding: 1vw;
+  padding: 0.5vh 2vh;
 }
 
 .flexcenter {
@@ -945,7 +945,9 @@ button {
   flex-direction: column;
 }
 .category-slider .category-title {
+  width: 100%;
   display: flex;
+  align-items: center;
   justify-content: space-between;
 }
 .category-slider .category-title a {
@@ -961,8 +963,8 @@ button {
   border: #cc392b 1px solid;
 }
 .category-slider .category-title h2 {
+  margin: 3vh 5vh;
   text-align: justify;
-  margin: 8% 3%;
   font-family: var(--ff-bangers);
   letter-spacing: var(--letter-spacing);
 }
@@ -2603,6 +2605,28 @@ button:hover {
   cursor: pointer;
 }
 
+.cart {
+  position: fixed;
+  z-index: 50;
+  right: 4vh;
+  bottom: 4vh;
+  background-color: rgba(252, 200, 225, 0.5215686275);
+  border-radius: 100px;
+  width: 4vh;
+  height: 4vh;
+  padding: 20px;
+}
+.cart a:hover path {
+  stroke: #cc392b;
+}
+.cart svg {
+  width: 4vh;
+  height: 4vh;
+}
+.cart svg path {
+  transition: all 0.3s ease;
+}
+
 /*
 **********************************
 ********ANIMATION HOMEPAGE********
@@ -2662,25 +2686,4 @@ button:hover {
   100% {
     transform: translateX(50%) scaleY(1);
   }
-}
-.cart {
-  position: fixed;
-  z-index: 50;
-  right: 4vh;
-  bottom: 4vh;
-  background-color: rgba(252, 200, 225, 0.5215686275);
-  border-radius: 100px;
-  width: 4vh;
-  height: 4vh;
-  padding: 20px;
-}
-.cart a:hover path {
-  stroke: #cc392b;
-}
-.cart svg {
-  width: 4vh;
-  height: 4vh;
-}
-.cart svg path {
-  transition: all 0.3s ease;
 }/*# sourceMappingURL=styles.css.map */
