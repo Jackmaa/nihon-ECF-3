@@ -136,14 +136,16 @@
         <input type="text" name="author" placeholder="Author" id="author">
         <div id="response-author"></div>
         <textarea type="text" name="description" placeholder="Description"></textarea>
-        <select name="category">
+        <fieldset>
+        <legend>Select up to 3 categories:</legend>
         <?php foreach ($categories as $category): ?>
-        <option value="<?php echo $category["id_category"]; ?>">
-            <?php echo $category["category_name"]; ?>
-        </option>
+            <label>
+                <input type="checkbox" name="category[]" value="<?php echo $category["id_category"]; ?>" onclick="limitSelection(this)">
+                <?php echo $category["category_name"]; ?>
+            </label><br>
         <?php endforeach; ?>
-        </select>
-
+        </fieldset>
+        <small>Minimum 1, maximum 3 categories.</small>
         <input type="date" name="published_date" id="published_date">
         <input type="file" name="thumbnail" id="thumbnail">
         <button type="submit" class="button" onclick="closePopup('popupAdd')">Add</button>

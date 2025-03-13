@@ -130,3 +130,13 @@ function fillModifyPopup(manga) {
   document.querySelector("#popupModified input:nth-of-type(6)").value =
     manga.manga.description;
 }
+
+function limitSelection(checkbox) {
+  let checkedBoxes = document.querySelectorAll(
+    'input[name="category[]"]:checked'
+  );
+  if (checkedBoxes.length > 3) {
+    checkbox.checked = false; // Prevent selecting more than 3
+    alert("You can select up to 3 categories only.");
+  }
+}

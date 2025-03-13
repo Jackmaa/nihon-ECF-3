@@ -87,6 +87,9 @@ body.dark-mode {
   background-color: #202024;
   color: white;
 }
+body.dark-mode label {
+  color: #0e0e0e;
+}
 body.dark-mode .resaux-sociaux a svg path {
   transition: all ease 0.3s;
   fill: white;
@@ -168,7 +171,7 @@ svg {
 }
 
 .p-all-2 {
-  padding: 1vw;
+  padding: 0.5vh 2vh;
 }
 
 .flexcenter {
@@ -955,8 +958,8 @@ button {
   border: #cc392b 1px solid;
 }
 .category-slider .category-title h2 {
+  margin: 3vh 5vh;
   text-align: justify;
-  margin: 8% 3%;
   font-family: var(--ff-bangers);
   letter-spacing: var(--letter-spacing);
 }
@@ -2267,11 +2270,6 @@ button:hover {
 
 .dashboard {
   /* filepath: /C:/wamp64/www/nihon/public/asset/css/styles.scss */
-  /*
-  *******************************
-  ***********kakoii mode***********
-  *******************************
-  */
 }
 .dashboard table {
   width: 100%;
@@ -2388,7 +2386,23 @@ button:hover {
   display: block;
   /* Afficher lorsque actif */
 }
-.dashboard .kakkoii center {
+
+form fieldset {
+  height: 20rem;
+  width: -moz-fit-content;
+  width: fit-content;
+  overflow-y: scroll;
+}
+form fieldset label input[type=checkbox] {
+  color: #0e0e0e;
+}
+
+/*
+*******************************
+***********kakoii mode***********
+*******************************
+*/
+.kakkoii center {
   max-width: 600px; /* Réduire la largeur maximale */
   padding: 20px; /* Ajuster le padding si nécessaire */
   margin: 20px auto; /* Centrer les éléments */
@@ -2595,4 +2609,65 @@ button:hover {
   color: #0e0e0e;
   font-family: var(--ff-bangers);
   cursor: pointer;
+}
+
+/*
+**********************************
+********ANIMATION HOMEPAGE********
+**********************************
+*/
+.wrap {
+  overflow: hidden;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  height: 120px;
+  width: 100%;
+}
+
+.bgWave {
+  position: absolute;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  background-repeat: repeat;
+  background-position: left bottom;
+  transform-origin: left bottom;
+}
+
+.waveOne {
+  background-image: url(../img/wave.svg);
+  animation: wave 12s linear infinite;
+}
+
+.waveTwo {
+  background-image: url(../img/wave.svg);
+  animation: wave-reverse 6s linear infinite;
+  right: 0;
+  left: auto;
+}
+
+@keyframes wave {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-25%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+@keyframes wave-reverse {
+  0% {
+    transform: translateX(0) scaleY(1);
+  }
+  50% {
+    transform: translateX(25%) scaleY(0.55);
+  }
+  100% {
+    transform: translateX(50%) scaleY(1);
+  }
 }/*# sourceMappingURL=styles.css.map */
