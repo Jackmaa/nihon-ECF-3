@@ -136,6 +136,14 @@
         <input type="text" name="author" placeholder="Author" id="author">
         <div id="response-author"></div>
         <textarea type="text" name="description" placeholder="Description"></textarea>
+        <select name="category">
+        <?php foreach ($categories as $category): ?>
+        <option value="<?php echo $category["category_name"]; ?>">
+            <?php echo $category["category_name"]; ?>
+        </option>
+        <?php endforeach; ?>
+        </select>
+
         <input type="date" name="published_date" id="published_date">
         <input type="file" name="thumbnail" id="thumbnail">
         <button type="submit" class="button" onclick="closePopup('popupAdd')">Add</button>

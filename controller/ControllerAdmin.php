@@ -41,6 +41,8 @@ class ControllerAdmin extends Controller {
             header('Location: ' . $this->router->generate('admin_login'));
             exit;
         }
+        $category   = new ModelManga();
+        $categories = $category->getCategories();
         $model      = new ModelBorrow();
         $borrows    = $model->getBorrowedBooks();
         $enumValues = $model->getStatusEnum();
