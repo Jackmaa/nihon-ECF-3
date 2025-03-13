@@ -243,6 +243,15 @@ class ModelManga extends Model {
         return $req->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function deleteReview(int $id) {
+        $req = $this->getDb()->prepare(
+            "DELETE FROM `review` WHERE `id_review` = :id"
+        );
+        $req->bindParam(':id', $id, PDO::PARAM_INT);
+        $req->execute();
+    }
+    
+
     public function addReview($review, $id_manga, $id_user){
         if(isset($_POST['review'])){
         $req = $this->getDb()->prepare(
