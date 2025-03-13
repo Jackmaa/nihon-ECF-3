@@ -63,6 +63,8 @@ class ControllerManga extends Controller {
                 move_uploaded_file($tmp_thumbnail, './public/asset/img/' . $thumbnail);
                 $thumbnail = './public/asset/img/' . $thumbnail;
 
+                $category = $_POST["category"];
+
                 // Create new manga entry in the database
                 $model->createManga($name, $authorId, $description, $published_date, $thumbnail);
                 $_SESSION["message"] = 'Manga created successfully.';

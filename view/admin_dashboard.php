@@ -138,7 +138,7 @@
         <textarea type="text" name="description" placeholder="Description"></textarea>
         <select name="category">
         <?php foreach ($categories as $category): ?>
-        <option value="<?php echo $category["category_name"]; ?>">
+        <option value="<?php echo $category["id_category"]; ?>">
             <?php echo $category["category_name"]; ?>
         </option>
         <?php endforeach; ?>

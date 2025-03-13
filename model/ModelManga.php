@@ -2,7 +2,7 @@
 class ModelManga extends Model {
     // Get all the categories from the database
     public function getCategories() {
-        $req = $this->getDb()->query('SELECT categories.category_name, categories.description FROM categories');
+        $req = $this->getDb()->query('SELECT categories.id_category, categories.category_name, categories.description FROM categories');
         return $req->fetchAll(PDO::FETCH_ASSOC);
     }
     // Get all mangas from the database by category (shonen)
@@ -21,6 +21,13 @@ class ModelManga extends Model {
             $mangas[] = new Manga($manga);
         }
         return $mangas;
+    }
+
+    public function getMangaByName(string $name) {
+        $req = $this->getDb()->prepare("SELECT manga.id_manga FROM manga WHERE manga.name LIKE :name");
+        $req->bindParam(":name", $name, PDO::PARAM_STR);
+        $req->execute();
+        return $req->fetch(PDO::FETCH_COLUMN);
     }
 
     public function getMangaRecommendation() {
@@ -179,7 +186,7 @@ class ModelManga extends Model {
     //     return $category;
     // }
 
-    public function getCategoryDatas($name){
+    public function getCategoryDatas($name) {
         $req = $this->getDb()->prepare("SELECT `id_category`, `category_name`, `description` FROM categories WHERE category_name = :category_name");
         $req->execute(['category_name' => $name]);
         $category = $req->fetch(PDO::FETCH_ASSOC);
@@ -231,11 +238,11 @@ class ModelManga extends Model {
         return $req->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function mangaReview($id){
+    public function mangaReview($id) {
         $req = $this->getDb()->prepare(
             "SELECT review.*, user.username, user.profile_pic
-            FROM `review` 
-            INNER JOIN `user` ON review.id_user = user.id_user 
+            FROM `review`
+            INNER JOIN `user` ON review.id_user = user.id_user
             WHERE `id_manga` = :id"
         );
         $req->bindParam(':id', $id, PDO::PARAM_INT);
@@ -243,18 +250,18 @@ class ModelManga extends Model {
         return $req->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function addReview($review, $id_manga, $id_user){
-        if(isset($_POST['review'])){
-        $req = $this->getDb()->prepare(
-            "INSERT INTO `review` (`review`, `id_manga`, `id_user`, `published_date`) VALUES (:review, :id_manga, :id_user, NOW())"
-        );
-        $req->bindParam(':review', $_POST['review'], PDO::PARAM_STR);
-        $req->bindParam(':id_manga', $_POST['id_manga'], PDO::PARAM_INT);
-        $req->bindParam(':id_user', $_SESSION['id_user'], PDO::PARAM_INT);
-        $req->execute();
+    public function addReview($review, $id_manga, $id_user) {
+        if (isset($_POST['review'])) {
+            $req = $this->getDb()->prepare(
+                "INSERT INTO `review` (`review`, `id_manga`, `id_user`, `published_date`) VALUES (:review, :id_manga, :id_user, NOW())"
+            );
+            $req->bindParam(':review', $_POST['review'], PDO::PARAM_STR);
+            $req->bindParam(':id_manga', $_POST['id_manga'], PDO::PARAM_INT);
+            $req->bindParam(':id_user', $_SESSION['id_user'], PDO::PARAM_INT);
+            $req->execute();
         }
     }
-    
+
     public function searchAdminManga($str) {
         $str = trim($str);
         $req = $this->getDb()->prepare(
