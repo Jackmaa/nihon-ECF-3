@@ -1002,6 +1002,16 @@ button {
     }
   }
 }
+.container-homepage{
+  background-image: url(../img/vignette.svg);
+  background-color: #f2ebe8e3; 
+  background-blend-mode: overlay;
+}
+
+// .container-homepage {
+//   position: relative;
+//   padding: 20px;
+// }
 
 // *********************************
 // ****SLIDER CATEGORY HOMEPAGE*****
@@ -1051,7 +1061,6 @@ button {
 }
 
 .category-slider {
-  background-color: #0b818541;
   border-radius: 50px;
   margin: 5vh 0;
   display: flex;

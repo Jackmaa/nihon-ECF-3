@@ -4,6 +4,7 @@
     $scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public\asset\js\base.js", "public\asset\js\home.js", "public/asset/js/header.js", "public/asset/js/like.js", "public\asset\js\darkmode.js", "public\asset\js\cart.js"];
     ob_start();
 ?>
+<div class="container-homepage" >
 <div class="wrap">
   <div class="bgWave waveOne"></div>
   <div class="bgWave waveTwo"></div>
@@ -74,7 +75,7 @@
         </div>
     <?php endforeach; ?>
 </section>
-
+</div>
     <?php
         $content = ob_get_contents();
         ob_end_clean();

@@ -898,6 +898,12 @@ button {
   width: 100%;
 }
 
+.container-homepage {
+  background-image: url(../img/vignette.svg);
+  background-color: rgba(242, 235, 232, 0.8901960784);
+  background-blend-mode: overlay;
+}
+
 .slider {
   position: relative;
   overflow: hidden;
@@ -936,7 +942,6 @@ button {
 }
 
 .category-slider {
-  background-color: rgba(11, 129, 133, 0.2549019608);
   border-radius: 50px;
   margin: 5vh 0;
   display: flex;
