@@ -40,36 +40,6 @@
         <div class="comm-desktop">
             <section class="review">
                 <h2>review</h2>
-                <div class="cadre-review">
-                    <div class="cadre-profile">
-                        <img class="profile-picture" src="<?php echo BASE_URL ?>public\asset\img\profile_picture.webp" alt="profile picture">
-                        <p>DarkSasuke78</p>
-                    </div>
-                    <div class="comm">
-                        <p>Naruto is more than a manga, it's a life lesson! His journey, his determination, his values… It’s impossible not to be inspired!</p>
-                    </div>
-                </div>
-                <hr>
-                <div class="cadre-review">
-                    <div class="cadre-profile">
-                        <img class="profile-picture" src="<?php echo BASE_URL ?>public\asset\img\profile_picture.webp" alt="profile picture">
-                        <p>DarkSasuke78</p>
-                    </div>
-                    <div class="comm">
-                        <p>Naruto is more than a manga, it's a life lesson! His journey, his determination, his values… It’s impossible not to be inspired!</p>
-                    </div>
-                </div>
-                <hr>
-                <div class="cadre-review">
-                    <div class="cadre-profile">
-                        <img class="profile-picture" src="<?php echo BASE_URL ?>public\asset\img\profile_picture.webp" alt="profile picture">
-                        <p>DarkSasuke78</p>
-                    </div>
-                    <div class="comm">
-                        <p>Naruto is more than a manga, it's a life lesson! His journey, his determination, his values… It’s impossible not to be inspired!</p>
-                    </div>
-                </div>
-                <hr>
                 <?php foreach ($review as $rev): ?>
                     <div class="cadre-review">
                         <div class="cadre-profile">
@@ -79,6 +49,12 @@
                         <div class="comm">
                             <p><?php echo htmlspecialchars($rev['review']); ?></p>
                         </div>
+                            <?php if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true): ?>
+                                <form method="post" action="/manga/<?php echo $manga->manga->getId_manga(); ?>">
+                                    <input type="hidden" name="id_review" value="<?php echo $rev['id_review']; ?>">
+                                    <button type="submit">Delete</button>
+                                </form>
+                            <?php endif; ?>
                     </div>
                     <hr>
                 <?php endforeach; ?>
