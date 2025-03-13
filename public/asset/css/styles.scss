@@ -226,6 +226,7 @@ svg {
 */
 .menu-mobile {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   margin: 0 2vh;
 
@@ -2038,6 +2039,21 @@ button:hover {
 ***********SEARCH RESULT************
 **********************************
 */
+
+#search-form-mobile{
+  input {
+    color: #333;
+    width: 90%;
+    height: 5vh;
+    padding: 0 10px;
+    font-size: 1.2rem;
+    border: 1px solid #979797;
+    font-family: var(--ff-barlow);
+    border-radius: 50px;
+    transition: all ease 0.8s;
+}
+  }
+
 
 #search-bar-desktop,
 #search-bar-mobile {
