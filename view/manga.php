@@ -70,15 +70,15 @@
             <h2><?php echo $manga->manga->getName() ?> Readers also liked</h2>
             <div class="also-liked-contain">
                 <div>
-                    <figure><img src="<?php echo BASE_URL ?>public\asset\img\shonen\chainsawman.webp" alt="Berserk"></figure>
+                    <figure><a href="#"><img src="<?php echo BASE_URL ?>public\asset\img\shonen\chainsawman.webp" alt="Berserk"></a></figure>
                     <p>chainsawman</p>
                 </div>
                 <div>
-                    <figure><img src="<?php echo BASE_URL ?>public\asset\img\shonen\one_piece.webp" alt="One Piece"></figure>
+                    <figure><a href="#"><img src="<?php echo BASE_URL ?>public\asset\img\shonen\one_piece.webp" alt="One Piece"></a></figure>
                     <p>One Piece</p>
                 </div>
                 <div>
-                    <figure><img src="<?php echo BASE_URL ?>public\asset\img\shonen\l_attaque_des_titans.webp" alt="Attack on Titan"></figure>
+                    <figure><a href="#"><img src="<?php echo BASE_URL ?>public\asset\img\shonen\l_attaque_des_titans.webp" alt="Attack on Titan"></a></figure>
                     <p>Attack on titan</p>
                 </div>
             </div>

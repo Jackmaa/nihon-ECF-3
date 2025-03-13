@@ -233,6 +233,7 @@ svg {
 */
 .menu-mobile {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   margin: 0 2vh;
 
@@ -1173,13 +1174,14 @@ button {
       margin: 0 3%;
       font-family: var(--ff-barlow);
       color: var(--fc-black);
-      border: #231b19 1px solid;
+      border: #231b19 2px solid;
+      border-radius: 10px;
       padding: 5px 10px;
       transition: all ease 0.3s;
 
       &:hover {
         color: #cc392b;
-        border: #cc392b 1px solid;
+        border: #cc392b 2px solid;
       }
     }
 
@@ -2065,6 +2067,21 @@ button:hover {
 **********************************
 */
 
+#search-form-mobile{
+  input {
+    color: #333;
+    width: 90%;
+    height: 5vh;
+    padding: 0 10px;
+    font-size: 1.2rem;
+    border: 1px solid #979797;
+    font-family: var(--ff-barlow);
+    border-radius: 50px;
+    transition: all ease 0.8s;
+}
+  }
+
+
 #search-bar-desktop,
 #search-bar-mobile {
   display: flex;
@@ -2342,6 +2359,7 @@ button:hover {
   }
 
   .menu-desktop {
+    padding: 0.5rem;
     display: block;
 
     figure:nth-of-type(1) a img {
@@ -2563,6 +2581,21 @@ button:hover {
 
     .comm-desktop {
       flex-direction: column;
+      width: 50%;
+
+      .review{
+        hr {
+          width: 90vh;
+        }
+        .cadre-review{
+          justify-content:start;
+          width: 50vh;
+          height: 20vh;
+          div {
+            margin: 0 1rem;
+          }
+        }
+      }
     }
   }
 
