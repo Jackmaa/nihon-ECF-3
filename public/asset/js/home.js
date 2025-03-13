@@ -113,54 +113,19 @@ document.querySelectorAll('.category-slider').forEach(slider => {
 });
 
 
+// *********************************
+// ***********WAVE***********
+// ********************************* 
 
-
-
-
-
-    // function createBubble() {
-    //     const bubble = document.createElement("div");
-    //     bubble.classList.add("bubble");
-    //     const size = Math.random() * 60 + 20; // Taille aléatoire entre 20px et 80px
-    //     bubble.style.width = size + "px";
-    //     bubble.style.height = size + "px";
-
-    //     // Position aléatoire sur l'écran
-    //     bubble.style.left = Math.random() * window.innerWidth + "px";
-    //     bubble.style.animationDuration = Math.random() * 3 + 2 + "s"; // Durée d'animation aléatoire entre 2s et 5s
-
-    //     document.body.appendChild(bubble);
-
-    //     // Supprimer la bulle après l'animation
-    //     bubble.addEventListener("animationend", () => {
-    //         bubble.remove();
-    //     });
-    // }
-
-    // // Créer des bulles à intervalle régulier
-    // setInterval(createBubble, 500); // Crée une bulle toutes les secondes
-
-    // // Styles pour les bulles
-    // const style = document.createElement("style");
-    // style.innerHTML = `
-    //     .bubble {
-    //         position: fixed;
-    //         bottom: -100px;
-    //         background-color: rgba(0, 144, 255, 0.6); /* Couleur bleue */
-    //         border-radius: 50%;
-    //         opacity: 0; /* Commence invisible */
-    //         animation: rise 5s forwards; /* Animation qui fait monter la bulle */
-    //     }
-
-    //     @keyframes rise {
-    //         0% {
-    //             transform: translateY(0);
-    //             opacity: 1; /* Rendre visible */
-    //         }
-    //         100% {
-    //             transform: translateY(-1000px);
-    //             opacity: 0; /* Rendre invisible */
-    //         }
-    //     }
-    // `;
-    // document.head.appendChild(style);
+window.addEventListener("scroll", () => {
+    const wrap = document.querySelector(".wrap");
+    const scrollPosition = window.innerHeight + window.scrollY;
+    const documentHeight = document.documentElement.scrollHeight;
+  
+    if (scrollPosition >= documentHeight) {
+      wrap.style.display = "none";
+    } else {
+      wrap.style.display = "block";
+    }
+  });
+  
