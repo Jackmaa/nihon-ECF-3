@@ -50,7 +50,7 @@
                             <p><?php echo htmlspecialchars($rev['review']); ?></p>
                         </div>
                             <?php if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true): ?>
-                                <form method="post" action="/manga/<?php echo $manga->manga->getId_manga(); ?>">
+                                <form method="post" action="/delete_review/<?php echo $manga->manga->getId_manga(); ?>">
                                     <input type="hidden" name="id_review" value="<?php echo $rev['id_review']; ?>">
                                     <button type="submit">Delete</button>
                                 </form>
