@@ -833,6 +833,91 @@ main.login {
   }
 }
 
+/*******************JOUR*******************/
+
+#css-body {
+  background: linear-gradient(to bottom, #ffbd39, #ffe96e);
+  overflow: hidden;
+}
+
+#css-body::before {
+  content: "";
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, #FFD700, #FFA500);
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+  animation: sunrise 3.5s ease-in-out;
+}
+
+@keyframes sunrise {
+  from {
+      top: 50%;
+      opacity: 0;
+  }
+  to {
+      top: 10%;
+      opacity: 1;
+  }
+}
+
+@keyframes float {
+  from {
+      transform: translateX(-10vw);
+  }
+  to {
+      transform: translateX(110vw);
+  }
+}
+
+/*******************NUIT*******************/
+
+#css-body {
+  background: linear-gradient(to bottom, #1c1047, #34495e);
+  overflow: hidden;
+  position: relative;
+}
+
+#css-body::before {
+  content: "";
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, #f51414, #af0000);
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(90, 0, 0, 0.8);
+  background-size: cover;
+  filter: brightness(1.2);
+  animation: moonrise 3.5s ease-in-out;
+}
+
+@keyframes moonrise {
+  from {
+      top: 50%;
+      opacity: 0;
+  }
+  to {
+      top: 10%;
+      opacity: 1;
+  }
+}
+
+@keyframes float {
+  from {
+      transform: translateX(-10vw);
+  }
+  to {
+      transform: translateX(110vw);
+  }
+}
+
 /*
 **********************************
 *************SLIDER HERO*************
