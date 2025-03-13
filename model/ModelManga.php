@@ -257,9 +257,9 @@ class ModelManga extends Model {
         $req = $this->getDb()->prepare(
             "INSERT INTO `review` (`review`, `id_manga`, `id_user`, `published_date`) VALUES (:review, :id_manga, :id_user, NOW())"
         );
-        $req->bindParam(':review', $_POST['review'], PDO::PARAM_STR);
-        $req->bindParam(':id_manga', $_POST['id_manga'], PDO::PARAM_INT);
-        $req->bindParam(':id_user', $_SESSION['id_user'], PDO::PARAM_INT);
+        $req->bindParam(':review', $review, PDO::PARAM_STR);
+        $req->bindParam(':id_manga', $id_manga, PDO::PARAM_INT);
+        $req->bindParam(':id_user', $id_user, PDO::PARAM_INT);
         $req->execute();
         }
     }

@@ -176,7 +176,7 @@ class ControllerManga extends Controller {
 
     public function addRev(){
         $model = new ModelManga();
-        $model->addReview($_POST['review'], $_POST['id_manga'], $_SESSION['id_user']);
+        $model->addReview($review, $id_manga, $id_user);
         header('Location: /manga/' . $_POST['id_manga']);
     }
 }
