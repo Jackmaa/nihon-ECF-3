@@ -41,6 +41,9 @@ class ControllerAdmin extends Controller {
             header('Location: ' . $this->router->generate('admin_login'));
             exit;
         }
+        $category   = new ModelManga();
+        $categories = $category->getCategories();
+        $editors    = $category->getEditorList();
         $model      = new ModelBorrow();
         $borrows    = $model->getBorrowedBooks();
         $enumValues = $model->getStatusEnum();
@@ -59,10 +62,10 @@ class ControllerAdmin extends Controller {
         echo json_encode($searchResults, JSON_PRETTY_PRINT);
     }
 
+    //Manage a review in case of inappropriate content
     public function manageReview($id){
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_review'])) {
             $id = $_POST['id_review']; // Récupération correcte de la review
-            var_dump($id);
             $model = new ModelManga();
             $model->deleteReview($id);
         }

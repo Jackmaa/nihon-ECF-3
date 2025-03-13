@@ -10,8 +10,13 @@
     <title><?php echo $title ?></title>
 </head>
 
+<header>
 <body>
-    <header class="p-all-2">
+<?php if ($title == 'Nihon | Login' || $title == 'Nihon | Register'): ?>
+    <body id="css-body">
+<?php else: ?>
+    <body>
+<?php endif; ?>
         <section class="menu-mobile">
             <figure class="menu-burger menuToggle">
                 <img src="<?php echo BASE_URL ?>public/asset/img/menu_bar.svg" alt="bar menu">
@@ -86,5 +91,4 @@
 
             </div>
         </section>
-
     </header>

@@ -62,7 +62,7 @@ $router->map("GET|POST", "/contact", "ControllerGeneral#contact", "contact");
 $router->map("GET", "/kakkoii", "ControllerGeneral#kakkoii", "kakkoii");
 
 //DELETE MANGA
-$router->map("GET", "/delete/[i:id]", "ControllerManga#delete", "delete");
+$router->map("POST", "/delete/[i:id]", "ControllerManga#delete", "delete");
 
 // CATEGORY
 $router->map("GET", "/category/[a:category_name]", "ControllerManga#readCategory", "readCategory");

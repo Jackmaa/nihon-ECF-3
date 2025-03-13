@@ -43,32 +43,46 @@ class ControllerManga extends Controller {
 
     // Method to create a new manga entry
     public function create() {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $model  = new ModelManga();
-            $author = $model->getMangaAuthorByName($_POST['author']);
-            if (! $author) {
-                // Author does not exist, create a new author
-                $model->createAuthor($_POST['author']);
+        if ($_SESSION["admin_logged_in"] === true) {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $model  = new ModelManga();
                 $author = $model->getMangaAuthorByName($_POST['author']);
+                if (! $author) {
+                    // Author does not exist, create a new author
+                    $model->createAuthor($_POST['author']);
+                    $author = $model->getMangaAuthorByName($_POST['author']);
+                }
+
+                // Get author ID and other manga details from the form
+                $authorId       = $author['id_author'];
+                $name           = $_POST['name'];
+                $description    = $_POST['description'];
+                $published_date = $_POST['published_date'];
+                $thumbnail      = $_FILES['thumbnail']['name'];
+                $tmp_thumbnail  = $_FILES['thumbnail']['tmp_name'];
+                move_uploaded_file($tmp_thumbnail, './public/asset/img/' . $thumbnail);
+                $thumbnail = './public/asset/img/' . $thumbnail;
+                // Create new manga entry in the database
+                $model->createManga($name, $authorId, $description, $published_date, $thumbnail);
+                $id_manga = $model->getMangaByName($name);
+                $editor   = $_POST["editor"];
+                $model->addEditor($id_manga, $editor);
+                // Handle multiple categories (min 1, max 3)
+                if (isset($_POST["category"]) && is_array($_POST["category"])) {
+                    $selectedCategories = array_slice($_POST["category"], 0, 3); // Limit to 3 categories
+                    foreach ($selectedCategories as $categoryId) {
+                        $model->addCategory($id_manga, $categoryId);
+                    }
+                } else {
+                    echo "Please select at least one category.";
+                    exit;
+                }
+                $_SESSION["message"] = 'Manga created successfully.';
+                header("location:" . $this->router->generate("admin_dashboard"));
             }
-
-            // Get author ID and other manga details from the form
-            $authorId       = $author['id_author'];
-            $name           = $_POST['name'];
-            $description    = $_POST['description'];
-            $published_date = $_POST['published_date'];
-            $thumbnail      = $_FILES['thumbnail']['name'];
-            $tmp_thumbnail  = $_FILES['thumbnail']['tmp_name'];
-            move_uploaded_file($tmp_thumbnail, './public/asset/img/' . $thumbnail);
-            $thumbnail = './public/asset/img/' . $thumbnail;
-
-            // Create new manga entry in the database
-            $model->createManga($name, $authorId, $description, $published_date, $thumbnail);
-            $message = 'Manga created successfully.';
-            header('Location: ' . $this->router->generate('home'));
-            exit;
+        } else {
+            echo "Bish you ain't no Kami, you just a NINGEN";
         }
-        require_once './view/createmanga.php';
     }
 
     // Method to read a manga entry by ID
@@ -86,9 +100,19 @@ class ControllerManga extends Controller {
 
     // Method to delete a manga entry by ID
     public function delete($id) {
-        $model = new ModelManga();
-        $model->deleteManga($id);
-        header('Location: /');
+        if ($_SESSION["admin_logged_in"] === true) {
+            $model = new ModelManga();
+
+            if ($model->deleteManga($id)) {
+                echo json_encode(["success" => true, "message" => "Manga deleted successfully."]);
+            } else {
+                http_response_code(500);
+                echo json_encode(["success" => false, "message" => "Failed to delete manga."]);
+            }
+        } else {
+            http_response_code(403);
+            echo json_encode(["success" => false, "message" => "Sheh."]);
+        }
     }
 
     public function search() {

@@ -68,7 +68,7 @@
 <div id="search-results-manga"></div>
 
 <!-- Overlay -->
-<div class="overlay" id="overlay" onclick="closePopup('popupLoans'); closePopup('popupReturns'); closePopup('popupHistory'); closePopup('popupCreate'); closePopup('popupBan'); closePopup('popupDelete'); closePopup('popupAdd'); closePopup('popupModified'); closePopup('popupDeleteBook'); closePopup('popupUser')"></div>
+<div class="overlay" id="overlay" onclick="closePopup('popupLoans'); closePopup('popupReturns'); closePopup('popupHistory'); closePopup('popupCreate'); closePopup('popupBan'); closePopup('popupDelete'); closePopup('popupAdd'); closePopup('popupModified'); closePopup('popupUser')"></div>
 
 <!-- Popups -->
 <div class="popup" id="popupLoans">
@@ -136,6 +136,21 @@
         <input type="text" name="author" placeholder="Author" id="author">
         <div id="response-author"></div>
         <textarea type="text" name="description" placeholder="Description"></textarea>
+        <fieldset>
+            <legend>Select up to 3 categories:</legend>
+            <?php foreach ($categories as $category): ?>
+                <label>
+                    <input type="checkbox" name="category[]" value="<?php echo $category["id_category"]; ?>" onclick="limitSelection(this)">
+                    <?php echo $category["category_name"]; ?>
+                </label><br>
+            <?php endforeach; ?>
+        </fieldset>
+        <small>Minimum 1, maximum 3 categories.</small>
+            <select name="editor" id="editor">
+                <?php foreach ($editors as $editor): ?>
+                    <option value="<?php echo $editor["id_editor"] ?>"><?php echo $editor["name"] ?></option>
+                <?php endforeach; ?>
+            </select>
         <input type="date" name="published_date" id="published_date">
         <input type="file" name="thumbnail" id="thumbnail">
         <button type="submit" class="button" onclick="closePopup('popupAdd')">Add</button>
@@ -160,14 +175,6 @@
 
     <button class="button" onclick="closePopup('popupModified')">Modify</button>
 </div>
-
-<div class="popup" id="popupDeleteBook">
-    <h3>Delete Book</h3>
-    <img src="public\asset\img\search.svg" alt=""><p>ID Book</p>
-    <input type="text">
-    <button class="button" onclick="closePopup('popupDeleteBook')">Delete</button>
-</div>
-
 </main>
 
 <?php
