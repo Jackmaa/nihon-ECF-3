@@ -68,7 +68,7 @@
 <div id="search-results-manga"></div>
 
 <!-- Overlay -->
-<div class="overlay" id="overlay" onclick="closePopup('popupLoans'); closePopup('popupReturns'); closePopup('popupHistory'); closePopup('popupCreate'); closePopup('popupBan'); closePopup('popupDelete'); closePopup('popupAdd'); closePopup('popupModified'); closePopup('popupDeleteBook'); closePopup('popupUser')"></div>
+<div class="overlay" id="overlay" onclick="closePopup('popupLoans'); closePopup('popupReturns'); closePopup('popupHistory'); closePopup('popupCreate'); closePopup('popupBan'); closePopup('popupDelete'); closePopup('popupAdd'); closePopup('popupModified'); closePopup('popupUser')"></div>
 
 <!-- Popups -->
 <div class="popup" id="popupLoans">
@@ -175,14 +175,6 @@
 
     <button class="button" onclick="closePopup('popupModified')">Modify</button>
 </div>
-
-<div class="popup" id="popupDeleteBook">
-    <h3>Delete Book</h3>
-    <img src="public\asset\img\search.svg" alt=""><p>ID Book</p>
-    <input type="text">
-    <button class="button" onclick="closePopup('popupDeleteBook')">Delete</button>
-</div>
-
 </main>
 
 <?php

@@ -100,9 +100,19 @@ class ControllerManga extends Controller {
 
     // Method to delete a manga entry by ID
     public function delete($id) {
-        $model = new ModelManga();
-        $model->deleteManga($id);
-        header('Location: /');
+        if ($_SESSION["admin_logged_in"] === true) {
+            $model = new ModelManga();
+
+            if ($model->deleteManga($id)) {
+                echo json_encode(["success" => true, "message" => "Manga deleted successfully."]);
+            } else {
+                http_response_code(500);
+                echo json_encode(["success" => false, "message" => "Failed to delete manga."]);
+            }
+        } else {
+            http_response_code(403);
+            echo json_encode(["success" => false, "message" => "Sheh."]);
+        }
     }
 
     public function search() {
