@@ -79,6 +79,8 @@ $router->map("GET|POST", "/dashboard-access", "ControllerAdmin#login", "admin_lo
 $router->map("GET", "/dashboard", "ControllerAdmin#dashboard", "admin_dashboard");
 //SEARCH MANGA
 $router->map("GET|POST", "/searchManga", "ControllerAdmin#searchManga", "searchManga");
+//MANAGE REVIEW
+$router->map("GET|POST", "/delete_review/[i:id]", "ControllerAdmin#manageReview", "manageReview");
 //SEARCH USER
 $router->map("GET|POST", "/searchUser", "ControllerAdmin#searchUser", "searchUser");
 //CREATE USER

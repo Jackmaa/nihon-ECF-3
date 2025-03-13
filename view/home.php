@@ -4,6 +4,7 @@
     $scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public\asset\js\base.js", "public\asset\js\home.js", "public/asset/js/header.js", "public/asset/js/like.js", "public\asset\js\darkmode.js", "public\asset\js\cart.js"];
     ob_start();
 ?>
+<div class="container-homepage" >
 <div class="wrap">
   <div class="bgWave waveOne"></div>
   <div class="bgWave waveTwo"></div>
@@ -18,7 +19,7 @@
             <div class="carousel-item red-background">
                 <p>“Now more books to borrow: 5 instead of 3!”</p>
                 <p>“Extended loan duration: 4 weeks instead of 3!”</p>
-                <button class="custom-btn btn-green"> <span>Kakkoii mode</span></button>
+                <button id="myButton" class="custom-btn btn-green"> <span>Kakkoii mode</span></button>
             </div>
             <?php foreach ($recommendations as $recommendation): ?>
             <div class="carousel-item card-fav black-background">
@@ -74,7 +75,7 @@
         </div>
     <?php endforeach; ?>
 </section>
-
+</div>
     <?php
         $content = ob_get_contents();
         ob_end_clean();
