@@ -3092,17 +3092,31 @@ h2{
 .cart{
   position: fixed;
     z-index: 50;
-    right: 50px;
-    bottom: 50px;
+    right: 4vh;
+    bottom: 4vh;
     background-color: #fcc8e185;
     border-radius: 100px;
-    width: 8vh;
-    height: 8vh;
+    width: 4vh;
+    height: 4vh;
     padding: 20px;
-  img{
-    width: 100%;
+
+    a{
+      &:hover{
+        path {
+          stroke: #cc392b;
+        }
+      }
+    }
+    
+  svg{
+    width: 4vh;
+    height: 4vh;
+    path{
+      transition: all 0.3s ease;
+    }
+    }
+    
   }
-}
 
 
 

@@ -2585,14 +2585,21 @@ button:hover {
 .cart {
   position: fixed;
   z-index: 50;
-  right: 50px;
-  bottom: 50px;
+  right: 4vh;
+  bottom: 4vh;
   background-color: rgba(252, 200, 225, 0.5215686275);
   border-radius: 100px;
-  width: 8vh;
-  height: 8vh;
+  width: 4vh;
+  height: 4vh;
   padding: 20px;
 }
-.cart img {
-  width: 100%;
+.cart a:hover path {
+  stroke: #cc392b;
+}
+.cart svg {
+  width: 4vh;
+  height: 4vh;
+}
+.cart svg path {
+  transition: all 0.3s ease;
 }/*# sourceMappingURL=styles.css.map */
