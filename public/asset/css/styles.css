@@ -2018,17 +2018,48 @@ button:hover {
   *******************************
   */
   .formkakoii {
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background: url(../img/cerisier.gif);
+    background-color: rgba(242, 235, 232, 0.507);
+    background-blend-mode: overlay;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  main#kakkoii {
+    width: 90vh;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  main#kakkoii h1 {
+    font-size: 3rem;
+  }
+  main#kakkoii .wrapper p {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  main#kakkoii .kakkoiiflex .center {
+    width: 30vh;
+    border: solid 4px white;
+  }
+  main#kakkoii .kakkoiiflex .center h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  main#kakkoii .kakkoiiflex .center p {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  main#kakkoii .kakkoiiflex .center .open-popup {
+    width: 100%;
   }
   .headkakkoii {
-    width: 100%;
-    height: auto;
-  }
-  .kakkoii {
-    width: 70vh;
+    display: none;
   }
 }
 @media (min-width: 1024px) {
