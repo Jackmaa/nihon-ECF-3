@@ -85,6 +85,16 @@ class ModelBorrow extends Model {
         $req->execute();
     }
 
+    public function removeItemFromCart(){
+        $req = $this->getDb()->prepare(
+            "DELETE FROM reservation
+             WHERE id_user = :id_user AND id_manga = :id_manga AND id_volume = :id_volume");
+        $req->bindParam(":id_user", $id_user, PDO::PARAM_INT);
+        $req->bindParam(":id_manga", $id_manga, PDO::PARAM_INT);
+        $req->bindParam(":id_volume", $id_volume, PDO::PARAM_INT);
+        $req->execute();
+    }
+
     public function getBorrowedBooks() {
         $req = $this->getDb()->prepare(
             'SELECT id_borrow, id_user, id_manga, id_volume, borrow_date, return_date, `status`
@@ -142,10 +152,9 @@ class ModelBorrow extends Model {
 
     // Fetch reserved (cart) items for a user
     public function getUserReservations($id_user) {
-        $req = $this->getDb()->prepare("SELECT r.id, m.title, r.reservation_date FROM reservation r
-                    JOIN manga m ON r.manga_id = m.id
-                    WHERE r.user_id = ?");
-        $req->execute([$id_user]);
+        $req = $this->getDb()->prepare("SELECT `reservation`.`id_manga`, `reservation`.`id_volume`, `manga`.`name`, `manga`.`thumbnail` FROM reservation INNER JOIN `manga` ON `reservation`.`id_manga` = `manga`.`id_manga` WHERE id_user = :id_user");
+        $req->bindParam(":id_user", $id_user, PDO::PARAM_INT);
+        $req->execute();
         return $req->fetchAll(PDO::FETCH_ASSOC);
     }
 }
