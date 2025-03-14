@@ -2489,19 +2489,29 @@ button:hover {
         padding: 10px;
         z-index: 10;
 
-        li {
+        ul{
+          overflow: hidden;
+          li {
+          width: 100%;
           padding: 8px 12px;
           font-family: var(--ff-bangers);
           letter-spacing: var(--letter-spacing);
+          transition: all 0.3s ease;
 
           &:hover {
-            background-color: #f0f0f0;
+            background-color: #cc392b;
           }
 
           a {
+            display: block;
+            width: 100%; 
+            padding: 8px 12px; 
             color: var(--fc-black);
           }
         }
+        }
+
+        
       }
 
       &.active .dropdown {

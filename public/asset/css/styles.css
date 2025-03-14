@@ -2175,15 +2175,23 @@ button:hover {
     padding: 10px;
     z-index: 10;
   }
-  .menu-desktop .profile .dropdown li {
+  .menu-desktop .profile .dropdown ul {
+    overflow: hidden;
+  }
+  .menu-desktop .profile .dropdown ul li {
+    width: 100%;
     padding: 8px 12px;
     font-family: var(--ff-bangers);
     letter-spacing: var(--letter-spacing);
+    transition: all 0.3s ease;
   }
-  .menu-desktop .profile .dropdown li:hover {
-    background-color: #f0f0f0;
+  .menu-desktop .profile .dropdown ul li:hover {
+    background-color: #cc392b;
   }
-  .menu-desktop .profile .dropdown li a {
+  .menu-desktop .profile .dropdown ul li a {
+    display: block;
+    width: 100%;
+    padding: 8px 12px;
     color: var(--fc-black);
   }
   .menu-desktop .profile.active .dropdown {
