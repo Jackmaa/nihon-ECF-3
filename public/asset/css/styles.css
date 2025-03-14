@@ -1379,7 +1379,15 @@ div.mangaPage svg.liked {
   background-color: #cc1606;
 }
 
-.also-liked h2 {
+.also-liked figure {
+  display: flex;
+  align-items: center;
+}
+.also-liked figure img {
+  width: 10vh;
+  margin-left: 1rem;
+}
+.also-liked figure h2 {
   margin: 2vh 0;
   font-family: var(--ff-bangers);
   letter-spacing: var(--letter-spacing);
@@ -1392,6 +1400,15 @@ div.mangaPage svg.liked {
   font-size: 1.2rem;
 }
 .also-liked .also-liked-contain figure {
+  width: 100%;
+}
+.also-liked .also-liked-contain figure:hover a {
+  filter: brightness(0.5);
+}
+.also-liked .also-liked-contain figure a {
+  transition: all 0.3s ease;
+}
+.also-liked .also-liked-contain figure a img {
   width: 20vh;
 }
 
