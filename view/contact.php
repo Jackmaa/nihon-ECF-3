@@ -21,9 +21,7 @@ ob_start();
 
     <button class=button type="submit">Submit</button>
 </form>
-
 </main>
-
 <?php
 $content = ob_get_contents();
 ob_end_clean();

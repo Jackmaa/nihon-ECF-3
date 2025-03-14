@@ -94,6 +94,25 @@ body.dark-mode {
   background-color: #202024;
   color: white;
 
+  #username-picture{
+    a:first-child {
+      font-family: var(--ff-barlow);
+      margin-right: 1vh;
+      color: var(--fc-light);
+      font-size: 1.4rem;
+      transition: all 0.3s ease;
+      &:hover {
+        color: #cc392b;
+      }
+  }
+  }
+
+  .container-homepage {
+    background-image: url(../img/vignette.svg);
+    background-color: #202024;
+    background-blend-mode: overlay;
+  }
+
   label {
     color: #0e0e0e;
   }
@@ -948,12 +967,19 @@ main.login {
   height: 100%;
 
   .red-background {
-    background-color: var(--primary-clr-red);
+    background-color: var(--primary-clr-red); 
+    background-image: url(../img/star-red.gif);
+    background-size: cover;
+    background-position: center; 
   }
-
+  
   .black-background {
-    background-color: #38383f;
-  }
+    background-image: url(../img/star.gif), linear-gradient(to right, #020000,#046a8b, #020000);
+    background-size: cover;
+    background-position: center;
+}
+
+
 }
 
 .carousel-item {
@@ -1328,7 +1354,9 @@ button {
       margin: 0 auto;
 
       img {
-        width: 20vh;
+        width: 25vh;
+        height: 35vh;
+        object-fit: cover;
       }
     }
 
@@ -1554,11 +1582,21 @@ div.mangaPage {
 }
 
 .also-liked {
-  h2 {
+
+  figure{
+    display: flex;
+    align-items: center;
+    img{
+      width: 10vh;
+      margin-left: 1rem;
+    }
+      h2 {
     margin: 2vh 0;
     font-family: var(--ff-bangers);
     letter-spacing: var(--letter-spacing);
   }
+  }
+
 
   .also-liked-contain {
     display: flex;
@@ -1568,7 +1606,18 @@ div.mangaPage {
     font-size: 1.2rem;
 
     figure {
-      width: 20vh;
+      width: 100%;
+      &:hover {
+        a{
+          filter: brightness(0.5);
+        }
+      }
+      a {
+        transition: all 0.3s ease;
+        img{
+          width: 20vh;
+        }
+      }
     }
   }
 }
@@ -2256,18 +2305,49 @@ button:hover {
 ***********CAROUSSEL************
 **********************************
 */
+
+.button-container {
+  margin: 0 200px;
+  position: relative; 
+  display: inline-block;
+}
+
+.coucou {
+  z-index: 1;
+}
+
+.coucou:hover + .gif-background {
+  opacity: 1;
+}
+
+.gif-background {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40vh; 
+  height: 20vh;
+  background-image: url("../img/supersayanblue.gif");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 0;
+}
+
   .carousel {
     height: 60vh;
 
-    .custom-btn {
-      margin-top: 2%;
-      width: 20%;
-      height: 10%;
+    .button-container {
+      margin-top: 2rem;
     }
 
     p {
       margin: 1%;
       font-size: 1.5rem;
+      z-index: 99;
+
     }
 
     .next,
@@ -2341,6 +2421,7 @@ button:hover {
       font-family: var(--ff-barlow);
       margin-right: 1vh;
       color: var(--fc-black);
+      font-size: 1.4rem;
 
       transition: all 0.3s ease;
 

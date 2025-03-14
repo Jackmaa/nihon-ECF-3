@@ -67,7 +67,7 @@
         </form>
         </div>
         <section class="also-liked">
-            <h2><?php echo $manga->manga->getName() ?> Readers also liked</h2>
+            <figure><h2><?php echo $manga->manga->getName() ?> Readers also liked</h2><img src="<?php echo BASE_URL ?>public\asset\img\books-anim.gif" alt=""></figure>
             <div class="also-liked-contain">
                 <div>
                     <figure><a href="#"><img src="<?php echo BASE_URL ?>public\asset\img\shonen\chainsawman.webp" alt="Berserk"></a></figure>
