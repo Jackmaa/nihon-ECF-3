@@ -149,13 +149,13 @@ class ModelBorrow extends Model {
     //     return $req->fetchAll(PDO::FETCH_ASSOC);
     // }
 
-    public function getUserBorrows($userId) {
+    public function getUserBorrowsAdmin($userId) {
         $req = $this->getDb()->prepare("SELECT b.id_borrow, m.name, b.return_date, b.id_volume, b.status FROM borrow b JOIN manga m on b.id_manga = m.id_manga where b.id_user = :userId");
         $req->bindParam(":userId", $userId, PDO::PARAM_INT);
         $req->execute();
         return $req->fetchAll(PDO::FETCH_ASSOC);
     }
-    public function getUserReservations($userId) {
+    public function getUserReservationsAdmin($userId) {
         $req = $this->getDb()->prepare("SELECT r.id_reservation, m.name, r.placed, r.id_volume FROM reservation r JOIN manga m on r.id_manga = m.id_manga where r.id_user = :userId");
         $req->bindParam(":userId", $userId, PDO::PARAM_INT);
         $req->execute();

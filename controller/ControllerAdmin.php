@@ -115,7 +115,7 @@ class ControllerAdmin extends Controller {
     public function getUserBorrow($userId) {
 
         $model    = new ModelBorrow;
-        $borrowed = $model->getUserBorrows($userId);
+        $borrowed = $model->getUserBorrowsAdmin($userId);
 
         echo json_encode([
             "borrowed" => $borrowed,
@@ -124,7 +124,7 @@ class ControllerAdmin extends Controller {
 
     public function getUserCart($userId) {
         $model = new ModelBorrow;
-        $cart  = $model->getUserReservations($userId);
+        $cart  = $model->getUserReservationsAdmin($userId);
 
         echo json_encode([
             "cart" => $cart,
