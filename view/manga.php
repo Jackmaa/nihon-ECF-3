@@ -59,35 +59,31 @@ ob_start();
                         <?php endif; ?>
                     </div>
                     <hr>
-                <?php endforeach; ?>
+                    <?php endforeach; ?>
+                </div>
+                
                 <hr>
-            </section>
-            <form id="leave-review" method="post" action="/manga/<?php echo $manga->manga->getId_manga(); ?>">
-                <input type="hidden" name="id_manga" id="id_manga" value="<?php echo $manga->manga->getId_manga(); ?>">
-                <input type="text" name="review" id="review" placeholder="Leave a review">
-                <button type="submit">Post your review</button>
-            </form>
-        </div>
-        <section class="also-liked">
-            <figure>
-                <h2><?php echo $manga->manga->getName() ?> Readers also liked</h2><img src="<?php echo BASE_URL ?>public\asset\img\books-anim.gif" alt="">
-            </figure>
+                <section class="also-liked">
+            <figure><h2><?php echo $manga->manga->getName() ?> Readers also liked</h2><img src="<?php echo BASE_URL ?>public\asset\img\books-anim.gif" alt=""></figure>
+            
             <div class="also-liked-contain">
+                <?php foreach($also_liked as $similar):?>
                 <div>
-                    <figure><a href="#"><img src="<?php echo BASE_URL ?>public\asset\img\shonen\chainsawman.webp" alt="Berserk"></a></figure>
-                    <p>chainsawman</p>
+                    <figure><a href="<?= $similar->getId_Manga()?>"><img src="<?php echo BASE_URL . $similar->getThumbnail()?>" alt="<?= $similar->getName()?>"></a></figure>
+                    <p><?php echo $similar->getName() ?></p>
                 </div>
-                <div>
-                    <figure><a href="#"><img src="<?php echo BASE_URL ?>public\asset\img\shonen\one_piece.webp" alt="One Piece"></a></figure>
-                    <p>One Piece</p>
-                </div>
-                <div>
-                    <figure><a href="#"><img src="<?php echo BASE_URL ?>public\asset\img\shonen\l_attaque_des_titans.webp" alt="Attack on Titan"></a></figure>
-                    <p>Attack on titan</p>
-                </div>
+                <?php endforeach; ?>
             </div>
+        </section>
+        </section>
+        <form id="leave-review" method="post" action="/manga/<?php echo $manga->manga->getId_manga(); ?>">
+            <input type="hidden" name="id_manga" id="id_manga" value="<?php echo $manga->manga->getId_manga(); ?>">
+            <input type="text" name="review" id="review" placeholder="Leave a review">
+            <button type="submit">Post your review</button>
+        </form>
+        </div>
     </div>
-    </section>
+    </div>
     <section class="see-volume">
         <div class="all-volume">
             <figure><img src="<?php echo BASE_URL ?>public\asset\img\book_open.svg" alt="Book open"></figure>

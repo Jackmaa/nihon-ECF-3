@@ -1,29 +1,38 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const openPopupButtons = document.querySelectorAll('.open-popup');
-    const closePopupButtons = document.querySelectorAll('.close-popup');
-    const overlay = document.getElementById('overlay');
+    // Animation d'apparition de la section kakkoiiflex
+    gsap.to(".kakkoiiflex .center", {
+        duration: 1,
+        opacity: 1,
+        y: 0,
+        ease: "power2.out",
+        stagger: 0.2, // Délai entre chaque élément
+        delay: 0.5 // Délai avant de commencer l'animation
+    });
 
-    openPopupButtons.forEach(button => {
+    // Animation des popups
+    document.querySelectorAll('.open-popup').forEach(button => {
         button.addEventListener('click', () => {
             const popupId = button.getAttribute('data-popup');
             const popup = document.getElementById(popupId);
-            popup.classList.add('active');
-            overlay.classList.add('active');
+            gsap.to(popup, {
+                duration: 0.5,
+                opacity: 1,
+                scale: 1,
+                ease: "power2.out"
+            });
         });
     });
 
-    closePopupButtons.forEach(button => {
+    // Animation de fermeture des popups
+    document.querySelectorAll('.close-popup').forEach(button => {
         button.addEventListener('click', () => {
             const popup = button.closest('.popup');
-            popup.classList.remove('active');
-            overlay.classList.remove('active');
+            gsap.to(popup, {
+                duration: 0.5,
+                opacity: 0,
+                scale: 0.8,
+                ease: "power2.out"
+            });
         });
-    });
-
-    overlay.addEventListener('click', () => {
-        document.querySelectorAll('.popup.active').forEach(popup => {
-            popup.classList.remove('active');
-        });
-        overlay.classList.remove('active');
     });
 });

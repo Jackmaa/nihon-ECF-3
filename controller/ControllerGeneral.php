@@ -14,4 +14,7 @@ class ControllerGeneral extends Controller {
     public function page404() {
         require_once './view/page404.php';
     }
+    public function aboutus() {
+        require_once './view/aboutus.php';
+    }
 }
