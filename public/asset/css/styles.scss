@@ -2258,18 +2258,49 @@ button:hover {
 ***********CAROUSSEL************
 **********************************
 */
+
+.button-container {
+  margin: 0 200px;
+  position: relative; 
+  display: inline-block;
+}
+
+.coucou {
+  z-index: 1;
+}
+
+.coucou:hover + .gif-background {
+  opacity: 1;
+}
+
+.gif-background {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40vh; 
+  height: 20vh;
+  background-image: url("../img/supersayanblue.gif");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 0;
+}
+
   .carousel {
     height: 60vh;
 
-    .custom-btn {
-      margin-top: 2%;
-      width: 20%;
-      height: 10%;
+    .button-container {
+      margin-top: 2rem;
     }
 
     p {
       margin: 1%;
       font-size: 1.5rem;
+      z-index: 99;
+
     }
 
     .next,
@@ -2343,6 +2374,7 @@ button:hover {
       font-family: var(--ff-barlow);
       margin-right: 1vh;
       color: var(--fc-black);
+      font-size: 1.4rem;
 
       transition: all 0.3s ease;
 
@@ -3429,3 +3461,4 @@ form {
     margin: 20px;
   }
 }
+
