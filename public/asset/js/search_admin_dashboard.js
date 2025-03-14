@@ -215,57 +215,70 @@ function limitSelection(checkbox) {
 }
 
 function fetchUserBorrowedItems(userId) {
-  // Send a GET request to fetch the borrowed items for the user
-  fetch(`/getBorrowedItems.php?userId=${userId}`)
-    .then((response) => response.json())
-    .then((data) => {
-      displayUserItems(data, "Borrowed Items");
-    })
-    .catch((error) => {
-      console.error("Error fetching borrowed items:", error);
-    });
+  updateUserItems(`/getBorrowedItems.php?userId=${userId}`, "Borrowed Items");
 }
 
 function fetchUserCartItems(userId) {
-  // Send a GET request to fetch the cart items for the user
-  fetch(`/getCartItems.php?userId=${userId}`)
-    .then((response) => response.json())
-    .then((data) => {
-      displayUserItems(data, "Cart Items");
-    })
-    .catch((error) => {
-      console.error("Error fetching cart items:", error);
-    });
+  updateUserItems(`/getCartItems.php?userId=${userId}`, "Cart Items");
 }
 
-function displayUserItems(items, title) {
-  // Create a new div to display the items
-  const itemsDiv = document.createElement("div");
-  itemsDiv.classList.add("user-items");
-
-  // Clear any previous items
-  itemsDiv.innerHTML = `<h3>${title}</h3>`; // Add a title for clarity
-
-  // Check if there are any items
-  if (items.length === 0) {
-    itemsDiv.innerHTML += "<p>No items found.</p>";
-  } else {
-    // Loop through each item and create a div for it
-    items.forEach((item) => {
-      let itemDiv = document.createElement("div");
-      itemDiv.classList.add("item");
-
-      let itemName = document.createElement("p");
-      itemName.textContent = `Name: ${item.name}`;
-
-      let itemDetails = document.createElement("p");
-      itemDetails.textContent = `Details: ${item.details}`; // Adjust based on your data
-
-      itemDiv.append(itemName, itemDetails);
-      itemsDiv.appendChild(itemDiv);
-    });
+function updateUserItems(url, title) {
+  // Supprimer l'ancien affichage s'il existe
+  let existingItemsDiv = document.querySelector(".user-items");
+  if (existingItemsDiv) {
+    existingItemsDiv.remove();
   }
 
-  // Append the items div to the responseUserDiv or open it in a popup
+  // Création du conteneur
+  const itemsDiv = document.createElement("div");
+  itemsDiv.classList.add("user-items", "fade-in"); // Animation ajoutée
+  itemsDiv.innerHTML = `<h3>${title}</h3>`;
+
+  // Bouton de fermeture
+  const closeButton = document.createElement("button");
+  closeButton.textContent = "✖";
+  closeButton.classList.add("close-btn");
+  closeButton.addEventListener("click", () => {
+    itemsDiv.classList.add("fade-out"); // Animation sortie
+    setTimeout(() => itemsDiv.remove(), 300); // Supprime après animation
+  });
+
+  // Indicateur de chargement
+  const loadingIndicator = document.createElement("p");
+  loadingIndicator.textContent = "Loading...";
+  itemsDiv.append(closeButton, loadingIndicator);
   responseUserDiv.appendChild(itemsDiv);
+
+  // Fetch les données
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      itemsDiv.innerHTML = `<h3>${title}</h3>`; // Reset
+      itemsDiv.appendChild(closeButton); // Réajout du bouton
+
+      if (!Array.isArray(data) || data.length === 0) {
+        itemsDiv.innerHTML += "<p>No items found.</p>";
+        return;
+      }
+
+      data.forEach((item) => {
+        let itemDiv = document.createElement("div");
+        itemDiv.classList.add("item");
+
+        let itemName = document.createElement("p");
+        itemName.textContent = `Name: ${item.name}`;
+
+        let itemDetails = document.createElement("p");
+        itemDetails.textContent = `Details: ${
+          item.details || "No details available"
+        }`;
+
+        itemDiv.append(itemName, itemDetails);
+        itemsDiv.appendChild(itemDiv);
+      });
+    })
+    .catch((error) => {
+      console.error("Error fetching items:", error);
+      itemsDiv.innerHTML = `<p>Error loading items. Please try again later.</p>`;
+    });
 }
