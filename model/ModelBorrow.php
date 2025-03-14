@@ -51,7 +51,7 @@ class ModelBorrow extends Model {
         $req->bindParam(":id_manga", $id_manga, PDO::PARAM_INT);
         $req->bindParam(":id_volume", $id_volume, PDO::PARAM_INT);
         $req->execute();
-        return $req->fetchColumn() == 0; // Available if count is 0
+        return $req->fetchColumn() < 3; // Available if count is less than 3
     }
 
     // Add a reservation to the reservation table
@@ -85,14 +85,18 @@ class ModelBorrow extends Model {
         $req->execute();
     }
 
-    public function removeItemFromCart() {
+    public function deleteItemFromCart($id_user, $id_manga, $id_volume) {
         $req = $this->getDb()->prepare(
             "DELETE FROM reservation
              WHERE id_user = :id_user AND id_manga = :id_manga AND id_volume = :id_volume");
         $req->bindParam(":id_user", $id_user, PDO::PARAM_INT);
         $req->bindParam(":id_manga", $id_manga, PDO::PARAM_INT);
         $req->bindParam(":id_volume", $id_volume, PDO::PARAM_INT);
-        $req->execute();
+        if ($req->execute()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function getBorrowedBooks() {
@@ -165,7 +169,7 @@ class ModelBorrow extends Model {
         return $req->fetchAll(PDO::FETCH_ASSOC);
     }
     public function getUserReservationsAdmin($userId) {
-        $req = $this->getDb()->prepare("SELECT r.id_reservation,r.id_manga, r.id_volume, m.name, r.placed, r.id_volume FROM reservation r JOIN manga m on r.id_manga = m.id_manga where r.id_user = :userId");
+        $req = $this->getDb()->prepare("SELECT r.id_reservation, r.id_user, r.id_manga, r.id_volume, m.name, r.placed, r.id_volume FROM reservation r JOIN manga m on r.id_manga = m.id_manga where r.id_user = :userId");
         $req->bindParam(":userId", $userId, PDO::PARAM_INT);
         $req->execute();
         return $req->fetchAll(PDO::FETCH_ASSOC);

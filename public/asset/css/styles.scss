@@ -3650,11 +3650,6 @@ form {
 **********************************
 */
 
-body {
-  overflow: hidden; /* Empêche la barre de défilement */
-  margin: 0; /* Retire les marges par défaut du body */
-}
-
 .aboutus {
   position: relative; /* Permet aux nuages d'être positionnés par rapport à cette section */
   height: 100vh; /* Prend toute la hauteur de la fenêtre */

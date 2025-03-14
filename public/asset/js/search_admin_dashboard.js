@@ -317,78 +317,68 @@ function createBorrowRow(item) {
 
 function createCartRow(item) {
   const row = document.createElement("tr");
+  row.dataset.cartId = item.id_cart; // Store cart ID for easy reference
+
   row.innerHTML = `
     <td>${item.name}</td>
     <td>Volume ${item.id_volume}</td>
     <td>${item.placed}</td>
     <td>
-      <button class="validate-cart" data-id="${item.id_cart}">✔ Validate</button>
-      <button class="delete-cart" data-id="${item.id_cart}">✖ Delete</button>
+      <button onclick="validateCartItem(${item.id_manga}, ${item.id_volume}, ${item.id_user}, this)" class="validate-cart">✔ Validate</button>
+      <button onclick="deleteCartItem(${item.id_manga}, ${item.id_volume}, ${item.id_user}, this)" class="delete-cart">✖ Delete</button>
     </td>`;
+
   return row;
 }
 
-// Event delegation for status dropdown
-mainDashboard.addEventListener("change", (event) => {
-  if (event.target.classList.contains("status-dropdown")) {
-    updateBorrowStatus(event.target);
+// Event delegation for delete buttons
+document.addEventListener("click", (event) => {
+  if (event.target.classList.contains("delete-cart")) {
+    const row = event.target.closest("tr");
+    const cartId = event.target.dataset.id;
+    deleteCartItem(cartId, row);
   }
 });
 
-// Event delegation for cart actions
-mainDashboard.addEventListener("click", (event) => {
-  if (event.target.classList.contains("validate-cart")) {
-    validateCartItem(event.target);
-  } else if (event.target.classList.contains("delete-cart")) {
-    deleteCartItem(event.target);
-  }
-});
-
-function updateBorrowStatus(select) {
-  const borrowId = select.getAttribute("data-id");
-  const newStatus = select.value;
-  fetch("/adminBorrowStatus", {
+function validateCartItem(idManga, idVolume, idUser, button) {
+  fetch("/validateCartItem", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ id_borrow: borrowId, status: newStatus }),
+    body: JSON.stringify({
+      id_manga: idManga,
+      id_volume: idVolume,
+      id_user: idUser,
+    }),
   })
     .then((response) => response.json())
     .then((data) => {
       if (data.success) {
-        const checkmark = select.parentNode.querySelector(".status-checkmark");
-        checkmark.style.opacity = "1";
-        setTimeout(() => (checkmark.style.opacity = "0"), 1500);
+        alert("Manga successfully validated! 📚✅");
+        button.closest("tr").remove(); // Remove the row on success
+      } else {
+        alert("Error: " + data.error);
       }
     })
-    .catch((error) => console.error("Error updating status:", error));
+    .catch((error) => console.error("Fetch error:", error));
 }
 
-function validateCartItem(button) {
-  const cartId = button.getAttribute("data-id");
-  fetch("/validateCartItem", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ id_cart: cartId }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      if (data.success) button.closest("tr").remove();
-    })
-    .catch((error) => console.error("Error validating cart item:", error));
-}
-
-function deleteCartItem(button) {
-  const cartId = button.getAttribute("data-id");
-  if (!confirm("Are you sure you want to delete this item from the cart?"))
-    return;
+function deleteCartItem(idManga, idVolume, idUser, button) {
   fetch("/deleteCartItem", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ id_cart: cartId }),
+    body: JSON.stringify({
+      id_manga: idManga,
+      id_volume: idVolume,
+      id_user: idUser,
+    }),
   })
     .then((response) => response.json())
     .then((data) => {
-      if (data.success) button.closest("tr").remove();
-    })
-    .catch((error) => console.error("Error deleting cart item:", error));
+      if (data.success) {
+        alert("Item deleted from cart! 🗑️");
+        button.closest("tr").remove();
+      } else {
+        alert("Error: " + data.error);
+      }
+    });
 }
