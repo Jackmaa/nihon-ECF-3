@@ -948,12 +948,19 @@ main.login {
   height: 100%;
 
   .red-background {
-    background-color: var(--primary-clr-red);
+    background-color: var(--primary-clr-red); 
+    background-image: url(../img/star-red.gif);
+    background-size: cover;
+    background-position: center; 
   }
-
+  
   .black-background {
-    background-color: #38383f;
-  }
+    background-image: url(../img/star.gif), linear-gradient(to right, #020000,#046a8b, #020000);
+    background-size: cover;
+    background-position: center;
+}
+
+
 }
 
 .carousel-item {
@@ -3461,4 +3468,3 @@ form {
     margin: 20px;
   }
 }
-
