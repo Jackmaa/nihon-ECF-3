@@ -4,7 +4,7 @@
     $scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public\asset\js\base.js", "public\asset\js\header.js", "public/asset/js/like.js", "public/asset/js/cart.js", "public/asset/js/like.js", "public/asset/js/review.js", "public\asset\js\darkmode.js"];
     ob_start();
 ?>
-<main>
+<main class="la-page-manga">
     <section>
         <div class="mangaPage-frst-section">
             <div class="mangaPage">
@@ -67,7 +67,7 @@
         </form>
         </div>
         <section class="also-liked">
-            <h2><?php echo $manga->manga->getName() ?> Readers also liked</h2>
+            <figure><h2><?php echo $manga->manga->getName() ?> Readers also liked</h2><img src="<?php echo BASE_URL ?>public\asset\img\books-anim.gif" alt=""></figure>
             <div class="also-liked-contain">
                 <div>
                     <figure><a href="#"><img src="<?php echo BASE_URL ?>public\asset\img\shonen\chainsawman.webp" alt="Berserk"></a></figure>
@@ -84,8 +84,7 @@
             </div>
     </div>
     </section>
-    </div>
-    <section class="see-volume">
+    <section class="see-volume" >
         <div class="all-volume">
             <figure><img src="<?php echo BASE_URL ?>public\asset\img\book_open.svg" alt="Book open"></figure>
             <h2>All Volumes</h2>

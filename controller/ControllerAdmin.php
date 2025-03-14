@@ -63,14 +63,14 @@ class ControllerAdmin extends Controller {
     }
 
     //Manage a review in case of inappropriate content
-    public function manageReview($id){
+    public function manageReview($id) {
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_review'])) {
-            $id = $_POST['id_review']; // Récupération correcte de la review
+            $id    = $_POST['id_review']; // Récupération correcte de la review
             $model = new ModelManga();
             $model->deleteReview($id);
         }
     }
-    
+
     // Search for a user
     public function searchUser() {
         $search        = '%' . $_POST['search'] . '%';
@@ -95,6 +95,7 @@ class ControllerAdmin extends Controller {
         $mailer->sendFinishSignupEmail($email, $link);
     }
 
+    //Method to update the Status of Borrowed Manga
     public function adminBorrowStatus() {
         $data = json_decode(file_get_contents("php://input"), true);
         if (isset($data['id_borrow']) && isset($data['status'])) {
@@ -109,6 +110,24 @@ class ControllerAdmin extends Controller {
         } else {
             echo json_encode(["success" => false]);
         }
+    }
+
+    public function getUserInfo() {
+        if (! isset($_GET['userId'])) {
+            echo json_encode(["error" => "Missing user ID"]);
+            return;
+        }
+
+        $model = new ModelBorrow;
+
+        $userId   = intval($_GET['userId']);
+        $borrowed = $model->getUserBorrows($userId);
+        $cart     = $model->getUserReservations($userId);
+
+        echo json_encode([
+            "borrowed" => $borrowed,
+            "cart"     => $cart,
+        ]);
     }
 }
 

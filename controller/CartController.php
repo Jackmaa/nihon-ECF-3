@@ -174,6 +174,8 @@ class CartController extends Controller {
 
     // Renders the cart view
     public function cart() {
+        $model = new ModelBorrow;
+        $cart  = $model->getUserReservations($_SESSION['id_user']);
         require_once './view/cart.php';
     }
 
@@ -181,5 +183,27 @@ class CartController extends Controller {
         $model = new ModelUser;
         $cart  = $model->fetchCartData($_SESSION['id_user']);
         echo json_encode(["success" => true, "cart" => $cart]);
+    }
+
+    public function getUserCartItems() {
+        if (! isset($_GET['userId'])) {
+            echo json_encode(["error" => "Missing user ID"]);
+            return;
+        }
+        $model  = new ModelBorrow;
+        $userId = intval($_GET['userId']);
+        $items  = $model->getUserReservations($userId);
+        echo json_encode($items);
+    }
+
+    public function getUserBorrowedItems() {
+        if (! isset($_GET['userId'])) {
+            echo json_encode(["error" => "Missing user ID"]);
+            return;
+        }
+        $model  = new ModelBorrow;
+        $userId = intval($_GET['userId']);
+        $items  = $model->getUserBorrows($userId);
+        echo json_encode($items);
     }
 }

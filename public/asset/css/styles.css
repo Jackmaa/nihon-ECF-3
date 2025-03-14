@@ -1,5 +1,6 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Bangers&family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Kaisei+Tokumin&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bangers&family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Kaisei+Tokumin&family=Permanent+Marker&display=swap");
 /*
 **********************************
 ***********RESET CSS************
@@ -86,6 +87,31 @@ body {
 body.dark-mode {
   background-color: #202024;
   color: white;
+}
+body.dark-mode .menu-desktop figure:nth-of-type(3) a img {
+  transition: all 0.3s ease;
+}
+body.dark-mode .menu-desktop figure:nth-of-type(3) a img:hover {
+  box-shadow: 0 5px 10px rgba(255, 255, 255, 0.1), 0 3px 3px rgba(236, 236, 236, 0.1);
+}
+body.dark-mode .review {
+  background-color: #202024;
+  color: white;
+}
+body.dark-mode #username-picture a:first-child {
+  font-family: var(--ff-barlow);
+  margin-right: 1vh;
+  color: var(--fc-light);
+  font-size: 1.4rem;
+  transition: all 0.3s ease;
+}
+body.dark-mode #username-picture a:first-child:hover {
+  color: #cc392b;
+}
+body.dark-mode .container-homepage, body.dark-mode .la-page-manga, body.dark-mode section.see-volume {
+  background-image: url(../img/vignette.svg);
+  background-color: #202024;
+  background-blend-mode: overlay;
 }
 body.dark-mode label {
   color: #0e0e0e;
@@ -850,9 +876,14 @@ main.login .cloud:before {
 }
 .carousel-wrapper .red-background {
   background-color: var(--primary-clr-red);
+  background-image: url(../img/star-red.gif);
+  background-size: cover;
+  background-position: center;
 }
 .carousel-wrapper .black-background {
-  background-color: #38383f;
+  background-image: url(../img/star.gif), linear-gradient(to right, #020000, #046a8b, #020000);
+  background-size: cover;
+  background-position: center;
 }
 
 .carousel-item {
@@ -1174,7 +1205,10 @@ button {
   margin: 0 auto;
 }
 .card-fav .bubble-fav figure img {
-  width: 20vh;
+  width: 25vh;
+  height: 35vh;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .card-fav .bubble-fav hr {
   margin: 2% auto;
@@ -1285,6 +1319,9 @@ div.mangaPage svg.liked {
 }
 
 .review {
+  background-color: #f2ebe8;
+  border: 2px solid rgba(204, 56, 43, 0.3294117647);
+  border-radius: 5px;
   width: 90%;
   display: grid;
   place-self: center;
@@ -1371,7 +1408,15 @@ div.mangaPage svg.liked {
   background-color: #cc1606;
 }
 
-.also-liked h2 {
+.also-liked figure {
+  display: flex;
+  align-items: center;
+}
+.also-liked figure img {
+  width: 10vh;
+  margin-left: 1rem;
+}
+.also-liked figure h2 {
   margin: 2vh 0;
   font-family: var(--ff-bangers);
   letter-spacing: var(--letter-spacing);
@@ -1384,11 +1429,20 @@ div.mangaPage svg.liked {
   font-size: 1.2rem;
 }
 .also-liked .also-liked-contain figure {
+  width: 100%;
+}
+.also-liked .also-liked-contain figure:hover a {
+  filter: brightness(0.5);
+}
+.also-liked .also-liked-contain figure a {
+  transition: all 0.3s ease;
+}
+.also-liked .also-liked-contain figure a img {
   width: 20vh;
 }
 
 .see-volume .all-volume {
-  margin-top: 5vh;
+  padding: 2rem 0;
   display: flex;
 }
 .see-volume .all-volume h2 {
@@ -1965,17 +2019,51 @@ button:hover {
   *******************************
   */
   .formkakoii {
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background: url(../img/cerisier.gif);
+    background-color: rgba(242, 235, 232, 0.507);
+    background-blend-mode: overlay;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  main#kakkoii {
+    width: 90vh;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  main#kakkoii h1 {
+    font-size: 3rem;
+  }
+  main#kakkoii .wrapper p {
+    font-family: "Permanent Marker", cursive;
+    color: #38383f;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    padding-left: 1rem;
+  }
+  main#kakkoii .kakkoiiflex .center {
+    width: 30vh;
+    border: solid 4px white;
+  }
+  main#kakkoii .kakkoiiflex .center h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  main#kakkoii .kakkoiiflex .center p {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  main#kakkoii .kakkoiiflex .center .open-popup {
+    width: 100%;
   }
   .headkakkoii {
-    width: 100%;
-    height: auto;
-  }
-  .kakkoii {
-    width: 70vh;
+    display: none;
   }
 }
 @media (min-width: 1024px) {
@@ -1984,17 +2072,42 @@ button:hover {
   ***********CAROUSSEL************
   **********************************
   */
+  .button-container {
+    margin: 0 200px;
+    position: relative;
+    display: inline-block;
+  }
+  .coucou {
+    z-index: 1;
+  }
+  .coucou:hover + .gif-background {
+    opacity: 1;
+  }
+  .gif-background {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40vh;
+    height: 20vh;
+    background-image: url("../img/supersayanblue.gif");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+  }
   .carousel {
     height: 60vh;
   }
-  .carousel .custom-btn {
-    margin-top: 2%;
-    width: 20%;
-    height: 10%;
+  .carousel .button-container {
+    margin-top: 2rem;
   }
   .carousel p {
     margin: 1%;
     font-size: 1.5rem;
+    z-index: 99;
   }
   .carousel .next,
   .carousel .prev {
@@ -2054,6 +2167,7 @@ button:hover {
     font-family: var(--ff-barlow);
     margin-right: 1vh;
     color: var(--fc-black);
+    font-size: 1.4rem;
     transition: all 0.3s ease;
   }
   #username-picture a:first-child:hover {
@@ -2109,15 +2223,24 @@ button:hover {
     padding: 10px;
     z-index: 10;
   }
-  .menu-desktop .profile .dropdown li {
+  .menu-desktop .profile .dropdown ul {
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  .menu-desktop .profile .dropdown ul li {
+    width: 100%;
     padding: 8px 12px;
     font-family: var(--ff-bangers);
     letter-spacing: var(--letter-spacing);
+    transition: all 0.3s ease;
   }
-  .menu-desktop .profile .dropdown li:hover {
-    background-color: #f0f0f0;
+  .menu-desktop .profile .dropdown ul li:hover {
+    background-color: #cc392b;
   }
-  .menu-desktop .profile .dropdown li a {
+  .menu-desktop .profile .dropdown ul li a {
+    display: block;
+    width: 100%;
+    padding: 8px 12px;
     color: var(--fc-black);
   }
   .menu-desktop .profile.active .dropdown {
@@ -2442,6 +2565,13 @@ button:hover {
   background-color: red;
   color: white;
 }
+.dashboard .status-checkmark {
+  margin-left: 8px;
+  color: #4caf50;
+  font-weight: bold;
+  transition: opacity 0.5s ease-in-out;
+  opacity: 0;
+}
 .dashboard th {
   background-color: #cc392b;
   color: white;
@@ -2475,6 +2605,53 @@ button:hover {
   justify-content: center;
   align-items: center;
   max-width: 100%;
+}
+.dashboard .user-items {
+  position: fixed;
+  top: 20%;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  width: 250px;
+  max-height: 400px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+.dashboard .close-btn {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+.dashboard .close-btn:hover {
+  color: red;
+}
+.dashboard .fade-in {
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: fadeIn 0.3s forwards;
+}
+.dashboard .fade-out {
+  animation: fadeOut 0.3s forwards;
+}
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
 }
 .dashboard .button-container {
   display: flex;
@@ -2994,5 +3171,8 @@ body {
   height: 100px;
   background: url("../img/Akatsuki-Logo.png") no-repeat center center;
   background-size: contain;
-  opacity: 1;
+.la-page-manga, section.see-volume {
+  background-image: url(../img/vignette.svg);
+  background-color: rgba(242, 235, 232, 0.8901960784);
+  background-blend-mode: overlay;
 }/*# sourceMappingURL=styles.css.map */

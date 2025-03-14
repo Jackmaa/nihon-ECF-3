@@ -9,7 +9,7 @@ ob_start();
         <div>
             <h2>My profile</h2>
             <figure>
-                <img class="profile-picture" src="<?php echo BASE_URL ?>public\asset\img\profile_picture.webp" alt="profile picture">
+                <img class="profile-picture" src="<?php echo BASE_URL ?><?php echo $_SESSION['profile_pic'] ?>" alt="profile picture">
                 <button data-id="<?php echo $_SESSION['id_user'] ?>" class="edit-profile">Edit Profile</button>
             </figure>
         </div>

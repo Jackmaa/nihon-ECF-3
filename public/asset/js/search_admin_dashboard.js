@@ -1,13 +1,24 @@
+// Get references to the manga search form and input field
 let searchFormManga = document.getElementById("search-form-manga");
 let searchMangaInput = document.getElementById("search-manga");
+
+// Get references to the div where manga search results will be displayed
 const responseMangaDiv = document.getElementById("search-results-manga");
+
+// Get references to the button container for manga
 const buttonContainer = document.querySelector(".button-container");
-// SEARCH USER
+
+// Get references to the user search form and input field
 let searchFormUser = document.getElementById("search-form-user");
 let searchUserInput = document.getElementById("search-user");
+
+// Get references to the div where user search results will be displayed
 const responseUserDiv = document.getElementById("search-results-user");
+
+// Get references to the button container for user
 const buttonContainerUser = document.querySelector(".button-container-user");
 
+// Function to add a button to a specified div with optional onClick callback and popup opening
 function addButtonToDiv(text, popupId, responseDiv, onClickCallback) {
   let button = document.createElement("button");
   button.classList.add("button");
@@ -17,25 +28,30 @@ function addButtonToDiv(text, popupId, responseDiv, onClickCallback) {
       onClickCallback();
     }
     if (popupId) {
-      // ✅ Ne tente d'ouvrir un popup que si `popupId` est défini
+      // Open the specified popup if `popupId` is provided
       openPopup(popupId);
     }
   };
   responseDiv.appendChild(button);
 }
 
+// Function to handle the display of manga search results
 function handleMangaResults(datas) {
   responseMangaDiv.innerHTML = "";
 
+  // Check if there's an error or no results
   if (datas.error || datas.length === 0) {
     responseMangaDiv.innerHTML = "<p>No result found</p>";
+    // Add an "Add" button to allow adding a new manga
     addButtonToDiv("Add", "popupAdd", responseMangaDiv);
   } else {
+    // Loop through each manga result and create a div for it
     datas.forEach((manga) => {
       let mangaDiv = document.createElement("div");
       mangaDiv.classList.add("manga-result");
-      mangaDiv.setAttribute("data-id", manga.manga.id_manga); // Stocker l'ID du manga
+      mangaDiv.setAttribute("data-id", manga.manga.id_manga); // Store the manga ID
 
+      // Create and append the manga thumbnail and title
       let mangaTitle = document.createElement("p");
       let mangaThumbnail = document.createElement("img");
       mangaThumbnail.src = manga.manga.thumbnail;
@@ -45,13 +61,13 @@ function handleMangaResults(datas) {
       mangaDiv.append(mangaThumbnail, mangaTitle);
       responseMangaDiv.appendChild(mangaDiv);
 
-      // Modifier
+      // Add a "Modify" button to edit the manga
       addButtonToDiv("Modify", "popupModified", mangaDiv, () => {
         fillModifyPopup(manga);
         openPopup("popupModified");
       });
 
-      // Supprimer
+      // Add a "Delete" button to delete the manga
       addButtonToDiv("Delete", null, mangaDiv, () => {
         let mangaId = manga.manga.id_manga;
         if (!mangaId) {
@@ -59,9 +75,11 @@ function handleMangaResults(datas) {
           return;
         }
 
-        if (!confirm("Are you sur you want to delete this manga ?")) {
+        // Confirm deletion with the user
+        if (!confirm("Are you sure you want to delete this manga?")) {
           return;
         }
+        // Send a POST request to delete the manga
         fetch(`/delete/${mangaId}`, {
           method: "POST",
           headers: {
@@ -70,11 +88,11 @@ function handleMangaResults(datas) {
         })
           .then((response) => response.json())
           .then((data) => {
-            mangaDiv.remove(); // Supprimer l'élément du DOM
+            mangaDiv.remove(); // Remove the manga element from the DOM
           });
       });
 
-      // Ouvrir le popup de modification en cliquant sur le manga
+      // Add a click event to the thumbnail to open the modify popup
       mangaThumbnail.addEventListener("click", function () {
         fillModifyPopup(manga);
         openPopup("popupModified");
@@ -83,29 +101,35 @@ function handleMangaResults(datas) {
   }
 }
 
+// Add an input event listener to the manga search input field
 searchMangaInput.addEventListener("input", function () {
+  // Clear results if the input is too short
   if (searchMangaInput.value.length < 2) {
     responseMangaDiv.innerHTML = "";
     buttonContainer.style.display = "block";
     return;
   }
 
+  // Send a POST request to search for manga
   let formData = new FormData(searchFormManga);
-
   fetch("/searchManga", { method: "POST", body: formData })
     .then((response) => response.json())
     .then(handleMangaResults);
 });
 
+// Function to handle the display of user search results
 function handleUserResults(datas) {
   responseUserDiv.innerHTML = "";
+  // Check if there's an error or no results
   if (datas.error || datas.length === 0) {
     responseUserDiv.innerHTML = "<p>No result found</p>";
+    // Add an "Add" button to allow creating a new user
     addButtonToDiv("Add", "popupCreate", responseUserDiv, () => {
       document.querySelector("#popupCreate input[name='email']").value =
         searchUserInput.value;
     });
   } else {
+    // Loop through each user result and create a div for it
     datas.forEach((user) => {
       let userDiv = document.createElement("div");
       userDiv.classList.add("user-result");
@@ -114,12 +138,24 @@ function handleUserResults(datas) {
       userDiv.append(userName);
       responseUserDiv.appendChild(userDiv);
 
+      // Add a click event to the user div to open the modify popup
       userDiv.addEventListener("click", function () {
         fillModifyPopupUser(user);
         openPopup("popupUser");
       });
+
+      // Add a "View Borrowed Items" button
+      addButtonToDiv("View Borrowed Items", null, userDiv, () => {
+        fetchUserBorrowedItems(user.id_user);
+      });
+
+      // Add a "View Cart Items" button
+      addButtonToDiv("View Cart Items", null, userDiv, () => {
+        fetchUserCartItems(user.id_user);
+      });
     });
 
+    // Add "Modify" and "Delete" buttons for the user
     addButtonToDiv("Modify", "popupUser", responseUserDiv, () => {
       fillModifyPopupUser(datas[0]);
     });
@@ -127,19 +163,22 @@ function handleUserResults(datas) {
   }
 }
 
+// Add an input event listener to the user search input field
 searchUserInput.addEventListener("input", function () {
+  // Clear results if the input is too short
   if (searchUserInput.value.length < 2) {
     responseUserDiv.innerHTML = "";
     return;
   }
 
+  // Send a POST request to search for users
   let formData = new FormData(searchFormUser);
-
   fetch("/searchUser", { method: "POST", body: formData })
     .then((response) => response.json())
     .then(handleUserResults);
 });
 
+// Function to fill the user modify popup with user data
 function fillModifyPopupUser(user) {
   document.querySelector("#popupUser input:nth-of-type(1)").value =
     user.id_user;
@@ -147,6 +186,8 @@ function fillModifyPopupUser(user) {
     user.username;
   document.querySelector("#popupUser input:nth-of-type(3)").value = user.email;
 }
+
+// Function to fill the manga modify popup with manga data
 function fillModifyPopup(manga) {
   document.querySelector("#popupModified input:nth-of-type(1)").value =
     manga.manga.id_manga;
@@ -162,6 +203,7 @@ function fillModifyPopup(manga) {
     manga.manga.description;
 }
 
+// Function to limit the selection of categories to 3
 function limitSelection(checkbox) {
   let checkedBoxes = document.querySelectorAll(
     'input[name="category[]"]:checked'
@@ -170,4 +212,73 @@ function limitSelection(checkbox) {
     checkbox.checked = false; // Prevent selecting more than 3
     alert("You can select up to 3 categories only.");
   }
+}
+
+function fetchUserBorrowedItems(userId) {
+  updateUserItems(`/getBorrowedItems.php?userId=${userId}`, "Borrowed Items");
+}
+
+function fetchUserCartItems(userId) {
+  updateUserItems(`/getCartItems.php?userId=${userId}`, "Cart Items");
+}
+
+function updateUserItems(url, title) {
+  // Supprimer l'ancien affichage s'il existe
+  let existingItemsDiv = document.querySelector(".user-items");
+  if (existingItemsDiv) {
+    existingItemsDiv.remove();
+  }
+
+  // Création du conteneur
+  const itemsDiv = document.createElement("div");
+  itemsDiv.classList.add("user-items", "fade-in"); // Animation ajoutée
+  itemsDiv.innerHTML = `<h3>${title}</h3>`;
+
+  // Bouton de fermeture
+  const closeButton = document.createElement("button");
+  closeButton.textContent = "✖";
+  closeButton.classList.add("close-btn");
+  closeButton.addEventListener("click", () => {
+    itemsDiv.classList.add("fade-out"); // Animation sortie
+    setTimeout(() => itemsDiv.remove(), 300); // Supprime après animation
+  });
+
+  // Indicateur de chargement
+  const loadingIndicator = document.createElement("p");
+  loadingIndicator.textContent = "Loading...";
+  itemsDiv.append(closeButton, loadingIndicator);
+  responseUserDiv.appendChild(itemsDiv);
+
+  // Fetch les données
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      itemsDiv.innerHTML = `<h3>${title}</h3>`; // Reset
+      itemsDiv.appendChild(closeButton); // Réajout du bouton
+
+      if (!Array.isArray(data) || data.length === 0) {
+        itemsDiv.innerHTML += "<p>No items found.</p>";
+        return;
+      }
+
+      data.forEach((item) => {
+        let itemDiv = document.createElement("div");
+        itemDiv.classList.add("item");
+
+        let itemName = document.createElement("p");
+        itemName.textContent = `Name: ${item.name}`;
+
+        let itemDetails = document.createElement("p");
+        itemDetails.textContent = `Details: ${
+          item.details || "No details available"
+        }`;
+
+        itemDiv.append(itemName, itemDetails);
+        itemsDiv.appendChild(itemDiv);
+      });
+    })
+    .catch((error) => {
+      console.error("Error fetching items:", error);
+      itemsDiv.innerHTML = `<p>Error loading items. Please try again later.</p>`;
+    });
 }
