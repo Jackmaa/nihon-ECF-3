@@ -5,6 +5,7 @@ $scripts = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "p
 ob_start();
 ?>
 <section class="formkakoii">
+
     <div class="headkakkoii"></div>
     <main class="kakkoii">
 
