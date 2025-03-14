@@ -87,6 +87,11 @@ body.dark-mode {
   background-color: #202024;
   color: white;
 }
+body.dark-mode .container-homepage {
+  background-image: url(../img/vignette.svg);
+  background-color: #202024;
+  background-blend-mode: overlay;
+}
 body.dark-mode label {
   color: #0e0e0e;
 }
