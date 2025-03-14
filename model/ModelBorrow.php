@@ -130,4 +130,22 @@ class ModelBorrow extends Model {
             return false;
         }
     }
+
+    // Fetch borrowed books for a user
+    public function getUserBorrows($id_user) {
+        $req = $this->getDb()->prepare("SELECT b.id, m.title, b.due_date FROM borrow b
+                    JOIN manga m ON b.manga_id = m.id
+                    WHERE b.user_id = ?");
+        $req->execute([$id_user]);
+        return $req->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // Fetch reserved (cart) items for a user
+    public function getUserReservations($id_user) {
+        $req = $this->getDb()->prepare("SELECT r.id, m.title, r.reservation_date FROM reservation r
+                    JOIN manga m ON r.manga_id = m.id
+                    WHERE r.user_id = ?");
+        $req->execute([$id_user]);
+        return $req->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
