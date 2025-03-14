@@ -87,6 +87,16 @@ body.dark-mode {
   background-color: #202024;
   color: white;
 }
+body.dark-mode .menu-desktop figure:nth-of-type(3) a img {
+  transition: all 0.3s ease;
+}
+body.dark-mode .menu-desktop figure:nth-of-type(3) a img:hover {
+  box-shadow: 0 5px 10px rgba(255, 255, 255, 0.1), 0 3px 3px rgba(236, 236, 236, 0.1);
+}
+body.dark-mode .review {
+  background-color: #202024;
+  color: white;
+}
 body.dark-mode #username-picture a:first-child {
   font-family: var(--ff-barlow);
   margin-right: 1vh;
@@ -97,7 +107,7 @@ body.dark-mode #username-picture a:first-child {
 body.dark-mode #username-picture a:first-child:hover {
   color: #cc392b;
 }
-body.dark-mode .container-homepage {
+body.dark-mode .container-homepage, body.dark-mode .la-page-manga, body.dark-mode section.see-volume {
   background-image: url(../img/vignette.svg);
   background-color: #202024;
   background-blend-mode: overlay;
@@ -1308,6 +1318,9 @@ div.mangaPage svg.liked {
 }
 
 .review {
+  background-color: #f2ebe8;
+  border: 2px solid rgba(204, 56, 43, 0.3294117647);
+  border-radius: 5px;
   width: 90%;
   display: grid;
   place-self: center;
@@ -1428,7 +1441,7 @@ div.mangaPage svg.liked {
 }
 
 .see-volume .all-volume {
-  margin-top: 5vh;
+  padding: 2rem 0;
   display: flex;
 }
 .see-volume .all-volume h2 {
@@ -2177,6 +2190,7 @@ button:hover {
   }
   .menu-desktop .profile .dropdown ul {
     overflow: hidden;
+    transition: all 0.3s ease;
   }
   .menu-desktop .profile .dropdown ul li {
     width: 100%;
@@ -3049,4 +3063,10 @@ form fieldset label input[type=checkbox] {
 }
 .pagecart .gap {
   margin: 20px;
+}
+
+.la-page-manga, section.see-volume {
+  background-image: url(../img/vignette.svg);
+  background-color: rgba(242, 235, 232, 0.8901960784);
+  background-blend-mode: overlay;
 }/*# sourceMappingURL=styles.css.map */
