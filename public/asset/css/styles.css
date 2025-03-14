@@ -1406,7 +1406,6 @@ div.mangaPage svg.liked {
   align-items: center;
 }
 .review img.profile-picture {
-  width: 10vh;
   height: 10vh;
   border-radius: 50%;
   -o-object-fit: cover;
