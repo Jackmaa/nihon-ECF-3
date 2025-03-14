@@ -97,6 +97,7 @@ $router->map("GET|POST", "/getUserBorrow/[i:userId]", "ControllerAdmin#getUserBo
 $router->map("GET|POST", "/getUserCart/[i:userId]", "ControllerAdmin#getUserCart", "getUserCart");
 //validate an item in user cart
 $router->map("GET|POST", "/validateCartItem", "CartController#validateCartItem", "validateCartItem");
+$router->map("GET|POST", "/deleteCartItem", "CartController#deleteCartItem", "deleteCartItem");
 
 /*******************************||  BORROW/RETURNS  ||**************************************/
 //BOOKGestion
