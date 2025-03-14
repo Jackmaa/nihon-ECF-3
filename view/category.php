@@ -10,7 +10,6 @@ ob_start();
         <p><span><?php echo $category->getDescription() ?></span></p>
     </div>
 </section>
-
 <section class="manga_category">
     <?php foreach ($mangas as $manga): ?>
     <div>
