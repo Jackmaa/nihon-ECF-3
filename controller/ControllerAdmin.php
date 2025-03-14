@@ -112,15 +112,22 @@ class ControllerAdmin extends Controller {
         }
     }
 
-    public function getUserInfo($userId) {
+    public function getUserBorrow($userId) {
 
         $model    = new ModelBorrow;
         $borrowed = $model->getUserBorrows($userId);
-        $cart     = $model->getUserReservations($userId);
 
         echo json_encode([
             "borrowed" => $borrowed,
-            "cart"     => $cart,
+        ]);
+    }
+
+    public function getUserCart($userId) {
+        $model = new ModelBorrow;
+        $cart  = $model->getUserReservations($userId);
+
+        echo json_encode([
+            "cart" => $cart,
         ]);
     }
 }

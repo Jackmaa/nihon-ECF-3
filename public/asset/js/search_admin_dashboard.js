@@ -212,14 +212,14 @@ function limitSelection(checkbox) {
 }
 
 function fetchUserBorrowedItems(userId) {
-  updateUserItems(`/getUserInfo/${userId}`, "Borrowed Items");
+  updateUserItems(`/getUserBorrow/${userId}`, "Borrowed Items", userId);
 }
 
 function fetchUserCartItems(userId) {
-  updateUserItems(`/getUserInfo/${userId}`, "Cart Items");
+  updateUserItems(`/getUserCart/${userId}`, "Cart Items", userId);
 }
 
-function updateUserItems(url, title) {
+function updateUserItems(url, title, userId) {
   let existingItemsDiv = document.querySelector(".user-items");
   if (existingItemsDiv) {
     existingItemsDiv.remove();
@@ -240,6 +240,7 @@ function updateUserItems(url, title) {
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
+      console.log(data);
       itemsDiv.innerHTML = `<h3>${title}</h3>`;
       itemsDiv.appendChild(closeButton);
 
@@ -247,26 +248,25 @@ function updateUserItems(url, title) {
         itemsDiv.innerHTML += "<p>No items found.</p>";
         return;
       }
+      if (url === `/getUserBorrow/${userId}`) {
+        const table = document.createElement("table");
+        table.innerHTML = `
+          <thead>
+            <tr>
+              <th>Manga</th>
+              <th>Volume</th>
+              <th>Return Date</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        `;
 
-      const table = document.createElement("table");
-      table.innerHTML = `
-        <thead>
-          <tr>
-            <th>Manga</th>
-            <th>Volume</th>
-            <th>Return Date</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      `;
+        const tbody = table.querySelector("tbody");
+        data.borrowed.forEach((item) => {
+          const row = document.createElement("tr");
 
-      const tbody = table.querySelector("tbody");
-
-      data.borrowed.forEach((item) => {
-        const row = document.createElement("tr");
-
-        row.innerHTML = `
+          row.innerHTML = `
           <td>${item.name}</td>
           <td>Volume ${item.id_volume}</td>
           <td>${item.return_date}</td>
@@ -286,42 +286,74 @@ function updateUserItems(url, title) {
           </td>
         `;
 
-        tbody.appendChild(row);
-      });
+          tbody.appendChild(row);
+        });
 
-      itemsDiv.appendChild(table);
-      mainDashboard.appendChild(itemsDiv);
+        itemsDiv.appendChild(table);
+        mainDashboard.appendChild(itemsDiv);
 
-      // Use event delegation to handle status change
-      itemsDiv.addEventListener("change", function (event) {
-        if (event.target.classList.contains("status-dropdown")) {
-          const borrowId = event.target.getAttribute("data-id");
-          const newStatus = event.target.value;
-          let checkmark = event.target.nextElementSibling;
+        // Use event delegation to handle status change
+        itemsDiv.addEventListener("change", function (event) {
+          if (event.target.classList.contains("status-dropdown")) {
+            const borrowId = event.target.getAttribute("data-id");
+            const newStatus = event.target.value;
+            let checkmark = event.target.nextElementSibling;
 
-          if (!checkmark || !checkmark.classList.contains("status-checkmark")) {
-            checkmark = document.createElement("span");
-            checkmark.classList.add("status-checkmark");
-            checkmark.innerHTML = "✔";
-            event.target.parentNode.appendChild(checkmark);
+            if (
+              !checkmark ||
+              !checkmark.classList.contains("status-checkmark")
+            ) {
+              checkmark = document.createElement("span");
+              checkmark.classList.add("status-checkmark");
+              checkmark.innerHTML = "✔";
+              event.target.parentNode.appendChild(checkmark);
+            }
+
+            fetch("/adminBorrowStatus", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ id_borrow: borrowId, status: newStatus }),
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                if (data.success) {
+                  checkmark.style.opacity = "1";
+                  setTimeout(() => (checkmark.style.opacity = "0"), 1500);
+                  console.log("Status updated successfully!");
+                } else {
+                  console.error("Failed to update status.");
+                }
+              });
           }
+        });
+      } else {
+        const table = document.createElement("table");
+        table.innerHTML = `
+          <thead>
+            <tr>
+              <th>Manga</th>
+              <th>Volume</th>
+              <th>Placed</th>
+              <th>Validate</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        `;
 
-          fetch("/adminBorrowStatus", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ id_borrow: borrowId, status: newStatus }),
-          })
-            .then((response) => response.json())
-            .then((data) => {
-              if (data.success) {
-                checkmark.style.opacity = "1";
-                setTimeout(() => (checkmark.style.opacity = "0"), 1500);
-                console.log("Status updated successfully!");
-              } else {
-                console.error("Failed to update status.");
-              }
-            });
-        }
-      });
+        const tbody = table.querySelector("tbody");
+        data.cart.forEach((item) => {
+          const row = document.createElement("tr");
+
+          row.innerHTML = `
+          <td>${item.name}</td>
+          <td>Volume ${item.id_volume}</td>
+          <td>${item.placed}</td>
+        `;
+
+          tbody.appendChild(row);
+        });
+        itemsDiv.appendChild(table);
+        mainDashboard.appendChild(itemsDiv);
+      }
     });
 }
