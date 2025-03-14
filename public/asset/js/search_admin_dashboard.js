@@ -380,6 +380,5 @@ function deleteCartItem(idManga, idVolume, idUser, button) {
       } else {
         alert("Error: " + data.error);
       }
-    })
-    .catch((error) => console.error("Fetch error:", error));
+    });
 }

@@ -61,11 +61,9 @@ class CartController extends Controller {
         }
 
         try {
-            // Add the item to the cart
-            $cart = Cart::addToCart([$id_manga, $id_volume]);
             // Add the item to the reservation table
             $borrow->addToReservationTable($_SESSION['id_user'], $id_manga, $id_volume);
-            echo json_encode(["success" => "Manga volume added to cart", "cart" => $cart]);
+            echo json_encode(["success" => "Manga added to cart."]);
         } catch (InvalidArgumentException $e) {
             http_response_code(400); // Bad Request
             echo json_encode(["error" => $e->getMessage()]);
@@ -110,16 +108,12 @@ class CartController extends Controller {
         }
 
         try {
-            // Remove the item from the cart
-            $cart = Cart::removeFromCart(["id_manga" => $id_manga, "id_volume" => $id_volume]);
 
             // Optionally, remove the item from the reservation table
             $borrow = new ModelBorrow();
             $borrow->removeFromReservationTable($_SESSION['id_user'], $id_manga, $id_volume);
-
-                                     // Return success response
             http_response_code(200); // OK
-            echo json_encode(["success" => "Manga volume removed from cart", "cart" => $cart]);
+            echo json_encode(["success" => "Manga removed from cart."]);
         } catch (InvalidArgumentException $e) {
             http_response_code(400); // Bad Request
             echo json_encode(["error" => $e->getMessage()]);
@@ -138,7 +132,6 @@ class CartController extends Controller {
         }
 
         $id_user = (int) $_SESSION['id_user'];
-        $cart    = Cart::getCart();
 
         if (empty($cart)) {
             echo json_encode(["error" => "Cart is empty"]);
@@ -160,7 +153,6 @@ class CartController extends Controller {
         }
 
         // Vider le panier après validation
-        Cart::clearCart();
         $_SESSION["message"] = "Validation réussie, vérifiez vos e-mails pour récupérer vos livres.";
         header("location:" . $this->router->generate("home"));
     }
@@ -185,7 +177,7 @@ class CartController extends Controller {
         }
     }
 
-    public function removeCartItem() {
+    public function deleteCartItem() {
         $data = json_decode(file_get_contents("php://input"), true);
         if (empty($data['id_manga']) || empty($data['id_volume'])) {
             http_response_code(400);
@@ -198,18 +190,11 @@ class CartController extends Controller {
         $id_volume = (int) $data['id_volume'];
 
         $model = new ModelBorrow();
-        if ($model->removeItemFromCart($id_user, $id_manga, $id_volume)) {
+        if ($model->deleteItemFromCart($id_user, $id_manga, $id_volume)) {
             echo json_encode(["success" => "Manga removed from cart."]);
         } else {
             echo json_encode(["error" => "Failed"]);
         }
-    }
-
-    public function clearCart() {
-        Cart::clearCart();
-        $borrow = new ModelBorrow();
-        $borrow->clearCart($_SESSION['id_user']);
-        require_once './view/cart.php';
     }
 
     // Renders the cart view

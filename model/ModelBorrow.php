@@ -85,7 +85,7 @@ class ModelBorrow extends Model {
         $req->execute();
     }
 
-    public function removeItemFromCart($id_user, $id_manga, $id_volume) {
+    public function deleteItemFromCart($id_user, $id_manga, $id_volume) {
         $req = $this->getDb()->prepare(
             "DELETE FROM reservation
              WHERE id_user = :id_user AND id_manga = :id_manga AND id_volume = :id_volume");
