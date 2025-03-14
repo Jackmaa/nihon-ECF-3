@@ -182,4 +182,26 @@ class CartController extends Controller {
         $cart  = $model->fetchCartData($_SESSION['id_user']);
         echo json_encode(["success" => true, "cart" => $cart]);
     }
+
+    public function getUserCartItems() {
+        if (! isset($_GET['userId'])) {
+            echo json_encode(["error" => "Missing user ID"]);
+            return;
+        }
+        $model  = new ModelBorrow;
+        $userId = intval($_GET['userId']);
+        $items  = $model->getUserReservations($userId);
+        echo json_encode($items);
+    }
+
+    public function getUserBorrowedItems() {
+        if (! isset($_GET['userId'])) {
+            echo json_encode(["error" => "Missing user ID"]);
+            return;
+        }
+        $model  = new ModelBorrow;
+        $userId = intval($_GET['userId']);
+        $items  = $model->getUserBorrows($userId);
+        echo json_encode($items);
+    }
 }
