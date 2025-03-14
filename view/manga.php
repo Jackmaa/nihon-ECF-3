@@ -57,8 +57,9 @@
                             <?php endif; ?>
                     </div>
                     <hr>
+                    <?php endforeach; ?>
                 </div>
-                <?php endforeach; ?>
+                
                 <hr>
                 <section class="also-liked">
             <figure><h2><?php echo $manga->manga->getName() ?> Readers also liked</h2><img src="<?php echo BASE_URL ?>public\asset\img\books-anim.gif" alt=""></figure>
