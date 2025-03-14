@@ -348,6 +348,7 @@ function updateUserItems(url, title, userId) {
           <td>${item.name}</td>
           <td>Volume ${item.id_volume}</td>
           <td>${item.placed}</td>
+          <td></td>
         `;
 
           tbody.appendChild(row);
