@@ -2,6 +2,14 @@ document.querySelectorAll(".status-borrow").forEach((select) => {
   select.addEventListener("change", function () {
     const borrowId = this.getAttribute("data-id");
     const newStatus = this.value;
+    let checkmark = this.nextElementSibling;
+
+    if (!checkmark || !checkmark.classList.contains("status-checkmark")) {
+      checkmark = document.createElement("span");
+      checkmark.classList.add("status-checkmark");
+      checkmark.innerHTML = "✔";
+      this.parentNode.appendChild(checkmark);
+    }
 
     fetch("/adminBorrowStatus", {
       method: "POST",
@@ -11,6 +19,8 @@ document.querySelectorAll(".status-borrow").forEach((select) => {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
+          checkmark.style.opacity = "1";
+          setTimeout(() => (checkmark.style.opacity = "0"), 1500);
           console.log("Status updated successfully!");
         } else {
           console.error("Failed to update status.");
@@ -18,6 +28,7 @@ document.querySelectorAll(".status-borrow").forEach((select) => {
       });
   });
 });
+
 // Track the sorting state for each column
 let sortStates = {};
 

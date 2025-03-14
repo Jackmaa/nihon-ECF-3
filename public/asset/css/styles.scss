@@ -2808,6 +2808,14 @@ button:hover {
     }
   }
 
+  .status-checkmark {
+    margin-left: 8px;
+    color: #4caf50;
+    font-weight: bold;
+    transition: opacity 0.5s ease-in-out;
+    opacity: 0;
+  }
+
   th {
     background-color: #cc392b;
     color: white;
