@@ -87,6 +87,8 @@ $router->map("GET|POST", "/searchUser", "ControllerAdmin#searchUser", "searchUse
 $router->map("GET|POST", "/createUser", "ControllerAdmin#createUser", "createUser");
 //Validate Borrows
 $router->map("POST", "/adminBorrowStatus", "ControllerAdmin#adminBorrowStatus");
+// Get user cart and borrows
+$router->map("GET|POST", "/getUserInfo/[i:userId]", "ControllerAdmin#getUserInfo", "getUserInfo");
 
 /*******************************||  BORROW/RETURNS  ||**************************************/
 //BOOKGestion

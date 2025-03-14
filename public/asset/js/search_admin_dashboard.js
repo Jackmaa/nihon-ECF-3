@@ -138,12 +138,6 @@ function handleUserResults(datas) {
       userDiv.append(userName);
       responseUserDiv.appendChild(userDiv);
 
-      // Add a click event to the user div to open the modify popup
-      userDiv.addEventListener("click", function () {
-        fillModifyPopupUser(user);
-        openPopup("popupUser");
-      });
-
       // Add a "View Borrowed Items" button
       addButtonToDiv("View Borrowed Items", null, userDiv, () => {
         fetchUserBorrowedItems(user.id_user);
@@ -215,11 +209,11 @@ function limitSelection(checkbox) {
 }
 
 function fetchUserBorrowedItems(userId) {
-  updateUserItems(`/getBorrowedItems.php?userId=${userId}`, "Borrowed Items");
+  updateUserItems(`/getUserInfo/${userId}`, "Borrowed Items");
 }
 
 function fetchUserCartItems(userId) {
-  updateUserItems(`/getCartItems.php?userId=${userId}`, "Cart Items");
+  updateUserItems(`/getUserInfo/${userId}`, "Cart Items");
 }
 
 function updateUserItems(url, title) {
@@ -232,7 +226,7 @@ function updateUserItems(url, title) {
   // Création du conteneur
   const itemsDiv = document.createElement("div");
   itemsDiv.classList.add("user-items", "fade-in"); // Animation ajoutée
-  itemsDiv.innerHTML = `<h3>${title}</h3>`;
+  itemsDiv.innerHTML = `<h3>${title} & ${url}</h3>`;
 
   // Bouton de fermeture
   const closeButton = document.createElement("button");
@@ -276,9 +270,5 @@ function updateUserItems(url, title) {
         itemDiv.append(itemName, itemDetails);
         itemsDiv.appendChild(itemDiv);
       });
-    })
-    .catch((error) => {
-      console.error("Error fetching items:", error);
-      itemsDiv.innerHTML = `<p>Error loading items. Please try again later.</p>`;
     });
 }
