@@ -4,7 +4,7 @@
     $scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public\asset\js\base.js", "public\asset\js\header.js", "public/asset/js/like.js", "public/asset/js/cart.js", "public/asset/js/like.js", "public/asset/js/review.js", "public\asset\js\darkmode.js"];
     ob_start();
 ?>
-<main>
+<main class="la-page-manga">
     <section>
         <div class="mangaPage-frst-section">
             <div class="mangaPage">
@@ -81,7 +81,6 @@
         </form>
         </div>
     </div>
-
     </div>
     <section class="see-volume">
         <div class="all-volume">

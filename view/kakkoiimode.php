@@ -6,7 +6,7 @@ ob_start();
 ?>
 <section class="formkakoii">
     <div class="headkakkoii"></div>
-    <main class="kakkoii">
+    <main id="kakkoii" class="kakkoii">
 
         <div class="flexcenter">
             <h1>ACTIVATE KAKKOII MODE !</h1>
