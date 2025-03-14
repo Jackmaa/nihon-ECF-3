@@ -18,6 +18,9 @@ const responseUserDiv = document.getElementById("search-results-user");
 // Get references to the button container for user
 const buttonContainerUser = document.querySelector(".button-container-user");
 
+// Get references for the main to send the table
+const mainDashboard = document.querySelector(".dashboard");
+
 // Function to add a button to a specified div with optional onClick callback and popup opening
 function addButtonToDiv(text, popupId, responseDiv, onClickCallback) {
   let button = document.createElement("button");
@@ -217,58 +220,108 @@ function fetchUserCartItems(userId) {
 }
 
 function updateUserItems(url, title) {
-  // Supprimer l'ancien affichage s'il existe
   let existingItemsDiv = document.querySelector(".user-items");
   if (existingItemsDiv) {
     existingItemsDiv.remove();
   }
 
-  // Création du conteneur
   const itemsDiv = document.createElement("div");
-  itemsDiv.classList.add("user-items", "fade-in"); // Animation ajoutée
-  itemsDiv.innerHTML = `<h3>${title} & ${url}</h3>`;
+  itemsDiv.classList.add("user-items", "fade-in");
+  itemsDiv.innerHTML = `<h3>${title}</h3>`;
 
-  // Bouton de fermeture
   const closeButton = document.createElement("button");
   closeButton.textContent = "✖";
   closeButton.classList.add("close-btn");
   closeButton.addEventListener("click", () => {
-    itemsDiv.classList.add("fade-out"); // Animation sortie
-    setTimeout(() => itemsDiv.remove(), 300); // Supprime après animation
+    itemsDiv.classList.add("fade-out");
+    setTimeout(() => itemsDiv.remove(), 300);
   });
 
-  // Indicateur de chargement
-  const loadingIndicator = document.createElement("p");
-  loadingIndicator.textContent = "Loading...";
-  itemsDiv.append(closeButton, loadingIndicator);
-  responseUserDiv.appendChild(itemsDiv);
-
-  // Fetch les données
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      itemsDiv.innerHTML = `<h3>${title}</h3>`; // Reset
-      itemsDiv.appendChild(closeButton); // Réajout du bouton
+      itemsDiv.innerHTML = `<h3>${title}</h3>`;
+      itemsDiv.appendChild(closeButton);
 
-      if (!Array.isArray(data) || data.length === 0) {
+      if (data.length === 0) {
         itemsDiv.innerHTML += "<p>No items found.</p>";
         return;
       }
 
-      data.forEach((item) => {
-        let itemDiv = document.createElement("div");
-        itemDiv.classList.add("item");
+      const table = document.createElement("table");
+      table.innerHTML = `
+        <thead>
+          <tr>
+            <th>Manga</th>
+            <th>Volume</th>
+            <th>Return Date</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      `;
 
-        let itemName = document.createElement("p");
-        itemName.textContent = `Name: ${item.name}`;
+      const tbody = table.querySelector("tbody");
 
-        let itemDetails = document.createElement("p");
-        itemDetails.textContent = `Details: ${
-          item.details || "No details available"
-        }`;
+      data.borrowed.forEach((item) => {
+        const row = document.createElement("tr");
 
-        itemDiv.append(itemName, itemDetails);
-        itemsDiv.appendChild(itemDiv);
+        row.innerHTML = `
+          <td>${item.name}</td>
+          <td>Volume ${item.id_volume}</td>
+          <td>${item.return_date}</td>
+          <td>
+            <select class="status-dropdown" data-id="${item.id_borrow}">
+              ${["pending", "approved", "back", "late", "rejected"]
+                .map(
+                  (status) =>
+                    `<option value="${status}" ${
+                      item.status === status ? "selected" : ""
+                    }>${
+                      status.charAt(0).toUpperCase() + status.slice(1)
+                    }</option>`
+                )
+                .join("")}
+            </select>
+          </td>
+        `;
+
+        tbody.appendChild(row);
+      });
+
+      itemsDiv.appendChild(table);
+      mainDashboard.appendChild(itemsDiv);
+
+      // Use event delegation to handle status change
+      itemsDiv.addEventListener("change", function (event) {
+        if (event.target.classList.contains("status-dropdown")) {
+          const borrowId = event.target.getAttribute("data-id");
+          const newStatus = event.target.value;
+          let checkmark = event.target.nextElementSibling;
+
+          if (!checkmark || !checkmark.classList.contains("status-checkmark")) {
+            checkmark = document.createElement("span");
+            checkmark.classList.add("status-checkmark");
+            checkmark.innerHTML = "✔";
+            event.target.parentNode.appendChild(checkmark);
+          }
+
+          fetch("/adminBorrowStatus", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ id_borrow: borrowId, status: newStatus }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.success) {
+                checkmark.style.opacity = "1";
+                setTimeout(() => (checkmark.style.opacity = "0"), 1500);
+                console.log("Status updated successfully!");
+              } else {
+                console.error("Failed to update status.");
+              }
+            });
+        }
       });
     });
 }

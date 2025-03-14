@@ -112,15 +112,9 @@ class ControllerAdmin extends Controller {
         }
     }
 
-    public function getUserInfo() {
-        if (! isset($_GET['userId'])) {
-            echo json_encode(["error" => "Missing user ID"]);
-            return;
-        }
+    public function getUserInfo($userId) {
 
-        $model = new ModelBorrow;
-
-        $userId   = intval($_GET['userId']);
+        $model    = new ModelBorrow;
         $borrowed = $model->getUserBorrows($userId);
         $cart     = $model->getUserReservations($userId);
 

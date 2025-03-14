@@ -132,20 +132,33 @@ class ModelBorrow extends Model {
     }
 
     // Fetch borrowed books for a user
-    public function getUserBorrows($id_user) {
-        $req = $this->getDb()->prepare("SELECT b.id, m.title, b.due_date FROM borrow b
-                    JOIN manga m ON b.manga_id = m.id
-                    WHERE b.user_id = ?");
-        $req->execute([$id_user]);
-        return $req->fetchAll(PDO::FETCH_ASSOC);
-    }
+    // public function getUserBorrows($id_user) {
+    //     $req = $this->getDb()->prepare("SELECT b.id, m.title, b.due_date FROM borrow b
+    //                 JOIN manga m ON b.manga_id = m.id
+    //                 WHERE b.user_id = ?");
+    //     $req->execute([$id_user]);
+    //     return $req->fetchAll(PDO::FETCH_ASSOC);
+    // }
 
     // Fetch reserved (cart) items for a user
-    public function getUserReservations($id_user) {
-        $req = $this->getDb()->prepare("SELECT r.id, m.title, r.reservation_date FROM reservation r
-                    JOIN manga m ON r.manga_id = m.id
-                    WHERE r.user_id = ?");
-        $req->execute([$id_user]);
+    // public function getUserReservations($id_user) {
+    //     $req = $this->getDb()->prepare("SELECT r.id, m.title, r.reservation_date FROM reservation r
+    //                 JOIN manga m ON r.manga_id = m.id
+    //                 WHERE r.user_id = ?");
+    //     $req->execute([$id_user]);
+    //     return $req->fetchAll(PDO::FETCH_ASSOC);
+    // }
+
+    public function getUserBorrows($userId) {
+        $req = $this->getDb()->prepare("SELECT b.id_borrow, m.name, b.return_date, b.id_volume, b.status FROM borrow b JOIN manga m on b.id_manga = m.id_manga where b.id_user = :userId");
+        $req->bindParam(":userId", $userId, PDO::PARAM_INT);
+        $req->execute();
+        return $req->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function getUserReservations($userId) {
+        $req = $this->getDb()->prepare("SELECT r.id_reservation, m.name, r.placed, r.id_volume FROM reservation r JOIN manga m on r.id_manga = m.id_manga where r.id_user = :userId");
+        $req->bindParam(":userId", $userId, PDO::PARAM_INT);
+        $req->execute();
         return $req->fetchAll(PDO::FETCH_ASSOC);
     }
 }

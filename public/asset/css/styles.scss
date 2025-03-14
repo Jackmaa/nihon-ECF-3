@@ -2787,22 +2787,22 @@ button:hover {
     padding: 10px;
     text-align: left;
 
-    select.status-borrow {
+    select.status-dropdown {
       padding: 5px;
       border-radius: 5px;
     }
 
-    .status-borrow option[value="PENDING"] {
+    .status-dropdown option[value="pending"] {
       background-color: orange;
     }
 
-    .status-borrow option[value="APPROVED"] {
+    .status-dropdown option[value="approved"] {
       background-color: green;
       color: white;
     }
 
-    .status-borrow option[value="REJECTED"],
-    .status-borrow option[value="LATE"] {
+    .status-dropdown option[value="rejected"],
+    .status-dropdown option[value="late"] {
       background-color: red;
       color: white;
     }
@@ -2859,14 +2859,13 @@ button:hover {
 
   .user-items {
     position: fixed;
-    top: 20%;
-    right: 20px;
+    top: 50%;
     background: rgba(0, 0, 0, 0.9);
     color: white;
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    width: 250px;
+    width: 50%;
     max-height: 400px;
     overflow-y: auto;
     z-index: 1000;

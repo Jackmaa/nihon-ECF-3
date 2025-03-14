@@ -2421,26 +2421,33 @@ button:hover {
   padding: 10px;
   text-align: left;
 }
-.dashboard th select.status-borrow,
-.dashboard td select.status-borrow {
+.dashboard th select.status-dropdown,
+.dashboard td select.status-dropdown {
   padding: 5px;
   border-radius: 5px;
 }
-.dashboard th .status-borrow option[value=PENDING],
-.dashboard td .status-borrow option[value=PENDING] {
+.dashboard th .status-dropdown option[value=pending],
+.dashboard td .status-dropdown option[value=pending] {
   background-color: orange;
 }
-.dashboard th .status-borrow option[value=APPROVED],
-.dashboard td .status-borrow option[value=APPROVED] {
+.dashboard th .status-dropdown option[value=approved],
+.dashboard td .status-dropdown option[value=approved] {
   background-color: green;
   color: white;
 }
-.dashboard th .status-borrow option[value=REJECTED],
-.dashboard th .status-borrow option[value=LATE],
-.dashboard td .status-borrow option[value=REJECTED],
-.dashboard td .status-borrow option[value=LATE] {
+.dashboard th .status-dropdown option[value=rejected],
+.dashboard th .status-dropdown option[value=late],
+.dashboard td .status-dropdown option[value=rejected],
+.dashboard td .status-dropdown option[value=late] {
   background-color: red;
   color: white;
+}
+.dashboard .status-checkmark {
+  margin-left: 8px;
+  color: #4caf50;
+  font-weight: bold;
+  transition: opacity 0.5s ease-in-out;
+  opacity: 0;
 }
 .dashboard th {
   background-color: #cc392b;
@@ -2475,6 +2482,52 @@ button:hover {
   justify-content: center;
   align-items: center;
   max-width: 100%;
+}
+.dashboard .user-items {
+  position: fixed;
+  top: 50%;
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  width: 50%;
+  max-height: 400px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+.dashboard .close-btn {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+.dashboard .close-btn:hover {
+  color: red;
+}
+.dashboard .fade-in {
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: fadeIn 0.3s forwards;
+}
+.dashboard .fade-out {
+  animation: fadeOut 0.3s forwards;
+}
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
 }
 .dashboard .button-container {
   display: flex;
