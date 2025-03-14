@@ -322,7 +322,7 @@ function createCartRow(item) {
     <td>Volume ${item.id_volume}</td>
     <td>${item.placed}</td>
     <td>
-      <button class="validate-cart" data-id="${item.id_cart}">✔ Validate</button>
+      <button onclick="validateCartItem(${item.id_manga},${item.id_volume})" class="validate-cart"">✔ Validate</button>
       <button class="delete-cart" data-id="${item.id_cart}">✖ Delete</button>
     </td>`;
   return row;
@@ -391,4 +391,28 @@ function deleteCartItem(button) {
       if (data.success) button.closest("tr").remove();
     })
     .catch((error) => console.error("Error deleting cart item:", error));
+}
+
+function validateCartItem(idManga, idVolume) {
+  fetch("/validateCartItem", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      id_manga: idManga,
+      id_volume: idVolume,
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) {
+        alert("Manga successfully validated! 📚✅");
+        // Optionally: Refresh the cart or update the UI
+        updateCartView();
+      } else {
+        alert("Error: " + data.error);
+      }
+    })
+    .catch((error) => console.error("Fetch error:", error));
 }
