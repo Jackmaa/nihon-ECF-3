@@ -166,11 +166,6 @@ class CartController extends Controller {
     }
 
     public function validateCartItem() {
-        if (! isset($_SESSION['id_user'])) {
-            http_response_code(401);
-            echo json_encode(["error" => "User not logged in"]);
-            return;
-        }
 
         $data = json_decode(file_get_contents("php://input"), true);
         if (empty($data['id_manga']) || empty($data['id_volume'])) {
@@ -179,7 +174,7 @@ class CartController extends Controller {
             return;
         }
 
-        $id_user   = (int) $_SESSION['id_user'];
+        $id_user   = (int) $data['id_user'];
         $id_manga  = (int) $data['id_manga'];
         $id_volume = (int) $data['id_volume'];
 

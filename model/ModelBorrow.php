@@ -51,7 +51,7 @@ class ModelBorrow extends Model {
         $req->bindParam(":id_manga", $id_manga, PDO::PARAM_INT);
         $req->bindParam(":id_volume", $id_volume, PDO::PARAM_INT);
         $req->execute();
-        return $req->fetchColumn() == 0; // Available if count is 0
+        return $req->fetchColumn() < 3; // Available if count is less than 3
     }
 
     // Add a reservation to the reservation table
@@ -165,7 +165,7 @@ class ModelBorrow extends Model {
         return $req->fetchAll(PDO::FETCH_ASSOC);
     }
     public function getUserReservationsAdmin($userId) {
-        $req = $this->getDb()->prepare("SELECT r.id_reservation,r.id_manga, r.id_volume, m.name, r.placed, r.id_volume FROM reservation r JOIN manga m on r.id_manga = m.id_manga where r.id_user = :userId");
+        $req = $this->getDb()->prepare("SELECT r.id_reservation, r.id_user, r.id_manga, r.id_volume, m.name, r.placed, r.id_volume FROM reservation r JOIN manga m on r.id_manga = m.id_manga where r.id_user = :userId");
         $req->bindParam(":userId", $userId, PDO::PARAM_INT);
         $req->execute();
         return $req->fetchAll(PDO::FETCH_ASSOC);
