@@ -91,6 +91,7 @@ class ControllerManga extends Controller {
         $manga   = $model->getMangaById($id);
         $volumes = $model->getMangaVolumes($id);
         $review  = $model->mangaReview($id);
+        $also_liked = $model->getAlsoLiked($id);
         $revAdd  = null;
         if (isset($_POST['review']) && isset($_POST['id_manga'])) {
             $revAdd = $model->addReview($_POST['review'], $_POST['id_manga'], $_SESSION['id_user']);
