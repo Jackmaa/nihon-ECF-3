@@ -85,7 +85,7 @@ class ModelBorrow extends Model {
         $req->execute();
     }
 
-    public function removeItemFromCart(){
+    public function removeItemFromCart() {
         $req = $this->getDb()->prepare(
             "DELETE FROM reservation
              WHERE id_user = :id_user AND id_manga = :id_manga AND id_volume = :id_volume");
@@ -165,7 +165,7 @@ class ModelBorrow extends Model {
         return $req->fetchAll(PDO::FETCH_ASSOC);
     }
     public function getUserReservationsAdmin($userId) {
-        $req = $this->getDb()->prepare("SELECT r.id_reservation, m.name, r.placed, r.id_volume FROM reservation r JOIN manga m on r.id_manga = m.id_manga where r.id_user = :userId");
+        $req = $this->getDb()->prepare("SELECT r.id_reservation,r.id_manga, r.id_volume, m.name, r.placed, r.id_volume FROM reservation r JOIN manga m on r.id_manga = m.id_manga where r.id_user = :userId");
         $req->bindParam(":userId", $userId, PDO::PARAM_INT);
         $req->execute();
         return $req->fetchAll(PDO::FETCH_ASSOC);
