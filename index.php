@@ -90,6 +90,11 @@ $router->map("GET|POST", "/searchUser", "ControllerAdmin#searchUser", "searchUse
 $router->map("GET|POST", "/createUser", "ControllerAdmin#createUser", "createUser");
 //Validate Borrows
 $router->map("POST", "/adminBorrowStatus", "ControllerAdmin#adminBorrowStatus");
+// Get user borrows
+$router->map("GET|POST", "/getUserBorrow/[i:userId]", "ControllerAdmin#getUserBorrow", "getUserBorrow");
+
+//Get user cart
+$router->map("GET|POST", "/getUserCart/[i:userId]", "ControllerAdmin#getUserCart", "getUserCart");
 
 /*******************************||  BORROW/RETURNS  ||**************************************/
 //BOOKGestion

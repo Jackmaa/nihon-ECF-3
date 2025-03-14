@@ -18,6 +18,9 @@ const responseUserDiv = document.getElementById("search-results-user");
 // Get references to the button container for user
 const buttonContainerUser = document.querySelector(".button-container-user");
 
+// Get references for the main to send the table
+const mainDashboard = document.querySelector(".dashboard");
+
 // Function to add a button to a specified div with optional onClick callback and popup opening
 function addButtonToDiv(text, popupId, responseDiv, onClickCallback) {
   let button = document.createElement("button");
@@ -138,12 +141,6 @@ function handleUserResults(datas) {
       userDiv.append(userName);
       responseUserDiv.appendChild(userDiv);
 
-      // Add a click event to the user div to open the modify popup
-      userDiv.addEventListener("click", function () {
-        fillModifyPopupUser(user);
-        openPopup("popupUser");
-      });
-
       // Add a "View Borrowed Items" button
       addButtonToDiv("View Borrowed Items", null, userDiv, () => {
         fetchUserBorrowedItems(user.id_user);
@@ -215,70 +212,183 @@ function limitSelection(checkbox) {
 }
 
 function fetchUserBorrowedItems(userId) {
-  updateUserItems(`/getBorrowedItems.php?userId=${userId}`, "Borrowed Items");
+  updateUserItems(`/getUserBorrow/${userId}`, "Borrowed Items", userId);
 }
 
 function fetchUserCartItems(userId) {
-  updateUserItems(`/getCartItems.php?userId=${userId}`, "Cart Items");
+  updateUserItems(`/getUserCart/${userId}`, "Cart Items", userId);
 }
 
-function updateUserItems(url, title) {
-  // Supprimer l'ancien affichage s'il existe
+function updateUserItems(url, title, userId) {
   let existingItemsDiv = document.querySelector(".user-items");
-  if (existingItemsDiv) {
-    existingItemsDiv.remove();
-  }
+  if (existingItemsDiv) existingItemsDiv.remove();
 
-  // Création du conteneur
   const itemsDiv = document.createElement("div");
-  itemsDiv.classList.add("user-items", "fade-in"); // Animation ajoutée
+  itemsDiv.classList.add("user-items", "fade-in");
   itemsDiv.innerHTML = `<h3>${title}</h3>`;
 
-  // Bouton de fermeture
   const closeButton = document.createElement("button");
   closeButton.textContent = "✖";
   closeButton.classList.add("close-btn");
   closeButton.addEventListener("click", () => {
-    itemsDiv.classList.add("fade-out"); // Animation sortie
-    setTimeout(() => itemsDiv.remove(), 300); // Supprime après animation
+    itemsDiv.classList.add("fade-out");
+    setTimeout(() => itemsDiv.remove(), 300);
   });
+  itemsDiv.appendChild(closeButton);
 
-  // Indicateur de chargement
-  const loadingIndicator = document.createElement("p");
-  loadingIndicator.textContent = "Loading...";
-  itemsDiv.append(closeButton, loadingIndicator);
-  responseUserDiv.appendChild(itemsDiv);
-
-  // Fetch les données
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      itemsDiv.innerHTML = `<h3>${title}</h3>`; // Reset
-      itemsDiv.appendChild(closeButton); // Réajout du bouton
-
-      if (!Array.isArray(data) || data.length === 0) {
+      if (data.length === 0) {
         itemsDiv.innerHTML += "<p>No items found.</p>";
         return;
       }
 
-      data.forEach((item) => {
-        let itemDiv = document.createElement("div");
-        itemDiv.classList.add("item");
-
-        let itemName = document.createElement("p");
-        itemName.textContent = `Name: ${item.name}`;
-
-        let itemDetails = document.createElement("p");
-        itemDetails.textContent = `Details: ${
-          item.details || "No details available"
-        }`;
-
-        itemDiv.append(itemName, itemDetails);
-        itemsDiv.appendChild(itemDiv);
-      });
+      const table = createTable(url, data);
+      itemsDiv.appendChild(table);
+      mainDashboard.appendChild(itemsDiv);
     })
-    .catch((error) => {
-      console.error("Error fetching items:", error);
-      itemsDiv.innerHTML = `<p>Error loading items. Please try again later.</p>`;
-    });
+    .catch((error) => console.error("Error fetching data:", error));
+}
+
+function createTable(url, data) {
+  const table = document.createElement("table");
+  table.innerHTML = url.includes("Borrow")
+    ? getBorrowTableHead()
+    : getCartTableHead();
+  const tbody = table.querySelector("tbody");
+
+  if (url.includes("Borrow")) {
+    data.borrowed.forEach((item) => tbody.appendChild(createBorrowRow(item)));
+  } else {
+    data.cart.forEach((item) => tbody.appendChild(createCartRow(item)));
+  }
+
+  return table;
+}
+
+function getBorrowTableHead() {
+  return `
+    <thead>
+      <tr>
+        <th>Manga</th>
+        <th>Volume</th>
+        <th>Return Date</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody></tbody>`;
+}
+
+function getCartTableHead() {
+  return `
+    <thead>
+      <tr>
+        <th>Manga</th>
+        <th>Volume</th>
+        <th>Placed</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody></tbody>`;
+}
+
+function createBorrowRow(item) {
+  const row = document.createElement("tr");
+  row.innerHTML = `
+    <td>${item.name}</td>
+    <td>Volume ${item.id_volume}</td>
+    <td>${item.return_date}</td>
+    <td>
+      <select class="status-dropdown" data-id="${item.id_borrow}">
+        ${["pending", "approved", "back", "late", "rejected"]
+          .map(
+            (status) => `<option value="${status}" ${
+              item.status === status ? "selected" : ""
+            }>
+            ${status.charAt(0).toUpperCase() + status.slice(1)}</option>`
+          )
+          .join("")}
+      </select>
+      <span class="status-checkmark">✔</span>
+    </td>`;
+  return row;
+}
+
+function createCartRow(item) {
+  const row = document.createElement("tr");
+  row.innerHTML = `
+    <td>${item.name}</td>
+    <td>Volume ${item.id_volume}</td>
+    <td>${item.placed}</td>
+    <td>
+      <button class="validate-cart" data-id="${item.id_cart}">✔ Validate</button>
+      <button class="delete-cart" data-id="${item.id_cart}">✖ Delete</button>
+    </td>`;
+  return row;
+}
+
+// Event delegation for status dropdown
+mainDashboard.addEventListener("change", (event) => {
+  if (event.target.classList.contains("status-dropdown")) {
+    updateBorrowStatus(event.target);
+  }
+});
+
+// Event delegation for cart actions
+mainDashboard.addEventListener("click", (event) => {
+  if (event.target.classList.contains("validate-cart")) {
+    validateCartItem(event.target);
+  } else if (event.target.classList.contains("delete-cart")) {
+    deleteCartItem(event.target);
+  }
+});
+
+function updateBorrowStatus(select) {
+  const borrowId = select.getAttribute("data-id");
+  const newStatus = select.value;
+  fetch("/adminBorrowStatus", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ id_borrow: borrowId, status: newStatus }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) {
+        const checkmark = select.parentNode.querySelector(".status-checkmark");
+        checkmark.style.opacity = "1";
+        setTimeout(() => (checkmark.style.opacity = "0"), 1500);
+      }
+    })
+    .catch((error) => console.error("Error updating status:", error));
+}
+
+function validateCartItem(button) {
+  const cartId = button.getAttribute("data-id");
+  fetch("/validateCartItem", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ id_cart: cartId }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) button.closest("tr").remove();
+    })
+    .catch((error) => console.error("Error validating cart item:", error));
+}
+
+function deleteCartItem(button) {
+  const cartId = button.getAttribute("data-id");
+  if (!confirm("Are you sure you want to delete this item from the cart?"))
+    return;
+  fetch("/deleteCartItem", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ id_cart: cartId }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) button.closest("tr").remove();
+    })
+    .catch((error) => console.error("Error deleting cart item:", error));
 }
