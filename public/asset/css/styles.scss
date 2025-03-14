@@ -3248,7 +3248,13 @@ form {
   .form-group {
     padding: 10px;
   }
+  .kakkoiiflex .center {
+    opacity: 0; /* Initialement invisible */
+    transform: translateY(20px); /* Position initiale en dehors de l'écran */
+  }
+  
 }
+
 
 @media (min-width: 2560px) {
   div.slider {
@@ -3265,7 +3271,9 @@ form {
       }
     }
   }
+
 }
+
 
 /*
 **********************************
@@ -3453,6 +3461,8 @@ form {
       transition: all 0.3s ease;
     }
   }
+ 
+
 }
 
 /*
@@ -3585,11 +3595,85 @@ form {
   }
 }
 
+/*
+**********************************
+***************ABOUT US***********
+**********************************
+*/
+
+body {
+  overflow: hidden; /* Empêche la barre de défilement */
+  margin: 0; /* Retire les marges par défaut du body */
+}
+
+.aboutus {
+ 
+ position: relative; /* Permet aux nuages d'être positionnés par rapport à cette section */
+    height: 100vh; /* Prend toute la hauteur de la fenêtre */
+    overflow: hidden; /* Empêche le débordement */
+    background-color: #f9f9f9; /* Couleur de fond */ margin: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
+
+  h1 {
+    font-family: var(--ff-bangers);
+    letter-spacing: var(--letter-spacing);
+    font-size: 2rem;
+    color: #e00e0e;
+    opacity: 0; /* Initialement invisible */
+    transform: translateY(-50px); /* Position initiale en dehors de l'écran */
+  }
+
+  h2 {
+    font-family: var(--ff-bangers);
+    letter-spacing: var(--letter-spacing);
+    font-size: 1.5rem;
+    color: #070707;
+    margin: 20px;
+    opacity: 0; /* Initialement invisible */
+    transform: translateY(-50px); /* Position initiale en dehors de l'écran */
+  }
+
+  p {
+    font-family: var(--ff-barlow);
+    font-size: 1.5rem;
+    color: #070707;
+    margin: 20px;
+    opacity: 0; /* Initialement invisible */
+    transform: translateY(-50px); /* Position initiale en dehors de l'écran */
+  }
+
+  section {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .flexcenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    opacity: 0; /* Initialement invisible */
+    transform: translateY(-50px); /* Position initiale en dehors de l'écran */
+  }
+  .cloud {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: url('../img/Akatsuki-Logo.png') no-repeat center center;
+    background-size: contain;
+    opacity: 1;     
+}
+}
+
 .la-page-manga, section.see-volume{
   background-image: url(../img/vignette.svg);
   background-color: rgba(242, 235, 232, 0.8901960784);
   background-blend-mode: overlay;
-
-
 }
 
