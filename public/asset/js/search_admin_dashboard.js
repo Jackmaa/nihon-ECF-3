@@ -221,9 +221,7 @@ function fetchUserCartItems(userId) {
 
 function updateUserItems(url, title, userId) {
   let existingItemsDiv = document.querySelector(".user-items");
-  if (existingItemsDiv) {
-    existingItemsDiv.remove();
-  }
+  if (existingItemsDiv) existingItemsDiv.remove();
 
   const itemsDiv = document.createElement("div");
   itemsDiv.classList.add("user-items", "fade-in");
@@ -236,125 +234,161 @@ function updateUserItems(url, title, userId) {
     itemsDiv.classList.add("fade-out");
     setTimeout(() => itemsDiv.remove(), 300);
   });
+  itemsDiv.appendChild(closeButton);
 
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
-      itemsDiv.innerHTML = `<h3>${title}</h3>`;
-      itemsDiv.appendChild(closeButton);
-
       if (data.length === 0) {
         itemsDiv.innerHTML += "<p>No items found.</p>";
         return;
       }
-      if (url === `/getUserBorrow/${userId}`) {
-        const table = document.createElement("table");
-        table.innerHTML = `
-          <thead>
-            <tr>
-              <th>Manga</th>
-              <th>Volume</th>
-              <th>Return Date</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        `;
 
-        const tbody = table.querySelector("tbody");
-        data.borrowed.forEach((item) => {
-          const row = document.createElement("tr");
+      const table = createTable(url, data);
+      itemsDiv.appendChild(table);
+      mainDashboard.appendChild(itemsDiv);
+    })
+    .catch((error) => console.error("Error fetching data:", error));
+}
 
-          row.innerHTML = `
-          <td>${item.name}</td>
-          <td>Volume ${item.id_volume}</td>
-          <td>${item.return_date}</td>
-          <td>
-            <select class="status-dropdown" data-id="${item.id_borrow}">
-              ${["pending", "approved", "back", "late", "rejected"]
-                .map(
-                  (status) =>
-                    `<option value="${status}" ${
-                      item.status === status ? "selected" : ""
-                    }>${
-                      status.charAt(0).toUpperCase() + status.slice(1)
-                    }</option>`
-                )
-                .join("")}
-            </select>
-          </td>
-        `;
+function createTable(url, data) {
+  const table = document.createElement("table");
+  table.innerHTML = url.includes("Borrow")
+    ? getBorrowTableHead()
+    : getCartTableHead();
+  const tbody = table.querySelector("tbody");
 
-          tbody.appendChild(row);
-        });
+  if (url.includes("Borrow")) {
+    data.borrowed.forEach((item) => tbody.appendChild(createBorrowRow(item)));
+  } else {
+    data.cart.forEach((item) => tbody.appendChild(createCartRow(item)));
+  }
 
-        itemsDiv.appendChild(table);
-        mainDashboard.appendChild(itemsDiv);
+  return table;
+}
 
-        // Use event delegation to handle status change
-        itemsDiv.addEventListener("change", function (event) {
-          if (event.target.classList.contains("status-dropdown")) {
-            const borrowId = event.target.getAttribute("data-id");
-            const newStatus = event.target.value;
-            let checkmark = event.target.nextElementSibling;
+function getBorrowTableHead() {
+  return `
+    <thead>
+      <tr>
+        <th>Manga</th>
+        <th>Volume</th>
+        <th>Return Date</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody></tbody>`;
+}
 
-            if (
-              !checkmark ||
-              !checkmark.classList.contains("status-checkmark")
-            ) {
-              checkmark = document.createElement("span");
-              checkmark.classList.add("status-checkmark");
-              checkmark.innerHTML = "✔";
-              event.target.parentNode.appendChild(checkmark);
-            }
+function getCartTableHead() {
+  return `
+    <thead>
+      <tr>
+        <th>Manga</th>
+        <th>Volume</th>
+        <th>Placed</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody></tbody>`;
+}
 
-            fetch("/adminBorrowStatus", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ id_borrow: borrowId, status: newStatus }),
-            })
-              .then((response) => response.json())
-              .then((data) => {
-                if (data.success) {
-                  checkmark.style.opacity = "1";
-                  setTimeout(() => (checkmark.style.opacity = "0"), 1500);
-                  console.log("Status updated successfully!");
-                } else {
-                  console.error("Failed to update status.");
-                }
-              });
-          }
-        });
-      } else {
-        const table = document.createElement("table");
-        table.innerHTML = `
-          <thead>
-            <tr>
-              <th>Manga</th>
-              <th>Volume</th>
-              <th>Placed</th>
-              <th>Validate</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        `;
+function createBorrowRow(item) {
+  const row = document.createElement("tr");
+  row.innerHTML = `
+    <td>${item.name}</td>
+    <td>Volume ${item.id_volume}</td>
+    <td>${item.return_date}</td>
+    <td>
+      <select class="status-dropdown" data-id="${item.id_borrow}">
+        ${["pending", "approved", "back", "late", "rejected"]
+          .map(
+            (status) => `<option value="${status}" ${
+              item.status === status ? "selected" : ""
+            }>
+            ${status.charAt(0).toUpperCase() + status.slice(1)}</option>`
+          )
+          .join("")}
+      </select>
+      <span class="status-checkmark">✔</span>
+    </td>`;
+  return row;
+}
 
-        const tbody = table.querySelector("tbody");
-        data.cart.forEach((item) => {
-          const row = document.createElement("tr");
+function createCartRow(item) {
+  const row = document.createElement("tr");
+  row.innerHTML = `
+    <td>${item.name}</td>
+    <td>Volume ${item.id_volume}</td>
+    <td>${item.placed}</td>
+    <td>
+      <button class="validate-cart" data-id="${item.id_cart}">✔ Validate</button>
+      <button class="delete-cart" data-id="${item.id_cart}">✖ Delete</button>
+    </td>`;
+  return row;
+}
 
-          row.innerHTML = `
-          <td>${item.name}</td>
-          <td>Volume ${item.id_volume}</td>
-          <td>${item.placed}</td>
-          <td></td>
-        `;
+// Event delegation for status dropdown
+mainDashboard.addEventListener("change", (event) => {
+  if (event.target.classList.contains("status-dropdown")) {
+    updateBorrowStatus(event.target);
+  }
+});
 
-          tbody.appendChild(row);
-        });
-        itemsDiv.appendChild(table);
-        mainDashboard.appendChild(itemsDiv);
+// Event delegation for cart actions
+mainDashboard.addEventListener("click", (event) => {
+  if (event.target.classList.contains("validate-cart")) {
+    validateCartItem(event.target);
+  } else if (event.target.classList.contains("delete-cart")) {
+    deleteCartItem(event.target);
+  }
+});
+
+function updateBorrowStatus(select) {
+  const borrowId = select.getAttribute("data-id");
+  const newStatus = select.value;
+  fetch("/adminBorrowStatus", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ id_borrow: borrowId, status: newStatus }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) {
+        const checkmark = select.parentNode.querySelector(".status-checkmark");
+        checkmark.style.opacity = "1";
+        setTimeout(() => (checkmark.style.opacity = "0"), 1500);
       }
-    });
+    })
+    .catch((error) => console.error("Error updating status:", error));
+}
+
+function validateCartItem(button) {
+  const cartId = button.getAttribute("data-id");
+  fetch("/validateCartItem", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ id_cart: cartId }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) button.closest("tr").remove();
+    })
+    .catch((error) => console.error("Error validating cart item:", error));
+}
+
+function deleteCartItem(button) {
+  const cartId = button.getAttribute("data-id");
+  if (!confirm("Are you sure you want to delete this item from the cart?"))
+    return;
+  fetch("/deleteCartItem", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ id_cart: cartId }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) button.closest("tr").remove();
+    })
+    .catch((error) => console.error("Error deleting cart item:", error));
 }
