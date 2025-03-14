@@ -178,6 +178,29 @@ class ModelManga extends Model {
         return new MangaDTO(new Manga($data), $author_name, $categories, $editor_name);
     }
 
+    public function getAlsoLiked(int $id){
+        $req = $this->getDb()->prepare("SELECT m.id_manga, m.name, m.thumbnail 
+            FROM manga m
+            JOIN manga_category mc ON m.id_manga = mc.manga_id
+            WHERE mc.category_id = (
+                SELECT category_id
+                FROM manga_category 
+                WHERE manga_id = :id_manga
+                LIMIT 1
+            )
+            AND m.id_manga != :id_manga
+            ORDER BY RAND()
+            LIMIT 3;");
+        $req->bindParam(':id_manga', $id, PDO::PARAM_INT);
+        $req->execute();
+        $data = $req->fetchAll(PDO::FETCH_ASSOC);
+        $mangas = [];
+        foreach ($data as $manga) {
+            $mangas[] = new Manga($manga);
+        }
+        return $mangas;
+    }
+
     public function deleteManga($id) {
         $req = $this->getDb()->prepare('DELETE FROM `manga` WHERE id_manga = :id');
         $req->bindParam(':id', $id, PDO::PARAM_INT);

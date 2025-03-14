@@ -11,7 +11,7 @@ ob_start();
                 <h2>Edit Profile</h2>
             </div>
                 <figure>
-                    <img id="profile-picture" class="profile-picture" src="<?php echo BASE_URL ?>public/asset/img/profile_picture.webp" alt="profile picture">
+                    <img id="profile-picture" class="profile-picture" src="<?php echo BASE_URL ?><?php echo $_SESSION['profile_pic'] ?>" alt="profile picture">
                     <button class="change-picture" id="changePictureBtn">Change picture</button>
                     <input type="file" id="fileInput" accept="image/*" style="display: none;">
                     <p>USERNAME</p>

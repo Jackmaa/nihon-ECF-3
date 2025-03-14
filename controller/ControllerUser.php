@@ -17,6 +17,7 @@ class ControllerUser extends Controller {
                         // Set the user ID in the session
                         $_SESSION['id_user'] = $user->getId_user();
                         $_SESSION['name']    = $user->getUsername();
+                        $_SESSION['profile_pic'] = $user->getProfile_pic();
                         $_SESSION['cart']    = $model->fetchCartData($user->getId_user());
                         header('Location: ' . $this->router->generate('home'));
                         exit;

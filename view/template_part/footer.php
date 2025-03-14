@@ -40,6 +40,7 @@
             <a href="#">Privacy</a>
             <a href="#">Security</a>
             <a href="<?php echo BASE_URL ?>contact">Contact</a>
+            <a href="#">About Us</a>
         </div>
         <p>© 2025 Nihon. All right reserved.</p>
     </div>

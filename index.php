@@ -33,6 +33,9 @@ $router->map("GET", "/pastChronicle", "ControllerUser#pastChronicle", "pastChron
 // FAVORITE
 $router->map('GET', "/favorite", 'ControllerUser#favoriteManga', 'favoriteManga');
 
+// ABOUT US
+$router->map('GET', "/aboutus", 'ControllerGeneral#aboutus', 'aboutus');
+
 /*******************************||  CART  ||**************************************/
 $router->map("GET", "/cart", "CartController#cart", "cart");
 $router->map('GET|POST', '/cart/add', 'CartController#add', 'cart_add');
