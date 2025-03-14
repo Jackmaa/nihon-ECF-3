@@ -108,7 +108,9 @@ body.dark-mode #username-picture a:first-child {
 body.dark-mode #username-picture a:first-child:hover {
   color: #cc392b;
 }
-body.dark-mode .container-homepage, body.dark-mode .la-page-manga, body.dark-mode section.see-volume {
+body.dark-mode .container-homepage,
+body.dark-mode .la-page-manga,
+body.dark-mode section.see-volume {
   background-image: url(../img/vignette.svg);
   background-color: #202024;
   background-blend-mode: overlay;
@@ -2475,7 +2477,7 @@ button:hover {
   }
 }
 /*
-**********************************
+**********************************s
 ***********CONTACT PAGE************
 **********************************
 */
@@ -2608,14 +2610,15 @@ button:hover {
 }
 .dashboard .user-items {
   position: fixed;
-  top: 20%;
-  right: 20px;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
   background: rgba(0, 0, 0, 0.9);
   color: white;
   padding: 15px;
   border-radius: 8px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-  width: 250px;
+  width: 50%;
   max-height: 400px;
   overflow-y: auto;
   z-index: 1000;
@@ -3171,7 +3174,11 @@ body {
   height: 100px;
   background: url("../img/Akatsuki-Logo.png") no-repeat center center;
   background-size: contain;
-.la-page-manga, section.see-volume {
+  opacity: 1;
+}
+
+.la-page-manga,
+section.see-volume {
   background-image: url(../img/vignette.svg);
   background-color: rgba(242, 235, 232, 0.8901960784);
   background-blend-mode: overlay;

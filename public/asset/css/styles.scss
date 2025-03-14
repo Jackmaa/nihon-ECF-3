@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Bangers&family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Kaisei+Tokumin&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Kaisei+Tokumin&family=Permanent+Marker&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bangers&family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Kaisei+Tokumin&family=Permanent+Marker&display=swap");
 
 /*
 **********************************
@@ -96,20 +96,20 @@ body.dark-mode {
   color: white;
 
   .menu-desktop {
-
     figure:nth-of-type(3) a img {
       transition: all 0.3s ease;
       &:hover {
-        box-shadow: 0 5px 10px rgba(255, 255, 255, 0.1), 0 3px 3px rgba(236, 236, 236, 0.1);
+        box-shadow: 0 5px 10px rgba(255, 255, 255, 0.1),
+          0 3px 3px rgba(236, 236, 236, 0.1);
       }
     }
   }
 
-  .review{
+  .review {
     background-color: #202024;
     color: white;
   }
-  #username-picture{
+  #username-picture {
     a:first-child {
       font-family: var(--ff-barlow);
       margin-right: 1vh;
@@ -119,10 +119,12 @@ body.dark-mode {
       &:hover {
         color: #cc392b;
       }
-  }
+    }
   }
 
-  .container-homepage, .la-page-manga, section.see-volume {
+  .container-homepage,
+  .la-page-manga,
+  section.see-volume {
     background-image: url(../img/vignette.svg);
     background-color: #202024;
     background-blend-mode: overlay;
@@ -982,19 +984,18 @@ main.login {
   height: 100%;
 
   .red-background {
-    background-color: var(--primary-clr-red); 
+    background-color: var(--primary-clr-red);
     background-image: url(../img/star-red.gif);
     background-size: cover;
-    background-position: center; 
+    background-position: center;
   }
-  
+
   .black-background {
-    background-image: url(../img/star.gif), linear-gradient(to right, #020000,#046a8b, #020000);
+    background-image: url(../img/star.gif),
+      linear-gradient(to right, #020000, #046a8b, #020000);
     background-size: cover;
     background-position: center;
-}
-
-
+  }
 }
 
 .carousel-item {
@@ -1600,21 +1601,19 @@ div.mangaPage {
 }
 
 .also-liked {
-
-  figure{
+  figure {
     display: flex;
     align-items: center;
-    img{
+    img {
       width: 10vh;
       margin-left: 1rem;
     }
-      h2 {
-    margin: 2vh 0;
-    font-family: var(--ff-bangers);
-    letter-spacing: var(--letter-spacing);
+    h2 {
+      margin: 2vh 0;
+      font-family: var(--ff-bangers);
+      letter-spacing: var(--letter-spacing);
+    }
   }
-  }
-
 
   .also-liked-contain {
     display: flex;
@@ -1626,13 +1625,13 @@ div.mangaPage {
     figure {
       width: 100%;
       &:hover {
-        a{
+        a {
           filter: brightness(0.5);
         }
       }
       a {
         transition: all 0.3s ease;
-        img{
+        img {
           width: 20vh;
         }
       }
@@ -2303,56 +2302,55 @@ button:hover {
 *******************************
 */
 
-// .headkakkoii {
-//   height: 60vh;
-//   background: url(../img/kakoii.svg) no-repeat center center/cover;
-//   width: 100%;
-// }
+  // .headkakkoii {
+  //   height: 60vh;
+  //   background: url(../img/kakoii.svg) no-repeat center center/cover;
+  //   width: 100%;
+  // }
   .formkakoii {
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: url(../img/cerisier.gif) ;
+    background: url(../img/cerisier.gif);
     background-color: rgba(242, 235, 232, 0.507);
     background-blend-mode: overlay;
     background-repeat: no-repeat;
     background-size: cover;
   }
 
-  
-  main#kakkoii{
+  main#kakkoii {
     width: 90vh;
     height: 90vh;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    h1{
+    h1 {
       font-size: 3rem;
     }
-    .wrapper{
-      p{
-        font-family: 'Permanent Marker', cursive;
+    .wrapper {
+      p {
+        font-family: "Permanent Marker", cursive;
         color: #38383f;
         font-size: 1.5rem;
         margin-bottom: 1rem;
         padding-left: 1rem;
       }
     }
-    .kakkoiiflex{
-      .center{
+    .kakkoiiflex {
+      .center {
         width: 30vh;
         border: solid 4px white;
-        h2{
+        h2 {
           font-size: 2rem;
           margin-bottom: 1rem;
         }
-        p{
+        p {
           font-size: 1.5rem;
           margin-bottom: 1rem;
         }
-        .open-popup{
+        .open-popup {
           width: 100%;
         }
       }
@@ -2371,35 +2369,35 @@ button:hover {
 **********************************
 */
 
-.button-container {
-  margin: 0 200px;
-  position: relative; 
-  display: inline-block;
-}
+  .button-container {
+    margin: 0 200px;
+    position: relative;
+    display: inline-block;
+  }
 
-.coucou {
-  z-index: 1;
-}
+  .coucou {
+    z-index: 1;
+  }
 
-.coucou:hover + .gif-background {
-  opacity: 1;
-}
+  .coucou:hover + .gif-background {
+    opacity: 1;
+  }
 
-.gif-background {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 40vh; 
-  height: 20vh;
-  background-image: url("../img/supersayanblue.gif");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  transform: translate(-50%, -50%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: 0;
-}
+  .gif-background {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40vh;
+    height: 20vh;
+    background-image: url("../img/supersayanblue.gif");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+  }
 
   .carousel {
     height: 60vh;
@@ -2412,7 +2410,6 @@ button:hover {
       margin: 1%;
       font-size: 1.5rem;
       z-index: 99;
-
     }
 
     .next,
@@ -2554,30 +2551,28 @@ button:hover {
         padding: 10px;
         z-index: 10;
 
-        ul{
+        ul {
           overflow: hidden;
           transition: all 0.3s ease;
           li {
-          width: 100%;
-          padding: 8px 12px;
-          font-family: var(--ff-bangers);
-          letter-spacing: var(--letter-spacing);
-          transition: all 0.3s ease;
+            width: 100%;
+            padding: 8px 12px;
+            font-family: var(--ff-bangers);
+            letter-spacing: var(--letter-spacing);
+            transition: all 0.3s ease;
 
-          &:hover {
-            background-color: #cc392b;
-          }
+            &:hover {
+              background-color: #cc392b;
+            }
 
-          a {
-            display: block;
-            width: 100%; 
-            padding: 8px 12px; 
-            color: var(--fc-black);
+            a {
+              display: block;
+              width: 100%;
+              padding: 8px 12px;
+              color: var(--fc-black);
+            }
           }
         }
-        }
-
-        
       }
 
       &.active .dropdown {
@@ -2871,7 +2866,7 @@ button:hover {
 // }
 
 /*
-**********************************
+**********************************s
 ***********CONTACT PAGE************
 **********************************
 */
@@ -3017,6 +3012,8 @@ button:hover {
   .user-items {
     position: fixed;
     top: 50%;
+    left: 50%;
+    translate: -50% -50%;
     background: rgba(0, 0, 0, 0.9);
     color: white;
     padding: 15px;
@@ -3251,9 +3248,7 @@ form {
     opacity: 0; /* Initialement invisible */
     transform: translateY(20px); /* Position initiale en dehors de l'écran */
   }
-  
 }
-
 
 @media (min-width: 2560px) {
   div.slider {
@@ -3270,9 +3265,7 @@ form {
       }
     }
   }
-
 }
-
 
 /*
 **********************************
@@ -3460,8 +3453,6 @@ form {
       transition: all 0.3s ease;
     }
   }
- 
-
 }
 
 /*
@@ -3606,11 +3597,11 @@ body {
 }
 
 .aboutus {
- 
- position: relative; /* Permet aux nuages d'être positionnés par rapport à cette section */
-    height: 100vh; /* Prend toute la hauteur de la fenêtre */
-    overflow: hidden; /* Empêche le débordement */
-    background-color: #f9f9f9; /* Couleur de fond */ margin: 20px;
+  position: relative; /* Permet aux nuages d'être positionnés par rapport à cette section */
+  height: 100vh; /* Prend toute la hauteur de la fenêtre */
+  overflow: hidden; /* Empêche le débordement */
+  background-color: #f9f9f9; /* Couleur de fond */
+  margin: 20px;
   padding: 20px;
   background-color: #f9f9f9;
   font-family: Arial, sans-serif;
@@ -3664,15 +3655,15 @@ body {
     position: absolute;
     width: 100px;
     height: 100px;
-    background: url('../img/Akatsuki-Logo.png') no-repeat center center;
+    background: url("../img/Akatsuki-Logo.png") no-repeat center center;
     background-size: contain;
-    opacity: 1;     
-}
+    opacity: 1;
+  }
 }
 
-.la-page-manga, section.see-volume{
+.la-page-manga,
+section.see-volume {
   background-image: url(../img/vignette.svg);
   background-color: rgba(242, 235, 232, 0.8901960784);
   background-blend-mode: overlay;
 }
-
