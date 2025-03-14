@@ -1174,7 +1174,10 @@ button {
   margin: 0 auto;
 }
 .card-fav .bubble-fav figure img {
-  width: 20vh;
+  width: 25vh;
+  height: 35vh;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .card-fav .bubble-fav hr {
   margin: 2% auto;
@@ -2442,6 +2445,13 @@ button:hover {
   background-color: red;
   color: white;
 }
+.dashboard .status-checkmark {
+  margin-left: 8px;
+  color: #4caf50;
+  font-weight: bold;
+  transition: opacity 0.5s ease-in-out;
+  opacity: 0;
+}
 .dashboard th {
   background-color: #cc392b;
   color: white;
@@ -2475,6 +2485,53 @@ button:hover {
   justify-content: center;
   align-items: center;
   max-width: 100%;
+}
+.dashboard .user-items {
+  position: fixed;
+  top: 20%;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  width: 250px;
+  max-height: 400px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+.dashboard .close-btn {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+.dashboard .close-btn:hover {
+  color: red;
+}
+.dashboard .fade-in {
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: fadeIn 0.3s forwards;
+}
+.dashboard .fade-out {
+  animation: fadeOut 0.3s forwards;
+}
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
 }
 .dashboard .button-container {
   display: flex;

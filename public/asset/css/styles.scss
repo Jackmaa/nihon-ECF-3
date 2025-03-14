@@ -1328,7 +1328,9 @@ button {
       margin: 0 auto;
 
       img {
-        width: 20vh;
+        width: 25vh;
+        height: 35vh;
+        object-fit: cover;
       }
     }
 
