@@ -185,6 +185,26 @@ class CartController extends Controller {
         }
     }
 
+    public function removeCartItem() {
+        $data = json_decode(file_get_contents("php://input"), true);
+        if (empty($data['id_manga']) || empty($data['id_volume'])) {
+            http_response_code(400);
+            echo json_encode(["error" => "Invalid data"]);
+            return;
+        }
+
+        $id_user   = (int) $data['id_user'];
+        $id_manga  = (int) $data['id_manga'];
+        $id_volume = (int) $data['id_volume'];
+
+        $model = new ModelBorrow();
+        if ($model->removeItemFromCart($id_user, $id_manga, $id_volume)) {
+            echo json_encode(["success" => "Manga removed from cart."]);
+        } else {
+            echo json_encode(["error" => "Failed"]);
+        }
+    }
+
     public function clearCart() {
         Cart::clearCart();
         $borrow = new ModelBorrow();
