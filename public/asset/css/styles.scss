@@ -94,6 +94,19 @@ body.dark-mode {
   background-color: #202024;
   color: white;
 
+  #username-picture{
+    a:first-child {
+      font-family: var(--ff-barlow);
+      margin-right: 1vh;
+      color: var(--fc-light);
+      font-size: 1.4rem;
+      transition: all 0.3s ease;
+      &:hover {
+        color: #cc392b;
+      }
+  }
+  }
+
   .container-homepage {
     background-image: url(../img/vignette.svg);
     background-color: #202024;
