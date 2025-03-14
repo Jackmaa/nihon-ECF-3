@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Bangers&family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Kaisei+Tokumin&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Kaisei+Tokumin&family=Permanent+Marker&display=swap');
 
 /*
 **********************************
@@ -94,6 +95,20 @@ body.dark-mode {
   background-color: #202024;
   color: white;
 
+  .menu-desktop {
+
+    figure:nth-of-type(3) a img {
+      transition: all 0.3s ease;
+      &:hover {
+        box-shadow: 0 5px 10px rgba(255, 255, 255, 0.1), 0 3px 3px rgba(236, 236, 236, 0.1);
+      }
+    }
+  }
+
+  .review{
+    background-color: #202024;
+    color: white;
+  }
   #username-picture{
     a:first-child {
       font-family: var(--ff-barlow);
@@ -107,7 +122,7 @@ body.dark-mode {
   }
   }
 
-  .container-homepage {
+  .container-homepage, .la-page-manga, section.see-volume {
     background-image: url(../img/vignette.svg);
     background-color: #202024;
     background-blend-mode: overlay;
@@ -1486,6 +1501,9 @@ div.mangaPage {
 }
 
 .review {
+  background-color: #f2ebe8;
+  border: 2px solid #cc382b54;
+  border-radius: 5px;
   width: 90%;
   display: grid;
   place-self: center;
@@ -1624,7 +1642,7 @@ div.mangaPage {
 
 .see-volume {
   .all-volume {
-    margin-top: 5vh;
+    padding: 2rem 0;
     display: flex;
 
     h2 {
@@ -2284,18 +2302,65 @@ button:hover {
 ***********kakoii mode***********
 *******************************
 */
+
+// .headkakkoii {
+//   height: 60vh;
+//   background: url(../img/kakoii.svg) no-repeat center center/cover;
+//   width: 100%;
+// }
   .formkakoii {
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background: url(../img/cerisier.gif) ;
+    background-color: rgba(242, 235, 232, 0.507);
+    background-blend-mode: overlay;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
+
+  
+  main#kakkoii{
+    width: 90vh;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    h1{
+      font-size: 3rem;
+    }
+    .wrapper{
+      p{
+        font-family: 'Permanent Marker', cursive;
+        color: #38383f;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        padding-left: 1rem;
+      }
+    }
+    .kakkoiiflex{
+      .center{
+        width: 30vh;
+        border: solid 4px white;
+        h2{
+          font-size: 2rem;
+          margin-bottom: 1rem;
+        }
+        p{
+          font-size: 1.5rem;
+          margin-bottom: 1rem;
+        }
+        .open-popup{
+          width: 100%;
+        }
+      }
+    }
+  }
+
   .headkakkoii {
-    width: 100%;
-    height: auto;
-  }
-  .kakkoii {
-    width: 70vh;
+    display: none;
   }
 }
 
@@ -2489,19 +2554,30 @@ button:hover {
         padding: 10px;
         z-index: 10;
 
-        li {
+        ul{
+          overflow: hidden;
+          transition: all 0.3s ease;
+          li {
+          width: 100%;
           padding: 8px 12px;
           font-family: var(--ff-bangers);
           letter-spacing: var(--letter-spacing);
+          transition: all 0.3s ease;
 
           &:hover {
-            background-color: #f0f0f0;
+            background-color: #cc392b;
           }
 
           a {
+            display: block;
+            width: 100%; 
+            padding: 8px 12px; 
             color: var(--fc-black);
           }
         }
+        }
+
+        
       }
 
       &.active .dropdown {
@@ -3508,3 +3584,12 @@ form {
     margin: 20px;
   }
 }
+
+.la-page-manga, section.see-volume{
+  background-image: url(../img/vignette.svg);
+  background-color: rgba(242, 235, 232, 0.8901960784);
+  background-blend-mode: overlay;
+
+
+}
+
