@@ -7,10 +7,10 @@ class ControllerUser extends Controller {
     // Handle user login
     public function login() {
         $model = new ModelUser();
-        if ($_SESSION['admin_logged_in']) {
+        if (isset($_SESSION['admin_logged_in'])) {
             session_unset();
         }
-        if ($_SESSION['id_user']) {
+        if (isset($_SESSION['id_user'])) {
             header('Location: ' . $this->router->generate('home'));
             exit;
         }
@@ -198,7 +198,15 @@ class ControllerUser extends Controller {
     }
 
     public function currentStorie() {
-        require_once './view/currentStorie.php';
+        if (! isset($_SESSION['id_user'])) {
+            header('Location: ' . $this->router->generate('login'));
+            exit;
+        } else {
+            $model = new ModelBorrow;
+            $data  = $model->getUserBorrows($_SESSION['id_user']);
+            var_dump($data);
+            require_once './view/currentStorie.php';
+        }
     }
 
     public function favoriteManga() {
@@ -206,6 +214,7 @@ class ControllerUser extends Controller {
     }
 
     public function pastChronicle() {
+
         require_once './view/pastChronicle.php';
     }
 }

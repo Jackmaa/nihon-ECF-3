@@ -147,11 +147,13 @@ class ModelBorrow extends Model {
 
     // Fetch borrowed books for a user
     public function getUserBorrows($id_user) {
-        $req = $this->getDb()->prepare("SELECT b.id, m.title, b.due_date FROM borrow b
-                    JOIN manga m ON b.manga_id = m.id
-                    WHERE b.user_id = ?");
-        $req->execute([$id_user]);
-        return $req->fetchAll(PDO::FETCH_ASSOC);
+        $req = $this->getDb()->prepare("SELECT b.id_manga AS id_manga, b.id_volume, b.borrow_date, b.return_date, b.status, m.name AS manga_name, m.thumbnail AS manga_thumbnail FROM borrow b INNER JOIN manga m ON b.id_manga = m.id_manga WHERE b.id_user = :id_user AND b.status != 'BACK'");
+        $req->bindParam(":id_user", $id_user, PDO::PARAM_INT);
+        $req->execute();
+        $data = [];
+        return $data;
+
+        //Change entity Borrow to be a DTO of the borrow + manga
     }
 
     // Fetch reserved (cart) items for a user
