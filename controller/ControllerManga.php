@@ -232,7 +232,7 @@ class ControllerManga extends Controller {
         $data = json_decode(file_get_contents("php://input"), true);
 
         $model = new ModelManga();
-        if ($model->deleteVolume($_POST['id_manga'], $_POST['id_volume'])) {
+        if ($model->deleteVolume($data['id_manga'], $data['id_volume'])) {
             json_encode([
                 "success" => true,
                 "message" => "Volume deleted successfully."]);
