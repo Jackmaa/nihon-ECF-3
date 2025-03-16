@@ -179,20 +179,42 @@ function fillModifyPopupUser(user) {
   document.querySelector("#popupUser input:nth-of-type(3)").value = user.email;
 }
 
-// Function to fill the manga modify popup with manga data
 function fillModifyPopup(manga) {
-  document.querySelector("#popupModified input:nth-of-type(1)").value =
+  document.querySelector("#popupModified input[name='id_manga']").value =
     manga.manga.id_manga;
-  document.querySelector("#popupModified input:nth-of-type(2)").value =
+  document.querySelector("#popupModified input[name='name']").value =
     manga.manga.name;
-  document.querySelector("#popupModified input:nth-of-type(3)").value =
+  document.querySelector("#popupModified input[name='categories']").value =
     manga.categories;
-  document.querySelector("#popupModified input:nth-of-type(4)").value =
+  document.querySelector("#popupModified input[name='author']").value =
     manga.author;
-  document.querySelector("#popupModified input:nth-of-type(5)").value =
+  document.querySelector("#popupModified input[name='editor']").value =
     manga.editor;
-  document.querySelector("#popupModified input:nth-of-type(6)").value =
+  document.querySelector("#popupModified textarea[name='description']").value =
     manga.manga.description;
+
+  // Fetch and display existing volumes
+  fetch(`/getVolumes/${manga.manga.id_manga}`)
+    .then((response) => response.json())
+    .then((data) => {
+      const volumesContainer = document.getElementById("volumesContainer");
+      volumesContainer.innerHTML = ""; // Clear existing content
+
+      if (data.length === 0) {
+        volumesContainer.innerHTML = "<p>No volumes found.</p>";
+      } else {
+        data.forEach((volume) => {
+          const volumeDiv = document.createElement("div");
+          volumeDiv.classList.add("volume-item");
+          volumeDiv.innerHTML = `
+            <span>Volume ${volume.id_volume}</span>
+            <button type="button" onclick="deleteVolume(${volume.id_volume}, ${manga.manga.id_manga})">Delete</button>
+          `;
+          volumesContainer.appendChild(volumeDiv);
+        });
+      }
+    })
+    .catch((error) => console.error("Error fetching volumes:", error));
 }
 
 // Function to limit the selection of categories to 3
