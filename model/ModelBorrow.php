@@ -147,10 +147,19 @@ class ModelBorrow extends Model {
 
     // Fetch borrowed books for a user
     public function getUserBorrows($id_user) {
-        $req = $this->getDb()->prepare("SELECT b.id, m.title, b.due_date FROM borrow b
-                    JOIN manga m ON b.manga_id = m.id
-                    WHERE b.user_id = ?");
-        $req->execute([$id_user]);
+        $req = $this->getDb()->prepare("SELECT b.id_manga AS id_manga, b.id_volume, b.borrow_date, b.return_date, b.status, m.name AS manga_name, m.thumbnail AS manga_thumbnail FROM borrow b INNER JOIN manga m ON b.id_manga = m.id_manga WHERE b.id_user = :id_user AND b.status != 'BACK'");
+        $req->bindParam(":id_user", $id_user, PDO::PARAM_INT);
+        $req->execute();
+        $data = [];
+        return $data;
+
+        //Change entity Borrow to be a DTO of the borrow + manga
+    }
+
+    public function getUserPastBorrows($id_user) {
+        $req = $this->getDb()->prepare("SELECT b.id_manga AS id_manga, b.id_volume, b.borrow_date, b.id_manga, b.id_volume, m.name AS manga_name, m.thumbnail AS manga_thumbnail FROM borrow b INNER JOIN manga m ON b.id_manga = m.id_manga WHERE b.id_user = :id_user AND b.status = 'BACK' ORDER BY b.return_date DESC
+        ");
+        $req->execute();
         return $req->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -168,10 +177,17 @@ class ModelBorrow extends Model {
         $req->execute();
         return $req->fetchAll(PDO::FETCH_ASSOC);
     }
+
     public function getUserReservationsAdmin($userId) {
-        $req = $this->getDb()->prepare("SELECT r.id_reservation, r.id_user, r.id_manga, r.id_volume, m.name, r.placed, r.id_volume FROM reservation r JOIN manga m on r.id_manga = m.id_manga where r.id_user = :userId");
+        $req = $this->getDb()->prepare("SELECT r.id_reservation, r.id_user, r.id_manga, r.id_volume, m.name, r.placed FROM reservation r JOIN manga m on r.id_manga = m.id_manga where r.id_user = :userId");
         $req->bindParam(":userId", $userId, PDO::PARAM_INT);
         $req->execute();
         return $req->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function clearExpiredReservations() {
+        $req = $this->getDb()->prepare("DELETE FROM reservation WHERE exp_date < NOW()");
+        $req->execute();
+    }
+
 }
