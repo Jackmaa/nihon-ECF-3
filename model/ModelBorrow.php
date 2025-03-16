@@ -156,6 +156,13 @@ class ModelBorrow extends Model {
         //Change entity Borrow to be a DTO of the borrow + manga
     }
 
+    public function getUserPastBorrows($id_user) {
+        $req = $this->getDb()->prepare("SELECT b.id_manga AS id_manga, b.id_volume, b.borrow_date, b.id_manga, b.id_volume, m.name AS manga_name, m.thumbnail AS manga_thumbnail FROM borrow b INNER JOIN manga m ON b.id_manga = m.id_manga WHERE b.id_user = :id_user AND b.status = 'BACK' ORDER BY b.return_date DESC
+        ");
+        $req->execute();
+        return $req->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     // Fetch reserved (cart) items for a user
     public function getUserReservations($id_user) {
         $req = $this->getDb()->prepare("SELECT `reservation`.`id_manga`, `reservation`.`id_volume`, `manga`.`name`, `manga`.`thumbnail` FROM reservation INNER JOIN `manga` ON `reservation`.`id_manga` = `manga`.`id_manga` WHERE id_user = :id_user");
