@@ -10,6 +10,10 @@ class ControllerUser extends Controller {
         if ($_SESSION['admin_logged_in']) {
             session_unset();
         }
+        if ($_SESSION['id_user']) {
+            header('Location: ' . $this->router->generate('home'));
+            exit;
+        }
         // On peut maintenant accéder à $this->router
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Check if the email and password are set
@@ -172,7 +176,7 @@ class ControllerUser extends Controller {
             if (! empty($_POST['username']) && ! empty($_POST['email']) && ! empty($_POST['password']) && ! empty($_POST['password_verify']) && ! empty($_POST['profile_pic'])) {
                 if ($_POST['password'] === $_POST['password_verify']) {
                     $model = new ModelUser();
-                    $model->updateUser($_POST['username'], $_POST['email'], $_POST['password'], $_POST['profile_pic']);
+                    $model->updateUser($_POST['username'], $_POST['email'], $_POST['password'], $_POST['profile_pic'], $id);
                     echo 'Your account has been updated.';
                     header('Location: ' . $this->router->generate('home'));
                 } else {

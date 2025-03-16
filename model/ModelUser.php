@@ -116,7 +116,7 @@ class ModelUser extends Model {
         $req->execute([$email]);
     }
 
-    public function updateUser(string $username, string $email, string $password, string $profile_pic) {
+    public function updateUser(string $username, string $email, string $password, string $profile_pic, int $id_user) {
         $req = $this->getDb()->prepare('UPDATE `user` SET `username` = :username, `email` = :email, `password` = :password, `profile_pic` = :profile_pic WHERE `id_user` = :id_user');
         $req->bindParam(':username', $username, PDO::PARAM_STR);
         $req->bindParam(':email', $email, PDO::PARAM_STR);
