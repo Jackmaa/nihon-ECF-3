@@ -79,23 +79,36 @@
     </form>
 </div>
 
-<div class="popup" id="popupModified">
-    <h3>Modify Book</h3>
-    <input type="text">
-    <p>Book Title</p>
-    <input type="text">
-    <p>Book category</p>
-    <input type="text">
-    <p>Book author</p>
-    <input type="text">
-    <p>Book Editor</p>
-    <input type="text">
-    <p>Book Summary</p>
-    <input type="text">
-    <p>Picture</p>
-    <input type="file"accept=".webp">
+<div id="popupModified" class="popup">
+  <div class="popup-content">
+    <span class="close" onclick="closePopup('popupModified')">&times;</span>
+    <h2>Modify Manga</h2>
+    <form id="modifyMangaForm">
+      <input type="hidden" name="id_manga" />
+      <label for="name">Name:</label>
+      <input type="text" name="name" required />
+      <label for="categories">Categories:</label>
+      <input type="text" name="categories" required />
+      <label for="author">Author:</label>
+      <input type="text" name="author" required />
+      <label for="editor">Editor:</label>
+      <input type="text" name="editor" required />
+      <label for="description">Description:</label>
+      <textarea name="description" required></textarea>
 
-    <button class="button" onclick="closePopup('popupModified')">Modify</button>
+      <!-- Volume Section -->
+      <h3>Volumes</h3>
+      <div id="volumesContainer">
+        <!-- Existing volumes will be displayed here -->
+      </div>
+      <div>
+        <input type="number" id="newVolumeNumber" placeholder="Volume Number" />
+        <button type="button" onclick="addVolume()">Add Volume</button>
+      </div>
+
+      <button type="submit">Save Changes</button>
+    </form>
+  </div>
 </div>
 </main>
 
