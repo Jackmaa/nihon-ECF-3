@@ -21,7 +21,8 @@ class ControllerAdmin extends Controller {
                 session_start();
                 $_SESSION['admin_logged_in'] = true;
                 $_SESSION['id_admin']        = $user->getId_user();
-
+                $borrow                      = new ModelBorrow;
+                $borrow->clearExpiredReservations();
                 header('Location: ' . $this->router->generate('admin_dashboard'));
                 exit;
             } else {
