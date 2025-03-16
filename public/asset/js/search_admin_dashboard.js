@@ -304,7 +304,7 @@ function createBorrowRow(item) {
         ${["pending", "approved", "back", "late", "rejected"]
           .map(
             (status) => `<option value="${status}" ${
-              item.status === status ? "selected" : ""
+              item.status === status.toUpperCase() ? "selected" : ""
             }>
             ${status.charAt(0).toUpperCase() + status.slice(1)}</option>`
           )
