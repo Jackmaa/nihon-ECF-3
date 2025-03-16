@@ -15,7 +15,7 @@ class ModelBorrow extends Model {
     // Get the number of books currently borrowed by a user
     public function userBorrowCount(int $id_user): int {
         $req = $this->getDb()->prepare(
-            "SELECT COUNT(*) FROM borrow WHERE id_user = ? AND return_date > NOW()"
+            "SELECT COUNT(*) FROM borrow WHERE id_user = ? AND borrow.status != 'BACK'"
         );
         $req->execute([$id_user]);
         return (int) $req->fetchColumn();
