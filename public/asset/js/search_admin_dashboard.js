@@ -225,7 +225,6 @@ function updateUserItems(url, title, userId) {
 
   const itemsDiv = document.createElement("div");
   itemsDiv.classList.add("user-items", "fade-in");
-  itemsDiv.innerHTML = `<h3>${title}</h3>`;
 
   const closeButton = document.createElement("button");
   closeButton.textContent = "✖";
@@ -234,21 +233,88 @@ function updateUserItems(url, title, userId) {
     itemsDiv.classList.add("fade-out");
     setTimeout(() => itemsDiv.remove(), 300);
   });
-  itemsDiv.appendChild(closeButton);
+
+  // Onglets
+  const tabs = document.createElement("div");
+  tabs.classList.add("tabs");
+
+  const borrowedTab = document.createElement("button");
+  borrowedTab.textContent = "Current Borrows";
+  borrowedTab.classList.add("active");
+  borrowedTab.onclick = () => switchTab("borrowedTable");
+
+  const historyTab = document.createElement("button");
+  historyTab.textContent = "History";
+  historyTab.onclick = () => switchTab("historyTable");
+
+  tabs.appendChild(borrowedTab);
+  tabs.appendChild(historyTab);
+
+  // Conteneurs des tables
+  const borrowedTableContainer = document.createElement("div");
+  borrowedTableContainer.id = "borrowedTable";
+
+  const historyTableContainer = document.createElement("div");
+  historyTableContainer.id = "historyTable";
+  historyTableContainer.style.display = "none"; // Caché par défaut
 
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
       if (data.length === 0) {
-        itemsDiv.innerHTML += "<p>No items found.</p>";
+        borrowedTableContainer.innerHTML = "<p>No items found.</p>";
         return;
       }
 
-      const table = createTable(url, data);
-      itemsDiv.appendChild(table);
+      // Séparer les emprunts en cours et les retours
+      const borrowedItems = data.borrowed.filter(
+        (item) => item.status !== "BACK"
+      );
+      const returnedItems = data.borrowed.filter(
+        (item) => item.status === "BACK"
+      );
+
+      // Création des tables
+      if (borrowedItems.length > 0) {
+        borrowedTableContainer.appendChild(
+          createTable(url, { borrowed: borrowedItems })
+        );
+      } else {
+        borrowedTableContainer.innerHTML = "<p>No borrowed items.</p>";
+      }
+
+      if (returnedItems.length > 0) {
+        historyTableContainer.appendChild(
+          createTable(url, { borrowed: returnedItems })
+        );
+      } else {
+        historyTableContainer.innerHTML = "<p>No returned items.</p>";
+      }
+
+      itemsDiv.appendChild(tabs);
+      itemsDiv.appendChild(borrowedTableContainer);
+      itemsDiv.appendChild(historyTableContainer);
+      itemsDiv.appendChild(closeButton);
       mainDashboard.appendChild(itemsDiv);
     })
     .catch((error) => console.error("Error fetching data:", error));
+}
+
+// Fonction pour basculer entre les onglets
+function switchTab(tabId) {
+  document.getElementById("borrowedTable").style.display =
+    tabId === "borrowedTable" ? "block" : "none";
+  document.getElementById("historyTable").style.display =
+    tabId === "historyTable" ? "block" : "none";
+
+  document
+    .querySelectorAll(".tabs button")
+    .forEach((btn) => btn.classList.remove("active"));
+  document
+    .querySelector(
+      `.tabs button:nth-child(${tabId === "borrowedTable" ? 1 : 2})`
+    )
+    .classList.add("active");
 }
 
 function createTable(url, data) {
@@ -304,7 +370,7 @@ function createBorrowRow(item) {
         ${["pending", "approved", "back", "late", "rejected"]
           .map(
             (status) => `<option value="${status}" ${
-              item.status === status.toUpperCase() ? "selected" : ""
+              item.status === status.toUpperCase ? "selected" : ""
             }>
             ${status.charAt(0).toUpperCase() + status.slice(1)}</option>`
           )
