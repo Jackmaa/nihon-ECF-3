@@ -249,6 +249,32 @@ function addVolume() {
     .catch((error) => console.error("Error adding volume:", error));
 }
 
+function deleteVolume(volumeId, mangaId) {
+  if (!confirm("Are you sure you want to delete this volume?")) {
+    return;
+  }
+
+  fetch("/deleteVolume", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      id_manga: mangaId,
+      id_volume: volumeId,
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) {
+        alert("Volume deleted successfully!");
+        // Refresh the volumes list
+        fillModifyPopup({ manga: { id_manga: mangaId } });
+      } else {
+        alert("Error: " + data.error);
+      }
+    })
+    .catch((error) => console.error("Error deleting volume:", error));
+}
+
 // Function to limit the selection of categories to 3
 function limitSelection(checkbox) {
   let checkedBoxes = document.querySelectorAll(
