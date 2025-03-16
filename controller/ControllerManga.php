@@ -87,12 +87,12 @@ class ControllerManga extends Controller {
 
     // Method to read a manga entry by ID
     public function read($id) {
-        $model   = new ModelManga();
-        $manga   = $model->getMangaById($id);
-        $volumes = $model->getMangaVolumes($id);
-        $review  = $model->mangaReview($id);
+        $model      = new ModelManga();
+        $manga      = $model->getMangaById($id);
+        $volumes    = $model->getMangaVolumes($id);
+        $review     = $model->mangaReview($id);
         $also_liked = $model->getAlsoLiked($id);
-        $revAdd  = null;
+        $revAdd     = null;
         if (isset($_POST['review']) && isset($_POST['id_manga'])) {
             $revAdd = $model->addReview($_POST['review'], $_POST['id_manga'], $_SESSION['id_user']);
         }
@@ -208,4 +208,48 @@ class ControllerManga extends Controller {
         $model->addReview($_POST['review'], $_POST['id_manga'], $_SESSION['id_user']); //TELL ME SI C'EST BON
         header('Location: /manga/' . $_POST['id_manga']);
     }
+
+    public function addVolume() {
+        $data = json_decode(file_get_contents("php://input"), true);
+
+        $model = new ModelManga();
+        if ($model->addVolume($data['id_manga'], $data['id_volume'])) {
+            json_encode([
+                "success" => true,
+                "message" => "Volume added successfully.",
+            ]);
+        } else {
+            json_encode([
+                "success" => false,
+                "message" => "Failed to add volume.",
+            ]);
+
+        }
+
+    }
+
+    public function deleteVolume() {
+        $data = json_decode(file_get_contents("php://input"), true);
+
+        $model = new ModelManga();
+        if ($model->deleteVolume($_POST['id_manga'], $_POST['id_volume'])) {
+            json_encode([
+                "success" => true,
+                "message" => "Volume deleted successfully."]);
+
+        } else {
+            json_encode([
+                "success" => false,
+                "message" => "Failed to delete volume.",
+            ]);
+        }
+    }
+
+    public function getVolume() {
+        $model   = new ModelManga();
+        $volumes = $model->getMangaVolumes($_POST['id_manga']);
+        header('Content-Type: application/json');
+        echo json_encode($volumes);
+    }
+
 }
