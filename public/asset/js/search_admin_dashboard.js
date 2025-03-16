@@ -217,6 +217,38 @@ function fillModifyPopup(manga) {
     .catch((error) => console.error("Error fetching volumes:", error));
 }
 
+function addVolume() {
+  const newVolumeNumber = document.getElementById("newVolumeNumber").value;
+  const mangaId = document.querySelector(
+    "#popupModified input[name='id_manga']"
+  ).value;
+
+  if (!newVolumeNumber || !mangaId) {
+    alert("Please enter a volume number.");
+    return;
+  }
+
+  fetch("/addVolume", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      id_manga: mangaId,
+      id_volume: newVolumeNumber,
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) {
+        alert("Volume added successfully!");
+        // Refresh the volumes list
+        fillModifyPopup({ manga: { id_manga: mangaId } });
+      } else {
+        alert("Error: " + data.error);
+      }
+    })
+    .catch((error) => console.error("Error adding volume:", error));
+}
+
 // Function to limit the selection of categories to 3
 function limitSelection(checkbox) {
   let checkedBoxes = document.querySelectorAll(
