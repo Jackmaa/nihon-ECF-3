@@ -7,6 +7,9 @@ class ControllerUser extends Controller {
     // Handle user login
     public function login() {
         $model = new ModelUser();
+        if ($_SESSION['admin_logged_in']) {
+            session_unset();
+        }
         // On peut maintenant accéder à $this->router
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Check if the email and password are set
@@ -15,10 +18,10 @@ class ControllerUser extends Controller {
                 if ($user = $model->getUser($_POST['credential'])) {
                     if (password_verify($_POST['password'], $user->getPassword())) {
                         // Set the user ID in the session
-                        $_SESSION['id_user'] = $user->getId_user();
-                        $_SESSION['name']    = $user->getUsername();
+                        $_SESSION['id_user']     = $user->getId_user();
+                        $_SESSION['name']        = $user->getUsername();
                         $_SESSION['profile_pic'] = $user->getProfile_pic();
-                        $_SESSION['cart']    = $model->fetchCartData($user->getId_user());
+                        $_SESSION['cart']        = $model->fetchCartData($user->getId_user());
                         header('Location: ' . $this->router->generate('home'));
                         exit;
                     } else {
