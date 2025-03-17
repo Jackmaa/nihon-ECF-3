@@ -67,12 +67,16 @@ class ControllerManga extends Controller {
                 $id_manga = $model->getMangaByName($name);
                 $editor   = $_POST["editor"];
                 $model->addEditor($id_manga, $editor);
+                $volumes = $_POST["volumes"];
+                $model->addVolumes($id_manga, $volumes);
+
                 // Handle multiple categories (min 1, max 3)
                 if (isset($_POST["category"]) && is_array($_POST["category"])) {
                     $selectedCategories = array_slice($_POST["category"], 0, 3); // Limit to 3 categories
                     foreach ($selectedCategories as $categoryId) {
                         $model->addCategory($id_manga, $categoryId);
                     }
+
                 } else {
                     echo "Please select at least one category.";
                     exit;

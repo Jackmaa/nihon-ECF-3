@@ -75,6 +75,7 @@
             </select>
         <input type="date" name="published_date" id="published_date">
         <input type="file" name="thumbnail" id="thumbnail">
+        <input type="number" name="volumes" id="volume" min="01">
         <button type="submit" class="button" onclick="closePopup('popupAdd')">Add</button>
     </form>
 </div>
