@@ -20,7 +20,7 @@ ob_start();
                 <div class="current-info">
                     <h4><?php echo $fav->manga->getName()?></h4>
                     <div>
-                        <a href="#">catégory: <span><?php echo $fav->categories?></span></a>
+                        <a href="#">Category: <span><?php echo $fav->categories?></span></a>
                         <a href="#">Author: <span><?php echo $fav->author?></span></a>
                         <a href="#">Editor: <span><?php echo $fav->editor?></span></a>
                     </div>
