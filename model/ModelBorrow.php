@@ -147,20 +147,27 @@ class ModelBorrow extends Model {
 
     // Fetch borrowed books for a user
     public function getUserBorrows($id_user) {
-        $req = $this->getDb()->prepare("SELECT b.id_manga AS id_manga, b.id_volume, b.borrow_date, b.return_date, b.status, m.name AS manga_name, m.thumbnail AS manga_thumbnail FROM borrow b INNER JOIN manga m ON b.id_manga = m.id_manga WHERE b.id_user = :id_user AND b.status != 'BACK'");
+        $req = $this->getDb()->prepare("SELECT b.id_borrow, b.id_manga AS id_manga, b.id_volume, b.borrow_date, b.return_date, b.status, u.id_user FROM borrow b INNER JOIN manga m ON b.id_manga = m.id_manga INNER JOIN user u ON u.id_user = b.id_user WHERE b.id_user = :id_user AND b.status != 'BACK'");
         $req->bindParam(":id_user", $id_user, PDO::PARAM_INT);
         $req->execute();
-        $data = [];
-        return $data;
-
-        //Change entity Borrow to be a DTO of the borrow + manga
+        $results = $req->fetchAll(PDO::FETCH_ASSOC);
+        $borrows = [];
+        foreach ($results as $borrow) {
+            $borrows[] = new Borrow($borrow);
+        }
+        return $borrows;
     }
 
     public function getUserPastBorrows($id_user) {
-        $req = $this->getDb()->prepare("SELECT b.id_manga AS id_manga, b.id_volume, b.borrow_date, b.id_manga, b.id_volume, m.name AS manga_name, m.thumbnail AS manga_thumbnail FROM borrow b INNER JOIN manga m ON b.id_manga = m.id_manga WHERE b.id_user = :id_user AND b.status = 'BACK' ORDER BY b.return_date DESC
+        $req = $this->getDb()->prepare("SELECT b.id_manga AS id_manga, b.id_volume, b.borrow_date, b.return_date, b.status FROM borrow b INNER JOIN manga m ON b.id_manga = m.id_manga WHERE b.id_user = :id_user AND b.status = 'BACK' ORDER BY b.return_date DESC
         ");
         $req->execute();
-        return $req->fetchAll(PDO::FETCH_ASSOC);
+        $results = $req->fetchAll(PDO::FETCH_ASSOC);
+        $borrows = [];
+        foreach ($results as $borrow) {
+            $borrows[] = new Borrow($borrow);
+        }
+        return $borrows;
     }
 
     // Fetch reserved (cart) items for a user

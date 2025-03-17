@@ -203,8 +203,13 @@ class ControllerUser extends Controller {
             exit;
         } else {
             $model = new ModelBorrow;
-            $data  = $model->getUserBorrows($_SESSION['id_user']);
-            var_dump($data);
+            $datas  = $model->getUserBorrows($_SESSION['id_user']);
+            $mangas = [];
+            foreach($datas as $data) {
+                $manga = new ModelManga;
+                $mangaDTO = $manga->getMangaById($data -> getId_Manga());
+                $mangas[] = new BorrowDTO($data, $mangaDTO);
+            }
             require_once './view/currentStorie.php';
         }
     }
