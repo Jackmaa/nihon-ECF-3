@@ -245,9 +245,9 @@ class ControllerManga extends Controller {
         }
     }
 
-    public function getVolume() {
+    public function getVolumes($id) {
         $model   = new ModelManga();
-        $volumes = $model->getMangaVolumes($_POST['id_manga']);
+        $volumes = $model->getMangaVolumes($id);
         header('Content-Type: application/json');
         echo json_encode($volumes);
     }

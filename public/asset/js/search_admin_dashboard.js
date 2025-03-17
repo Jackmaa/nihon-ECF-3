@@ -109,7 +109,6 @@ searchMangaInput.addEventListener("input", function () {
   // Clear results if the input is too short
   if (searchMangaInput.value.length < 2) {
     responseMangaDiv.innerHTML = "";
-    buttonContainer.style.display = "block";
     return;
   }
 
@@ -213,8 +212,7 @@ function fillModifyPopup(manga) {
           volumesContainer.appendChild(volumeDiv);
         });
       }
-    })
-    .catch((error) => console.error("Error fetching volumes:", error));
+    });
 }
 
 function addVolume() {
