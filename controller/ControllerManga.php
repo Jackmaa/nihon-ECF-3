@@ -67,12 +67,16 @@ class ControllerManga extends Controller {
                 $id_manga = $model->getMangaByName($name);
                 $editor   = $_POST["editor"];
                 $model->addEditor($id_manga, $editor);
+                $volumes = $_POST["volumes"];
+                $model->addVolumes($id_manga, $volumes);
+
                 // Handle multiple categories (min 1, max 3)
                 if (isset($_POST["category"]) && is_array($_POST["category"])) {
                     $selectedCategories = array_slice($_POST["category"], 0, 3); // Limit to 3 categories
                     foreach ($selectedCategories as $categoryId) {
                         $model->addCategory($id_manga, $categoryId);
                     }
+
                 } else {
                     echo "Please select at least one category.";
                     exit;
@@ -87,11 +91,12 @@ class ControllerManga extends Controller {
 
     // Method to read a manga entry by ID
     public function read($id) {
-        $model   = new ModelManga();
-        $manga   = $model->getMangaById($id);
-        $volumes = $model->getMangaVolumes($id);
-        $review  = $model->mangaReview($id);
-        $revAdd  = null;
+        $model      = new ModelManga();
+        $manga      = $model->getMangaById($id);
+        $volumes    = $model->getMangaVolumes($id);
+        $review     = $model->mangaReview($id);
+        $also_liked = $model->getAlsoLiked($id);
+        $revAdd     = null;
         if (isset($_POST['review']) && isset($_POST['id_manga'])) {
             $revAdd = $model->addReview($_POST['review'], $_POST['id_manga'], $_SESSION['id_user']);
         }
@@ -114,7 +119,7 @@ class ControllerManga extends Controller {
             echo json_encode(["success" => false, "message" => "Sheh."]);
         }
     }
-
+    // Method to search Mangas for the search bar
     public function search() {
         $search        = '%' . $_POST['search'] . '%';
         $model         = new ModelManga();
@@ -133,13 +138,14 @@ class ControllerManga extends Controller {
         echo json_encode($authors);
 
     }
-
+    // Method to display the page of an author
     public function readAuthor($id) {
         $model  = new ModelManga();
         $author = $model->getAuthorById($id);
         require_once './view/author.php';
     }
 
+    //Methode to like a Manga (I worked hard at it for it to suck)
     public function likeManga() {
         header('Content-Type: application/json');
 
@@ -167,6 +173,7 @@ class ControllerManga extends Controller {
         ]);
     }
 
+    //Method to Change the display of the heart icon
     public function getUserLikedMangas() {
         header('Content-Type: application/json');
         $data     = json_decode(file_get_contents("php://input"), true);
@@ -191,6 +198,7 @@ class ControllerManga extends Controller {
     //     require_once './view/category.php';
     // }
 
+    //Method to display the Category page
     public function readCategory($category_name) {
         $model    = new ModelManga();
         $category = $model->getCategoryDatas($category_name);
@@ -198,9 +206,60 @@ class ControllerManga extends Controller {
         require_once './view/category.php';
     }
 
+    //Method to add a review to a manga
     public function addRev() {
         $model = new ModelManga();
         $model->addReview($_POST['review'], $_POST['id_manga'], $_SESSION['id_user']); //TELL ME SI C'EST BON
         header('Location: /manga/' . $_POST['id_manga']);
     }
+
+    public function addVolume() {
+        header('Content-Type: application/json'); // Ensure JSON response
+        $data = json_decode(file_get_contents("php://input"), true);
+
+        if (! $data || ! isset($data['id_manga']) || ! isset($data['id_volume'])) {
+            echo json_encode([
+                "success" => false,
+                "message" => "Invalid input data.",
+            ]);
+            return;
+        }
+
+        $model = new ModelManga();
+        if ($model->addVolume($data['id_manga'], $data['id_volume'])) {
+            echo json_encode([
+                "success" => true,
+                "message" => "Volume added successfully.",
+            ]);
+        } else {
+            echo json_encode([
+                "success" => false,
+                "message" => "Failed to add volume.",
+            ]);
+        }
+    }
+    public function deleteVolume() {
+        $data = json_decode(file_get_contents("php://input"), true);
+
+        $model = new ModelManga();
+        if ($model->deleteVolume($data['id_manga'], $data['id_volume'])) {
+            json_encode([
+                "success" => true,
+                "message" => "Volume deleted successfully."]);
+
+        } else {
+            json_encode([
+                "success" => false,
+                "message" => "Failed to delete volume.",
+            ]);
+        }
+    }
+
+    public function getVolumes($id) {
+        $model   = new ModelManga();
+        $volumes = $model->getMangaVolumes($id);
+        header('Content-Type: application/json');
+        echo json_encode($volumes);
+    }
+
 }

@@ -1,10 +1,10 @@
 <?php
     $title            = 'Nihon | ' . $manga->manga->getName();
     $meta_description = $manga->manga->getName() . 'it a great manga';
-    $scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public\asset\js\base.js", "public\asset\js\header.js", "public/asset/js/like.js", "public/asset/js/cart.js", "public/asset/js/like.js", "public/asset/js/review.js", "public\asset\js\darkmode.js"];
+    $scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public\asset\js\base.js", "public\asset\js\header.js", "public/asset/js/like.js", "public/asset/js/cart.js", "public/asset/js/review.js", "public\asset\js\darkmode.js"];
     ob_start();
 ?>
-<main>
+<main class="la-page-manga">
     <section>
         <div class="mangaPage-frst-section">
             <div class="mangaPage">
@@ -12,9 +12,11 @@
                     $isLiked    = isset($_SESSION['id_user']) && $manga->manga->isLikedByUser($_SESSION['id_user']);
                     $likedClass = $isLiked ? 'liked' : '';
                 ?>
-                <img src=".<?php echo $manga->manga->getThumbnail(); ?>" alt="<?php echo $manga->manga->getName(); ?>">
+                <div class="holo-effect">
+                    <img src=".<?php echo $manga->manga->getThumbnail(); ?>" alt="<?php echo $manga->manga->getName(); ?>">
+                </div>
                 <h2><?php echo $manga->manga->getName(); ?></h2>
-                <svg class="like-btn                                                                                                                                                 <?php echo $likedClass; ?>" data-manga-id="<?php echo $manga->manga->getId_manga(); ?>" width="33" height="33" viewBox="0 0 33 33" fill="red" xmlns="http://www.w3.org/2000/svg">
+                <svg class="like-btn                                                                                                                                                                                     <?php echo $likedClass; ?>" data-manga-id="<?php echo $manga->manga->getId_manga(); ?>" width="33" height="33" viewBox="0 0 33 33" fill="red" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M16.4906 7.06174C13.7415 3.8478 9.15715 2.98326 5.71271 5.92627C2.26826 8.86928 1.78333 13.7898 4.48827 17.2706C6.73725 20.1645 13.5434 26.2681 15.7741 28.2436C16.0237 28.4647 16.1485 28.5752 16.294 28.6186C16.4211 28.6565 16.5601 28.6565 16.6871 28.6186C16.8327 28.5752 16.9575 28.4647 17.207 28.2436C19.4377 26.2681 26.2439 20.1645 28.4929 17.2706C31.1978 13.7898 30.7721 8.83832 27.2685 5.92627C23.7648 3.01422 19.2397 3.8478 16.4906 7.06174Z" stroke="#363333" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
                 <span class="like-count"><?php echo $manga->manga->getLikesCount(); ?></span>
@@ -26,7 +28,7 @@
                 </div>
                 <div class="char-manga">
                     <div>
-                        <p>Category :</p> <a href="#"><?php echo $manga->categories ?></a>
+                        <p>Category : </p><a href="#"><?php echo $manga->categories ?></a>
                     </div>
                     <div>
                         <p>Author : </p><a href="#"><?php echo $manga->author ?></a>
@@ -43,22 +45,34 @@
                 <?php foreach ($review as $rev): ?>
                     <div class="cadre-review">
                         <div class="cadre-profile">
-                            <img class="profile-picture" src="<?php echo BASE_URL ?>public\asset\img\profile_picture.webp" alt="profile picture">
+                            <img class="profile-picture" src="<?php echo BASE_URL . htmlspecialchars($rev['profile_pic']) ?>" alt="profile picture">
                             <p><?php echo htmlspecialchars($rev['username']); ?></p>
                         </div>
                         <div class="comm">
                             <p><?php echo htmlspecialchars($rev['review']); ?></p>
                         </div>
-                            <?php if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true): ?>
-                                <form method="post" action="/delete_review/<?php echo $manga->manga->getId_manga(); ?>">
-                                    <input type="hidden" name="id_review" value="<?php echo $rev['id_review']; ?>">
-                                    <button type="submit">Delete</button>
-                                </form>
-                            <?php endif; ?>
+                        <?php if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true): ?>
+                            <form method="post" action="/delete_review/<?php echo $manga->manga->getId_manga(); ?>">
+                                <input type="hidden" name="id_review" value="<?php echo $rev['id_review']; ?>">
+                                <button type="submit">Delete</button>
+                            </form>
+                        <?php endif; ?>
                     </div>
                     <hr>
+                    <?php endforeach; ?>
+                </div>
+                <section class="also-liked">
+            <figure><h2><?php echo $manga->manga->getName() ?> Readers also liked</h2><img src="<?php echo BASE_URL ?>public\asset\img\books-anim.gif" alt=""></figure>
+
+            <div class="also-liked-contain">
+                <?php foreach ($also_liked as $similar): ?>
+                <div>
+                    <figure><a href="<?= $similar->getId_Manga()?>" target="_blank"><img src="<?php echo BASE_URL . $similar->getThumbnail()?>" alt="<?= $similar->getName()?>"></a></figure>
+                    <p><?php echo $similar->getName() ?></p>
+                </div>
                 <?php endforeach; ?>
-                <hr>
+            </div>
+        </section>
         </section>
         <form id="leave-review" method="post" action="/manga/<?php echo $manga->manga->getId_manga(); ?>">
             <input type="hidden" name="id_manga" id="id_manga" value="<?php echo $manga->manga->getId_manga(); ?>">
@@ -66,24 +80,7 @@
             <button type="submit">Post your review</button>
         </form>
         </div>
-        <section class="also-liked">
-            <h2><?php echo $manga->manga->getName() ?> Readers also liked</h2>
-            <div class="also-liked-contain">
-                <div>
-                    <figure><a href="#"><img src="<?php echo BASE_URL ?>public\asset\img\shonen\chainsawman.webp" alt="Berserk"></a></figure>
-                    <p>chainsawman</p>
-                </div>
-                <div>
-                    <figure><a href="#"><img src="<?php echo BASE_URL ?>public\asset\img\shonen\one_piece.webp" alt="One Piece"></a></figure>
-                    <p>One Piece</p>
-                </div>
-                <div>
-                    <figure><a href="#"><img src="<?php echo BASE_URL ?>public\asset\img\shonen\l_attaque_des_titans.webp" alt="Attack on Titan"></a></figure>
-                    <p>Attack on titan</p>
-                </div>
-            </div>
     </div>
-    </section>
     </div>
     <section class="see-volume">
         <div class="all-volume">

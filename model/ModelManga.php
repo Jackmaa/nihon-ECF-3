@@ -93,6 +93,39 @@ class ModelManga extends Model {
         return $volumes;
     }
 
+    public function addVolumes(int $id_manga, int $volumes) {
+        while ($volumes && $volumes > 0) {
+            $req = $this->getDb()->prepare(
+                'INSERT INTO `manga_volume` (`id_manga`, `id_volume`) VALUES (:id_manga, :id_volume)'
+            );
+            $req->bindParam(':id_manga', $id_manga, PDO::PARAM_INT);
+            $req->bindParam(':id_volume', $volumes, PDO::PARAM_INT);
+            $req->execute();
+            $volumes--;
+        }
+        return true;
+    }
+
+// Add a new volume
+    public function addVolume($id_manga, $id_volume) {
+        $req = $this->getDb()->prepare(
+            "INSERT INTO manga_volume (id_manga, id_volume) VALUES (:id_manga, :id_volume)"
+        );
+        $req->bindParam(":id_manga", $id_manga, PDO::PARAM_INT);
+        $req->bindParam(":id_volume", $id_volume, PDO::PARAM_INT);
+        return $req->execute();
+    }
+
+// Delete a volume
+    public function deleteVolume($id_manga, $id_volume) {
+        $req = $this->getDb()->prepare(
+            "DELETE FROM manga_volume WHERE id_manga = :id_manga AND id_volume = :id_volume"
+        );
+        $req->bindParam(":id_manga", $id_manga, PDO::PARAM_INT);
+        $req->bindParam(":id_volume", $id_volume, PDO::PARAM_INT);
+        return $req->execute();
+    }
+
     public function updateManga(int $id, string $name, string $description, string $published_date, string $thumbnail) {
         $req = $this->getDb()->prepare(
             'UPDATE `manga`
@@ -121,6 +154,33 @@ class ModelManga extends Model {
         $req->bindParam(':name', $name, PDO::PARAM_STR);
         $req->execute();
         return $req->fetch(PDO::FETCH_ASSOC);
+    }
+
+    //Get user's favorites mangas
+    public function getUserFavs($id) {
+        $req = $this->getDb()->prepare(
+            'SELECT
+                manga.id_manga,
+                manga.name,
+                manga.id_author,
+                manga.description,
+                manga.published_date,
+                manga.thumbnail
+            FROM
+                manga
+            INNER JOIN
+                fav ON manga.id_manga = fav.id_manga
+            WHERE
+                fav.id_user = :id_user');
+        $req->bindParam(':id_user', $id, PDO::PARAM_INT);
+        $req->execute();
+        $data   = $req->fetchAll(PDO::FETCH_ASSOC);
+        $mangas = [];
+        foreach ($data as $manga) {
+            $mangas[] = new Manga($manga);
+        }
+        return $mangas;
+
     }
 
     //Create a manga
@@ -176,6 +236,29 @@ class ModelManga extends Model {
         unset($data['category_names']);
         unset($data['editor_name']);
         return new MangaDTO(new Manga($data), $author_name, $categories, $editor_name);
+    }
+
+    public function getAlsoLiked(int $id) {
+        $req = $this->getDb()->prepare("SELECT m.id_manga, m.name, m.thumbnail
+            FROM manga m
+            JOIN manga_category mc ON m.id_manga = mc.manga_id
+            WHERE mc.category_id = (
+                SELECT category_id
+                FROM manga_category
+                WHERE manga_id = :id_manga
+                LIMIT 1
+            )
+            AND m.id_manga != :id_manga
+            ORDER BY RAND()
+            LIMIT 3;");
+        $req->bindParam(':id_manga', $id, PDO::PARAM_INT);
+        $req->execute();
+        $data   = $req->fetchAll(PDO::FETCH_ASSOC);
+        $mangas = [];
+        foreach ($data as $manga) {
+            $mangas[] = new Manga($manga);
+        }
+        return $mangas;
     }
 
     public function deleteManga($id) {
@@ -261,17 +344,16 @@ class ModelManga extends Model {
         $req->bindParam(':id', $id, PDO::PARAM_INT);
         $req->execute();
     }
-    
 
-    public function addReview($review, $id_manga, $id_user){
-        if(isset($_POST['review'])){
-        $req = $this->getDb()->prepare(
-            "INSERT INTO `review` (`review`, `id_manga`, `id_user`, `published_date`) VALUES (:review, :id_manga, :id_user, NOW())"
-        );
-        $req->bindParam(':review', $review, PDO::PARAM_STR);
-        $req->bindParam(':id_manga', $id_manga, PDO::PARAM_INT);
-        $req->bindParam(':id_user', $id_user, PDO::PARAM_INT);
-        $req->execute();
+    public function addReview($review, $id_manga, $id_user) {
+        if (isset($_POST['review'])) {
+            $req = $this->getDb()->prepare(
+                "INSERT INTO `review` (`review`, `id_manga`, `id_user`, `published_date`) VALUES (:review, :id_manga, :id_user, NOW())"
+            );
+            $req->bindParam(':review', $review, PDO::PARAM_STR);
+            $req->bindParam(':id_manga', $id_manga, PDO::PARAM_INT);
+            $req->bindParam(':id_user', $id_user, PDO::PARAM_INT);
+            $req->execute();
         }
     }
 

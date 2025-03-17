@@ -90,6 +90,6 @@
                     </figure>
                 <?php endif; ?>
 
-            </div>
-        </section>
-    </header>
+                    </div>
+                </section>
+</header>

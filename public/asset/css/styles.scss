@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Bangers&family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Kaisei+Tokumin&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bangers&family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Kaisei+Tokumin&family=Permanent+Marker&display=swap");
 
 /*
 **********************************
@@ -93,6 +94,41 @@ body {
 body.dark-mode {
   background-color: #202024;
   color: white;
+
+  .menu-desktop {
+    figure:nth-of-type(3) a img {
+      transition: all 0.3s ease;
+      &:hover {
+        box-shadow: 0 5px 10px rgba(255, 255, 255, 0.1),
+          0 3px 3px rgba(236, 236, 236, 0.1);
+      }
+    }
+  }
+
+  .review {
+    background-color: #202024;
+    color: white;
+  }
+  #username-picture {
+    a:first-child {
+      font-family: var(--ff-barlow);
+      margin-right: 1vh;
+      color: var(--fc-light);
+      font-size: 1.4rem;
+      transition: all 0.3s ease;
+      &:hover {
+        color: #cc392b;
+      }
+    }
+  }
+
+  .container-homepage,
+  .la-page-manga,
+  section.see-volume {
+    background-image: url(../img/vignette.svg);
+    background-color: #202024;
+    background-blend-mode: overlay;
+  }
 
   label {
     color: #0e0e0e;
@@ -969,10 +1005,16 @@ main.login {
 
   .red-background {
     background-color: var(--primary-clr-red);
+    background-image: url(../img/star-red.gif);
+    background-size: cover;
+    background-position: center;
   }
 
   .black-background {
-    background-color: #38383f;
+    background-image: url(../img/star.gif),
+      linear-gradient(to right, #020000, #046a8b, #020000);
+    background-size: cover;
+    background-position: center;
   }
 }
 
@@ -1348,7 +1390,9 @@ button {
       margin: 0 auto;
 
       img {
-        width: 20vh;
+        width: 25vh;
+        height: 35vh;
+        object-fit: cover;
       }
     }
 
@@ -1379,6 +1423,66 @@ button {
 ***********MANGA PAGE************
 **********************************
 */
+
+.holo-effect::before,
+.holo-effect::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background-repeat: no-repeat;
+  mix-blend-mode: color-dodge;
+  transition: all 0.33s ease;
+  pointer-events: none;
+}
+
+.holo-effect::before {
+  background-position: 50% 50%;
+  background-size: 400% 400%;
+  background-image: linear-gradient(
+    115deg,
+    transparent 0%,
+    rgb(0, 231, 255) 25%,
+    transparent 47%,
+    transparent 53%,
+    rgb(255, 0, 231) 75%,
+    transparent 100%
+  );
+  opacity: 0.7;
+  filter: brightness(0.4) contrast(1.5);
+  z-index: 1;
+}
+
+.holo-effect::after {
+  opacity: 0.9;
+  background-image: url("https://assets.codepen.io/13471/sparkles.gif"),
+    url(https://assets.codepen.io/13471/holo.png),
+    linear-gradient(125deg, 
+      #ff008450 15%, 
+      #fca40040 30%, 
+      #ffff0030 40%, 
+      #00ff8a20 60%, 
+      #00cfff40 70%, 
+      #cc4cfa50 85%);
+  background-position: 50% 50%;
+  background-size: 180%;
+  background-blend-mode: overlay;
+  z-index: 2;
+  filter: brightness(1) contrast(1);
+}
+
+.holo-effect:hover::before {
+  background-size: 250% 250%;
+  opacity: 1;
+  filter: brightness(0.6) contrast(1.7);
+}
+
+.holo-effect:hover::after {
+  opacity: 1;
+}
+
 
 div.mangaPage {
   position: relative;
@@ -1455,9 +1559,7 @@ div.mangaPage {
 }
 
 .char-manga {
-  display: flex;
-  justify-content: center;
-  margin-top: 1vh;
+  margin: 2vh;
   font-family: var(--ff-barlow);
   font-size: 0.8rem;
 
@@ -1478,68 +1580,82 @@ div.mangaPage {
 }
 
 .review {
+  border: 2px solid #cc382b54;
+  border-radius: 5px;
   width: 90%;
-  display: grid;
-  place-self: center;
-  place-content: center;
-  align-content: center;
-  margin-top: 5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem auto;
   font-family: var(--ff-barlow);
   max-height: 50vh;
   overflow-y: auto;
-  padding-right: 10px;
+  padding: 2vh 1vw;
   scrollbar-width: thin;
   scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+  background-color: #F1EBE8;
 
   h2 {
-    margin-top: 40vh;
+    margin-top: 2vh;
     font-family: var(--ff-bangers);
     letter-spacing: var(--letter-spacing);
+    text-align: center;
   }
 
   hr {
     margin: 2vh 0;
-  }
-
-  p :last-child {
-    margin-top: 2vh;
+    width: 100%;
   }
 
   .cadre-review {
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    padding: 1rem;
+    margin: 1rem 0;
+    width: 80%;
+    min-height: 15vh;
     display: flex;
-    justify-content: center;
-
-    .comm {
-      display: flex;
-      align-items: center;
-      width: fit-content;
-    }
+    align-items: center;
+    justify-content: space-between;
 
     .cadre-profile {
-      margin-left: 5vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-    }
-  }
+      margin-right: 2rem;
 
-  img.profile-picture {
-    width: 10vh;
-    height: 10vh;
-    border-radius: 50%;
-    object-fit: cover;
+      img.profile-picture {
+        height: 8vh;
+        width: 8vh;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 0.5rem;
+      }
+
+      p {
+        font-weight: bold;
+      }
+    }
+
+    .comm {
+      flex: 1;
+      padding: 0 1rem;
+      text-align: left;
+    }
+
+    form {
+      margin-left: 1rem;
+    }
   }
 }
 
 .review::-webkit-scrollbar {
   width: 8px;
 }
-
 .review::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.3);
   border-radius: 4px;
 }
-
 .review::-webkit-scrollbar-track {
   background: transparent;
 }
@@ -1574,28 +1690,53 @@ div.mangaPage {
 }
 
 .also-liked {
-  h2 {
-    margin: 2vh 0;
-    font-family: var(--ff-bangers);
-    letter-spacing: var(--letter-spacing);
+  figure {
+    display: flex;
+    align-items: center;
+    img {
+      width: 10vh;
+      margin-left: 1rem;
+    }
+    h2 {
+      margin: 2vh 0;
+      font-family: var(--ff-bangers);
+      letter-spacing: var(--letter-spacing);
+    }
   }
 
   .also-liked-contain {
     display: flex;
-    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
     text-align: center;
     font-family: var(--ff-barlow);
     font-size: 1.2rem;
 
+    div{
+      margin: 1rem 0;
+    }
+
     figure {
-      width: 20vh;
+      margin: 0.5rem 0;
+      width: 100%;
+      &:hover {
+        a {
+          filter: brightness(0.5);
+        }
+      }
+      a {
+        transition: all 0.3s ease;
+        img {
+          width: 20vh;
+        }
+      }
     }
   }
 }
 
 .see-volume {
   .all-volume {
-    margin-top: 5vh;
+    padding: 2rem 0;
     display: flex;
 
     h2 {
@@ -2256,18 +2397,64 @@ button:hover {
 ***********kakoii mode***********
 *******************************
 */
+
+  // .headkakkoii {
+  //   height: 60vh;
+  //   background: url(../img/kakoii.svg) no-repeat center center/cover;
+  //   width: 100%;
+  // }
   .formkakoii {
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background: url(../img/cerisier.gif);
+    background-color: rgba(242, 235, 232, 0.507);
+    background-blend-mode: overlay;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
+
+  main#kakkoii {
+    width: 90vh;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    h1 {
+      font-size: 3rem;
+    }
+    .wrapper {
+      p {
+        font-family: "Permanent Marker", cursive;
+        color: #38383f;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        padding-left: 1rem;
+      }
+    }
+    .kakkoiiflex {
+      .center {
+        width: 30vh;
+        border: solid 4px white;
+        h2 {
+          font-size: 2rem;
+          margin-bottom: 1rem;
+        }
+        p {
+          font-size: 1.5rem;
+          margin-bottom: 1rem;
+        }
+        .open-popup {
+          width: 100%;
+        }
+      }
+    }
+  }
+
   .headkakkoii {
-    width: 100%;
-    height: auto;
-  }
-  .kakkoii {
-    width: 70vh;
+    display: none;
   }
 }
 
@@ -2277,18 +2464,48 @@ button:hover {
 ***********CAROUSSEL************
 **********************************
 */
+
+  .button-container {
+    margin: 0 200px;
+    position: relative;
+    display: inline-block;
+  }
+
+  .coucou {
+    z-index: 1;
+  }
+
+  .coucou:hover + .gif-background {
+    opacity: 1;
+  }
+
+  .gif-background {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40vh;
+    height: 20vh;
+    background-image: url("../img/supersayanblue.gif");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+  }
+
   .carousel {
     height: 60vh;
 
-    .custom-btn {
-      margin-top: 2%;
-      width: 20%;
-      height: 10%;
+    .button-container {
+      margin-top: 2rem;
     }
 
     p {
       margin: 1%;
       font-size: 1.5rem;
+      z-index: 99;
     }
 
     .next,
@@ -2362,6 +2579,7 @@ button:hover {
       font-family: var(--ff-barlow);
       margin-right: 1vh;
       color: var(--fc-black);
+      font-size: 1.4rem;
 
       transition: all 0.3s ease;
 
@@ -2429,17 +2647,26 @@ button:hover {
         padding: 10px;
         z-index: 10;
 
-        li {
-          padding: 8px 12px;
-          font-family: var(--ff-bangers);
-          letter-spacing: var(--letter-spacing);
+        ul {
+          overflow: hidden;
+          transition: all 0.3s ease;
+          li {
+            width: 100%;
+            padding: 8px 12px;
+            font-family: var(--ff-bangers);
+            letter-spacing: var(--letter-spacing);
+            transition: all 0.3s ease;
 
-          &:hover {
-            background-color: #f0f0f0;
-          }
+            &:hover {
+              background-color: #cc392b;
+            }
 
-          a {
-            color: var(--fc-black);
+            a {
+              display: block;
+              width: 100%;
+              padding: 8px 12px;
+              color: var(--fc-black);
+            }
           }
         }
       }
@@ -2601,20 +2828,16 @@ button:hover {
     display: flex;
 
     .comm-desktop {
+      display: flex;
       flex-direction: column;
+      align-items: center;
       width: 50%;
-
+  
       .review {
-        hr {
-          width: 90vh;
-        }
+        max-width: 80vw;
+  
         .cadre-review {
-          justify-content: start;
-          width: 50vh;
-          height: 20vh;
-          div {
-            margin: 0 1rem;
-          }
+          width: 60%;
         }
       }
     }
@@ -2629,6 +2852,7 @@ button:hover {
     .also-liked-contain {
       display: flex;
       justify-content: space-around;
+      flex-direction: row;
     }
   }
 
@@ -2756,7 +2980,7 @@ button:hover {
 // }
 
 /*
-**********************************
+**********************************s
 ***********CONTACT PAGE************
 **********************************
 */
@@ -2829,25 +3053,33 @@ button:hover {
     padding: 10px;
     text-align: left;
 
-    select.status-borrow {
+    select.status-dropdown {
       padding: 5px;
       border-radius: 5px;
     }
 
-    .status-borrow option[value="PENDING"] {
+    .status-dropdown option[value="pending"] {
       background-color: orange;
     }
 
-    .status-borrow option[value="APPROVED"] {
+    .status-dropdown option[value="approved"] {
       background-color: green;
       color: white;
     }
 
-    .status-borrow option[value="REJECTED"],
-    .status-borrow option[value="LATE"] {
+    .status-dropdown option[value="rejected"],
+    .status-dropdown option[value="late"] {
       background-color: red;
       color: white;
     }
+  }
+
+  .status-checkmark {
+    margin-left: 8px;
+    color: #4caf50;
+    font-weight: bold;
+    transition: opacity 0.5s ease-in-out;
+    opacity: 0;
   }
 
   th {
@@ -2889,6 +3121,61 @@ button:hover {
     justify-content: center;
     align-items: center;
     max-width: 100%;
+  }
+
+  .user-items {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    width: 50%;
+    max-height: 400px;
+    overflow-y: auto;
+    z-index: 1000;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+  }
+
+  .close-btn:hover {
+    color: red;
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: fadeIn 0.3s forwards;
+  }
+
+  .fade-out {
+    animation: fadeOut 0.3s forwards;
+  }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeOut {
+    to {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
   }
 
   .button-container {
@@ -3075,9 +3362,7 @@ form {
     opacity: 0; /* Initialement invisible */
     transform: translateY(20px); /* Position initiale en dehors de l'écran */
   }
-  
 }
-
 
 @media (min-width: 2560px) {
   div.slider {
@@ -3094,9 +3379,7 @@ form {
       }
     }
   }
-
 }
-
 
 /*
 **********************************
@@ -3284,8 +3567,6 @@ form {
       transition: all 0.3s ease;
     }
   }
- 
-
 }
 
 /*
@@ -3486,4 +3767,11 @@ form {
     background-size: contain;
     opacity: 1;
   }
+}
+
+.la-page-manga,
+section.see-volume {
+  background-image: url(../img/vignette.svg);
+  background-color: rgba(242, 235, 232, 0.8901960784);
+  background-blend-mode: overlay;
 }

@@ -15,7 +15,7 @@ class ModelBorrow extends Model {
     // Get the number of books currently borrowed by a user
     public function userBorrowCount(int $id_user): int {
         $req = $this->getDb()->prepare(
-            "SELECT COUNT(*) FROM borrow WHERE id_user = ? AND return_date > NOW()"
+            "SELECT COUNT(*) FROM borrow WHERE id_user = ? AND borrow.status != 'BACK'"
         );
         $req->execute([$id_user]);
         return (int) $req->fetchColumn();
@@ -51,7 +51,7 @@ class ModelBorrow extends Model {
         $req->bindParam(":id_manga", $id_manga, PDO::PARAM_INT);
         $req->bindParam(":id_volume", $id_volume, PDO::PARAM_INT);
         $req->execute();
-        return $req->fetchColumn() == 0; // Available if count is 0
+        return $req->fetchColumn() < 3; // Available if count is less than 3
     }
 
     // Add a reservation to the reservation table
@@ -83,6 +83,20 @@ class ModelBorrow extends Model {
              WHERE id_user = :id_user");
         $req->bindParam(":id_user", $id_user, PDO::PARAM_INT);
         $req->execute();
+    }
+
+    public function deleteItemFromCart($id_user, $id_manga, $id_volume) {
+        $req = $this->getDb()->prepare(
+            "DELETE FROM reservation
+             WHERE id_user = :id_user AND id_manga = :id_manga AND id_volume = :id_volume");
+        $req->bindParam(":id_user", $id_user, PDO::PARAM_INT);
+        $req->bindParam(":id_manga", $id_manga, PDO::PARAM_INT);
+        $req->bindParam(":id_volume", $id_volume, PDO::PARAM_INT);
+        if ($req->execute()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function getBorrowedBooks() {
@@ -130,4 +144,57 @@ class ModelBorrow extends Model {
             return false;
         }
     }
+
+    // Fetch borrowed books for a user
+    public function getUserBorrows($id_user) {
+        $req = $this->getDb()->prepare("SELECT b.id_borrow, b.id_manga AS id_manga, b.id_volume, b.borrow_date, b.return_date, b.status, u.id_user FROM borrow b INNER JOIN manga m ON b.id_manga = m.id_manga INNER JOIN user u ON u.id_user = b.id_user WHERE b.id_user = :id_user AND b.status != 'BACK'");
+        $req->bindParam(":id_user", $id_user, PDO::PARAM_INT);
+        $req->execute();
+        $results = $req->fetchAll(PDO::FETCH_ASSOC);
+        $borrows = [];
+        foreach ($results as $borrow) {
+            $borrows[] = new Borrow($borrow);
+        }
+        return $borrows;
+    }
+
+    public function getUserPastBorrows($id_user) {
+        $req = $this->getDb()->prepare("SELECT b.id_borrow, b.id_manga AS id_manga, b.id_volume, b.borrow_date, b.return_date, b.status, u.id_user FROM borrow b INNER JOIN manga m ON b.id_manga = m.id_manga INNER JOIN user u ON u.id_user = b.id_user WHERE b.id_user = :id_user AND b.status = 'BACK'");
+        $req->bindParam(":id_user", $id_user, PDO::PARAM_INT);
+        $req->execute();
+        $results = $req->fetchAll(PDO::FETCH_ASSOC);
+        $borrows = [];
+        foreach ($results as $borrow) {
+            $borrows[] = new Borrow($borrow);
+        }
+        return $borrows;
+    }
+
+    // Fetch reserved (cart) items for a user
+    public function getUserReservations($id_user) {
+        $req = $this->getDb()->prepare("SELECT `reservation`.`id_manga`, `reservation`.`id_volume`, `manga`.`name`, `manga`.`thumbnail` FROM reservation INNER JOIN `manga` ON `reservation`.`id_manga` = `manga`.`id_manga` WHERE id_user = :id_user");
+        $req->bindParam(":id_user", $id_user, PDO::PARAM_INT);
+        $req->execute();
+        return $req->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getUserBorrowsAdmin($userId) {
+        $req = $this->getDb()->prepare("SELECT b.id_borrow, m.name, b.return_date, b.id_volume, b.status FROM borrow b JOIN manga m on b.id_manga = m.id_manga where b.id_user = :userId");
+        $req->bindParam(":userId", $userId, PDO::PARAM_INT);
+        $req->execute();
+        return $req->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getUserReservationsAdmin($userId) {
+        $req = $this->getDb()->prepare("SELECT r.id_reservation, r.id_user, r.id_manga, r.id_volume, m.name, r.placed FROM reservation r JOIN manga m on r.id_manga = m.id_manga where r.id_user = :userId");
+        $req->bindParam(":userId", $userId, PDO::PARAM_INT);
+        $req->execute();
+        return $req->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function clearExpiredReservations() {
+        $req = $this->getDb()->prepare("DELETE FROM reservation WHERE exp_date < NOW()");
+        $req->execute();
+    }
+
 }

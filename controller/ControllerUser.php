@@ -7,6 +7,13 @@ class ControllerUser extends Controller {
     // Handle user login
     public function login() {
         $model = new ModelUser();
+        if (isset($_SESSION['admin_logged_in'])) {
+            session_unset();
+        }
+        if (isset($_SESSION['id_user'])) {
+            header('Location: ' . $this->router->generate('home'));
+            exit;
+        }
         // On peut maintenant accéder à $this->router
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Check if the email and password are set
@@ -15,9 +22,10 @@ class ControllerUser extends Controller {
                 if ($user = $model->getUser($_POST['credential'])) {
                     if (password_verify($_POST['password'], $user->getPassword())) {
                         // Set the user ID in the session
-                        $_SESSION['id_user'] = $user->getId_user();
-                        $_SESSION['name']    = $user->getUsername();
-                        $_SESSION['cart']    = $model->fetchCartData($user->getId_user());
+                        $_SESSION['id_user']     = $user->getId_user();
+                        $_SESSION['name']        = $user->getUsername();
+                        $_SESSION['profile_pic'] = $user->getProfile_pic();
+                        $_SESSION['cart']        = $model->fetchCartData($user->getId_user());
                         header('Location: ' . $this->router->generate('home'));
                         exit;
                     } else {
@@ -168,7 +176,7 @@ class ControllerUser extends Controller {
             if (! empty($_POST['username']) && ! empty($_POST['email']) && ! empty($_POST['password']) && ! empty($_POST['password_verify']) && ! empty($_POST['profile_pic'])) {
                 if ($_POST['password'] === $_POST['password_verify']) {
                     $model = new ModelUser();
-                    $model->updateUser($_POST['username'], $_POST['email'], $_POST['password'], $_POST['profile_pic']);
+                    $model->updateUser($_POST['username'], $_POST['email'], $_POST['password'], $_POST['profile_pic'], $id);
                     echo 'Your account has been updated.';
                     header('Location: ' . $this->router->generate('home'));
                 } else {
@@ -190,14 +198,47 @@ class ControllerUser extends Controller {
     }
 
     public function currentStorie() {
-        require_once './view/currentStorie.php';
+        if (! isset($_SESSION['id_user'])) {
+            header('Location: ' . $this->router->generate('login'));
+            exit;
+        } else {
+            $model = new ModelBorrow;
+            $datas  = $model->getUserBorrows($_SESSION['id_user']);
+            $mangas = [];
+            foreach($datas as $data) {
+                $manga = new ModelManga;
+                $mangaDTO = $manga->getMangaById($data -> getId_Manga());
+                $mangas[] = new BorrowDTO($data, $mangaDTO);
+            }
+            require_once './view/currentStorie.php';
+        }
     }
 
     public function favoriteManga() {
+        $model = new ModelManga();
+        $mangas = $model->getUserFavs($_SESSION['id_user']);
+        $favs = [];
+        foreach($mangas as $manga) {
+            $favs[] = $model->getMangaById($manga->getId_Manga());
+        }
         require_once './view/favoriteManga.php';
     }
 
     public function pastChronicle() {
-        require_once './view/pastChronicle.php';
+        if (! isset($_SESSION['id_user'])) {
+            header('Location: ' . $this->router->generate('login'));
+            exit;
+        } else {
+            $model = new ModelBorrow;
+            $datas  = $model->getUserPastBorrows($_SESSION['id_user']);
+            $mangas = [];
+            foreach($datas as $data) {
+                $manga = new ModelManga;
+                $mangaDTO = $manga->getMangaById($data -> getId_Manga());
+                $mangas[] = new BorrowDTO($data, $mangaDTO);
+               
+            }
+            require_once './view/pastChronicle.php';
+        }
     }
 }
