@@ -108,7 +108,9 @@ body.dark-mode #username-picture a:first-child {
 body.dark-mode #username-picture a:first-child:hover {
   color: #cc392b;
 }
-body.dark-mode .container-homepage, body.dark-mode .la-page-manga, body.dark-mode section.see-volume {
+body.dark-mode .container-homepage,
+body.dark-mode .la-page-manga,
+body.dark-mode section.see-volume {
   background-image: url(../img/vignette.svg);
   background-color: #202024;
   background-blend-mode: overlay;
@@ -1232,6 +1234,49 @@ button {
 ***********MANGA PAGE************
 **********************************
 */
+.holo-effect::before,
+.holo-effect::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background-repeat: no-repeat;
+  mix-blend-mode: color-dodge;
+  transition: all 0.33s ease;
+  pointer-events: none;
+}
+
+.holo-effect::before {
+  background-position: 50% 50%;
+  background-size: 400% 400%;
+  background-image: linear-gradient(115deg, transparent 0%, rgb(0, 231, 255) 25%, transparent 47%, transparent 53%, rgb(255, 0, 231) 75%, transparent 100%);
+  opacity: 0.7;
+  filter: brightness(0.4) contrast(1.5);
+  z-index: 1;
+}
+
+.holo-effect::after {
+  opacity: 0.9;
+  background-image: url("https://assets.codepen.io/13471/sparkles.gif"), url(https://assets.codepen.io/13471/holo.png), linear-gradient(125deg, rgba(255, 0, 132, 0.3137254902) 15%, rgba(252, 164, 0, 0.2509803922) 30%, rgba(255, 255, 0, 0.1882352941) 40%, rgba(0, 255, 138, 0.1254901961) 60%, rgba(0, 207, 255, 0.2509803922) 70%, rgba(204, 76, 250, 0.3137254902) 85%);
+  background-position: 50% 50%;
+  background-size: 180%;
+  background-blend-mode: overlay;
+  z-index: 2;
+  filter: brightness(1) contrast(1);
+}
+
+.holo-effect:hover::before {
+  background-size: 250% 250%;
+  opacity: 1;
+  filter: brightness(0.6) contrast(1.7);
+}
+
+.holo-effect:hover::after {
+  opacity: 1;
+}
+
 div.mangaPage {
   position: relative;
   width: 100%;
@@ -1363,7 +1408,6 @@ div.mangaPage svg.liked {
   align-items: center;
 }
 .review img.profile-picture {
-  width: 10vh;
   height: 10vh;
   border-radius: 50%;
   -o-object-fit: cover;
@@ -2475,7 +2519,7 @@ button:hover {
   }
 }
 /*
-**********************************
+**********************************s
 ***********CONTACT PAGE************
 **********************************
 */
@@ -2544,24 +2588,24 @@ button:hover {
   padding: 10px;
   text-align: left;
 }
-.dashboard th select.status-borrow,
-.dashboard td select.status-borrow {
+.dashboard th select.status-dropdown,
+.dashboard td select.status-dropdown {
   padding: 5px;
   border-radius: 5px;
 }
-.dashboard th .status-borrow option[value=PENDING],
-.dashboard td .status-borrow option[value=PENDING] {
+.dashboard th .status-dropdown option[value=pending],
+.dashboard td .status-dropdown option[value=pending] {
   background-color: orange;
 }
-.dashboard th .status-borrow option[value=APPROVED],
-.dashboard td .status-borrow option[value=APPROVED] {
+.dashboard th .status-dropdown option[value=approved],
+.dashboard td .status-dropdown option[value=approved] {
   background-color: green;
   color: white;
 }
-.dashboard th .status-borrow option[value=REJECTED],
-.dashboard th .status-borrow option[value=LATE],
-.dashboard td .status-borrow option[value=REJECTED],
-.dashboard td .status-borrow option[value=LATE] {
+.dashboard th .status-dropdown option[value=rejected],
+.dashboard th .status-dropdown option[value=late],
+.dashboard td .status-dropdown option[value=rejected],
+.dashboard td .status-dropdown option[value=late] {
   background-color: red;
   color: white;
 }
@@ -2608,14 +2652,15 @@ button:hover {
 }
 .dashboard .user-items {
   position: fixed;
-  top: 20%;
-  right: 20px;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
   background: rgba(0, 0, 0, 0.9);
   color: white;
   padding: 15px;
   border-radius: 8px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-  width: 250px;
+  width: 50%;
   max-height: 400px;
   overflow-y: auto;
   z-index: 1000;
@@ -2814,6 +2859,10 @@ form fieldset label input[type=checkbox] {
 }
 .kakkoii .form-group {
   padding: 10px;
+}
+.kakkoii .kakkoiiflex .center {
+  opacity: 0; /* Initialement invisible */
+  transform: translateY(20px); /* Position initiale en dehors de l'écran */
 }
 
 @media (min-width: 2560px) {
@@ -3100,7 +3149,73 @@ form fieldset label input[type=checkbox] {
   margin: 20px;
 }
 
-.la-page-manga, section.see-volume {
+/*
+**********************************
+***************ABOUT US***********
+**********************************
+*/
+.aboutus {
+  position: relative; /* Permet aux nuages d'être positionnés par rapport à cette section */
+  height: 100vh; /* Prend toute la hauteur de la fenêtre */
+  overflow: hidden; /* Empêche le débordement */
+  background-color: #f9f9f9; /* Couleur de fond */
+  margin: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
+}
+.aboutus h1 {
+  font-family: var(--ff-bangers);
+  letter-spacing: var(--letter-spacing);
+  font-size: 2rem;
+  color: #e00e0e;
+  opacity: 0; /* Initialement invisible */
+  transform: translateY(-50px); /* Position initiale en dehors de l'écran */
+}
+.aboutus h2 {
+  font-family: var(--ff-bangers);
+  letter-spacing: var(--letter-spacing);
+  font-size: 1.5rem;
+  color: #070707;
+  margin: 20px;
+  opacity: 0; /* Initialement invisible */
+  transform: translateY(-50px); /* Position initiale en dehors de l'écran */
+}
+.aboutus p {
+  font-family: var(--ff-barlow);
+  font-size: 1.5rem;
+  color: #070707;
+  margin: 20px;
+  opacity: 0; /* Initialement invisible */
+  transform: translateY(-50px); /* Position initiale en dehors de l'écran */
+}
+.aboutus section {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.aboutus .flexcenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  opacity: 0; /* Initialement invisible */
+  transform: translateY(-50px); /* Position initiale en dehors de l'écran */
+}
+.aboutus .cloud {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: url("../img/Akatsuki-Logo.png") no-repeat center center;
+  background-size: contain;
+  opacity: 1;
+}
+
+.la-page-manga,
+section.see-volume {
   background-image: url(../img/vignette.svg);
   background-color: rgba(242, 235, 232, 0.8901960784);
   background-blend-mode: overlay;

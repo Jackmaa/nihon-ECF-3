@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Bangers&family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Kaisei+Tokumin&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Kaisei+Tokumin&family=Permanent+Marker&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bangers&family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Kaisei+Tokumin&family=Permanent+Marker&display=swap");
 
 /*
 **********************************
@@ -96,20 +96,20 @@ body.dark-mode {
   color: white;
 
   .menu-desktop {
-
     figure:nth-of-type(3) a img {
       transition: all 0.3s ease;
       &:hover {
-        box-shadow: 0 5px 10px rgba(255, 255, 255, 0.1), 0 3px 3px rgba(236, 236, 236, 0.1);
+        box-shadow: 0 5px 10px rgba(255, 255, 255, 0.1),
+          0 3px 3px rgba(236, 236, 236, 0.1);
       }
     }
   }
 
-  .review{
+  .review {
     background-color: #202024;
     color: white;
   }
-  #username-picture{
+  #username-picture {
     a:first-child {
       font-family: var(--ff-barlow);
       margin-right: 1vh;
@@ -119,10 +119,12 @@ body.dark-mode {
       &:hover {
         color: #cc392b;
       }
-  }
+    }
   }
 
-  .container-homepage, .la-page-manga, section.see-volume {
+  .container-homepage,
+  .la-page-manga,
+  section.see-volume {
     background-image: url(../img/vignette.svg);
     background-color: #202024;
     background-blend-mode: overlay;
@@ -982,19 +984,18 @@ main.login {
   height: 100%;
 
   .red-background {
-    background-color: var(--primary-clr-red); 
+    background-color: var(--primary-clr-red);
     background-image: url(../img/star-red.gif);
     background-size: cover;
-    background-position: center; 
+    background-position: center;
   }
-  
+
   .black-background {
-    background-image: url(../img/star.gif), linear-gradient(to right, #020000,#046a8b, #020000);
+    background-image: url(../img/star.gif),
+      linear-gradient(to right, #020000, #046a8b, #020000);
     background-size: cover;
     background-position: center;
-}
-
-
+  }
 }
 
 .carousel-item {
@@ -1403,6 +1404,66 @@ button {
 **********************************
 */
 
+.holo-effect::before,
+.holo-effect::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background-repeat: no-repeat;
+  mix-blend-mode: color-dodge;
+  transition: all 0.33s ease;
+  pointer-events: none;
+}
+
+.holo-effect::before {
+  background-position: 50% 50%;
+  background-size: 400% 400%;
+  background-image: linear-gradient(
+    115deg,
+    transparent 0%,
+    rgb(0, 231, 255) 25%,
+    transparent 47%,
+    transparent 53%,
+    rgb(255, 0, 231) 75%,
+    transparent 100%
+  );
+  opacity: 0.7;
+  filter: brightness(0.4) contrast(1.5);
+  z-index: 1;
+}
+
+.holo-effect::after {
+  opacity: 0.9;
+  background-image: url("https://assets.codepen.io/13471/sparkles.gif"),
+    url(https://assets.codepen.io/13471/holo.png),
+    linear-gradient(125deg, 
+      #ff008450 15%, 
+      #fca40040 30%, 
+      #ffff0030 40%, 
+      #00ff8a20 60%, 
+      #00cfff40 70%, 
+      #cc4cfa50 85%);
+  background-position: 50% 50%;
+  background-size: 180%;
+  background-blend-mode: overlay;
+  z-index: 2;
+  filter: brightness(1) contrast(1);
+}
+
+.holo-effect:hover::before {
+  background-size: 250% 250%;
+  opacity: 1;
+  filter: brightness(0.6) contrast(1.7);
+}
+
+.holo-effect:hover::after {
+  opacity: 1;
+}
+
+
 div.mangaPage {
   position: relative;
   width: 100%;
@@ -1550,7 +1611,6 @@ div.mangaPage {
   }
 
   img.profile-picture {
-    width: 10vh;
     height: 10vh;
     border-radius: 50%;
     object-fit: cover;
@@ -1600,21 +1660,19 @@ div.mangaPage {
 }
 
 .also-liked {
-
-  figure{
+  figure {
     display: flex;
     align-items: center;
-    img{
+    img {
       width: 10vh;
       margin-left: 1rem;
     }
-      h2 {
-    margin: 2vh 0;
-    font-family: var(--ff-bangers);
-    letter-spacing: var(--letter-spacing);
+    h2 {
+      margin: 2vh 0;
+      font-family: var(--ff-bangers);
+      letter-spacing: var(--letter-spacing);
+    }
   }
-  }
-
 
   .also-liked-contain {
     display: flex;
@@ -1626,13 +1684,13 @@ div.mangaPage {
     figure {
       width: 100%;
       &:hover {
-        a{
+        a {
           filter: brightness(0.5);
         }
       }
       a {
         transition: all 0.3s ease;
-        img{
+        img {
           width: 20vh;
         }
       }
@@ -2303,56 +2361,55 @@ button:hover {
 *******************************
 */
 
-// .headkakkoii {
-//   height: 60vh;
-//   background: url(../img/kakoii.svg) no-repeat center center/cover;
-//   width: 100%;
-// }
+  // .headkakkoii {
+  //   height: 60vh;
+  //   background: url(../img/kakoii.svg) no-repeat center center/cover;
+  //   width: 100%;
+  // }
   .formkakoii {
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: url(../img/cerisier.gif) ;
+    background: url(../img/cerisier.gif);
     background-color: rgba(242, 235, 232, 0.507);
     background-blend-mode: overlay;
     background-repeat: no-repeat;
     background-size: cover;
   }
 
-  
-  main#kakkoii{
+  main#kakkoii {
     width: 90vh;
     height: 90vh;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    h1{
+    h1 {
       font-size: 3rem;
     }
-    .wrapper{
-      p{
-        font-family: 'Permanent Marker', cursive;
+    .wrapper {
+      p {
+        font-family: "Permanent Marker", cursive;
         color: #38383f;
         font-size: 1.5rem;
         margin-bottom: 1rem;
         padding-left: 1rem;
       }
     }
-    .kakkoiiflex{
-      .center{
+    .kakkoiiflex {
+      .center {
         width: 30vh;
         border: solid 4px white;
-        h2{
+        h2 {
           font-size: 2rem;
           margin-bottom: 1rem;
         }
-        p{
+        p {
           font-size: 1.5rem;
           margin-bottom: 1rem;
         }
-        .open-popup{
+        .open-popup {
           width: 100%;
         }
       }
@@ -2371,35 +2428,35 @@ button:hover {
 **********************************
 */
 
-.button-container {
-  margin: 0 200px;
-  position: relative; 
-  display: inline-block;
-}
+  .button-container {
+    margin: 0 200px;
+    position: relative;
+    display: inline-block;
+  }
 
-.coucou {
-  z-index: 1;
-}
+  .coucou {
+    z-index: 1;
+  }
 
-.coucou:hover + .gif-background {
-  opacity: 1;
-}
+  .coucou:hover + .gif-background {
+    opacity: 1;
+  }
 
-.gif-background {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 40vh; 
-  height: 20vh;
-  background-image: url("../img/supersayanblue.gif");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  transform: translate(-50%, -50%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: 0;
-}
+  .gif-background {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40vh;
+    height: 20vh;
+    background-image: url("../img/supersayanblue.gif");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+  }
 
   .carousel {
     height: 60vh;
@@ -2412,7 +2469,6 @@ button:hover {
       margin: 1%;
       font-size: 1.5rem;
       z-index: 99;
-
     }
 
     .next,
@@ -2554,30 +2610,28 @@ button:hover {
         padding: 10px;
         z-index: 10;
 
-        ul{
+        ul {
           overflow: hidden;
           transition: all 0.3s ease;
           li {
-          width: 100%;
-          padding: 8px 12px;
-          font-family: var(--ff-bangers);
-          letter-spacing: var(--letter-spacing);
-          transition: all 0.3s ease;
+            width: 100%;
+            padding: 8px 12px;
+            font-family: var(--ff-bangers);
+            letter-spacing: var(--letter-spacing);
+            transition: all 0.3s ease;
 
-          &:hover {
-            background-color: #cc392b;
-          }
+            &:hover {
+              background-color: #cc392b;
+            }
 
-          a {
-            display: block;
-            width: 100%; 
-            padding: 8px 12px; 
-            color: var(--fc-black);
+            a {
+              display: block;
+              width: 100%;
+              padding: 8px 12px;
+              color: var(--fc-black);
+            }
           }
         }
-        }
-
-        
       }
 
       &.active .dropdown {
@@ -2871,7 +2925,7 @@ button:hover {
 // }
 
 /*
-**********************************
+**********************************s
 ***********CONTACT PAGE************
 **********************************
 */
@@ -2944,22 +2998,22 @@ button:hover {
     padding: 10px;
     text-align: left;
 
-    select.status-borrow {
+    select.status-dropdown {
       padding: 5px;
       border-radius: 5px;
     }
 
-    .status-borrow option[value="PENDING"] {
+    .status-dropdown option[value="pending"] {
       background-color: orange;
     }
 
-    .status-borrow option[value="APPROVED"] {
+    .status-dropdown option[value="approved"] {
       background-color: green;
       color: white;
     }
 
-    .status-borrow option[value="REJECTED"],
-    .status-borrow option[value="LATE"] {
+    .status-dropdown option[value="rejected"],
+    .status-dropdown option[value="late"] {
       background-color: red;
       color: white;
     }
@@ -3016,14 +3070,15 @@ button:hover {
 
   .user-items {
     position: fixed;
-    top: 20%;
-    right: 20px;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
     background: rgba(0, 0, 0, 0.9);
     color: white;
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    width: 250px;
+    width: 50%;
     max-height: 400px;
     overflow-y: auto;
     z-index: 1000;
@@ -3247,6 +3302,10 @@ form {
   }
   .form-group {
     padding: 10px;
+  }
+  .kakkoiiflex .center {
+    opacity: 0; /* Initialement invisible */
+    transform: translateY(20px); /* Position initiale en dehors de l'écran */
   }
 }
 
@@ -3585,11 +3644,80 @@ form {
   }
 }
 
-.la-page-manga, section.see-volume{
+/*
+**********************************
+***************ABOUT US***********
+**********************************
+*/
+
+.aboutus {
+  position: relative; /* Permet aux nuages d'être positionnés par rapport à cette section */
+  height: 100vh; /* Prend toute la hauteur de la fenêtre */
+  overflow: hidden; /* Empêche le débordement */
+  background-color: #f9f9f9; /* Couleur de fond */
+  margin: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
+
+  h1 {
+    font-family: var(--ff-bangers);
+    letter-spacing: var(--letter-spacing);
+    font-size: 2rem;
+    color: #e00e0e;
+    opacity: 0; /* Initialement invisible */
+    transform: translateY(-50px); /* Position initiale en dehors de l'écran */
+  }
+
+  h2 {
+    font-family: var(--ff-bangers);
+    letter-spacing: var(--letter-spacing);
+    font-size: 1.5rem;
+    color: #070707;
+    margin: 20px;
+    opacity: 0; /* Initialement invisible */
+    transform: translateY(-50px); /* Position initiale en dehors de l'écran */
+  }
+
+  p {
+    font-family: var(--ff-barlow);
+    font-size: 1.5rem;
+    color: #070707;
+    margin: 20px;
+    opacity: 0; /* Initialement invisible */
+    transform: translateY(-50px); /* Position initiale en dehors de l'écran */
+  }
+
+  section {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .flexcenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    opacity: 0; /* Initialement invisible */
+    transform: translateY(-50px); /* Position initiale en dehors de l'écran */
+  }
+  .cloud {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: url("../img/Akatsuki-Logo.png") no-repeat center center;
+    background-size: contain;
+    opacity: 1;
+  }
+}
+
+.la-page-manga,
+section.see-volume {
   background-image: url(../img/vignette.svg);
   background-color: rgba(242, 235, 232, 0.8901960784);
   background-blend-mode: overlay;
-
-
 }
-

@@ -21,7 +21,8 @@ class ControllerAdmin extends Controller {
                 session_start();
                 $_SESSION['admin_logged_in'] = true;
                 $_SESSION['id_admin']        = $user->getId_user();
-
+                $borrow                      = new ModelBorrow;
+                $borrow->clearExpiredReservations();
                 header('Location: ' . $this->router->generate('admin_dashboard'));
                 exit;
             } else {
@@ -112,17 +113,11 @@ class ControllerAdmin extends Controller {
         }
     }
 
-    public function getUserInfo() {
-        if (! isset($_GET['userId'])) {
-            echo json_encode(["error" => "Missing user ID"]);
-            return;
-        }
+    public function getUserItems($userId) {
 
-        $model = new ModelBorrow;
-
-        $userId   = intval($_GET['userId']);
-        $borrowed = $model->getUserBorrows($userId);
-        $cart     = $model->getUserReservations($userId);
+        $model    = new ModelBorrow;
+        $borrowed = $model->getUserBorrowsAdmin($userId);
+        $cart     = $model->getUserReservationsAdmin($userId);
 
         echo json_encode([
             "borrowed" => $borrowed,

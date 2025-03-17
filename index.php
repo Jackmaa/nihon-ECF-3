@@ -33,6 +33,9 @@ $router->map("GET", "/pastChronicle", "ControllerUser#pastChronicle", "pastChron
 // FAVORITE
 $router->map('GET', "/favorite", 'ControllerUser#favoriteManga', 'favoriteManga');
 
+// ABOUT US
+$router->map('GET', "/aboutus", 'ControllerGeneral#aboutus', 'aboutus');
+
 /*******************************||  CART  ||**************************************/
 $router->map("GET", "/cart", "CartController#cart", "cart");
 $router->map('GET|POST', '/cart/add', 'CartController#add', 'cart_add');
@@ -87,6 +90,11 @@ $router->map("GET|POST", "/searchUser", "ControllerAdmin#searchUser", "searchUse
 $router->map("GET|POST", "/createUser", "ControllerAdmin#createUser", "createUser");
 //Validate Borrows
 $router->map("POST", "/adminBorrowStatus", "ControllerAdmin#adminBorrowStatus");
+// Get user borrows && cart items
+$router->map("GET|POST", "/getUserItems/[i:userId]", "ControllerAdmin#getUserItems", "getUserItems");
+//validate an item in user cart
+$router->map("GET|POST", "/validateCartItem", "CartController#validateCartItem", "validateCartItem");
+$router->map("GET|POST", "/deleteCartItem", "CartController#deleteCartItem", "deleteCartItem");
 
 /*******************************||  BORROW/RETURNS  ||**************************************/
 //BOOKGestion

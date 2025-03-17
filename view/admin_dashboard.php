@@ -7,105 +7,20 @@
 <div class="headdashboard"></div>
 <main class="dashboard">
 
-<h1>Returns of the Day:</h1>
-<p>Total:</p>
-<div class="filters">
-    <button onclick="sortTable(0)">Sort by User</button>
-    <button onclick="sortTable(1)">Sort by Manga</button>
-    <button onclick="sortTable(3)">Sort by Return Date</button>
-</div>
-<table>
-    <thead>
-        <tr>
-            <th>id_user</th>
-            <th>id_manga</th>
-            <th>id_volume</th>
-            <th>date_return</th>
-            <th>validation</th>
-        </tr>
-    </thead>
-    <tbody>
-    <?php foreach ($borrows as $borrow): ?>
-        <tr>
-            <td><?php echo $borrow->getId_user(); ?></td>
-            <td><?php echo $borrow->getId_manga(); ?></td>
-            <td><?php echo $borrow->getId_volume(); ?></td>
-            <td><?php echo $borrow->getReturn_date(); ?></td>
-            <td>
-            <select name="status"
-                        class="status-borrow"
-                        data-id="<?php echo $borrow->getId_borrow(); ?>">
-                    <?php foreach ($enumValues as $value): ?>
-                    <option value="<?php echo $value; ?>"
-                        <?php echo($borrow->getStatus() == $value) ? 'selected' : ''; ?>>
-                        <?php echo ucfirst(strtolower($value)); ?>
-                    </option>
-                    <?php endforeach; ?>
-                </select>
-            </td>
-        </tr>
-    <?php endforeach; ?>
-    </tbody>
-</table>
-
-<h1>Loans Managing</h1>
-<div class="button-container">
-    <button class="button" onclick="openPopup('popupLoans')">Loans</button>
-    <button class="button" onclick="openPopup('popupReturns')">Returns</button>
-    <button class="button" onclick="openPopup('popupHistory')">History</button>
-</div>
-
-<h1>Users Gestion</h1>
+<h2>Users Gestion</h2>
 <form action="" id="search-form-user" method="POST">
     <input type="text" name="search" id="search-user" placeholder="Search">
 </form>
 <div id="search-results-user"></div>
 
-<h1>Books</h1>
+<h2>Books</h2>
 <form action="" id="search-form-manga" method="POST">
     <input type="text" name="search" id="search-manga" placeholder="Search">
 </form>
 <div id="search-results-manga"></div>
 
 <!-- Overlay -->
-<div class="overlay" id="overlay" onclick="closePopup('popupLoans'); closePopup('popupReturns'); closePopup('popupHistory'); closePopup('popupCreate'); closePopup('popupBan'); closePopup('popupDelete'); closePopup('popupAdd'); closePopup('popupModified'); closePopup('popupUser')"></div>
-
-<!-- Popups -->
-<div class="popup" id="popupLoans">
-    <h3>Loans Managing !</h3>
-    <img src="public\asset\img\search.svg" alt=""><p>ID Book</p>
-    <input type="text">
-    <p>Loan date</p>
-    <input type="text">
-    <p>User</p>
-    <input type="text">
-    <button class="button" onclick="closePopup('popupLoans')">Valider</button>
-</div>
-
-<div class="popup" id="popupReturns">
-    <h3>Returns Managing !</h3>
-    <img src="public\asset\img\search.svg" alt=""><p>ID Book</p>
-    <input type="text">
-    <p>Return date</p>
-    <input type="text">
-    <p>User</p>
-    <input type="text">
-    <button class="button" onclick="closePopup('popupReturns')">Valider</button>
-</div>
-
-<div class="popup" id="popupHistory">
-    <h3>History</h3>
-    <img src="public\asset\img\search.svg" alt=""><p>ID book</p>
-    <input type="text">
-    <p>Date Return</p>
-    <input type="text">
-    <img src="public\asset\img\search.svg" alt=""><p>Loan default</p>
-    <p>User</p>
-    <input type="text">
-    <p>Loan Date</p>
-    <input type="text">
-    <button class="button" onclick="closePopup('popupHistory')">Close</button>
-</div>
+<div class="overlay" id="overlay" onclick="closePopup('popupCreate'); closePopup('popupBan'); closePopup('popupDelete'); closePopup('popupAdd'); closePopup('popupModified'); closePopup('popupUser')"></div>
 
 <div class="popup" id="popupCreate">
     <form action="/createUser" method="POST">
@@ -164,28 +79,85 @@
     </form>
 </div>
 
-<div class="popup" id="popupModified">
-    <h3>Modify Book</h3>
-    <input type="text">
-    <p>Book Title</p>
-    <input type="text">
-    <p>Book category</p>
-    <input type="text">
-    <p>Book author</p>
-    <input type="text">
-    <p>Book Editor</p>
-    <input type="text">
-    <p>Book Summary</p>
-    <input type="text">
-    <p>Picture</p>
-    <input type="file"accept=".webp">
+<div id="popupModified" class="popup">
+  <div class="popup-content">
+    <span class="close" onclick="closePopup('popupModified')">&times;</span>
+    <h2>Modify Manga</h2>
+    <form id="modifyMangaForm">
+      <input type="hidden" name="id_manga" />
+      <label for="name">Name:</label>
+      <input type="text" name="name" required />
+      <label for="categories">Categories:</label>
+      <input type="text" name="categories" required />
+      <label for="author">Author:</label>
+      <input type="text" name="author" required />
+      <label for="editor">Editor:</label>
+      <input type="text" name="editor" required />
+      <label for="description">Description:</label>
+      <textarea name="description" required></textarea>
 
-    <button class="button" onclick="closePopup('popupModified')">Modify</button>
+      <!-- Volume Section -->
+      <h3>Volumes</h3>
+      <div id="volumesContainer">
+        <!-- Existing volumes will be displayed here -->
+      </div>
+      <div>
+        <input type="number" id="newVolumeNumber" placeholder="Volume Number" />
+        <button type="button" onclick="addVolume()">Add Volume</button>
+      </div>
+
+      <button type="submit">Save Changes</button>
+    </form>
+  </div>
 </div>
 </main>
 
 <?php
     $content = ob_get_contents();
     ob_end_clean();
-require_once 'view/base_html.php';
+    require_once 'view/base_html.php';
+?>
+
+
+<?php
+    /*<h2>Returns of the Day:</h2>
+<p>Total:</p>
+<div class="filters">
+    <button onclick="sortTable(0)">Sort by User</button>
+    <button onclick="sortTable(1)">Sort by Manga</button>
+    <button onclick="sortTable(3)">Sort by Return Date</button>
+</div>
+<table>
+    <thead>
+        <tr>
+            <th>id_user</th>
+            <th>id_manga</th>
+            <th>id_volume</th>
+            <th>date_return</th>
+            <th>validation</th>
+        </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($borrows as $borrow): ?>
+        <tr>
+            <td><?php echo $borrow->getId_user(); ?></td>
+            <td><?php echo $borrow->getId_manga(); ?></td>
+            <td><?php echo $borrow->getId_volume(); ?></td>
+            <td><?php echo $borrow->getReturn_date(); ?></td>
+            <td>
+            <select name="status"
+                        class="status-borrow"
+                        data-id="<?php echo $borrow->getId_borrow(); ?>">
+                    <?php foreach ($enumValues as $value): ?>
+                    <option value="<?php echo $value; ?>"
+                        <?php echo($borrow->getStatus() == $value) ? 'selected' : ''; ?>>
+                        <?php echo ucfirst(strtolower($value)); ?>
+                    </option>
+                    <?php endforeach; ?>
+                </select>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>*/
 ?>

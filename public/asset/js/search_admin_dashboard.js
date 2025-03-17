@@ -18,6 +18,9 @@ const responseUserDiv = document.getElementById("search-results-user");
 // Get references to the button container for user
 const buttonContainerUser = document.querySelector(".button-container-user");
 
+// Get references for the main to send the table
+const mainDashboard = document.querySelector(".dashboard");
+
 // Function to add a button to a specified div with optional onClick callback and popup opening
 function addButtonToDiv(text, popupId, responseDiv, onClickCallback) {
   let button = document.createElement("button");
@@ -138,20 +141,9 @@ function handleUserResults(datas) {
       userDiv.append(userName);
       responseUserDiv.appendChild(userDiv);
 
-      // Add a click event to the user div to open the modify popup
-      userDiv.addEventListener("click", function () {
-        fillModifyPopupUser(user);
-        openPopup("popupUser");
-      });
-
-      // Add a "View Borrowed Items" button
-      addButtonToDiv("View Borrowed Items", null, userDiv, () => {
-        fetchUserBorrowedItems(user.id_user);
-      });
-
-      // Add a "View Cart Items" button
-      addButtonToDiv("View Cart Items", null, userDiv, () => {
-        fetchUserCartItems(user.id_user);
+      // Add a get user items button
+      addButtonToDiv("View loans/cart", null, userDiv, () => {
+        fetchUserItems(user.id_user);
       });
     });
 
@@ -187,20 +179,100 @@ function fillModifyPopupUser(user) {
   document.querySelector("#popupUser input:nth-of-type(3)").value = user.email;
 }
 
-// Function to fill the manga modify popup with manga data
 function fillModifyPopup(manga) {
-  document.querySelector("#popupModified input:nth-of-type(1)").value =
+  document.querySelector("#popupModified input[name='id_manga']").value =
     manga.manga.id_manga;
-  document.querySelector("#popupModified input:nth-of-type(2)").value =
+  document.querySelector("#popupModified input[name='name']").value =
     manga.manga.name;
-  document.querySelector("#popupModified input:nth-of-type(3)").value =
+  document.querySelector("#popupModified input[name='categories']").value =
     manga.categories;
-  document.querySelector("#popupModified input:nth-of-type(4)").value =
+  document.querySelector("#popupModified input[name='author']").value =
     manga.author;
-  document.querySelector("#popupModified input:nth-of-type(5)").value =
+  document.querySelector("#popupModified input[name='editor']").value =
     manga.editor;
-  document.querySelector("#popupModified input:nth-of-type(6)").value =
+  document.querySelector("#popupModified textarea[name='description']").value =
     manga.manga.description;
+
+  // Fetch and display existing volumes
+  fetch(`/getVolumes/${manga.manga.id_manga}`)
+    .then((response) => response.json())
+    .then((data) => {
+      const volumesContainer = document.getElementById("volumesContainer");
+      volumesContainer.innerHTML = ""; // Clear existing content
+
+      if (data.length === 0) {
+        volumesContainer.innerHTML = "<p>No volumes found.</p>";
+      } else {
+        data.forEach((volume) => {
+          const volumeDiv = document.createElement("div");
+          volumeDiv.classList.add("volume-item");
+          volumeDiv.innerHTML = `
+            <span>Volume ${volume.id_volume}</span>
+            <button type="button" onclick="deleteVolume(${volume.id_volume}, ${manga.manga.id_manga})">Delete</button>
+          `;
+          volumesContainer.appendChild(volumeDiv);
+        });
+      }
+    })
+    .catch((error) => console.error("Error fetching volumes:", error));
+}
+
+function addVolume() {
+  const newVolumeNumber = document.getElementById("newVolumeNumber").value;
+  const mangaId = document.querySelector(
+    "#popupModified input[name='id_manga']"
+  ).value;
+
+  if (!newVolumeNumber || !mangaId) {
+    alert("Please enter a volume number.");
+    return;
+  }
+
+  fetch("/addVolume", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      id_manga: mangaId,
+      id_volume: newVolumeNumber,
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) {
+        alert("Volume added successfully!");
+        // Refresh the volumes list
+        fillModifyPopup({ manga: { id_manga: mangaId } });
+      } else {
+        alert("Error: " + data.error);
+      }
+    })
+    .catch((error) => console.error("Error adding volume:", error));
+}
+
+function deleteVolume(volumeId, mangaId) {
+  if (!confirm("Are you sure you want to delete this volume?")) {
+    return;
+  }
+
+  fetch("/deleteVolume", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      id_manga: mangaId,
+      id_volume: volumeId,
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) {
+        alert("Volume deleted successfully!");
+        // Refresh the volumes list
+        fillModifyPopup({ manga: { id_manga: mangaId } });
+      } else {
+        alert("Error: " + data.error);
+      }
+    })
+    .catch((error) => console.error("Error deleting volume:", error));
 }
 
 // Function to limit the selection of categories to 3
@@ -214,71 +286,272 @@ function limitSelection(checkbox) {
   }
 }
 
-function fetchUserBorrowedItems(userId) {
-  updateUserItems(`/getBorrowedItems.php?userId=${userId}`, "Borrowed Items");
+function fetchUserItems(userId) {
+  updateUserItems(`/getUserItems/${userId}`, "User Items", userId);
 }
 
-function fetchUserCartItems(userId) {
-  updateUserItems(`/getCartItems.php?userId=${userId}`, "Cart Items");
-}
-
-function updateUserItems(url, title) {
-  // Supprimer l'ancien affichage s'il existe
+function updateUserItems(url, title, userId) {
   let existingItemsDiv = document.querySelector(".user-items");
-  if (existingItemsDiv) {
-    existingItemsDiv.remove();
-  }
+  if (existingItemsDiv) existingItemsDiv.remove();
 
-  // Création du conteneur
   const itemsDiv = document.createElement("div");
-  itemsDiv.classList.add("user-items", "fade-in"); // Animation ajoutée
-  itemsDiv.innerHTML = `<h3>${title}</h3>`;
+  itemsDiv.classList.add("user-items", "fade-in");
 
-  // Bouton de fermeture
   const closeButton = document.createElement("button");
   closeButton.textContent = "✖";
   closeButton.classList.add("close-btn");
   closeButton.addEventListener("click", () => {
-    itemsDiv.classList.add("fade-out"); // Animation sortie
-    setTimeout(() => itemsDiv.remove(), 300); // Supprime après animation
+    itemsDiv.classList.add("fade-out");
+    setTimeout(() => itemsDiv.remove(), 300);
   });
 
-  // Indicateur de chargement
-  const loadingIndicator = document.createElement("p");
-  loadingIndicator.textContent = "Loading...";
-  itemsDiv.append(closeButton, loadingIndicator);
-  responseUserDiv.appendChild(itemsDiv);
+  // Tabs
+  const tabs = document.createElement("div");
+  tabs.classList.add("tabs");
 
-  // Fetch les données
+  const borrowedTab = document.createElement("button");
+  borrowedTab.textContent = "Current Borrows";
+  borrowedTab.classList.add("active");
+  borrowedTab.onclick = () => switchTab("borrowedTable");
+
+  const historyTab = document.createElement("button");
+  historyTab.textContent = "History";
+  historyTab.onclick = () => switchTab("historyTable");
+
+  const cartTab = document.createElement("button");
+  cartTab.textContent = "Cart";
+  cartTab.onclick = () => switchTab("cartTable");
+
+  tabs.appendChild(borrowedTab);
+  tabs.appendChild(historyTab);
+  tabs.appendChild(cartTab);
+
+  // Table containers
+  const borrowedTableContainer = document.createElement("div");
+  borrowedTableContainer.id = "borrowedTable";
+
+  const historyTableContainer = document.createElement("div");
+  historyTableContainer.id = "historyTable";
+  historyTableContainer.style.display = "none"; // Hidden by default
+
+  const cartTableContainer = document.createElement("div");
+  cartTableContainer.id = "cartTable";
+  cartTableContainer.style.display = "none"; // Hidden by default
+
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      itemsDiv.innerHTML = `<h3>${title}</h3>`; // Reset
-      itemsDiv.appendChild(closeButton); // Réajout du bouton
-
-      if (!Array.isArray(data) || data.length === 0) {
-        itemsDiv.innerHTML += "<p>No items found.</p>";
+      if (data.borrowed.length === 0 && data.cart.length === 0) {
+        borrowedTableContainer.innerHTML = "<p>No items found.</p>";
         return;
       }
 
-      data.forEach((item) => {
-        let itemDiv = document.createElement("div");
-        itemDiv.classList.add("item");
+      // Handle borrowed items
+      const borrowedItems = data.borrowed.filter(
+        (item) => item.status !== "BACK"
+      );
+      const returnedItems = data.borrowed.filter(
+        (item) => item.status === "BACK"
+      );
 
-        let itemName = document.createElement("p");
-        itemName.textContent = `Name: ${item.name}`;
+      // Create tables for borrowed and returned items
+      if (borrowedItems.length > 0) {
+        borrowedTableContainer.appendChild(
+          createTable("borrowed", { borrowed: borrowedItems })
+        );
+      } else {
+        borrowedTableContainer.innerHTML = "<p>No borrowed items.</p>";
+      }
 
-        let itemDetails = document.createElement("p");
-        itemDetails.textContent = `Details: ${
-          item.details || "No details available"
-        }`;
+      if (returnedItems.length > 0) {
+        historyTableContainer.appendChild(
+          createTable("borrowed", { borrowed: returnedItems })
+        );
+      } else {
+        historyTableContainer.innerHTML = "<p>No returned items.</p>";
+      }
 
-        itemDiv.append(itemName, itemDetails);
-        itemsDiv.appendChild(itemDiv);
-      });
+      // Handle cart items
+      const cartItems = data.cart || [];
+
+      if (cartItems.length > 0) {
+        cartTableContainer.appendChild(
+          createTable("cart", { cart: cartItems })
+        );
+      } else {
+        cartTableContainer.innerHTML = "<p>No items in cart.</p>";
+      }
+
+      // Append tabs and tables to the pop-up
+      itemsDiv.appendChild(tabs);
+      itemsDiv.appendChild(borrowedTableContainer);
+      itemsDiv.appendChild(historyTableContainer);
+      itemsDiv.appendChild(cartTableContainer);
+      itemsDiv.appendChild(closeButton);
+      mainDashboard.appendChild(itemsDiv);
+    });
+}
+
+// Function to switch between tabs
+function switchTab(tabId) {
+  const borrowedTable = document.getElementById("borrowedTable");
+  const historyTable = document.getElementById("historyTable");
+  const cartTable = document.getElementById("cartTable");
+
+  if (borrowedTable)
+    borrowedTable.style.display = tabId === "borrowedTable" ? "block" : "none";
+  if (historyTable)
+    historyTable.style.display = tabId === "historyTable" ? "block" : "none";
+  if (cartTable)
+    cartTable.style.display = tabId === "cartTable" ? "block" : "none";
+
+  // Update active tab
+  document
+    .querySelectorAll(".tabs button")
+    .forEach((btn) => btn.classList.remove("active"));
+  document
+    .querySelector(
+      `.tabs button:nth-child(${
+        tabId === "borrowedTable" ? 1 : tabId === "historyTable" ? 2 : 3
+      })`
+    )
+    .classList.add("active");
+}
+
+// Function to create a table
+function createTable(type, data) {
+  const table = document.createElement("table");
+  table.innerHTML =
+    type === "borrowed" ? getBorrowTableHead() : getCartTableHead();
+  const tbody = table.querySelector("tbody");
+
+  if (type === "borrowed") {
+    data.borrowed.forEach((item) => tbody.appendChild(createBorrowRow(item)));
+  } else {
+    data.cart.forEach((item) => tbody.appendChild(createCartRow(item)));
+  }
+
+  return table;
+}
+
+// Function to get the table header for borrowed items
+function getBorrowTableHead() {
+  return `
+    <thead>
+      <tr>
+        <th>Manga</th>
+        <th>Volume</th>
+        <th>Return Date</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody></tbody>`;
+}
+
+// Function to get the table header for cart items
+function getCartTableHead() {
+  return `
+    <thead>
+      <tr>
+        <th>Manga</th>
+        <th>Volume</th>
+        <th>Placed</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody></tbody>`;
+}
+
+// Function to create a row for borrowed items
+function createBorrowRow(item) {
+  const row = document.createElement("tr");
+  row.innerHTML = `
+    <td>${item.name}</td>
+    <td>Volume ${item.id_volume}</td>
+    <td>${item.return_date}</td>
+    <td>
+      <select class="status-dropdown" data-id="${item.id_borrow}">
+        ${["pending", "approved", "back", "late", "rejected"]
+          .map(
+            (status) => `<option value="${status}" ${
+              item.status === status.toUpperCase() ? "selected" : ""
+            }>
+            ${status.charAt(0).toUpperCase() + status.slice(1)}</option>`
+          )
+          .join("")}
+      </select>
+      <span class="status-checkmark">✔</span>
+    </td>`;
+  return row;
+}
+
+// Function to create a row for cart items
+function createCartRow(item) {
+  const row = document.createElement("tr");
+  row.dataset.cartId = item.id_cart; // Store cart ID for easy reference
+
+  row.innerHTML = `
+    <td>${item.name}</td>
+    <td>Volume ${item.id_volume}</td>
+    <td>${item.placed}</td>
+    <td>
+      <button onclick="validateCartItem(${item.id_manga}, ${item.id_volume}, ${item.id_user}, this)" class="validate-cart">✔ Validate</button>
+      <button onclick="deleteCartItem(${item.id_manga}, ${item.id_volume}, ${item.id_user}, this)" class="delete-cart">✖ Delete</button>
+    </td>`;
+
+  return row;
+}
+
+// Event delegation for delete buttons
+document.addEventListener("click", (event) => {
+  if (event.target.classList.contains("delete-cart")) {
+    const row = event.target.closest("tr");
+    const cartId = event.target.dataset.id;
+    deleteCartItem(cartId, row);
+  }
+});
+
+// Function to validate a cart item
+function validateCartItem(idManga, idVolume, idUser, button) {
+  fetch("/validateCartItem", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      id_manga: idManga,
+      id_volume: idVolume,
+      id_user: idUser,
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) {
+        alert("Manga successfully validated! 📚✅");
+        button.closest("tr").remove(); // Remove the row on success
+      } else {
+        alert("Error: " + data.error);
+      }
     })
-    .catch((error) => {
-      console.error("Error fetching items:", error);
-      itemsDiv.innerHTML = `<p>Error loading items. Please try again later.</p>`;
+    .catch((error) => console.error("Fetch error:", error));
+}
+
+// Function to delete a cart item
+function deleteCartItem(idManga, idVolume, idUser, button) {
+  fetch("/deleteCartItem", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      id_manga: idManga,
+      id_volume: idVolume,
+      id_user: idUser,
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) {
+        alert("Item deleted from cart! 🗑️");
+        button.closest("tr").remove();
+      } else {
+        alert("Error: " + data.error);
+      }
     });
 }
