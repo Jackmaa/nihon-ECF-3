@@ -1375,6 +1375,7 @@ div.mangaPage svg.liked {
   padding: 2vh 1vw;
   scrollbar-width: thin;
   scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+  background-color: #F1EBE8;
 }
 .review h2 {
   margin-top: 2vh;
@@ -1384,7 +1385,7 @@ div.mangaPage svg.liked {
 }
 .review hr {
   margin: 2vh 0;
-  width: 80%;
+  width: 100%;
 }
 .review .cadre-review {
   border-radius: 10px;
