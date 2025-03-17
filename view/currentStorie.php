@@ -21,7 +21,7 @@
                 <div class="current-info">
                     <h4><?php echo $manga->manga->manga->getName()?></h4>
                     <div>
-                        <a href="#">catégory:<span><?php echo $manga->manga->categories?></span></a>
+                        <a href="#">catégory: <span><?php echo $manga->manga->categories?></span></a>
                         <a href="#">Author: <span><?php echo $manga->manga->author?></span></a>
                         <a href="#">Editor: <span><?php echo $manga->manga->editor?></span></a>
                     </div>
