@@ -480,7 +480,6 @@ function createBorrowRow(item) {
           )
           .join("")}
       </select>
-      <span class="status-checkmark">✔</span>
     </td>`;
   return row;
 }
@@ -555,3 +554,43 @@ function deleteCartItem(idManga, idVolume, idUser, button) {
       }
     });
 }
+
+// Event listener on the whole page since we create
+// the dropdown dynamically the query selector doesnt work
+document.addEventListener("change", function (event) {
+  if (event.target.classList.contains("status-dropdown")) {
+    const select = event.target;
+    const borrowId = select.getAttribute("data-id");
+    const newStatus = select.value;
+    let checkmark = select.nextElementSibling;
+
+    if (!checkmark || !checkmark.classList.contains("status-checkmark")) {
+      checkmark = document.createElement("span");
+      checkmark.classList.add("status-checkmark");
+      checkmark.innerHTML = "✔";
+      select.parentNode.appendChild(checkmark);
+    }
+
+    console.log("Sending request with:", {
+      id_borrow: borrowId,
+      status: newStatus,
+    });
+
+    fetch("/adminBorrowStatus", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id_borrow: borrowId, status: newStatus }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          checkmark.style.opacity = "1";
+          setTimeout(() => (checkmark.style.opacity = "0"), 1500);
+          console.log("Status updated successfully!");
+        } else {
+          console.error("Failed to update status.");
+        }
+      })
+      .catch((error) => console.error("Fetch error:", error));
+  }
+});

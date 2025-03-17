@@ -1,7 +1,7 @@
 <?php
     $title            = 'Nihon | Home';
     $meta_description = 'The best place to find your next manga\'s addiction ';
-    $scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public/asset/js/dashboard.js", "public/asset/js/header.js", "public/asset/js/search_admin_dashboard.js", "public\asset\js\darkmode.js", "public/asset/js/borrowAdminValidation", "public/asset/js/ajax.js"];
+    $scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public/asset/js/dashboard.js", "public/asset/js/header.js", "public/asset/js/search_admin_dashboard.js", "public\asset\js\darkmode.js", "public/asset/js/ajax.js"];
     ob_start();
 ?>
 <div class="headdashboard"></div>
@@ -116,48 +116,4 @@
     $content = ob_get_contents();
     ob_end_clean();
     require_once 'view/base_html.php';
-?>
-
-
-<?php
-    /*<h2>Returns of the Day:</h2>
-<p>Total:</p>
-<div class="filters">
-    <button onclick="sortTable(0)">Sort by User</button>
-    <button onclick="sortTable(1)">Sort by Manga</button>
-    <button onclick="sortTable(3)">Sort by Return Date</button>
-</div>
-<table>
-    <thead>
-        <tr>
-            <th>id_user</th>
-            <th>id_manga</th>
-            <th>id_volume</th>
-            <th>date_return</th>
-            <th>validation</th>
-        </tr>
-    </thead>
-    <tbody>
-    <?php foreach ($borrows as $borrow): ?>
-        <tr>
-            <td><?php echo $borrow->getId_user(); ?></td>
-            <td><?php echo $borrow->getId_manga(); ?></td>
-            <td><?php echo $borrow->getId_volume(); ?></td>
-            <td><?php echo $borrow->getReturn_date(); ?></td>
-            <td>
-            <select name="status"
-                        class="status-borrow"
-                        data-id="<?php echo $borrow->getId_borrow(); ?>">
-                    <?php foreach ($enumValues as $value): ?>
-                    <option value="<?php echo $value; ?>"
-                        <?php echo($borrow->getStatus() == $value) ? 'selected' : ''; ?>>
-                        <?php echo ucfirst(strtolower($value)); ?>
-                    </option>
-                    <?php endforeach; ?>
-                </select>
-            </td>
-        </tr>
-    <?php endforeach; ?>
-    </tbody>
-</table>*/
 ?>
