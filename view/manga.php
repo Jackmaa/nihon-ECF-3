@@ -69,7 +69,7 @@
             <div class="also-liked-contain">
                 <?php foreach ($also_liked as $similar): ?>
                 <div>
-                    <figure><a href="<?php echo $similar->getId_Manga()?>"><img src="<?php echo BASE_URL . $similar->getThumbnail() ?>" alt="<?php echo $similar->getName()?>"></a></figure>
+                    <figure><a href="<?= $similar->getId_Manga()?>" target="_blank"><img src="<?php echo BASE_URL . $similar->getThumbnail()?>" alt="<?= $similar->getName()?>"></a></figure>
                     <p><?php echo $similar->getName() ?></p>
                 </div>
                 <?php endforeach; ?>
