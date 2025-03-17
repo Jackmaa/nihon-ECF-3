@@ -241,10 +241,12 @@ svg {
 }
 
 .loginbutton {
+  border-radius: 1rem;
+  margin-inline: 0.75rem;
+  color: white;
   background-color: #cc392b;
   font-family: var(--ff-bangers);
   letter-spacing: var(--letter-spacing);
-  margin: 10px;
   padding: 10px 20px;
 }
 .loginbutton:hover {
@@ -524,10 +526,6 @@ footer > p {
 *************REGISTER*************
 **********************************
 */
-.connexion {
-  margin-top: 20px;
-}
-
 main.connexion,
 main.login {
   /* Cloud Objects */
@@ -1394,7 +1392,7 @@ div.mangaPage svg.liked {
   padding: 2vh 1vw;
   scrollbar-width: thin;
   scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
-  background-color: #F1EBE8;
+  background-color: #f1ebe8;
 }
 .review h2 {
   margin-top: 2vh;
@@ -3253,8 +3251,8 @@ form fieldset label input[type=checkbox] {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  opacity: 0;
-  transform: translateY(-50px);
+  opacity: 0; /* Initialement invisible */
+  transform: translateY(-50px); /* Position initiale en dehors de l'écran */
 }
 .aboutus .flexcenter img {
   width: 100%;

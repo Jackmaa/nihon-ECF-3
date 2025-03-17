@@ -296,20 +296,18 @@ svg {
     }
   }
 }
-.loginbutton{
+.loginbutton {
+  border-radius: 1rem;
+  margin-inline: 0.75rem;
+  color: white;
   background-color: #cc392b;
   font-family: var(--ff-bangers);
   letter-spacing: var(--letter-spacing);
-  margin: 10px;
   padding: 10px 20px;
-  &:hover{
+  &:hover {
     background-color: #fd1702;
   }
 }
-  
-
-
-
 
 /*
 **********************************
@@ -473,7 +471,7 @@ footer > p {
 ***********LOGIN/REGISTER*********
 **********************************
 */
-.login{
+.login {
   margin-top: 20px;
 }
 
@@ -599,9 +597,6 @@ footer > p {
 *************REGISTER*************
 **********************************
 */
-.connexion{
-  margin-top: 20px;
-}
 
 main.connexion,
 main.login {
@@ -1459,13 +1454,15 @@ button {
   opacity: 0.9;
   background-image: url("https://assets.codepen.io/13471/sparkles.gif"),
     url(https://assets.codepen.io/13471/holo.png),
-    linear-gradient(125deg, 
-      #ff008450 15%, 
-      #fca40040 30%, 
-      #ffff0030 40%, 
-      #00ff8a20 60%, 
-      #00cfff40 70%, 
-      #cc4cfa50 85%);
+    linear-gradient(
+      125deg,
+      #ff008450 15%,
+      #fca40040 30%,
+      #ffff0030 40%,
+      #00ff8a20 60%,
+      #00cfff40 70%,
+      #cc4cfa50 85%
+    );
   background-position: 50% 50%;
   background-size: 180%;
   background-blend-mode: overlay;
@@ -1482,7 +1479,6 @@ button {
 .holo-effect:hover::after {
   opacity: 1;
 }
-
 
 div.mangaPage {
   position: relative;
@@ -1593,7 +1589,7 @@ div.mangaPage {
   padding: 2vh 1vw;
   scrollbar-width: thin;
   scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
-  background-color: #F1EBE8;
+  background-color: #f1ebe8;
 
   h2 {
     margin-top: 2vh;
@@ -1609,7 +1605,7 @@ div.mangaPage {
 
   .cadre-review {
     border-radius: 10px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     padding: 1rem;
     margin: 1rem 0;
     width: 80%;
@@ -1712,7 +1708,7 @@ div.mangaPage {
     font-family: var(--ff-barlow);
     font-size: 1.2rem;
 
-    div{
+    div {
       margin: 1rem 0;
     }
 
@@ -2309,7 +2305,6 @@ button:hover {
 
   .form-container {
     width: auto;
-       
 
     h1 {
       font-size: 1.5rem;
@@ -2695,7 +2690,6 @@ button:hover {
     }
   }
 
-
   /*
 **********************************
 ***********DASHBOARD************
@@ -2832,25 +2826,23 @@ button:hover {
       flex-direction: column;
       align-items: center;
       width: 50%;
-  
+
       .review {
         max-width: 80vw;
-  
+
         .cadre-review {
           width: 60%;
         }
       }
     }
-    
-
   }
-  #leave-review{
-  justify-content: start;
-  margin: 0 2rem;
-  input{
-    width: 40%;
+  #leave-review {
+    justify-content: start;
+    margin: 0 2rem;
+    input {
+      width: 40%;
+    }
   }
-}
 
   .also-liked {
     width: 50%;
@@ -2915,17 +2907,11 @@ button:hover {
     display: flex;
     justify-content: center;
   }
-/*
+  /*
 **********************************
 ***************ABOUT US***********
 **********************************
 */
-
-
-
-
-
-
 }
 
 @media (min-width: 1440px) {
@@ -2963,7 +2949,6 @@ button:hover {
     display: block;
     width: 60vw;
   }
-  
 
   /*
 **********************************
@@ -2974,14 +2959,11 @@ button:hover {
   div.headdashboard {
     height: 70vh;
   }
-/*
+  /*
 **********************************
 ***************ABOUT US***********
 **********************************
 */
-
-
-
 }
 
 // * {
@@ -2995,15 +2977,15 @@ button:hover {
 */
 
 .formulaire {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      background-color: #a2eefb;
-      border-radius: 10px;
-      outline: 3px solid #ffffff;
-      margin: 3rem auto;
-      padding: 4rem;
-      height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #a2eefb;
+  border-radius: 10px;
+  outline: 3px solid #ffffff;
+  margin: 3rem auto;
+  padding: 4rem;
+  height: 60vh;
 
   h2 {
     text-align: center;
@@ -3716,10 +3698,10 @@ form {
 **********************************
 */
 .aboutus {
-  position: relative; 
-  height: 100vh; 
-  overflow: hidden; 
-  background-color: #f9f9f9; 
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #f9f9f9;
   margin: 20px;
   padding: 20px;
   background-color: #f9f9f9;
@@ -3730,8 +3712,8 @@ form {
     letter-spacing: var(--letter-spacing);
     font-size: 2rem;
     color: #e00e0e;
-    opacity: 0; 
-    transform: translateY(-50px); 
+    opacity: 0;
+    transform: translateY(-50px);
   }
 
   h2 {
@@ -3740,8 +3722,8 @@ form {
     font-size: 1.5rem;
     color: #070707;
     margin: 20px;
-    opacity: 0; 
-    transform: translateY(-50px); 
+    opacity: 0;
+    transform: translateY(-50px);
   }
 
   p {
@@ -3749,8 +3731,8 @@ form {
     font-size: 1.5rem;
     color: #070707;
     margin: 20px;
-    opacity: 0; 
-    transform: translateY(-50px); 
+    opacity: 0;
+    transform: translateY(-50px);
   }
 
   section {
@@ -3773,7 +3755,6 @@ form {
     img {
       width: 100%;
     }
-
   }
   .cloud {
     position: absolute;
