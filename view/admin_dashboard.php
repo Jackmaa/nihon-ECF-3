@@ -79,8 +79,7 @@
     </form>
 </div>
 
-<div id="popupModified" class="popup">
-  <div class="popup-content">
+<div id="popupModified" class="user-items fade-in">
     <span class="close" onclick="closePopup('popupModified')">&times;</span>
     <h2>Modify Manga</h2>
     <form id="modifyMangaForm">
@@ -109,7 +108,6 @@
       <button type="submit">Save Changes</button>
     </form>
   </div>
-</div>
 </main>
 
 <?php

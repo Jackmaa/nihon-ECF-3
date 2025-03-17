@@ -203,11 +203,12 @@ function fillModifyPopup(manga) {
         volumesContainer.innerHTML = "<p>No volumes found.</p>";
       } else {
         data.forEach((volume) => {
+          console.log(volume);
           const volumeDiv = document.createElement("div");
           volumeDiv.classList.add("volume-item");
           volumeDiv.innerHTML = `
-            <span>Volume ${volume.id_volume}</span>
-            <button type="button" onclick="deleteVolume(${volume.id_volume}, ${manga.manga.id_manga})">Delete</button>
+            <span>Volume ${volume}</span>
+            <button type="button" onclick="deleteVolume(${volume}, ${manga.manga.id_manga})">Delete</button>
           `;
           volumesContainer.appendChild(volumeDiv);
         });
