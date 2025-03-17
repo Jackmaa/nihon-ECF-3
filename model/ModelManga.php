@@ -93,6 +93,19 @@ class ModelManga extends Model {
         return $volumes;
     }
 
+    public function addVolumes(int $id_manga, int $volumes) {
+        while ($volumes && $volumes > 0) {
+            $req = $this->getDb()->prepare(
+                'INSERT INTO `manga_volume` (`id_manga`, `id_volume`) VALUES (:id_manga, :id_volume)'
+            );
+            $req->bindParam(':id_manga', $id_manga, PDO::PARAM_INT);
+            $req->bindParam(':id_volume', $volumes, PDO::PARAM_INT);
+            $req->execute();
+            $volumes--;
+        }
+        return true;
+    }
+
 // Add a new volume
     public function addVolume($id_manga, $id_volume) {
         $req = $this->getDb()->prepare(

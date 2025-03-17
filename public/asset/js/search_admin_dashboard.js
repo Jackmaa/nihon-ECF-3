@@ -109,7 +109,6 @@ searchMangaInput.addEventListener("input", function () {
   // Clear results if the input is too short
   if (searchMangaInput.value.length < 2) {
     responseMangaDiv.innerHTML = "";
-    buttonContainer.style.display = "block";
     return;
   }
 
@@ -193,7 +192,7 @@ function fillModifyPopup(manga) {
   document.querySelector("#popupModified textarea[name='description']").value =
     manga.manga.description;
 
-  // Fetch and display existing volumes
+  //Fetch and display existing volumes
   fetch(`/getVolumes/${manga.manga.id_manga}`)
     .then((response) => response.json())
     .then((data) => {
@@ -204,17 +203,17 @@ function fillModifyPopup(manga) {
         volumesContainer.innerHTML = "<p>No volumes found.</p>";
       } else {
         data.forEach((volume) => {
+          console.log(volume);
           const volumeDiv = document.createElement("div");
           volumeDiv.classList.add("volume-item");
           volumeDiv.innerHTML = `
-            <span>Volume ${volume.id_volume}</span>
-            <button type="button" onclick="deleteVolume(${volume.id_volume}, ${manga.manga.id_manga})">Delete</button>
+            <span>Volume ${volume}</span>
+            <button type="button" onclick="deleteVolume(${volume}, ${manga.manga.id_manga})">Delete</button>
           `;
           volumesContainer.appendChild(volumeDiv);
         });
       }
-    })
-    .catch((error) => console.error("Error fetching volumes:", error));
+    });
 }
 
 function addVolume() {
@@ -245,8 +244,7 @@ function addVolume() {
       } else {
         alert("Error: " + data.error);
       }
-    })
-    .catch((error) => console.error("Error adding volume:", error));
+    });
 }
 
 function deleteVolume(volumeId, mangaId) {
