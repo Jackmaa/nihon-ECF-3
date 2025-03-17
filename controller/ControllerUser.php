@@ -219,7 +219,20 @@ class ControllerUser extends Controller {
     }
 
     public function pastChronicle() {
-
-        require_once './view/pastChronicle.php';
+        if (! isset($_SESSION['id_user'])) {
+            header('Location: ' . $this->router->generate('login'));
+            exit;
+        } else {
+            $model = new ModelBorrow;
+            $datas  = $model->getUserPastBorrows($_SESSION['id_user']);
+            $mangas = [];
+            foreach($datas as $data) {
+                $manga = new ModelManga;
+                $mangaDTO = $manga->getMangaById($data -> getId_Manga());
+                $mangas[] = new BorrowDTO($data, $mangaDTO);
+               
+            }
+            require_once './view/pastChronicle.php';
+        }
     }
 }
