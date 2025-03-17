@@ -23,6 +23,10 @@ This project is brought to you by an amazing team of developers:
 
 ---
 
+🚀 Dive into the visual development of the project! 🎨✨ Check it out here 👉 Figma Link 🔗(https://www.figma.com/design/tXuyhVI6Gn2KWWSWEsT6Ws/Nihon?node-id=0-1&t=lASsIPRIr4MPBp68-1)👀
+
+---
+
 ## 📦 **Dependencies**
 
 This project uses the following tools and libraries:
