@@ -204,7 +204,6 @@ body.dark-mode {
       border: #cc392b 1px solid;
     }
   }
-
   .logo-footer img {
     content: url(../img/logo_footer.svg);
   }
@@ -411,6 +410,10 @@ svg {
 ***********FOOTER************
 **********************************
 */
+footer {
+  height : 20vh;
+}
+
 
 footer > p {
   margin-bottom: 1%;
@@ -600,6 +603,7 @@ footer > p {
 
 main.connexion,
 main.login {
+  height: 80vh;
   #img-subscrire {
     max-width: 90%;
     display: none;
@@ -901,7 +905,6 @@ main.login {
 
 #css-body {
   background: linear-gradient(to bottom, #ffbd39, #ffe96e);
-  overflow: hidden;
 }
 
 #css-body::before {
@@ -942,7 +945,6 @@ main.login {
 
 #css-body {
   background: linear-gradient(to bottom, #1c1047, #34495e);
-  overflow: hidden;
   position: relative;
 }
 

@@ -345,6 +345,10 @@ svg {
 ***********FOOTER************
 **********************************
 */
+footer {
+  height: 20vh;
+}
+
 footer > p {
   margin-bottom: 1%;
   padding: 0 20px;
@@ -528,6 +532,7 @@ footer > p {
 */
 main.connexion,
 main.login {
+  height: 80vh;
   /* Cloud Objects */
   /* KEYFRAMES */
   /* Responsive media query */
@@ -802,7 +807,6 @@ main.login .cloud:before {
 /*******************JOUR*******************/
 #css-body {
   background: linear-gradient(to bottom, #ffbd39, #ffe96e);
-  overflow: hidden;
 }
 
 #css-body::before {
@@ -840,7 +844,6 @@ main.login .cloud:before {
 /*******************NUIT*******************/
 #css-body {
   background: linear-gradient(to bottom, #1c1047, #34495e);
-  overflow: hidden;
   position: relative;
 }
 
