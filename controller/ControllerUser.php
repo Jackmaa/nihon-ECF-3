@@ -215,6 +215,12 @@ class ControllerUser extends Controller {
     }
 
     public function favoriteManga() {
+        $model = new ModelManga();
+        $mangas = $model->getUserFavs($_SESSION['id_user']);
+        $favs = [];
+        foreach($mangas as $manga) {
+            $favs[] = $model->getMangaById($manga->getId_Manga());
+        }
         require_once './view/favoriteManga.php';
     }
 

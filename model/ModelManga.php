@@ -143,6 +143,33 @@ class ModelManga extends Model {
         return $req->fetch(PDO::FETCH_ASSOC);
     }
 
+    //Get user's favorites mangas
+    public function getUserFavs($id) {
+        $req = $this->getDb()->prepare(
+            'SELECT
+                manga.id_manga,
+                manga.name,
+                manga.id_author,
+                manga.description,
+                manga.published_date,
+                manga.thumbnail
+            FROM
+                manga
+            INNER JOIN
+                fav ON manga.id_manga = fav.id_manga
+            WHERE
+                fav.id_user = :id_user');
+        $req->bindParam(':id_user', $id, PDO::PARAM_INT);
+        $req->execute();
+        $data   = $req->fetchAll(PDO::FETCH_ASSOC);
+        $mangas = [];
+        foreach ($data as $manga) {
+            $mangas[] = new Manga($manga);
+        }
+        return $mangas;
+
+    }
+
     //Create a manga
     public function createManga(string $name, int $author, string $description, string $published_date, string $thumbnail) {
         $req = $this->getDb()->prepare(
