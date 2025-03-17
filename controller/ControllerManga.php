@@ -210,24 +210,30 @@ class ControllerManga extends Controller {
     }
 
     public function addVolume() {
+        header('Content-Type: application/json'); // Ensure JSON response
         $data = json_decode(file_get_contents("php://input"), true);
+
+        if (! $data || ! isset($data['id_manga']) || ! isset($data['id_volume'])) {
+            echo json_encode([
+                "success" => false,
+                "message" => "Invalid input data.",
+            ]);
+            return;
+        }
 
         $model = new ModelManga();
         if ($model->addVolume($data['id_manga'], $data['id_volume'])) {
-            json_encode([
+            echo json_encode([
                 "success" => true,
                 "message" => "Volume added successfully.",
             ]);
         } else {
-            json_encode([
+            echo json_encode([
                 "success" => false,
                 "message" => "Failed to add volume.",
             ]);
-
         }
-
     }
-
     public function deleteVolume() {
         $data = json_decode(file_get_contents("php://input"), true);
 

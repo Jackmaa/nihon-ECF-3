@@ -79,7 +79,7 @@
     </form>
 </div>
 
-<div id="popupModified" class="user-items fade-in">
+<div id="popupModified" class="popup">
     <span class="close" onclick="closePopup('popupModified')">&times;</span>
     <h2>Modify Manga</h2>
     <form id="modifyMangaForm">

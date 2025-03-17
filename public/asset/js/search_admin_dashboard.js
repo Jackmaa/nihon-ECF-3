@@ -193,27 +193,27 @@ function fillModifyPopup(manga) {
     manga.manga.description;
 
   // Fetch and display existing volumes
-  fetch(`/getVolumes/${manga.manga.id_manga}`)
-    .then((response) => response.json())
-    .then((data) => {
-      const volumesContainer = document.getElementById("volumesContainer");
-      volumesContainer.innerHTML = ""; // Clear existing content
+  // fetch(`/getVolumes/${manga.manga.id_manga}`)
+  //   .then((response) => response.json())
+  //   .then((data) => {
+  //     const volumesContainer = document.getElementById("volumesContainer");
+  //     volumesContainer.innerHTML = ""; // Clear existing content
 
-      if (data.length === 0) {
-        volumesContainer.innerHTML = "<p>No volumes found.</p>";
-      } else {
-        data.forEach((volume) => {
-          console.log(volume);
-          const volumeDiv = document.createElement("div");
-          volumeDiv.classList.add("volume-item");
-          volumeDiv.innerHTML = `
-            <span>Volume ${volume}</span>
-            <button type="button" onclick="deleteVolume(${volume}, ${manga.manga.id_manga})">Delete</button>
-          `;
-          volumesContainer.appendChild(volumeDiv);
-        });
-      }
-    });
+  //     if (data.length === 0) {
+  //       volumesContainer.innerHTML = "<p>No volumes found.</p>";
+  //     } else {
+  //       data.forEach((volume) => {
+  //         console.log(volume);
+  //         const volumeDiv = document.createElement("div");
+  //         volumeDiv.classList.add("volume-item");
+  //         volumeDiv.innerHTML = `
+  //           <span>Volume ${volume}</span>
+  //           <button type="button" onclick="deleteVolume(${volume}, ${manga.manga.id_manga})">Delete</button>
+  //         `;
+  //         volumesContainer.appendChild(volumeDiv);
+  //       });
+  //     }
+  //   });
 }
 
 function addVolume() {
@@ -244,8 +244,7 @@ function addVolume() {
       } else {
         alert("Error: " + data.error);
       }
-    })
-    .catch((error) => console.error("Error adding volume:", error));
+    });
 }
 
 function deleteVolume(volumeId, mangaId) {
