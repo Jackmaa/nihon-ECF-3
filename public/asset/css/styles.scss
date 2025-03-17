@@ -1539,9 +1539,7 @@ div.mangaPage {
 }
 
 .char-manga {
-  display: flex;
-  justify-content: center;
-  margin-top: 1vh;
+  margin: 2vh;
   font-family: var(--ff-barlow);
   font-size: 0.8rem;
 
@@ -1562,70 +1560,82 @@ div.mangaPage {
 }
 
 .review {
-  background-color: #f2ebe8;
   border: 2px solid #cc382b54;
   border-radius: 5px;
   width: 90%;
-  display: grid;
-  place-self: center;
-  place-content: center;
-  align-content: center;
-  margin-top: 5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem auto;
   font-family: var(--ff-barlow);
   max-height: 50vh;
   overflow-y: auto;
-  padding-right: 10px;
+  padding: 2vh 1vw;
   scrollbar-width: thin;
   scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+  background-color: #F1EBE8;
 
   h2 {
-    margin-top: 40vh;
+    margin-top: 2vh;
     font-family: var(--ff-bangers);
     letter-spacing: var(--letter-spacing);
+    text-align: center;
   }
 
   hr {
     margin: 2vh 0;
-  }
-
-  p :last-child {
-    margin-top: 2vh;
+    width: 100%;
   }
 
   .cadre-review {
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    padding: 1rem;
+    margin: 1rem 0;
+    width: 80%;
+    min-height: 15vh;
     display: flex;
-    justify-content: center;
-
-    .comm {
-      display: flex;
-      align-items: center;
-      width: fit-content;
-    }
+    align-items: center;
+    justify-content: space-between;
 
     .cadre-profile {
-      margin-left: 5vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-    }
-  }
+      margin-right: 2rem;
 
-  img.profile-picture {
-    height: 10vh;
-    border-radius: 50%;
-    object-fit: cover;
+      img.profile-picture {
+        height: 8vh;
+        width: 8vh;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 0.5rem;
+      }
+
+      p {
+        font-weight: bold;
+      }
+    }
+
+    .comm {
+      flex: 1;
+      padding: 0 1rem;
+      text-align: left;
+    }
+
+    form {
+      margin-left: 1rem;
+    }
   }
 }
 
 .review::-webkit-scrollbar {
   width: 8px;
 }
-
 .review::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.3);
   border-radius: 4px;
 }
-
 .review::-webkit-scrollbar-track {
   background: transparent;
 }
@@ -1676,12 +1686,18 @@ div.mangaPage {
 
   .also-liked-contain {
     display: flex;
-    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
     text-align: center;
     font-family: var(--ff-barlow);
     font-size: 1.2rem;
 
+    div{
+      margin: 1rem 0;
+    }
+
     figure {
+      margin: 0.5rem 0;
       width: 100%;
       &:hover {
         a {
@@ -2790,20 +2806,16 @@ button:hover {
     display: flex;
 
     .comm-desktop {
+      display: flex;
       flex-direction: column;
+      align-items: center;
       width: 50%;
-
+  
       .review {
-        hr {
-          width: 90vh;
-        }
+        max-width: 80vw;
+  
         .cadre-review {
-          justify-content: start;
-          width: 50vh;
-          height: 20vh;
-          div {
-            margin: 0 1rem;
-          }
+          width: 60%;
         }
       }
     }
@@ -2818,6 +2830,7 @@ button:hover {
     .also-liked-contain {
       display: flex;
       justify-content: space-around;
+      flex-direction: row;
     }
   }
 

@@ -1344,9 +1344,7 @@ div.mangaPage svg.liked {
 }
 
 .char-manga {
-  display: flex;
-  justify-content: center;
-  margin-top: 1vh;
+  margin: 2vh;
   font-family: var(--ff-barlow);
   font-size: 0.8rem;
 }
@@ -1364,54 +1362,66 @@ div.mangaPage svg.liked {
 }
 
 .review {
-  background-color: #f2ebe8;
   border: 2px solid rgba(204, 56, 43, 0.3294117647);
   border-radius: 5px;
   width: 90%;
-  display: grid;
-  place-self: center;
-  place-content: center;
-  align-content: center;
-  margin-top: 5vh;
-  font-family: var(--ff-barlow);
-  max-height: 50vh;
-  overflow-y: auto;
-  padding-right: 10px;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
-}
-.review h2 {
-  margin-top: 40vh;
-  font-family: var(--ff-bangers);
-  letter-spacing: var(--letter-spacing);
-}
-.review hr {
-  margin: 2vh 0;
-}
-.review p :last-child {
-  margin-top: 2vh;
-}
-.review .cadre-review {
-  display: flex;
-  justify-content: center;
-}
-.review .cadre-review .comm {
-  display: flex;
-  align-items: center;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-.review .cadre-review .cadre-profile {
-  margin-left: 5vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 2rem auto;
+  font-family: var(--ff-barlow);
+  max-height: 50vh;
+  overflow-y: auto;
+  padding: 2vh 1vw;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+  background-color: #F1EBE8;
 }
-.review img.profile-picture {
-  height: 10vh;
+.review h2 {
+  margin-top: 2vh;
+  font-family: var(--ff-bangers);
+  letter-spacing: var(--letter-spacing);
+  text-align: center;
+}
+.review hr {
+  margin: 2vh 0;
+  width: 100%;
+}
+.review .cadre-review {
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  margin: 1rem 0;
+  width: 80%;
+  min-height: 15vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.review .cadre-review .cadre-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 2rem;
+}
+.review .cadre-review .cadre-profile img.profile-picture {
+  height: 8vh;
+  width: 8vh;
   border-radius: 50%;
   -o-object-fit: cover;
      object-fit: cover;
+  margin-bottom: 0.5rem;
+}
+.review .cadre-review .cadre-profile p {
+  font-weight: bold;
+}
+.review .cadre-review .comm {
+  flex: 1;
+  padding: 0 1rem;
+  text-align: left;
+}
+.review .cadre-review form {
+  margin-left: 1rem;
 }
 
 .review::-webkit-scrollbar {
@@ -1467,12 +1477,17 @@ div.mangaPage svg.liked {
 }
 .also-liked .also-liked-contain {
   display: flex;
-  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
   text-align: center;
   font-family: var(--ff-barlow);
   font-size: 1.2rem;
 }
+.also-liked .also-liked-contain div {
+  margin: 1rem 0;
+}
 .also-liked .also-liked-contain figure {
+  margin: 0.5rem 0;
   width: 100%;
 }
 .also-liked .also-liked-contain figure:hover a {
@@ -2411,19 +2426,16 @@ button:hover {
     display: flex;
   }
   .mangaPage-scd-section .comm-desktop {
+    display: flex;
     flex-direction: column;
+    align-items: center;
     width: 50%;
   }
-  .mangaPage-scd-section .comm-desktop .review hr {
-    width: 90vh;
+  .mangaPage-scd-section .comm-desktop .review {
+    max-width: 80vw;
   }
   .mangaPage-scd-section .comm-desktop .review .cadre-review {
-    justify-content: start;
-    width: 50vh;
-    height: 20vh;
-  }
-  .mangaPage-scd-section .comm-desktop .review .cadre-review div {
-    margin: 0 1rem;
+    width: 60%;
   }
   .also-liked {
     width: 50%;
@@ -2434,6 +2446,7 @@ button:hover {
   .also-liked .also-liked-contain {
     display: flex;
     justify-content: space-around;
+    flex-direction: row;
   }
   /*
   **********************************
