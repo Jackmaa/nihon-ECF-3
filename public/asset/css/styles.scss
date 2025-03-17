@@ -1560,71 +1560,81 @@ div.mangaPage {
 }
 
 .review {
-  background-color: #f2ebe8;
   border: 2px solid #cc382b54;
   border-radius: 5px;
   width: 90%;
-  display: grid;
-  place-self: center;
-  place-content: center;
-  align-content: center;
-  margin-top: 5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem auto;
   font-family: var(--ff-barlow);
   max-height: 50vh;
   overflow-y: auto;
-  padding-right: 10px;
+  padding: 2vh 1vw;
   scrollbar-width: thin;
   scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
 
   h2 {
-    margin-top: 40vh;
+    margin-top: 2vh;
     font-family: var(--ff-bangers);
     letter-spacing: var(--letter-spacing);
+    text-align: center;
   }
 
   hr {
     margin: 2vh 0;
-  }
-
-  p :last-child {
-    margin-top: 2vh;
+    width: 80%;
   }
 
   .cadre-review {
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    padding: 1rem;
+    margin: 1rem 0;
+    width: 80%;
+    min-height: 15vh;
     display: flex;
-    justify-content: center;
-
-    .comm {
-      display: flex;
-      align-items: center;
-      width: fit-content;
-    }
+    align-items: center;
+    justify-content: space-between;
 
     .cadre-profile {
-      margin-left: 5vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-    }
-  }
+      margin-right: 2rem;
 
-  img.profile-picture {
-    height: 10vh;
-    width: 10vh;
-    border-radius: 50%;
-    object-fit: cover;
+      img.profile-picture {
+        height: 8vh;
+        width: 8vh;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 0.5rem;
+      }
+
+      p {
+        font-weight: bold;
+      }
+    }
+
+    .comm {
+      flex: 1;
+      padding: 0 1rem;
+      text-align: left;
+    }
+
+    form {
+      margin-left: 1rem;
+    }
   }
 }
 
 .review::-webkit-scrollbar {
   width: 8px;
 }
-
 .review::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.3);
   border-radius: 4px;
 }
-
 .review::-webkit-scrollbar-track {
   background: transparent;
 }
@@ -2795,20 +2805,16 @@ button:hover {
     display: flex;
 
     .comm-desktop {
+      display: flex;
       flex-direction: column;
+      align-items: center;
       width: 50%;
-
+  
       .review {
-        hr {
-          width: 90vh;
-        }
+        max-width: 80vw;
+  
         .cadre-review {
-          justify-content: start;
-          width: 50vh;
-          height: 20vh;
-          div {
-            margin: 0 1rem;
-          }
+          width: 60%;
         }
       }
     }
