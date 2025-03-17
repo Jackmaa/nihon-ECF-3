@@ -135,9 +135,15 @@ class ModelBorrow extends Model {
     }
 
     public function updateStatus(int $id_borrow, string $status) {
-        $req = $this->getDb()->prepare("UPDATE borrow SET status = :status WHERE id_borrow = :id_borrow");
-        $req->bindParam(":id_borrow", $id_borrow, PDO::PARAM_INT);
-        $req->bindParam(":status", $status);
+        if ($status === 'back') {
+            $req = $this->getDb()->prepare("UPDATE borrow SET status = :status, return_date = CURDATE() WHERE id_borrow = :id_borrow");
+            $req->bindParam(":id_borrow", $id_borrow, PDO::PARAM_INT);
+            $req->bindParam(":status", $status);
+        } else {
+            $req = $this->getDb()->prepare("UPDATE borrow SET status = :status WHERE id_borrow = :id_borrow");
+            $req->bindParam(":id_borrow", $id_borrow, PDO::PARAM_INT);
+            $req->bindParam(":status", $status);
+        }
         if ($req->execute()) {
             return true;
         } else {
