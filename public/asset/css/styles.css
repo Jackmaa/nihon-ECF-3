@@ -1344,9 +1344,7 @@ div.mangaPage svg.liked {
 }
 
 .char-manga {
-  display: flex;
-  justify-content: center;
-  margin-top: 1vh;
+  margin: 2vh;
   font-family: var(--ff-barlow);
   font-size: 0.8rem;
 }
@@ -1409,6 +1407,7 @@ div.mangaPage svg.liked {
 }
 .review img.profile-picture {
   height: 10vh;
+  width: 10vh;
   border-radius: 50%;
   -o-object-fit: cover;
      object-fit: cover;
@@ -1467,12 +1466,17 @@ div.mangaPage svg.liked {
 }
 .also-liked .also-liked-contain {
   display: flex;
-  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
   text-align: center;
   font-family: var(--ff-barlow);
   font-size: 1.2rem;
 }
+.also-liked .also-liked-contain div {
+  margin: 1rem 0;
+}
 .also-liked .also-liked-contain figure {
+  margin: 0.5rem 0;
   width: 100%;
 }
 .also-liked .also-liked-contain figure:hover a {
@@ -2434,6 +2438,7 @@ button:hover {
   .also-liked .also-liked-contain {
     display: flex;
     justify-content: space-around;
+    flex-direction: row;
   }
   /*
   **********************************

@@ -1539,9 +1539,7 @@ div.mangaPage {
 }
 
 .char-manga {
-  display: flex;
-  justify-content: center;
-  margin-top: 1vh;
+  margin: 2vh;
   font-family: var(--ff-barlow);
   font-size: 0.8rem;
 
@@ -1612,6 +1610,7 @@ div.mangaPage {
 
   img.profile-picture {
     height: 10vh;
+    width: 10vh;
     border-radius: 50%;
     object-fit: cover;
   }
@@ -1676,12 +1675,18 @@ div.mangaPage {
 
   .also-liked-contain {
     display: flex;
-    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
     text-align: center;
     font-family: var(--ff-barlow);
     font-size: 1.2rem;
 
+    div{
+      margin: 1rem 0;
+    }
+
     figure {
+      margin: 0.5rem 0;
       width: 100%;
       &:hover {
         a {
@@ -2818,6 +2823,7 @@ button:hover {
     .also-liked-contain {
       display: flex;
       justify-content: space-around;
+      flex-direction: row;
     }
   }
 
