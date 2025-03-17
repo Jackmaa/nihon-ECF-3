@@ -93,6 +93,19 @@ class ModelManga extends Model {
         return $volumes;
     }
 
+    public function addVolumes(int $id_manga, int $volumes) {
+        while ($volumes && $volumes > 0) {
+            $req = $this->getDb()->prepare(
+                'INSERT INTO `manga_volume` (`id_manga`, `id_volume`) VALUES (:id_manga, :id_volume)'
+            );
+            $req->bindParam(':id_manga', $id_manga, PDO::PARAM_INT);
+            $req->bindParam(':id_volume', $volumes, PDO::PARAM_INT);
+            $req->execute();
+            $volumes--;
+        }
+        return true;
+    }
+
 // Add a new volume
     public function addVolume($id_manga, $id_volume) {
         $req = $this->getDb()->prepare(
@@ -141,6 +154,33 @@ class ModelManga extends Model {
         $req->bindParam(':name', $name, PDO::PARAM_STR);
         $req->execute();
         return $req->fetch(PDO::FETCH_ASSOC);
+    }
+
+    //Get user's favorites mangas
+    public function getUserFavs($id) {
+        $req = $this->getDb()->prepare(
+            'SELECT
+                manga.id_manga,
+                manga.name,
+                manga.id_author,
+                manga.description,
+                manga.published_date,
+                manga.thumbnail
+            FROM
+                manga
+            INNER JOIN
+                fav ON manga.id_manga = fav.id_manga
+            WHERE
+                fav.id_user = :id_user');
+        $req->bindParam(':id_user', $id, PDO::PARAM_INT);
+        $req->execute();
+        $data   = $req->fetchAll(PDO::FETCH_ASSOC);
+        $mangas = [];
+        foreach ($data as $manga) {
+            $mangas[] = new Manga($manga);
+        }
+        return $mangas;
+
     }
 
     //Create a manga

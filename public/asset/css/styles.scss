@@ -296,6 +296,20 @@ svg {
     }
   }
 }
+.loginbutton{
+  background-color: #cc392b;
+  font-family: var(--ff-bangers);
+  letter-spacing: var(--letter-spacing);
+  margin: 10px;
+  padding: 10px 20px;
+  &:hover{
+    background-color: #fd1702;
+  }
+}
+  
+
+
+
 
 /*
 **********************************
@@ -459,6 +473,9 @@ footer > p {
 ***********LOGIN/REGISTER*********
 **********************************
 */
+.login{
+  margin-top: 20px;
+}
 
 .connexion,
 .login {
@@ -582,6 +599,9 @@ footer > p {
 *************REGISTER*************
 **********************************
 */
+.connexion{
+  margin-top: 20px;
+}
 
 main.connexion,
 main.login {
@@ -2289,6 +2309,7 @@ button:hover {
 
   .form-container {
     width: auto;
+       
 
     h1 {
       font-size: 1.5rem;
@@ -2674,6 +2695,7 @@ button:hover {
     }
   }
 
+
   /*
 **********************************
 ***********DASHBOARD************
@@ -2893,6 +2915,17 @@ button:hover {
     display: flex;
     justify-content: center;
   }
+/*
+**********************************
+***************ABOUT US***********
+**********************************
+*/
+
+
+
+
+
+
 }
 
 @media (min-width: 1440px) {
@@ -2930,6 +2963,7 @@ button:hover {
     display: block;
     width: 60vw;
   }
+  
 
   /*
 **********************************
@@ -2940,6 +2974,14 @@ button:hover {
   div.headdashboard {
     height: 70vh;
   }
+/*
+**********************************
+***************ABOUT US***********
+**********************************
+*/
+
+
+
 }
 
 // * {
@@ -3673,12 +3715,11 @@ form {
 ***************ABOUT US***********
 **********************************
 */
-
 .aboutus {
-  position: relative; /* Permet aux nuages d'être positionnés par rapport à cette section */
-  height: 100vh; /* Prend toute la hauteur de la fenêtre */
-  overflow: hidden; /* Empêche le débordement */
-  background-color: #f9f9f9; /* Couleur de fond */
+  position: relative; 
+  height: 100vh; 
+  overflow: hidden; 
+  background-color: #f9f9f9; 
   margin: 20px;
   padding: 20px;
   background-color: #f9f9f9;
@@ -3689,8 +3730,8 @@ form {
     letter-spacing: var(--letter-spacing);
     font-size: 2rem;
     color: #e00e0e;
-    opacity: 0; /* Initialement invisible */
-    transform: translateY(-50px); /* Position initiale en dehors de l'écran */
+    opacity: 0; 
+    transform: translateY(-50px); 
   }
 
   h2 {
@@ -3699,8 +3740,8 @@ form {
     font-size: 1.5rem;
     color: #070707;
     margin: 20px;
-    opacity: 0; /* Initialement invisible */
-    transform: translateY(-50px); /* Position initiale en dehors de l'écran */
+    opacity: 0; 
+    transform: translateY(-50px); 
   }
 
   p {
@@ -3708,8 +3749,8 @@ form {
     font-size: 1.5rem;
     color: #070707;
     margin: 20px;
-    opacity: 0; /* Initialement invisible */
-    transform: translateY(-50px); /* Position initiale en dehors de l'écran */
+    opacity: 0; 
+    transform: translateY(-50px); 
   }
 
   section {
@@ -3732,6 +3773,7 @@ form {
     img {
       width: 100%;
     }
+
   }
   .cloud {
     position: absolute;
