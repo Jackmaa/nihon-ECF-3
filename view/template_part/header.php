@@ -76,6 +76,30 @@
                                 <li><a href="<?php echo $this->router->generate("myProfile", ["id" => $_SESSION['id_user']]) ?>">Profil</a></li>
                                 <li><a href="<?php echo $this->router->generate("favoriteManga", ["id" => $_SESSION['id_user']]) ?>">My Favorites</a></li>
                                 <li><a href="<?php echo $this->router->generate("currentStorie") ?>">My Book</a></li>
+                                <li><a href="<?php echo $this->router->generate("favoriteManga", ["id" => $_SESSION['id_user']]) ?>">Favorites</a></li>
+                                <li><a href="#" class="toggle-theme">Darkmode
+                                        <span class="icon-wrapper">
+                                            <svg class="mode-icon" width="33" height="19" viewBox="0 0 33 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M22 18.875C28.0729 18.875 33 14.6758 33 9.5C33 4.32422 28.0729 0.125 22 0.125L11 0.125C4.92708 0.125 0 4.32422 0 9.5C0 14.6758 4.92708 18.875 11 18.875L22 18.875ZM11 14.1875C9.54131 14.1875 8.14236 13.6936 7.11091 12.8146C6.07946 11.9355 5.5 10.7432 5.5 9.5C5.5 8.2568 6.07946 7.06451 7.11091 6.18544C8.14236 5.30636 9.54131 4.8125 11 4.8125C12.4587 4.8125 13.8576 5.30636 14.8891 6.18544C15.9205 7.06451 16.5 8.2568 16.5 9.5C16.5 10.7432 15.9205 11.9355 14.8891 12.8146C13.8576 13.6936 12.4587 14.1875 11 14.1875Z" fill="#C0C0C0" />
+                                            </svg>
+                                        </span>
+                                    </a></li>
+                                <li><a href="<?php echo BASE_URL ?>contact">Contact</a></li>
+                                <li><a href="<?php echo $this->router->generate('logout') ?>">Log-out</a></li>
+                            </ul>
+                        <?php else: ?>
+                            <ul>
+                                <li><a href="<?php echo $this->router->generate("login") ?>">Login</a></li>
+                                <li><a href="<?php echo $this->router->generate("register") ?>">Register</a></li>
+                                <li><a href="<?php echo BASE_URL ?>">Home</a></li>
+                                <li><a href="#" class="toggle-theme">Darkmode
+                                        <span class="icon-wrapper">
+                                            <svg class="mode-icon" width="33" height="19" viewBox="0 0 33 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M22 18.875C28.0729 18.875 33 14.6758 33 9.5C33 4.32422 28.0729 0.125 22 0.125L11 0.125C4.92708 0.125 0 4.32422 0 9.5C0 14.6758 4.92708 18.875 11 18.875L22 18.875ZM11 14.1875C9.54131 14.1875 8.14236 13.6936 7.11091 12.8146C6.07946 11.9355 5.5 10.7432 5.5 9.5C5.5 8.2568 6.07946 7.06451 7.11091 6.18544C8.14236 5.30636 9.54131 4.8125 11 4.8125C12.4587 4.8125 13.8576 5.30636 14.8891 6.18544C15.9205 7.06451 16.5 8.2568 16.5 9.5C16.5 10.7432 15.9205 11.9355 14.8891 12.8146C13.8576 13.6936 12.4587 14.1875 11 14.1875Z" fill="#C0C0C0" />
+                                            </svg>
+                                        </span>
+                                    </a></li>
+
                                 <li><a href="<?php echo BASE_URL ?>contact">Contact</a></li>
                                 <li><a href="<?php echo $this->router->generate('logout') ?>">Déconnexion</a></li>
                             </ul>
