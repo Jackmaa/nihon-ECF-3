@@ -96,7 +96,7 @@ class ModelManga extends Model {
 // Add a new volume
     public function addVolume($id_manga, $id_volume) {
         $req = $this->getDb()->prepare(
-            "INSERT INTO volumes (id_manga, id_volume) VALUES (:id_manga, :id_volume)"
+            "INSERT INTO manga_volume (id_manga, id_volume) VALUES (:id_manga, :id_volume)"
         );
         $req->bindParam(":id_manga", $id_manga, PDO::PARAM_INT);
         $req->bindParam(":id_volume", $id_volume, PDO::PARAM_INT);
@@ -106,7 +106,7 @@ class ModelManga extends Model {
 // Delete a volume
     public function deleteVolume($id_manga, $id_volume) {
         $req = $this->getDb()->prepare(
-            "DELETE FROM volumes WHERE id_manga = :id_manga AND id_volume = :id_volume"
+            "DELETE FROM manga_volume WHERE id_manga = :id_manga AND id_volume = :id_volume"
         );
         $req->bindParam(":id_manga", $id_manga, PDO::PARAM_INT);
         $req->bindParam(":id_volume", $id_volume, PDO::PARAM_INT);
