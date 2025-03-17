@@ -13,7 +13,7 @@
 <header>
 <body>
 <?php if ($title == 'Nihon | Login' || $title == 'Nihon | Register'): ?>
-    <body id="css-body">
+   
 <?php else: ?>
     <body>
 <?php endif; ?>
@@ -85,7 +85,8 @@
                     <p>Welcome KAMI</p>
                 <?php else: ?>
                     <figure class="connexion">
-                        <a href="<?php echo $this->router->generate('login') ?>">Connexion</a>
+                    <li> <button class="loginbutton" onclick="window.location.href='<?php echo $this->router->generate("login") ?>'"> Login </button></li>
+                    <li> <button class="loginbutton" onclick="window.location.href='<?php echo $this->router->generate("register") ?>'"> Register </button></li>
                     </figure>
                 <?php endif; ?>
 
