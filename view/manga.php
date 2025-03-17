@@ -4,6 +4,12 @@
     $scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public\asset\js\base.js", "public\asset\js\header.js", "public/asset/js/like.js", "public/asset/js/cart.js", "public/asset/js/review.js", "public\asset\js\darkmode.js"];
     ob_start();
 ?>
+<div class="container-homepage">
+<div class="background-fill"></div>
+    <div class="wrap">
+        <div class="bgWave waveOne"></div>
+        <div class="bgWave waveTwo"></div>
+    </div>
 <main class="la-page-manga">
     <section>
         <div class="mangaPage-frst-section">
@@ -103,6 +109,7 @@
         </div>
     </section>
 </main>
+            </div>
 <?php
     $content = ob_get_contents();
     ob_end_clean();

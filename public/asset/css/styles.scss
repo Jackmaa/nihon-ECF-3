@@ -2312,7 +2312,7 @@ button:hover {
 *******************************
 */
   .formulaire {
-    margin: 0 auto;
+    margin: 3rem auto;
   }
 }
 
@@ -2368,7 +2368,7 @@ button:hover {
 *******************************
 */
   .formulaire {
-    margin: 0 auto;
+    margin: 3rem auto;
   }
 
   /*
@@ -2535,8 +2535,8 @@ button:hover {
 *******************************
 */
   .formulaire {
-    margin: 0 auto;
-    max-width: 024px;
+    margin: 3rem auto;
+    max-width: 1024px;
   }
 
   /*
@@ -2819,7 +2819,16 @@ button:hover {
         }
       }
     }
+    
+
   }
+  #leave-review{
+  justify-content: start;
+  margin: 0 2rem;
+  input{
+    width: 40%;
+  }
+}
 
   .also-liked {
     width: 50%;
@@ -2944,21 +2953,22 @@ button:hover {
 */
 
 .formulaire {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background-color: #a2eefb;
-  border-radius: 10px;
-  outline: 3px solid #ffffff;
-  max-width: 600px;
-  margin: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background-color: #a2eefb;
+      border-radius: 10px;
+      outline: 3px solid #ffffff;
+      margin: 3rem auto;
+      padding: 4rem;
+      height: 60vh;
 
   h2 {
     text-align: center;
     font-family: var(--ff-bangers);
     margin: 1%;
     color: #ffffff;
-    -webkit-text-stroke: 2px red;
+    -webkit-text-stroke: 1px red;
   }
 
   input,
@@ -2976,14 +2986,15 @@ button:hover {
     padding: 1%;
     border-radius: 10px;
     border: none;
-    background-color: #fcc8e1;
+    background-color: #cc1606;
     color: #ffffff;
     font-family: var(--ff-bangers);
     cursor: pointer;
     transition: all ease 0.3s;
 
     &:hover {
-      background-color: #cc1606;
+      background-color: #ce685f;
+      color: var(--fc-black);
     }
   }
 }
@@ -3717,6 +3728,10 @@ form {
     flex-direction: column;
     opacity: 0; /* Initialement invisible */
     transform: translateY(-50px); /* Position initiale en dehors de l'écran */
+
+    img {
+      width: 100%;
+    }
   }
   .cloud {
     position: absolute;

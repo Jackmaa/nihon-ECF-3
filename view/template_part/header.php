@@ -53,6 +53,7 @@
                                         </span>
                                     </a></li>
                                 <li><a href="<?php echo BASE_URL ?>contact">Contact</a></li>
+                                <li><a href="<?php echo $this->router->generate('logout') ?>">Log-out</a></li>
                             </ul>
                         <?php else: ?>
                             <ul>
