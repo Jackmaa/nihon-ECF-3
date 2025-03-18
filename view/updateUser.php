@@ -1,8 +1,8 @@
 <?php
-$title            = 'Nihon | My Profile ';
-$meta_description = 'it\'s your profile, your profile is incredible like a manga';
-$scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public\asset\js\base.js", "public\asset\js\header.js", "public\asset\js\like.js", "public\asset\js\update-profile.js", "public\asset\js\darkmode.js"];
-ob_start();
+    $title            = 'Nihon | My Profile ';
+    $meta_description = 'it\'s your profile, your profile is incredible like a manga';
+    $scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public\asset\js\base.js", "public\asset\js\header.js", "public\asset\js\like.js", "public\asset\js\update-profile.js", "public\asset\js\darkmode.js"];
+    ob_start();
 ?>
 <main class="update-user" >
     <section class="head-profile">
@@ -28,7 +28,7 @@ ob_start();
     <figure class="update-user-desktop" ><img src="<?php echo BASE_URL ?>public\asset\img\update-user.svg" alt="picture update user"></figure>
 </main>
 <?php
-$content = ob_get_contents();
-ob_end_clean();
+    $content = ob_get_contents();
+    ob_end_clean();
 require_once 'view\base_html.php';
 ?>
