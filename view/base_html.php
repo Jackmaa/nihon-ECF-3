@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="<?php echo BASE_URL ?>public/asset/css/styles.css">
 </head>
 <body>
+<body class="<?php echo ($title == 'Nihon | Login' || $title == 'Nihon | Register') ? 'auth-pages' : ''; ?>">
     <?php if ($title == 'Nihon | Login' || $title == 'Nihon | Register'): ?>
         <!DOCTYPE html>
 <html lang="en">
