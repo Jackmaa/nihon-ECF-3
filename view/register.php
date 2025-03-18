@@ -38,7 +38,7 @@
                 <button type="button" class="togglePassword"><img src="public/asset/img/oeilferme.svg" alt="oeil" class="eye-icon"> </button>
             </div>
                 <input type="password" name="password_verify" placeholder="Confirm Password">
-                
+
                 <p>(8 caractères minimums)</p>
                 <p>You have already an account ? <a href="<?php echo $this->router->generate("login") ?>">Click here</a></p>
                 <button class="loginregister" type="submit">SUBSCRIRE</button>

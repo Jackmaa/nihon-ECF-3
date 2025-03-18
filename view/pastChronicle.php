@@ -9,7 +9,7 @@
         <a href="<?php echo $this->router->generate("myProfile", ['id' => $_SESSION['id_user']]) ?>">‹ Back to my Profile</a>
         <h3>My Past Chronicles</h3>
     </section>
-    <figure class="current-desktop"> 
+    <figure class="current-desktop">
         <img src="<?php echo BASE_URL ?>public\asset\img\current-active.svg" alt="">
     </figure>
     <section>
