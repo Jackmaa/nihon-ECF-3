@@ -13,9 +13,11 @@
 <header>
 
     <body>
-        <?php if ($title == 'Nihon | Login' || $title == 'Nihon | Register'): ?>
+        <?php if ($title == 'Nihon | Login'): ?>
 
             <body id="css-body">
+                <?php elseif ($title == 'Nihon | Register'): ?>
+                  <body id="css-body-register" ></body> 
             <?php else: ?>
 
                 <body>

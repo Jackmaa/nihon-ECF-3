@@ -487,9 +487,10 @@ footer > p {
   position: relative;
   display: flex;
   align-items: center;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 .password-container input {
-  width: 100%;
   padding-right: 40px;
   height: 40px;
   border: 1px solid #ccc;
@@ -512,6 +513,9 @@ footer > p {
   color: rgba(51, 51, 51, 0.4431372549);
   font-family: var(--ff-barlow);
   font-weight: 400;
+}
+.password-container input button {
+  right: 0;
 }
 .password-container .togglePassword {
   position: absolute;
@@ -873,12 +877,36 @@ main.login .cloud:before {
     opacity: 1;
   }
 }
-@keyframes float {
+/*******************NUIT*******************/
+#css-body-register {
+  background: linear-gradient(to bottom, #1c1047, #34495e);
+  position: relative;
+}
+
+#css-body-register::before {
+  content: "";
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, #f51414, #af0000);
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(90, 0, 0, 0.8);
+  background-size: cover;
+  filter: brightness(1.2);
+  animation: moonrise1 3.5s ease-in-out;
+}
+
+@keyframes moonrise1 {
   from {
-    transform: translateX(-10vw);
+    top: 50%;
+    opacity: 0;
   }
   to {
-    transform: translateX(110vw);
+    top: 8%;
+    opacity: 1;
   }
 }
 /*
@@ -3370,4 +3398,83 @@ section.see-volume {
   background-image: url(../img/vignette.svg);
   background-color: rgba(242, 235, 232, 0.8901960784);
   background-blend-mode: overlay;
+}
+
+input {
+  outline: 3px solid hsl(203, 30%, 26%);
+}
+
+input:valid:not(:-moz-placeholder-shown) {
+  outline-color: var(--clr-success);
+}
+
+input:focus:valid,
+input:valid:not(:placeholder-shown) {
+  outline-color: var(--clr-success);
+}
+
+input:invalid:not(:-moz-placeholder-shown) {
+  outline-color: var(--clr-error);
+}
+
+input:invalid:not(:placeholder-shown) {
+  outline-color: var(--clr-error);
+}
+
+input:focus:invalid:not(:-moz-placeholder-shown) {
+  outline-color: var(--clr-warning);
+}
+
+input:focus:invalid:not(:placeholder-shown) {
+  outline-color: var(--clr-warning);
+}
+
+.hint {
+  color: var(--clr-warning);
+}
+
+.error {
+  color: var(--clr-error);
+}
+
+.hint,
+.error {
+  display: none;
+}
+
+/* show hint if user is in the input
+   but it is invalid */
+input:focus:invalid:not(:-moz-placeholder-shown) ~ .hint {
+  display: block;
+}
+input:focus:invalid:not(:placeholder-shown) ~ .hint {
+  display: block;
+}
+
+/* show error after users leaves input
+   but it is invalid */
+input:not(:focus):invalid:not(:-moz-placeholder-shown) ~ .error {
+  display: block;
+  /*   animation: form-error 250ms 3; */
+}
+input:not(:focus):invalid:not(:placeholder-shown) ~ .error {
+  display: block;
+  /*   animation: form-error 250ms 3; */
+}
+
+@keyframes form-error {
+  25% {
+    translate: -5px;
+  }
+  75% {
+    translate: 5px;
+  }
+}
+/* add an animation when they have an error */
+@layer general-styling {
+  :root {
+    --clr-success: hsl(143, 100%, 26%);
+    --clr-warning: hsl(43, 100%, 66%);
+    --clr-error: hsl(348, 55%, 49%);
+  }
 }/*# sourceMappingURL=styles.css.map */
