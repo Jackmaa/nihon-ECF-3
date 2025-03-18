@@ -3530,4 +3530,57 @@ section.see-volume {
   margin-bottom: 1.5rem;
   margin-top: 100px;
   color: #111111;
+}
+
+/******FAV PAGE *******/
+#section-stat .total-fav {
+  margin-bottom: 1rem;
+}
+#section-stat .stat-name {
+  font-size: 1.2rem;
+}
+#section-stat hr {
+  width: 100%;
+  margin: 4rem 0;
+  border: none;
+  border-top: 2px solid #ff3c68;
+}
+#section-stat .statistique {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 1rem;
+}
+#section-stat .statistique .statistique-barre {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  border-radius: 8px;
+  color: white;
+  padding: 0 15px;
+  position: relative;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.5s ease-out;
+}
+#section-stat .statistique .statistique-barre span {
+  margin-top: 0.5rem;
+}
+#section-stat .statistique .statistique-barre.visible {
+  opacity: 1;
+  transform: translateY(0);
+  animation: pulseBar 1s ease-out;
+}
+@keyframes pulseBar {
+  0% {
+    transform: translateY(0) scaleY(0);
+  }
+  60% {
+    transform: translateY(0) scaleY(1.2);
+  }
+  100% {
+    transform: translateY(0) scaleY(1);
+  }
 }/*# sourceMappingURL=styles.css.map */
