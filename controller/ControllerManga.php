@@ -67,12 +67,16 @@ class ControllerManga extends Controller {
                 $id_manga = $model->getMangaByName($name);
                 $editor   = $_POST["editor"];
                 $model->addEditor($id_manga, $editor);
+                $volumes = $_POST["volumes"];
+                $model->addVolumes($id_manga, $volumes);
+
                 // Handle multiple categories (min 1, max 3)
                 if (isset($_POST["category"]) && is_array($_POST["category"])) {
                     $selectedCategories = array_slice($_POST["category"], 0, 3); // Limit to 3 categories
                     foreach ($selectedCategories as $categoryId) {
                         $model->addCategory($id_manga, $categoryId);
                     }
+
                 } else {
                     echo "Please select at least one category.";
                     exit;
@@ -210,24 +214,30 @@ class ControllerManga extends Controller {
     }
 
     public function addVolume() {
+        header('Content-Type: application/json'); // Ensure JSON response
         $data = json_decode(file_get_contents("php://input"), true);
+
+        if (! $data || ! isset($data['id_manga']) || ! isset($data['id_volume'])) {
+            echo json_encode([
+                "success" => false,
+                "message" => "Invalid input data.",
+            ]);
+            return;
+        }
 
         $model = new ModelManga();
         if ($model->addVolume($data['id_manga'], $data['id_volume'])) {
-            json_encode([
+            echo json_encode([
                 "success" => true,
                 "message" => "Volume added successfully.",
             ]);
         } else {
-            json_encode([
+            echo json_encode([
                 "success" => false,
                 "message" => "Failed to add volume.",
             ]);
-
         }
-
     }
-
     public function deleteVolume() {
         $data = json_decode(file_get_contents("php://input"), true);
 
@@ -245,9 +255,9 @@ class ControllerManga extends Controller {
         }
     }
 
-    public function getVolume() {
+    public function getVolumes($id) {
         $model   = new ModelManga();
-        $volumes = $model->getMangaVolumes($_POST['id_manga']);
+        $volumes = $model->getMangaVolumes($id);
         header('Content-Type: application/json');
         echo json_encode($volumes);
     }

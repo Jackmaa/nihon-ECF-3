@@ -1,8 +1,8 @@
 <?php
-$title = 'Nihon | Kakoii Mode';
-$meta_description = 'Activate Kakoii Mode';
-$scripts = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public/asset/js/base.js", "public/asset/js/header.js", "public/asset/js/kakoii.js", "public\asset\js\darkmode.js"];
-ob_start();
+    $title            = 'Nihon | Kakoii Mode';
+    $meta_description = 'Activate Kakoii Mode';
+    $scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public/asset/js/base.js", "public/asset/js/header.js", "public/asset/js/kakoii.js", "public\asset\js\darkmode.js"];
+    ob_start();
 ?>
 <section class="formkakoii">
 
@@ -96,7 +96,7 @@ ob_start();
     </main>
 </section>
 <?php
-$content = ob_get_contents();
-ob_end_clean();
+    $content = ob_get_contents();
+    ob_end_clean();
 require_once 'view/base_html.php';
 ?>

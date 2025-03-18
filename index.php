@@ -70,6 +70,11 @@ $router->map("POST", "/delete/[i:id]", "ControllerManga#delete", "delete");
 // CATEGORY
 $router->map("GET", "/category/[a:category_name]", "ControllerManga#readCategory", "readCategory");
 
+// VOLUMES
+$router->map("GET", "/getVolumes/[i:id]", "ControllerManga#getVolumes", "getVolume");
+$router->map("POST", "/addVolume", "ControllerManga#addVolume", "addVolume");
+$router->map("POST", "/deleteVolume", "ControllerManga#deleteVolume", "deleteVolume");
+
 /*******************************||  AUTHORS  ||**************************************/
 //AUTHOR
 //READ

@@ -93,6 +93,19 @@ class ModelManga extends Model {
         return $volumes;
     }
 
+    public function addVolumes(int $id_manga, int $volumes) {
+        while ($volumes && $volumes > 0) {
+            $req = $this->getDb()->prepare(
+                'INSERT INTO `manga_volume` (`id_manga`, `id_volume`) VALUES (:id_manga, :id_volume)'
+            );
+            $req->bindParam(':id_manga', $id_manga, PDO::PARAM_INT);
+            $req->bindParam(':id_volume', $volumes, PDO::PARAM_INT);
+            $req->execute();
+            $volumes--;
+        }
+        return true;
+    }
+
 // Add a new volume
     public function addVolume($id_manga, $id_volume) {
         $req = $this->getDb()->prepare(
@@ -142,6 +155,54 @@ class ModelManga extends Model {
         $req->execute();
         return $req->fetch(PDO::FETCH_ASSOC);
     }
+
+    //Get user's favorites mangas
+    public function getUserFavs($id) {
+        $req = $this->getDb()->prepare(
+            'SELECT
+                manga.id_manga,
+                manga.name,
+                manga.id_author,
+                manga.description,
+                manga.published_date,
+                manga.thumbnail
+            FROM
+                manga
+            INNER JOIN
+                fav ON manga.id_manga = fav.id_manga
+            WHERE
+                fav.id_user = :id_user');
+        $req->bindParam(':id_user', $id, PDO::PARAM_INT);
+        $req->execute();
+        $data   = $req->fetchAll(PDO::FETCH_ASSOC);
+        $mangas = [];
+        foreach ($data as $manga) {
+            $mangas[] = new Manga($manga);
+        }
+        return $mangas;
+
+    }
+
+    //Return user fav stats
+    public function getStats($id_user) {
+        $req = $this->getDb()->prepare(
+            'SELECT 
+                c.category_name,
+                u.username,
+                COUNT(f.id_manga) AS total_fav 
+            FROM fav f
+            INNER JOIN manga_category mc ON f.id_manga = mc.manga_id
+            INNER JOIN categories c ON mc.category_id = c.id_category
+            INNER JOIN user u ON f.id_user = u.id_user
+            WHERE f.id_user = :id_user
+            GROUP BY c.category_name, u.username;'
+        );
+        $req->bindParam(':id_user', $id_user, PDO::PARAM_INT);
+        $req->execute();
+        
+        return $req->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
 
     //Create a manga
     public function createManga(string $name, int $author, string $description, string $published_date, string $thumbnail) {

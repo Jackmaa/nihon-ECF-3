@@ -41,9 +41,9 @@
                         </div>
                         <?php if (isset($_SESSION['id_user'])): ?>
                             <ul>
-                                <li><a href="<?php echo $this->router->generate("myProfile", ["id" => $_SESSION['id_user']]) ?>">Profil</a></li>
+                                <li><a href="<?php echo $this->router->generate("myProfile", ["id" => $_SESSION['id_user']]) ?>">Profile</a></li>
                                 <li><a href="<?php echo BASE_URL ?>">Home</a></li>
-                                <li><a href="<?php echo $this->router->generate("currentStorie") ?>">My Book</a></li>
+                                <li><a href="<?php echo $this->router->generate("currentStorie") ?>">My Books</a></li>
                                 <li><a href="<?php echo $this->router->generate("favoriteManga", ["id" => $_SESSION['id_user']]) ?>">Favorites</a></li>
                                 <li><a href="#" class="toggle-theme">Darkmode
                                         <span class="icon-wrapper">
@@ -53,7 +53,6 @@
                                         </span>
                                     </a></li>
                                 <li><a href="<?php echo BASE_URL ?>contact">Contact</a></li>
-                                <li><a href="<?php echo $this->router->generate('logout') ?>">Log-out</a></li>
                             </ul>
                         <?php else: ?>
                             <ul>
@@ -88,14 +87,14 @@
                         <?php if (isset($_SESSION['id_user'])): ?>
                             <figure class="profile">
                                 <div id="username-picture">
-                                    <a href="<?php echo $this->router->generate("myProfile", ["id" => $_SESSION['id_user']]) ?>"><?php echo  $_SESSION['name'] ?></a>
+                                    <a href="<?php echo $this->router->generate("myProfile", ["id" => $_SESSION['id_user']]) ?>"><?php echo $_SESSION['name'] ?></a>
                                     <a href="#"><img src="<?php echo BASE_URL ?><?php echo $_SESSION['profile_pic'] ?>" alt="profile picture"></a>
                                 </div>
                                 <div class="dropdown">
                                     <ul>
-                                        <li><a href="<?php echo $this->router->generate("myProfile", ["id" => $_SESSION['id_user']]) ?>">Profil</a></li>
+                                        <li><a href="<?php echo $this->router->generate("myProfile", ["id" => $_SESSION['id_user']]) ?>">Profile</a></li>
                                         <li><a href="<?php echo $this->router->generate("favoriteManga", ["id" => $_SESSION['id_user']]) ?>">My Favorites</a></li>
-                                        <li><a href="<?php echo $this->router->generate("currentStorie") ?>">My Book</a></li>
+                                        <li><a href="<?php echo $this->router->generate("currentStorie") ?>">My Books</a></li>
                                         <li><a href="<?php echo BASE_URL ?>contact">Contact</a></li>
                                         <li><a href="#" class="toggle-theme">Darkmode
                                                 <span class="icon-wrapper">
@@ -105,7 +104,7 @@
                                                 </span>
                                             </a></li>
 
-                                        <li><a href="<?php echo $this->router->generate('logout') ?>">Déconnexion</a></li>
+                                        <li><a href="<?php echo $this->router->generate('logout') ?>">Logout</a></li>
                                     </ul>
                                 </div>
                             </figure>
@@ -113,7 +112,8 @@
                             <p>Welcome KAMI</p>
                         <?php else: ?>
                             <figure class="connexion">
-                                <a href="<?php echo $this->router->generate('login') ?>">Connexion</a>
+                                <a class="loginbutton" href="<?php echo $this->router->generate('login') ?>">Login</a>
+                                <a class="loginbutton" href="<?php echo $this->router->generate('register') ?>">Register</a>
                             </figure>
                         <?php endif; ?>
 
