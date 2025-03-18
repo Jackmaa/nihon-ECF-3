@@ -140,12 +140,10 @@ document.querySelectorAll(".cart-btn").forEach((button) => {
   });
 });
 
-// Sélectionne l'élément panier
 const cart = document.querySelector(".cart");
 let scrollTimeout;
-gsap.set(cart, { opacity: 1, y: 0 }); // Assure que le panier est bien visible au départ
+gsap.set(cart, { opacity: 1, y: 0 });
 
-// Fonction pour masquer le panier avec une animation GSAP
 const hideCart = () => {
   gsap.to(cart, {
     opacity: 0,
@@ -155,7 +153,6 @@ const hideCart = () => {
   });
 };
 
-// Fonction pour afficher le panier avec une animation GSAP
 const showCart = () => {
   gsap.to(cart, {
     opacity: 1,
@@ -167,7 +164,7 @@ const showCart = () => {
 
 // Détection du scroll
 window.addEventListener("scroll", () => {
-  hideCart(); // Masquer le panier au début du scroll
+  hideCart();
   clearTimeout(scrollTimeout);
-  scrollTimeout = setTimeout(showCart, 500); // Réafficher après 500ms d'arrêt du scroll
+  scrollTimeout = setTimeout(showCart, 500); 
 });
