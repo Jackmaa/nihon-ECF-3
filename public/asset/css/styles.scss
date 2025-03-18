@@ -536,6 +536,10 @@ input:not(:focus):invalid:not(:placeholder-shown) ~ .error {
 .login {
   margin-top: 20px;
 }
+.connexion .form-container{
+  margin-top: 100px;
+}
+
 
 .connexion,
 .login {
@@ -656,6 +660,11 @@ input:not(:focus):invalid:not(:placeholder-shown) ~ .error {
       text-align: center;
     }
   }
+}
+
+.auth-pages footer,
+.auth-pages footer * { 
+    color: white;
 }
 
 /*
@@ -3978,4 +3987,61 @@ section.see-volume {
   background-image: url(../img/vignette.svg);
   background-color: rgba(242, 235, 232, 0.8901960784);
   background-blend-mode: overlay;
+}
+/*
+*************************************
+***************DASHBOARD LOGIN*******
+*************************************
+*/
+
+.admin-login{
+
+.admin-login-form {
+  max-width: 400px;
+  margin: 50px auto; /* Centrer le formulaire verticalement et horizontalement */
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.admin-login-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.admin-login-form input[type="text"],
+.admin-login-form input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box; /* Inclure le padding et la bordure dans la largeur totale */
+}
+
+.admin-login-form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #cc1606;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.admin-login-form button:hover {
+  background-color: #e00e0e;
+}
+h1{
+  text-align: center;
+  font-family: var(--ff-bangers);
+    letter-spacing: var(--letter-spacing);
+    margin-bottom: 1.5rem;
+    margin-top: 100px;
+    color: #111111;
+  
+}
 }
