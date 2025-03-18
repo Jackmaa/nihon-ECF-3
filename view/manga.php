@@ -4,6 +4,12 @@
     $scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public\asset\js\base.js", "public\asset\js\header.js", "public/asset/js/like.js", "public/asset/js/cart.js", "public/asset/js/review.js", "public\asset\js\darkmode.js"];
     ob_start();
 ?>
+<div class="container-homepage">
+<div class="background-fill"></div>
+    <div class="wrap">
+        <div class="bgWave waveOne"></div>
+        <div class="bgWave waveTwo"></div>
+    </div>
 <main class="la-page-manga">
     <section>
         <div class="mangaPage-frst-section">
@@ -28,7 +34,7 @@
                 </div>
                 <div class="char-manga">
                     <div>
-                        <p>Category :</p> <a href="#"><?php echo $manga->categories ?></a>
+                        <p>Category : </p><a href="#"><?php echo $manga->categories ?></a>
                     </div>
                     <div>
                         <p>Author : </p><a href="#"><?php echo $manga->author ?></a>
@@ -45,7 +51,7 @@
                 <?php foreach ($review as $rev): ?>
                     <div class="cadre-review">
                         <div class="cadre-profile">
-                            <img class="profile-picture" src="<?php echo BASE_URL ?>public\asset\img\profile_picture.webp" alt="profile picture">
+                            <img class="profile-picture" src="<?php echo BASE_URL . htmlspecialchars($rev['profile_pic']) ?>" alt="profile picture">
                             <p><?php echo htmlspecialchars($rev['username']); ?></p>
                         </div>
                         <div class="comm">
@@ -61,8 +67,6 @@
                     <hr>
                     <?php endforeach; ?>
                 </div>
-
-                <hr>
                 <section class="also-liked">
             <figure><h2><?php echo $manga->manga->getName() ?> Readers also liked</h2><img src="<?php echo BASE_URL ?>public\asset\img\books-anim.gif" alt=""></figure>
 
@@ -104,6 +108,7 @@
         </div>
     </section>
 </main>
+            </div>
 <?php
     $content = ob_get_contents();
     ob_end_clean();

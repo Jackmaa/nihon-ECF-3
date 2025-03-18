@@ -240,6 +240,19 @@ svg {
   outline: none;
 }
 
+.loginbutton {
+  border-radius: 1rem;
+  margin-inline: 0.75rem;
+  color: white;
+  background-color: #cc392b;
+  font-family: var(--ff-bangers);
+  letter-spacing: var(--letter-spacing);
+  padding: 10px 20px;
+}
+.loginbutton:hover {
+  background-color: #fd1702;
+}
+
 /*
 **********************************
 ***********MENU BURGER************
@@ -332,6 +345,10 @@ svg {
 ***********FOOTER************
 **********************************
 */
+footer {
+  height: 20vh;
+}
+
 footer > p {
   margin-bottom: 1%;
   padding: 0 20px;
@@ -382,6 +399,10 @@ footer > p {
 ***********LOGIN/REGISTER*********
 **********************************
 */
+.login {
+  margin-top: 20px;
+}
+
 .connexion,
 .login {
   display: flex;
@@ -511,6 +532,7 @@ footer > p {
 */
 main.connexion,
 main.login {
+  height: 80vh;
   /* Cloud Objects */
   /* KEYFRAMES */
   /* Responsive media query */
@@ -785,7 +807,6 @@ main.login .cloud:before {
 /*******************JOUR*******************/
 #css-body {
   background: linear-gradient(to bottom, #ffbd39, #ffe96e);
-  overflow: hidden;
 }
 
 #css-body::before {
@@ -823,7 +844,6 @@ main.login .cloud:before {
 /*******************NUIT*******************/
 #css-body {
   background: linear-gradient(to bottom, #1c1047, #34495e);
-  overflow: hidden;
   position: relative;
 }
 
@@ -1344,9 +1364,7 @@ div.mangaPage svg.liked {
 }
 
 .char-manga {
-  display: flex;
-  justify-content: center;
-  margin-top: 1vh;
+  margin: 2vh;
   font-family: var(--ff-barlow);
   font-size: 0.8rem;
 }
@@ -1364,54 +1382,66 @@ div.mangaPage svg.liked {
 }
 
 .review {
-  background-color: #f2ebe8;
   border: 2px solid rgba(204, 56, 43, 0.3294117647);
   border-radius: 5px;
   width: 90%;
-  display: grid;
-  place-self: center;
-  place-content: center;
-  align-content: center;
-  margin-top: 5vh;
-  font-family: var(--ff-barlow);
-  max-height: 50vh;
-  overflow-y: auto;
-  padding-right: 10px;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
-}
-.review h2 {
-  margin-top: 40vh;
-  font-family: var(--ff-bangers);
-  letter-spacing: var(--letter-spacing);
-}
-.review hr {
-  margin: 2vh 0;
-}
-.review p :last-child {
-  margin-top: 2vh;
-}
-.review .cadre-review {
-  display: flex;
-  justify-content: center;
-}
-.review .cadre-review .comm {
-  display: flex;
-  align-items: center;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-.review .cadre-review .cadre-profile {
-  margin-left: 5vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 2rem auto;
+  font-family: var(--ff-barlow);
+  max-height: 50vh;
+  overflow-y: auto;
+  padding: 2vh 1vw;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+  background-color: #f1ebe8;
 }
-.review img.profile-picture {
-  height: 10vh;
+.review h2 {
+  margin-top: 2vh;
+  font-family: var(--ff-bangers);
+  letter-spacing: var(--letter-spacing);
+  text-align: center;
+}
+.review hr {
+  margin: 2vh 0;
+  width: 100%;
+}
+.review .cadre-review {
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  margin: 1rem 0;
+  width: 80%;
+  min-height: 15vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.review .cadre-review .cadre-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 2rem;
+}
+.review .cadre-review .cadre-profile img.profile-picture {
+  height: 8vh;
+  width: 8vh;
   border-radius: 50%;
   -o-object-fit: cover;
      object-fit: cover;
+  margin-bottom: 0.5rem;
+}
+.review .cadre-review .cadre-profile p {
+  font-weight: bold;
+}
+.review .cadre-review .comm {
+  flex: 1;
+  padding: 0 1rem;
+  text-align: left;
+}
+.review .cadre-review form {
+  margin-left: 1rem;
 }
 
 .review::-webkit-scrollbar {
@@ -1467,12 +1497,17 @@ div.mangaPage svg.liked {
 }
 .also-liked .also-liked-contain {
   display: flex;
-  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
   text-align: center;
   font-family: var(--ff-barlow);
   font-size: 1.2rem;
 }
+.also-liked .also-liked-contain div {
+  margin: 1rem 0;
+}
 .also-liked .also-liked-contain figure {
+  margin: 0.5rem 0;
   width: 100%;
 }
 .also-liked .also-liked-contain figure:hover a {
@@ -2007,7 +2042,7 @@ button:hover {
   *******************************
   */
   .formulaire {
-    margin: 0 auto;
+    margin: 3rem auto;
   }
 }
 @media (min-width: 768px) {
@@ -2055,7 +2090,7 @@ button:hover {
   *******************************
   */
   .formulaire {
-    margin: 0 auto;
+    margin: 3rem auto;
   }
   /*
   *******************************
@@ -2193,8 +2228,8 @@ button:hover {
   *******************************
   */
   .formulaire {
-    margin: 0 auto;
-    max-width: 24px;
+    margin: 3rem auto;
+    max-width: 1024px;
   }
   /*
   **********************************
@@ -2411,19 +2446,23 @@ button:hover {
     display: flex;
   }
   .mangaPage-scd-section .comm-desktop {
+    display: flex;
     flex-direction: column;
+    align-items: center;
     width: 50%;
   }
-  .mangaPage-scd-section .comm-desktop .review hr {
-    width: 90vh;
+  .mangaPage-scd-section .comm-desktop .review {
+    max-width: 80vw;
   }
   .mangaPage-scd-section .comm-desktop .review .cadre-review {
-    justify-content: start;
-    width: 50vh;
-    height: 20vh;
+    width: 60%;
   }
-  .mangaPage-scd-section .comm-desktop .review .cadre-review div {
-    margin: 0 1rem;
+  #leave-review {
+    justify-content: start;
+    margin: 0 2rem;
+  }
+  #leave-review input {
+    width: 40%;
   }
   .also-liked {
     width: 50%;
@@ -2434,6 +2473,7 @@ button:hover {
   .also-liked .also-liked-contain {
     display: flex;
     justify-content: space-around;
+    flex-direction: row;
   }
   /*
   **********************************
@@ -2478,6 +2518,11 @@ button:hover {
     display: flex;
     justify-content: center;
   }
+  /*
+  **********************************
+  ***************ABOUT US***********
+  **********************************
+  */
 }
 @media (min-width: 1440px) {
   /*
@@ -2517,6 +2562,11 @@ button:hover {
   div.headdashboard {
     height: 70vh;
   }
+  /*
+  **********************************
+  ***************ABOUT US***********
+  **********************************
+  */
 }
 /*
 **********************************s
@@ -2526,19 +2576,20 @@ button:hover {
 .formulaire {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   background-color: #a2eefb;
   border-radius: 10px;
   outline: 3px solid #ffffff;
-  max-width: 600px;
-  margin: 20px;
+  margin: 3rem auto;
+  padding: 4rem;
+  height: 60vh;
 }
 .formulaire h2 {
   text-align: center;
   font-family: var(--ff-bangers);
   margin: 1%;
   color: #ffffff;
-  -webkit-text-stroke: 2px red;
+  -webkit-text-stroke: 1px red;
 }
 .formulaire input,
 .formulaire textarea {
@@ -2554,14 +2605,15 @@ button:hover {
   padding: 1%;
   border-radius: 10px;
   border: none;
-  background-color: #fcc8e1;
+  background-color: #cc1606;
   color: #ffffff;
   font-family: var(--ff-bangers);
   cursor: pointer;
   transition: all ease 0.3s;
 }
 .formulaire .button:hover {
-  background-color: #cc1606;
+  background-color: #ce685f;
+  color: var(--fc-black);
 }
 
 /*
@@ -3155,10 +3207,10 @@ form fieldset label input[type=checkbox] {
 **********************************
 */
 .aboutus {
-  position: relative; /* Permet aux nuages d'être positionnés par rapport à cette section */
-  height: 100vh; /* Prend toute la hauteur de la fenêtre */
-  overflow: hidden; /* Empêche le débordement */
-  background-color: #f9f9f9; /* Couleur de fond */
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #f9f9f9;
   margin: 20px;
   padding: 20px;
   background-color: #f9f9f9;
@@ -3169,8 +3221,8 @@ form fieldset label input[type=checkbox] {
   letter-spacing: var(--letter-spacing);
   font-size: 2rem;
   color: #e00e0e;
-  opacity: 0; /* Initialement invisible */
-  transform: translateY(-50px); /* Position initiale en dehors de l'écran */
+  opacity: 0;
+  transform: translateY(-50px);
 }
 .aboutus h2 {
   font-family: var(--ff-bangers);
@@ -3178,16 +3230,16 @@ form fieldset label input[type=checkbox] {
   font-size: 1.5rem;
   color: #070707;
   margin: 20px;
-  opacity: 0; /* Initialement invisible */
-  transform: translateY(-50px); /* Position initiale en dehors de l'écran */
+  opacity: 0;
+  transform: translateY(-50px);
 }
 .aboutus p {
   font-family: var(--ff-barlow);
   font-size: 1.5rem;
   color: #070707;
   margin: 20px;
-  opacity: 0; /* Initialement invisible */
-  transform: translateY(-50px); /* Position initiale en dehors de l'écran */
+  opacity: 0;
+  transform: translateY(-50px);
 }
 .aboutus section {
   max-width: 800px;
@@ -3204,6 +3256,9 @@ form fieldset label input[type=checkbox] {
   flex-direction: column;
   opacity: 0; /* Initialement invisible */
   transform: translateY(-50px); /* Position initiale en dehors de l'écran */
+}
+.aboutus .flexcenter img {
+  width: 100%;
 }
 .aboutus .cloud {
   position: absolute;

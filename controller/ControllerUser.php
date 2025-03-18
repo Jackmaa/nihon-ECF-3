@@ -203,18 +203,42 @@ class ControllerUser extends Controller {
             exit;
         } else {
             $model = new ModelBorrow;
-            $data  = $model->getUserBorrows($_SESSION['id_user']);
-            var_dump($data);
+            $datas  = $model->getUserBorrows($_SESSION['id_user']);
+            $mangas = [];
+            foreach($datas as $data) {
+                $manga = new ModelManga;
+                $mangaDTO = $manga->getMangaById($data -> getId_Manga());
+                $mangas[] = new BorrowDTO($data, $mangaDTO);
+            }
             require_once './view/currentStorie.php';
         }
     }
 
     public function favoriteManga() {
+        $model = new ModelManga();
+        $mangas = $model->getUserFavs($_SESSION['id_user']);
+        $favs = [];
+        foreach($mangas as $manga) {
+            $favs[] = $model->getMangaById($manga->getId_Manga());
+        }
         require_once './view/favoriteManga.php';
     }
 
     public function pastChronicle() {
-
-        require_once './view/pastChronicle.php';
+        if (! isset($_SESSION['id_user'])) {
+            header('Location: ' . $this->router->generate('login'));
+            exit;
+        } else {
+            $model = new ModelBorrow;
+            $datas  = $model->getUserPastBorrows($_SESSION['id_user']);
+            $mangas = [];
+            foreach($datas as $data) {
+                $manga = new ModelManga;
+                $mangaDTO = $manga->getMangaById($data -> getId_Manga());
+                $mangas[] = new BorrowDTO($data, $mangaDTO);
+               
+            }
+            require_once './view/pastChronicle.php';
+        }
     }
 }
