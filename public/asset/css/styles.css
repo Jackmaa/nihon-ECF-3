@@ -812,7 +812,7 @@ main.login .cloud:before {
 #css-body::before {
   content: "";
   position: absolute;
-  top: 10%;
+  top: 20%;
   left: 50%;
   transform: translateX(-50%);
   width: 200px;
@@ -850,7 +850,7 @@ main.login .cloud:before {
 #css-body::before {
   content: "";
   position: absolute;
-  top: 8%;
+  top: 20%;
   left: 50%;
   transform: translateX(-50%);
   width: 200px;
@@ -869,7 +869,7 @@ main.login .cloud:before {
     opacity: 0;
   }
   to {
-    top: 10%;
+    top: 20%;
     opacity: 1;
   }
 }

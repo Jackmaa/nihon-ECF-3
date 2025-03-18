@@ -910,7 +910,7 @@ main.login {
 #css-body::before {
   content: "";
   position: absolute;
-  top: 10%;
+  top: 20%;
   left: 50%;
   transform: translateX(-50%);
   width: 200px;
@@ -951,7 +951,7 @@ main.login {
 #css-body::before {
   content: "";
   position: absolute;
-  top: 8%;
+  top: 20%;
   left: 50%;
   transform: translateX(-50%);
   width: 200px;
@@ -970,7 +970,7 @@ main.login {
     opacity: 0;
   }
   to {
-    top: 10%;
+    top: 20%;
     opacity: 1;
   }
 }
