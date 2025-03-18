@@ -303,7 +303,7 @@ class ModelManga extends Model {
     }
 
     public function getCategoryMangas($id) {
-        $req = $this->getDb()->prepare("SELECT `manga`.* FROM manga INNER JOIN manga_category ON `manga`.`id_manga` = `manga_category`.`manga_id` INNER JOIN `categories` ON `manga_category`.`category_id` = `categories`.`id_category` WHERE `manga_category`.`category_id` = :id_category");
+        $req = $this->getDb()->prepare("SELECT `manga`.* FROM manga INNER JOIN manga_category ON `manga`.`id_manga` = `manga_category`.`manga_id` INNER JOIN `categories` ON `manga_category`.`category_id` = `categories`.`id_category` WHERE `manga_category`.`category_id` = :id_category ORDER BY manga.name ASC");
         $req->execute([':id_category' => $id]);
         $mangas = [];
         while ($result = $req->fetch(PDO::FETCH_ASSOC)) {
