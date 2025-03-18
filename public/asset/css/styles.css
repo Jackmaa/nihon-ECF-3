@@ -403,10 +403,6 @@ footer > p {
   margin-top: 20px;
 }
 
-.connexion .form-container {
-  margin-top: 100px;
-}
-
 .connexion,
 .login {
   display: flex;
@@ -527,11 +523,6 @@ footer > p {
 .password-container .togglePassword img {
   width: 3vh;
   text-align: center;
-}
-
-.auth-pages footer,
-.auth-pages footer * {
-  color: white;
 }
 
 /*
