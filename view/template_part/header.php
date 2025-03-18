@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,7 +54,6 @@
                                         </span>
                                     </a></li>
                                 <li><a href="<?php echo BASE_URL ?>contact">Contact</a></li>
-                                <li><a href="<?php echo $this->router->generate('logout') ?>">Log-out</a></li>
                             </ul>
                         <?php else: ?>
                             <ul>
@@ -88,7 +88,7 @@
                         <?php if (isset($_SESSION['id_user'])): ?>
                             <figure class="profile">
                                 <div id="username-picture">
-                                    <a href="<?php echo $this->router->generate("myProfile", ["id" => $_SESSION['id_user']]) ?>"><?php echo  $_SESSION['name'] ?></a>
+                                    <a href="<?php echo $this->router->generate("myProfile", ["id" => $_SESSION['id_user']]) ?>"><?php echo $_SESSION['name'] ?></a>
                                     <a href="#"><img src="<?php echo BASE_URL ?><?php echo $_SESSION['profile_pic'] ?>" alt="profile picture"></a>
                                 </div>
                                 <div class="dropdown">
@@ -113,7 +113,8 @@
                             <p>Welcome KAMI</p>
                         <?php else: ?>
                             <figure class="connexion">
-                                <a href="<?php echo $this->router->generate('login') ?>">Connexion</a>
+                                <a class="loginbutton" href="<?php echo $this->router->generate('login') ?>">Connexion</a>
+                                <a class="loginbutton" href="<?php echo $this->router->generate('register') ?>">Register</a>
                             </figure>
                         <?php endif; ?>
 

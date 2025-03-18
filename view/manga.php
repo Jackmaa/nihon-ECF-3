@@ -34,7 +34,7 @@
                 </div>
                 <div class="char-manga">
                     <div>
-                        <p>Category :</p> <a href="#"><?php echo $manga->categories ?></a>
+                        <p>Category : </p><a href="#"><?php echo $manga->categories ?></a>
                     </div>
                     <div>
                         <p>Author : </p><a href="#"><?php echo $manga->author ?></a>
@@ -51,7 +51,7 @@
                 <?php foreach ($review as $rev): ?>
                     <div class="cadre-review">
                         <div class="cadre-profile">
-                            <img class="profile-picture" src="<?php echo BASE_URL ?>public\asset\img\profile_picture.webp" alt="profile picture">
+                            <img class="profile-picture" src="<?php echo BASE_URL . htmlspecialchars($rev['profile_pic']) ?>" alt="profile picture">
                             <p><?php echo htmlspecialchars($rev['username']); ?></p>
                         </div>
                         <div class="comm">
@@ -67,7 +67,6 @@
                     <hr>
                     <?php endforeach; ?>
                 </div>
-
                 <section class="also-liked">
             <figure><h2><?php echo $manga->manga->getName() ?> Readers also liked</h2><img src="<?php echo BASE_URL ?>public\asset\img\books-anim.gif" alt=""></figure>
 

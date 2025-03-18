@@ -204,7 +204,6 @@ body.dark-mode {
       border: #cc392b 1px solid;
     }
   }
-
   .logo-footer img {
     content: url(../img/logo_footer.svg);
   }
@@ -294,6 +293,18 @@ svg {
         outline: none;
       }
     }
+  }
+}
+.loginbutton {
+  border-radius: 1rem;
+  margin-inline: 0.75rem;
+  color: white;
+  background-color: #cc392b;
+  font-family: var(--ff-bangers);
+  letter-spacing: var(--letter-spacing);
+  padding: 10px 20px;
+  &:hover {
+    background-color: #fd1702;
   }
 }
 
@@ -399,6 +410,10 @@ svg {
 ***********FOOTER************
 **********************************
 */
+footer {
+  height : 20vh;
+}
+
 
 footer > p {
   margin-bottom: 1%;
@@ -459,6 +474,9 @@ footer > p {
 ***********LOGIN/REGISTER*********
 **********************************
 */
+.login {
+  margin-top: 20px;
+}
 
 .connexion,
 .login {
@@ -585,6 +603,7 @@ footer > p {
 
 main.connexion,
 main.login {
+  height: 80vh;
   #img-subscrire {
     max-width: 90%;
     display: none;
@@ -886,7 +905,6 @@ main.login {
 
 #css-body {
   background: linear-gradient(to bottom, #ffbd39, #ffe96e);
-  overflow: hidden;
 }
 
 #css-body::before {
@@ -927,7 +945,6 @@ main.login {
 
 #css-body {
   background: linear-gradient(to bottom, #1c1047, #34495e);
-  overflow: hidden;
   position: relative;
 }
 
@@ -1439,13 +1456,15 @@ button {
   opacity: 0.9;
   background-image: url("https://assets.codepen.io/13471/sparkles.gif"),
     url(https://assets.codepen.io/13471/holo.png),
-    linear-gradient(125deg, 
-      #ff008450 15%, 
-      #fca40040 30%, 
-      #ffff0030 40%, 
-      #00ff8a20 60%, 
-      #00cfff40 70%, 
-      #cc4cfa50 85%);
+    linear-gradient(
+      125deg,
+      #ff008450 15%,
+      #fca40040 30%,
+      #ffff0030 40%,
+      #00ff8a20 60%,
+      #00cfff40 70%,
+      #cc4cfa50 85%
+    );
   background-position: 50% 50%;
   background-size: 180%;
   background-blend-mode: overlay;
@@ -1462,7 +1481,6 @@ button {
 .holo-effect:hover::after {
   opacity: 1;
 }
-
 
 div.mangaPage {
   position: relative;
@@ -1573,7 +1591,7 @@ div.mangaPage {
   padding: 2vh 1vw;
   scrollbar-width: thin;
   scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
-  background-color: #F1EBE8;
+  background-color: #f1ebe8;
 
   h2 {
     margin-top: 2vh;
@@ -1589,7 +1607,7 @@ div.mangaPage {
 
   .cadre-review {
     border-radius: 10px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     padding: 1rem;
     margin: 1rem 0;
     width: 80%;
@@ -1692,7 +1710,7 @@ div.mangaPage {
     font-family: var(--ff-barlow);
     font-size: 1.2rem;
 
-    div{
+    div {
       margin: 1rem 0;
     }
 
@@ -2810,25 +2828,23 @@ button:hover {
       flex-direction: column;
       align-items: center;
       width: 50%;
-  
+
       .review {
         max-width: 80vw;
-  
+
         .cadre-review {
           width: 60%;
         }
       }
     }
-    
-
   }
-  #leave-review{
-  justify-content: start;
-  margin: 0 2rem;
-  input{
-    width: 40%;
+  #leave-review {
+    justify-content: start;
+    margin: 0 2rem;
+    input {
+      width: 40%;
+    }
   }
-}
 
   .also-liked {
     width: 50%;
@@ -2893,6 +2909,11 @@ button:hover {
     display: flex;
     justify-content: center;
   }
+  /*
+**********************************
+***************ABOUT US***********
+**********************************
+*/
 }
 
 @media (min-width: 1440px) {
@@ -2940,6 +2961,11 @@ button:hover {
   div.headdashboard {
     height: 70vh;
   }
+  /*
+**********************************
+***************ABOUT US***********
+**********************************
+*/
 }
 
 // * {
@@ -2953,15 +2979,15 @@ button:hover {
 */
 
 .formulaire {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      background-color: #a2eefb;
-      border-radius: 10px;
-      outline: 3px solid #ffffff;
-      margin: 3rem auto;
-      padding: 4rem;
-      height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #a2eefb;
+  border-radius: 10px;
+  outline: 3px solid #ffffff;
+  margin: 3rem auto;
+  padding: 4rem;
+  height: 60vh;
 
   h2 {
     text-align: center;
@@ -3673,12 +3699,11 @@ form {
 ***************ABOUT US***********
 **********************************
 */
-
 .aboutus {
-  position: relative; /* Permet aux nuages d'être positionnés par rapport à cette section */
-  height: 100vh; /* Prend toute la hauteur de la fenêtre */
-  overflow: hidden; /* Empêche le débordement */
-  background-color: #f9f9f9; /* Couleur de fond */
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #f9f9f9;
   margin: 20px;
   padding: 20px;
   background-color: #f9f9f9;
@@ -3689,8 +3714,8 @@ form {
     letter-spacing: var(--letter-spacing);
     font-size: 2rem;
     color: #e00e0e;
-    opacity: 0; /* Initialement invisible */
-    transform: translateY(-50px); /* Position initiale en dehors de l'écran */
+    opacity: 0;
+    transform: translateY(-50px);
   }
 
   h2 {
@@ -3699,8 +3724,8 @@ form {
     font-size: 1.5rem;
     color: #070707;
     margin: 20px;
-    opacity: 0; /* Initialement invisible */
-    transform: translateY(-50px); /* Position initiale en dehors de l'écran */
+    opacity: 0;
+    transform: translateY(-50px);
   }
 
   p {
@@ -3708,8 +3733,8 @@ form {
     font-size: 1.5rem;
     color: #070707;
     margin: 20px;
-    opacity: 0; /* Initialement invisible */
-    transform: translateY(-50px); /* Position initiale en dehors de l'écran */
+    opacity: 0;
+    transform: translateY(-50px);
   }
 
   section {

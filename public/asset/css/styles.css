@@ -240,6 +240,19 @@ svg {
   outline: none;
 }
 
+.loginbutton {
+  border-radius: 1rem;
+  margin-inline: 0.75rem;
+  color: white;
+  background-color: #cc392b;
+  font-family: var(--ff-bangers);
+  letter-spacing: var(--letter-spacing);
+  padding: 10px 20px;
+}
+.loginbutton:hover {
+  background-color: #fd1702;
+}
+
 /*
 **********************************
 ***********MENU BURGER************
@@ -332,6 +345,10 @@ svg {
 ***********FOOTER************
 **********************************
 */
+footer {
+  height: 20vh;
+}
+
 footer > p {
   margin-bottom: 1%;
   padding: 0 20px;
@@ -382,6 +399,10 @@ footer > p {
 ***********LOGIN/REGISTER*********
 **********************************
 */
+.login {
+  margin-top: 20px;
+}
+
 .connexion,
 .login {
   display: flex;
@@ -511,6 +532,7 @@ footer > p {
 */
 main.connexion,
 main.login {
+  height: 80vh;
   /* Cloud Objects */
   /* KEYFRAMES */
   /* Responsive media query */
@@ -785,7 +807,6 @@ main.login .cloud:before {
 /*******************JOUR*******************/
 #css-body {
   background: linear-gradient(to bottom, #ffbd39, #ffe96e);
-  overflow: hidden;
 }
 
 #css-body::before {
@@ -823,7 +844,6 @@ main.login .cloud:before {
 /*******************NUIT*******************/
 #css-body {
   background: linear-gradient(to bottom, #1c1047, #34495e);
-  overflow: hidden;
   position: relative;
 }
 
@@ -1375,7 +1395,7 @@ div.mangaPage svg.liked {
   padding: 2vh 1vw;
   scrollbar-width: thin;
   scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
-  background-color: #F1EBE8;
+  background-color: #f1ebe8;
 }
 .review h2 {
   margin-top: 2vh;
@@ -2498,6 +2518,11 @@ button:hover {
     display: flex;
     justify-content: center;
   }
+  /*
+  **********************************
+  ***************ABOUT US***********
+  **********************************
+  */
 }
 @media (min-width: 1440px) {
   /*
@@ -2537,6 +2562,11 @@ button:hover {
   div.headdashboard {
     height: 70vh;
   }
+  /*
+  **********************************
+  ***************ABOUT US***********
+  **********************************
+  */
 }
 /*
 **********************************s
@@ -3177,10 +3207,10 @@ form fieldset label input[type=checkbox] {
 **********************************
 */
 .aboutus {
-  position: relative; /* Permet aux nuages d'être positionnés par rapport à cette section */
-  height: 100vh; /* Prend toute la hauteur de la fenêtre */
-  overflow: hidden; /* Empêche le débordement */
-  background-color: #f9f9f9; /* Couleur de fond */
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #f9f9f9;
   margin: 20px;
   padding: 20px;
   background-color: #f9f9f9;
@@ -3191,8 +3221,8 @@ form fieldset label input[type=checkbox] {
   letter-spacing: var(--letter-spacing);
   font-size: 2rem;
   color: #e00e0e;
-  opacity: 0; /* Initialement invisible */
-  transform: translateY(-50px); /* Position initiale en dehors de l'écran */
+  opacity: 0;
+  transform: translateY(-50px);
 }
 .aboutus h2 {
   font-family: var(--ff-bangers);
@@ -3200,16 +3230,16 @@ form fieldset label input[type=checkbox] {
   font-size: 1.5rem;
   color: #070707;
   margin: 20px;
-  opacity: 0; /* Initialement invisible */
-  transform: translateY(-50px); /* Position initiale en dehors de l'écran */
+  opacity: 0;
+  transform: translateY(-50px);
 }
 .aboutus p {
   font-family: var(--ff-barlow);
   font-size: 1.5rem;
   color: #070707;
   margin: 20px;
-  opacity: 0; /* Initialement invisible */
-  transform: translateY(-50px); /* Position initiale en dehors de l'écran */
+  opacity: 0;
+  transform: translateY(-50px);
 }
 .aboutus section {
   max-width: 800px;
