@@ -4,21 +4,25 @@
     $scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public/asset/js/dashboard.js", "public/asset/js/header.js", "public/asset/js/search_admin_dashboard.js", "public\asset\js\darkmode.js", "public/asset/js/ajax.js"];
     ob_start();
 ?>
-<div class="headdashboard"></div>
 <main class="dashboard">
-
+<div  class="block-gestion"> 
+    <div>
 <h2>Users Gestion</h2>
 <form action="" id="search-form-user" method="POST">
     <input type="text" name="search" id="search-user" placeholder="Search">
 </form>
+</div>
 <div id="search-results-user"></div>
-
+</div>
+<div  class="block-gestion">
+<div>
 <h2>Books</h2>
 <form action="" id="search-form-manga" method="POST">
     <input type="text" name="search" id="search-manga" placeholder="Search">
 </form>
+</div>
 <div id="search-results-manga"></div>
-
+</div>
 <!-- Overlay -->
 <div class="overlay" id="overlay" onclick="closePopup('popupCreate'); closePopup('popupBan'); closePopup('popupDelete'); closePopup('popupAdd'); closePopup('popupModified'); closePopup('popupUser')"></div>
 
