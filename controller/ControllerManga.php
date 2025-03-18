@@ -210,7 +210,9 @@ class ControllerManga extends Controller {
     public function addRev() {
         $model = new ModelManga();
         $model->addReview($_POST['review'], $_POST['id_manga'], $_SESSION['id_user']); //TELL ME SI C'EST BON
-        header('Location: /manga/' . $_POST['id_manga']);
+        $id = $_POST['id_manga'];
+        header("Location:" . $this->router->generate("read", ["id" => $id]));
+        exit;
     }
 
     public function addVolume() {

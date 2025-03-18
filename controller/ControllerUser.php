@@ -190,9 +190,12 @@ class ControllerUser extends Controller {
     }
 
     public function myProfile($id) {
-        $model = new ModelUser();
-        $data  = $model->profile($id);
-        //var_dump($data);
+        $model      = new ModelUser();
+        $data       = $model->profile($id);
+        $borrow     = new ModelBorrow();
+        $maxBooks   = $borrow->maxBooksAllowed($_SESSION['id_user']);
+        $currentRes = $borrow->totalReservationsAndBorrows();
+        var_dump($currentRes['total_entries']);
         require_once './view/myProfile.php';
 
     }
@@ -202,12 +205,12 @@ class ControllerUser extends Controller {
             header('Location: ' . $this->router->generate('login'));
             exit;
         } else {
-            $model = new ModelBorrow;
+            $model  = new ModelBorrow;
             $datas  = $model->getUserBorrows($_SESSION['id_user']);
             $mangas = [];
-            foreach($datas as $data) {
-                $manga = new ModelManga;
-                $mangaDTO = $manga->getMangaById($data -> getId_Manga());
+            foreach ($datas as $data) {
+                $manga    = new ModelManga;
+                $mangaDTO = $manga->getMangaById($data->getId_Manga());
                 $mangas[] = new BorrowDTO($data, $mangaDTO);
             }
             require_once './view/currentStorie.php';
@@ -215,29 +218,29 @@ class ControllerUser extends Controller {
     }
 
     public function favoriteManga() {
-        $model = new ModelManga();
+        $model     = new ModelManga();
         $userstats = $model->getStats($_SESSION['id_user']);
-        $mangas = $model->getUserFavs($_SESSION['id_user']);
-        $favs = [];
-        foreach($mangas as $manga) {
+        $mangas    = $model->getUserFavs($_SESSION['id_user']);
+        $favs      = [];
+        foreach ($mangas as $manga) {
             $favs[] = $model->getMangaById($manga->getId_Manga());
         }
         require_once './view/favoriteManga.php';
     }
-    
+
     public function pastChronicle() {
         if (! isset($_SESSION['id_user'])) {
             header('Location: ' . $this->router->generate('login'));
             exit;
         } else {
-            $model = new ModelBorrow;
+            $model  = new ModelBorrow;
             $datas  = $model->getUserPastBorrows($_SESSION['id_user']);
             $mangas = [];
-            foreach($datas as $data) {
-                $manga = new ModelManga;
-                $mangaDTO = $manga->getMangaById($data -> getId_Manga());
+            foreach ($datas as $data) {
+                $manga    = new ModelManga;
+                $mangaDTO = $manga->getMangaById($data->getId_Manga());
                 $mangas[] = new BorrowDTO($data, $mangaDTO);
-               
+
             }
             require_once './view/pastChronicle.php';
         }

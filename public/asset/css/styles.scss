@@ -79,6 +79,10 @@ h6 {
 
   --m-all-5: 5vw;
   --mb-5: 5vw;
+
+  --clr-success: hsl(143, 100%, 26%);
+  --clr-warning: hsl(43, 100%, 66%);
+  --clr-error: hsl(348, 55%, 49%);
 }
 
 /*
@@ -474,6 +478,61 @@ footer > p {
 ***********LOGIN/REGISTER*********
 **********************************
 */
+
+.connexion input, 
+.login input {
+  outline: 3px solid hsl(203, 30%, 26%);
+}
+
+
+input:focus:valid,
+input:valid:not(:placeholder-shown) {
+  outline-color: var(--clr-success);
+}
+
+input:invalid:not(:placeholder-shown) {
+  outline-color: var(--clr-error);
+}
+
+input:focus:invalid:not(:placeholder-shown) {
+  outline-color: var(--clr-warning);
+}
+
+.hint {
+  color: var(--clr-warning);
+}
+.error {
+  color: var(--clr-error);
+}
+
+.hint,
+.error {
+  display: none;
+}
+
+/* show hint if user is in the input
+   but it is invalid */
+input:focus:invalid:not(:placeholder-shown) ~ .hint {
+  display: block;
+}
+
+/* show error after users leaves input
+   but it is invalid */
+
+input:not(:focus):invalid:not(:placeholder-shown) ~ .error {
+  display: block;
+  /*   animation: form-error 250ms 3; */
+}
+
+@keyframes form-error {
+  25% {
+    translate: -5px;
+  }
+  75% {
+    translate: 5px;
+  }
+}
+
 .login {
   margin-top: 20px;
 }
@@ -558,9 +617,9 @@ footer > p {
   position: relative;
   display: flex;
   align-items: center;
+  width: fit-content;
 
   input {
-    width: 100%;
     padding-right: 40px;
     height: 40px;
     border: 1px solid #ccc;
@@ -578,6 +637,10 @@ footer > p {
       color: #33333371;
       font-family: var(--ff-barlow);
       font-weight: 400;
+    }
+
+    button{
+      right: 0;
     }
   }
 
@@ -911,7 +974,7 @@ main.login {
 #css-body::before {
   content: "";
   position: absolute;
-  top: 10%;
+  top: 20%;
   left: 50%;
   transform: translateX(-50%);
   width: 200px;
@@ -952,7 +1015,7 @@ main.login {
 #css-body::before {
   content: "";
   position: absolute;
-  top: 8%;
+  top: 20%;
   left: 50%;
   transform: translateX(-50%);
   width: 200px;
@@ -971,19 +1034,48 @@ main.login {
     opacity: 0;
   }
   to {
-    top: 10%;
+    top: 20%;
     opacity: 1;
   }
 }
 
-@keyframes float {
+
+
+
+/*******************NUIT*******************/
+
+#css-body-register {
+  background: linear-gradient(to bottom, #1c1047, #34495e);
+  position: relative;
+}
+
+#css-body-register::before {
+  content: "";
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, #f51414, #af0000);
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(90, 0, 0, 0.8);
+  background-size: cover;
+  filter: brightness(1.2);
+  animation: moonrise1 3.5s ease-in-out;
+}
+
+@keyframes moonrise1 {
   from {
-    transform: translateX(-10vw);
+    top: 50%;
+    opacity: 0;
   }
   to {
-    transform: translateX(110vw);
+    top: 8%;
+    opacity: 1;
   }
 }
+
 
 /*
 **********************************

@@ -195,7 +195,8 @@ class ModelManga extends Model {
             INNER JOIN categories c ON mc.category_id = c.id_category
             INNER JOIN user u ON f.id_user = u.id_user
             WHERE f.id_user = :id_user
-            GROUP BY c.category_name, u.username;'
+            GROUP BY c.category_name, u.username
+            ORDER BY total_fav DESC;'
         );
         $req->bindParam(':id_user', $id_user, PDO::PARAM_INT);
         $req->execute();
@@ -303,7 +304,7 @@ class ModelManga extends Model {
     }
 
     public function getCategoryMangas($id) {
-        $req = $this->getDb()->prepare("SELECT `manga`.* FROM manga INNER JOIN manga_category ON `manga`.`id_manga` = `manga_category`.`manga_id` INNER JOIN `categories` ON `manga_category`.`category_id` = `categories`.`id_category` WHERE `manga_category`.`category_id` = :id_category");
+        $req = $this->getDb()->prepare("SELECT `manga`.* FROM manga INNER JOIN manga_category ON `manga`.`id_manga` = `manga_category`.`manga_id` INNER JOIN `categories` ON `manga_category`.`category_id` = `categories`.`id_category` WHERE `manga_category`.`category_id` = :id_category ORDER BY manga.name ASC");
         $req->execute([':id_category' => $id]);
         $mangas = [];
         while ($result = $req->fetch(PDO::FETCH_ASSOC)) {
