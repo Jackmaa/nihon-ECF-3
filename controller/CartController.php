@@ -45,16 +45,12 @@ class CartController extends Controller {
             return;
         }
 
-        // Check if the cart session is set
-        if (! isset($_SESSION['cart'])) {
-            $_SESSION['cart'] = []; // Initialize cart if empty
-        }
-
         // Check the user's max borrow limit
-        $borrow   = new ModelBorrow();
-        $maxBooks = $borrow->maxBooksAllowed($_SESSION['id_user']);
+        $borrow     = new ModelBorrow();
+        $maxBooks   = $borrow->maxBooksAllowed($_SESSION['id_user']);
+        $currentRes = $borrow->totalReservationsAndBorrows();
 
-        if (count($_SESSION['cart']) >= $maxBooks) {
+        if ($currentRes['total_entries'] >= $maxBooks) {
             http_response_code(400);
             echo json_encode(["error" => "Your cart is already at the limit allowed."]);
             return;

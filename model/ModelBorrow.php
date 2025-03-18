@@ -203,4 +203,12 @@ class ModelBorrow extends Model {
         $req->execute();
     }
 
+    public function totalReservationsAndBorrows() {
+        $req = $this->getDb()->prepare("SELECT
+    (SELECT COUNT(*) FROM reservation) +
+    (SELECT COUNT(*) FROM borrow WHERE borrow.status != 'BACK') AS total_entries;");
+        $req->execute();
+        return $req->fetch(PDO::FETCH_ASSOC);
+
+    }
 }
