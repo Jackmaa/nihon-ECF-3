@@ -7,18 +7,18 @@
 </head>
 <body>
 <form action="<?php echo $this->router->generate('update', ['id' => $data->getId_manga()]); ?>" method="POST" enctype="multipart/form-data">
-    <input type="hidden" name ="id" value="<?php echo $data->getId_manga()?>">
+    <input type="hidden" name ="id" value="<?php echo $data->getId_manga() ?>">
     <div>
         <label for="name">Name: </label>
-        <input type="text" name="name" id="name" value="<?php echo $data->getName()?>">
+        <input type="text" name="name" id="name" value="<?php echo $data->getName() ?>">
     </div>
     <div>
         <label for="description">Description: </label>
-        <textarea name="description" id=" descirption"><?php echo $data->getDescription()?></textarea>
+        <textarea name="description" id=" descirption"><?php echo $data->getDescription() ?></textarea>
     </div>
     <div>
         <label for="published_date">Realeased on: </label>
-        <input type="date" name="published_date" id="published_date" value="<?php echo $data->getPublished_date()->format('Y-m-d')?>">
+        <input type="date" name="published_date" id="published_date" value="<?php echo $data->getPublished_date()->format('Y-m-d') ?>">
     </div>
     <div>
         <label for="thumbnail">Pick a thumbnail: </label>
