@@ -2368,6 +2368,64 @@ button:hover {
   ***********DASHBOARD************
   **********************************
   */
+  .dashboard #search-results-manga {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .dashboard #search-results-manga .manga-result {
+    display: flex;
+    flex-direction: column;
+  }
+  .dashboard #search-results-manga .manga-result img {
+    width: 30vh;
+    height: 40vh;
+    -o-object-fit: cover;
+       object-fit: cover;
+    margin: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .dashboard #search-results-manga .manga-result img:hover {
+    filter: brightness(50%);
+    scale: 1.1;
+  }
+  .dashboard #search-results-manga .manga-result p {
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: 600;
+    width: 30vh;
+  }
+  .dashboard #search-results-manga .manga-result button {
+    margin: 0.5rem;
+  }
+  .dashboard .popup-content .close {
+    color: var(--fc-black);
+    font-size: 2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .dashboard .popup-content .close:hover {
+    color: #cc392b;
+  }
+  .dashboard .popup-content h2 {
+    text-align: center;
+    color: var(--fc-black);
+  }
+  .dashboard #modifyMangaForm {
+    display: flex;
+    flex-direction: column;
+  }
+  .dashboard #modifyMangaForm label {
+    margin: 0.5rem 0;
+  }
+  .dashboard #modifyMangaForm input {
+    height: 4vh;
+    border-radius: 5px;
+    padding: 0 5px;
+    background-color: #fcd1e6;
+  }
   div.headdashboard {
     height: 50vh;
   }
@@ -2643,9 +2701,25 @@ button:hover {
 ***********DASHBOARD************
 **********************************
 */
-.headdashboard {
-  height: 30vh;
-  background: url(../img/dashboard_desktop.svg) no-repeat center center/cover;
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+.dashboard .block-gestion {
+  flex-direction: column;
+  margin: 1rem;
+}
+.dashboard .block-gestion h2 {
+  margin-bottom: 0.5rem;
+}
+.dashboard .block-gestion form input {
+  height: 4vh;
+  border-radius: 5px;
+  padding: 0 5px;
+  background-color: #fcd1e6;
 }
 
 .dashboard {
