@@ -195,7 +195,8 @@ class ModelManga extends Model {
             INNER JOIN categories c ON mc.category_id = c.id_category
             INNER JOIN user u ON f.id_user = u.id_user
             WHERE f.id_user = :id_user
-            GROUP BY c.category_name, u.username;'
+            GROUP BY c.category_name, u.username
+            ORDER BY total_fav DESC;'
         );
         $req->bindParam(':id_user', $id_user, PDO::PARAM_INT);
         $req->execute();
