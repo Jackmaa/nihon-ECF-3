@@ -204,7 +204,6 @@ body.dark-mode {
       border: #cc392b 1px solid;
     }
   }
-
   .logo-footer img {
     content: url(../img/logo_footer.svg);
   }
@@ -294,6 +293,18 @@ svg {
         outline: none;
       }
     }
+  }
+}
+.loginbutton {
+  border-radius: 1rem;
+  margin-inline: 0.75rem;
+  color: white;
+  background-color: #cc392b;
+  font-family: var(--ff-bangers);
+  letter-spacing: var(--letter-spacing);
+  padding: 10px 20px;
+  &:hover {
+    background-color: #fd1702;
   }
 }
 
@@ -399,6 +410,10 @@ svg {
 ***********FOOTER************
 **********************************
 */
+footer {
+  height : 20vh;
+}
+
 
 footer > p {
   margin-bottom: 1%;
@@ -459,6 +474,9 @@ footer > p {
 ***********LOGIN/REGISTER*********
 **********************************
 */
+.login {
+  margin-top: 20px;
+}
 
 .connexion,
 .login {
@@ -585,6 +603,7 @@ footer > p {
 
 main.connexion,
 main.login {
+  height: 80vh;
   #img-subscrire {
     max-width: 90%;
     display: none;
@@ -886,7 +905,6 @@ main.login {
 
 #css-body {
   background: linear-gradient(to bottom, #ffbd39, #ffe96e);
-  overflow: hidden;
 }
 
 #css-body::before {
@@ -927,7 +945,6 @@ main.login {
 
 #css-body {
   background: linear-gradient(to bottom, #1c1047, #34495e);
-  overflow: hidden;
   position: relative;
 }
 
@@ -1439,13 +1456,15 @@ button {
   opacity: 0.9;
   background-image: url("https://assets.codepen.io/13471/sparkles.gif"),
     url(https://assets.codepen.io/13471/holo.png),
-    linear-gradient(125deg, 
-      #ff008450 15%, 
-      #fca40040 30%, 
-      #ffff0030 40%, 
-      #00ff8a20 60%, 
-      #00cfff40 70%, 
-      #cc4cfa50 85%);
+    linear-gradient(
+      125deg,
+      #ff008450 15%,
+      #fca40040 30%,
+      #ffff0030 40%,
+      #00ff8a20 60%,
+      #00cfff40 70%,
+      #cc4cfa50 85%
+    );
   background-position: 50% 50%;
   background-size: 180%;
   background-blend-mode: overlay;
@@ -1462,7 +1481,6 @@ button {
 .holo-effect:hover::after {
   opacity: 1;
 }
-
 
 div.mangaPage {
   position: relative;
@@ -1539,9 +1557,7 @@ div.mangaPage {
 }
 
 .char-manga {
-  display: flex;
-  justify-content: center;
-  margin-top: 1vh;
+  margin: 2vh;
   font-family: var(--ff-barlow);
   font-size: 0.8rem;
 
@@ -1562,70 +1578,82 @@ div.mangaPage {
 }
 
 .review {
-  background-color: #f2ebe8;
   border: 2px solid #cc382b54;
   border-radius: 5px;
   width: 90%;
-  display: grid;
-  place-self: center;
-  place-content: center;
-  align-content: center;
-  margin-top: 5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem auto;
   font-family: var(--ff-barlow);
   max-height: 50vh;
   overflow-y: auto;
-  padding-right: 10px;
+  padding: 2vh 1vw;
   scrollbar-width: thin;
   scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+  background-color: #f1ebe8;
 
   h2 {
-    margin-top: 40vh;
+    margin-top: 2vh;
     font-family: var(--ff-bangers);
     letter-spacing: var(--letter-spacing);
+    text-align: center;
   }
 
   hr {
     margin: 2vh 0;
-  }
-
-  p :last-child {
-    margin-top: 2vh;
+    width: 100%;
   }
 
   .cadre-review {
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    margin: 1rem 0;
+    width: 80%;
+    min-height: 15vh;
     display: flex;
-    justify-content: center;
-
-    .comm {
-      display: flex;
-      align-items: center;
-      width: fit-content;
-    }
+    align-items: center;
+    justify-content: space-between;
 
     .cadre-profile {
-      margin-left: 5vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-    }
-  }
+      margin-right: 2rem;
 
-  img.profile-picture {
-    height: 10vh;
-    border-radius: 50%;
-    object-fit: cover;
+      img.profile-picture {
+        height: 8vh;
+        width: 8vh;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 0.5rem;
+      }
+
+      p {
+        font-weight: bold;
+      }
+    }
+
+    .comm {
+      flex: 1;
+      padding: 0 1rem;
+      text-align: left;
+    }
+
+    form {
+      margin-left: 1rem;
+    }
   }
 }
 
 .review::-webkit-scrollbar {
   width: 8px;
 }
-
 .review::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.3);
   border-radius: 4px;
 }
-
 .review::-webkit-scrollbar-track {
   background: transparent;
 }
@@ -1676,12 +1704,18 @@ div.mangaPage {
 
   .also-liked-contain {
     display: flex;
-    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
     text-align: center;
     font-family: var(--ff-barlow);
     font-size: 1.2rem;
 
+    div {
+      margin: 1rem 0;
+    }
+
     figure {
+      margin: 0.5rem 0;
       width: 100%;
       &:hover {
         a {
@@ -2296,7 +2330,7 @@ button:hover {
 *******************************
 */
   .formulaire {
-    margin: 0 auto;
+    margin: 3rem auto;
   }
 }
 
@@ -2352,7 +2386,7 @@ button:hover {
 *******************************
 */
   .formulaire {
-    margin: 0 auto;
+    margin: 3rem auto;
   }
 
   /*
@@ -2519,8 +2553,8 @@ button:hover {
 *******************************
 */
   .formulaire {
-    margin: 0 auto;
-    max-width: 024px;
+    margin: 3rem auto;
+    max-width: 1024px;
   }
 
   /*
@@ -2790,22 +2824,25 @@ button:hover {
     display: flex;
 
     .comm-desktop {
+      display: flex;
       flex-direction: column;
+      align-items: center;
       width: 50%;
 
       .review {
-        hr {
-          width: 90vh;
-        }
+        max-width: 80vw;
+
         .cadre-review {
-          justify-content: start;
-          width: 50vh;
-          height: 20vh;
-          div {
-            margin: 0 1rem;
-          }
+          width: 60%;
         }
       }
+    }
+  }
+  #leave-review {
+    justify-content: start;
+    margin: 0 2rem;
+    input {
+      width: 40%;
     }
   }
 
@@ -2818,6 +2855,7 @@ button:hover {
     .also-liked-contain {
       display: flex;
       justify-content: space-around;
+      flex-direction: row;
     }
   }
 
@@ -2871,6 +2909,11 @@ button:hover {
     display: flex;
     justify-content: center;
   }
+  /*
+**********************************
+***************ABOUT US***********
+**********************************
+*/
 }
 
 @media (min-width: 1440px) {
@@ -2918,6 +2961,11 @@ button:hover {
   div.headdashboard {
     height: 70vh;
   }
+  /*
+**********************************
+***************ABOUT US***********
+**********************************
+*/
 }
 
 // * {
@@ -2933,19 +2981,20 @@ button:hover {
 .formulaire {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   background-color: #a2eefb;
   border-radius: 10px;
   outline: 3px solid #ffffff;
-  max-width: 600px;
-  margin: 20px;
+  margin: 3rem auto;
+  padding: 4rem;
+  height: 60vh;
 
   h2 {
     text-align: center;
     font-family: var(--ff-bangers);
     margin: 1%;
     color: #ffffff;
-    -webkit-text-stroke: 2px red;
+    -webkit-text-stroke: 1px red;
   }
 
   input,
@@ -2963,14 +3012,15 @@ button:hover {
     padding: 1%;
     border-radius: 10px;
     border: none;
-    background-color: #fcc8e1;
+    background-color: #cc1606;
     color: #ffffff;
     font-family: var(--ff-bangers);
     cursor: pointer;
     transition: all ease 0.3s;
 
     &:hover {
-      background-color: #cc1606;
+      background-color: #ce685f;
+      color: var(--fc-black);
     }
   }
 }
@@ -3649,12 +3699,11 @@ form {
 ***************ABOUT US***********
 **********************************
 */
-
 .aboutus {
-  position: relative; /* Permet aux nuages d'être positionnés par rapport à cette section */
-  height: 100vh; /* Prend toute la hauteur de la fenêtre */
-  overflow: hidden; /* Empêche le débordement */
-  background-color: #f9f9f9; /* Couleur de fond */
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #f9f9f9;
   margin: 20px;
   padding: 20px;
   background-color: #f9f9f9;
@@ -3665,8 +3714,8 @@ form {
     letter-spacing: var(--letter-spacing);
     font-size: 2rem;
     color: #e00e0e;
-    opacity: 0; /* Initialement invisible */
-    transform: translateY(-50px); /* Position initiale en dehors de l'écran */
+    opacity: 0;
+    transform: translateY(-50px);
   }
 
   h2 {
@@ -3675,8 +3724,8 @@ form {
     font-size: 1.5rem;
     color: #070707;
     margin: 20px;
-    opacity: 0; /* Initialement invisible */
-    transform: translateY(-50px); /* Position initiale en dehors de l'écran */
+    opacity: 0;
+    transform: translateY(-50px);
   }
 
   p {
@@ -3684,8 +3733,8 @@ form {
     font-size: 1.5rem;
     color: #070707;
     margin: 20px;
-    opacity: 0; /* Initialement invisible */
-    transform: translateY(-50px); /* Position initiale en dehors de l'écran */
+    opacity: 0;
+    transform: translateY(-50px);
   }
 
   section {
@@ -3702,8 +3751,13 @@ form {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    
     opacity: 0; /* Initialement invisible */
     transform: translateY(-50px); /* Position initiale en dehors de l'écran */
+
+    img {
+      width: 100%;
+    }
   }
   .cloud {
     position: absolute;

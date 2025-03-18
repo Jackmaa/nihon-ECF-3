@@ -5,7 +5,6 @@ $scripts = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "p
 ob_start();
 ?>
 <body>
-    
 <main class="aboutus">
     <section>
         <h1>NIHON</h1>
@@ -23,10 +22,10 @@ ob_start();
             @SamyMechiche <br>
             @Jackmaa
         </p>
-        </div>   
+        </div>
     </section>
-     <!-- Ajouter des nuages -->
-     <div class="cloud-container">
+    <!-- Ajouter des nuages -->
+    <div class="cloud-container">
      <div class="cloud" style="top: 10%; left: 20%;"></div>
     <div class="cloud" style="top: 30%; left: 50%;"></div>
     <div class="cloud" style="top: 50%; left: 70%;"></div>
@@ -39,14 +38,14 @@ ob_start();
     <div class="cloud" style="top: 5%; left: 80%;"></div>
     <div class="cloud" style="top: 25%; left: 10%;"></div>
     <div class="cloud" style="top: 45%; left: 40%;"></div>
-    <div class="cloud" style="top: 65%; left: 90%;"></div>  
+    <div class="cloud" style="top: 65%; left: 90%;"></div>
     <div class="cloud" style="top: 85%; left: 60%;"></div>
     <div class="cloud" style="top: 15%; left: 80%;"></div>
     <div class="cloud" style="top: 35%; left: 10%;"></div>
     <div class="cloud" style="top: 55%; left: 40%;"></div>
     <div class="cloud" style="top: 75%; left: 90%;"></div>
     <div class="cloud" style="top: 95%; left: 60%;"></div>
-    
+
 
 
 </main>

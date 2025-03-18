@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -112,7 +113,8 @@
                             <p>Welcome KAMI</p>
                         <?php else: ?>
                             <figure class="connexion">
-                                <a href="<?php echo $this->router->generate('login') ?>">Connexion</a>
+                                <a class="loginbutton" href="<?php echo $this->router->generate('login') ?>">Connexion</a>
+                                <a class="loginbutton" href="<?php echo $this->router->generate('register') ?>">Register</a>
                             </figure>
                         <?php endif; ?>
 

@@ -27,7 +27,7 @@
                 <?php foreach ($recommendations as $recommendation): ?>
                     <div class="carousel-item card-fav black-background">
                         <div class="bubble-fav">
-                            <figure><img src="<?php echo $recommendation->manga->getThumbnail() ?>" alt="Naruto"></figure>
+                            <figure><img loading="lazy" src="<?php echo $recommendation->manga->getThumbnail() ?>" alt="Naruto"></figure>
                             <div>
                                 <hr>
                                 <p><?php echo $recommendation->message ?><a href="<?php echo $this->router->generate("read", ["id" => $recommendation->manga->getId_manga()]) ?>">Read More...</a> </p>
@@ -55,10 +55,12 @@
 	                <div class="slider">
 	                    <div class="slider-wrapper">
 	                        <?php foreach ($manga as $manga): ?>
+
 <?php
         $isLiked    = isset($_SESSION['id_user']) && $manga->isLikedByUser($_SESSION['id_user']);
         $likedClass = $isLiked ? 'liked' : '';
     ?>
+
 	                            <div class="manga">
 	                                <a href="/manga/<?php echo $manga->getId_manga() ?>">
 	                                    <img src="<?php echo $manga->getThumbnail() ?>" alt="<?php echo $manga->getName() ?>">
@@ -71,6 +73,7 @@
 	                                </a>
 	                            </div>
 	                        <?php endforeach; ?>
+
                     </div>
                     <button class="prev">❮</button>
                     <button class="next">❯</button>
