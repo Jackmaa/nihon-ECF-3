@@ -66,12 +66,14 @@ class ControllerAdmin extends Controller {
     //Manage a review in case of inappropriate content
     public function manageReview($id) {
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_review'])) {
-            $id    = $_POST['id_review']; // Récupération correcte de la review
-            $model = new ModelManga();
-            $model->deleteReview($id);
+            $id_review = $_POST['id_review']; // Récupération correcte de la review
+            $model     = new ModelManga();
+            $model->deleteReview($id_review);
+
+            header("Location:" . $this->router->generate("read", ["id" => $id]));
+            exit;
         }
     }
-
     // Search for a user
     public function searchUser() {
         $search        = '%' . $_POST['search'] . '%';
