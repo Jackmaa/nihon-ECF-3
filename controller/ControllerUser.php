@@ -216,6 +216,7 @@ class ControllerUser extends Controller {
 
     public function favoriteManga() {
         $model = new ModelManga();
+        $userstats = $model->getStats($_SESSION['id_user']);
         $mangas = $model->getUserFavs($_SESSION['id_user']);
         $favs = [];
         foreach($mangas as $manga) {
@@ -223,7 +224,7 @@ class ControllerUser extends Controller {
         }
         require_once './view/favoriteManga.php';
     }
-
+    
     public function pastChronicle() {
         if (! isset($_SESSION['id_user'])) {
             header('Location: ' . $this->router->generate('login'));

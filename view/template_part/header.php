@@ -42,9 +42,9 @@
                         </div>
                         <?php if (isset($_SESSION['id_user'])): ?>
                             <ul>
-                                <li><a href="<?php echo $this->router->generate("myProfile", ["id" => $_SESSION['id_user']]) ?>">Profil</a></li>
+                                <li><a href="<?php echo $this->router->generate("myProfile", ["id" => $_SESSION['id_user']]) ?>">Profile</a></li>
                                 <li><a href="<?php echo BASE_URL ?>">Home</a></li>
-                                <li><a href="<?php echo $this->router->generate("currentStorie") ?>">My Book</a></li>
+                                <li><a href="<?php echo $this->router->generate("currentStorie") ?>">My Books</a></li>
                                 <li><a href="<?php echo $this->router->generate("favoriteManga", ["id" => $_SESSION['id_user']]) ?>">Favorites</a></li>
                                 <li><a href="#" class="toggle-theme">Darkmode
                                         <span class="icon-wrapper">
@@ -93,9 +93,9 @@
                                 </div>
                                 <div class="dropdown">
                                     <ul>
-                                        <li><a href="<?php echo $this->router->generate("myProfile", ["id" => $_SESSION['id_user']]) ?>">Profil</a></li>
+                                        <li><a href="<?php echo $this->router->generate("myProfile", ["id" => $_SESSION['id_user']]) ?>">Profile</a></li>
                                         <li><a href="<?php echo $this->router->generate("favoriteManga", ["id" => $_SESSION['id_user']]) ?>">My Favorites</a></li>
-                                        <li><a href="<?php echo $this->router->generate("currentStorie") ?>">My Book</a></li>
+                                        <li><a href="<?php echo $this->router->generate("currentStorie") ?>">My Books</a></li>
                                         <li><a href="<?php echo BASE_URL ?>contact">Contact</a></li>
                                         <li><a href="#" class="toggle-theme">Darkmode
                                                 <span class="icon-wrapper">
@@ -105,7 +105,7 @@
                                                 </span>
                                             </a></li>
 
-                                        <li><a href="<?php echo $this->router->generate('logout') ?>">Déconnexion</a></li>
+                                        <li><a href="<?php echo $this->router->generate('logout') ?>">Logout</a></li>
                                     </ul>
                                 </div>
                             </figure>
@@ -113,7 +113,7 @@
                             <p>Welcome KAMI</p>
                         <?php else: ?>
                             <figure class="connexion">
-                                <a class="loginbutton" href="<?php echo $this->router->generate('login') ?>">Connexion</a>
+                                <a class="loginbutton" href="<?php echo $this->router->generate('login') ?>">Login</a>
                                 <a class="loginbutton" href="<?php echo $this->router->generate('register') ?>">Register</a>
                             </figure>
                         <?php endif; ?>

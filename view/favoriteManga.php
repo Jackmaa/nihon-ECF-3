@@ -40,6 +40,29 @@ ob_start();
         </div>
         <?php endforeach; ?>
     </section>
+
+    <div class="separation">AJOUTER UNE SÉPARATION ICI SVP</div><br><br>
+
+    <?php if (empty($userstats)): ?>
+        <p>No Statistics</p>
+    <?php else: ?>
+        <?php
+        $maxFavs = max(array_column($userstats, 'total_fav'));
+        ?>
+        <div class="statistique">
+            <?php foreach ($userstats as $index => $stat): 
+                // Calculate the height of the bar in a percentage
+                $height = ($stat['total_fav'] / $maxFavs) * 100;
+                // Switch the color of the bar
+                $colorClass = $index % 2 == 0 ? 'color-one' : 'color-two';
+            ?>
+                <div class="statistique-barre" style="height: <?= $height ?>%; background: <?= $index % 2 == 0 ? 'linear-gradient(9deg, rgba(48,226,74,1) 0%, rgba(40,218,213,1) 49%, rgba(33,150,243,1) 100%)' : 'linear-gradient(0deg, rgba(228,0,43,1) 0%, rgba(227,0,27,1) 49%, rgba(255,0,0,1) 100%)' ?>;">
+                    <?= htmlspecialchars($stat['category_name']) . ': ' ?>
+                    <span><?= htmlspecialchars($stat['total_fav']) ?></span>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
 </main>
 <?php
 $content = ob_get_contents();

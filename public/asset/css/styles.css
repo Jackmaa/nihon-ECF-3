@@ -1856,6 +1856,28 @@ button:hover {
 
 /*
 **********************************
+*********USER STAT************
+**********************************
+*/
+.statistique {
+  background: none;
+  display: flex;
+  height: 300px;
+  align-items: flex-end;
+}
+
+.statistique-barre {
+  font-family: var(--ff-barlow);
+  text-align: center;
+  width: 6rem;
+  border: 1px solid #ccc;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  margin: 6px;
+}
+
+/*
+**********************************
 *********CATEGORY MANGA************
 **********************************
 */
