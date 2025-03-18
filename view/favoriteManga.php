@@ -71,7 +71,19 @@ ob_start();
                 $colorClass = $index % 2 == 0 ? 'color-one' : 'color-two';
             ?>
                 <div class="statistique-barre" style="height: <?= $height ?>%; background: <?= $index % 2 == 0 ? 'linear-gradient(9deg, rgba(48,226,74,1) 0%, rgba(40,218,213,1) 49%, rgba(33,150,243,1) 100%)' : 'linear-gradient(0deg, rgba(228,0,43,1) 0%, rgba(227,0,27,1) 49%, rgba(255,0,0,1) 100%)' ?>;">
-                    <?= htmlspecialchars($stat['category_name']) . ': ' ?>
+                <?php
+                    $categoryName = htmlspecialchars($stat['category_name']);
+                    if (strpos($categoryName, ' ') !== false) {
+                        $words = explode(' ', $categoryName);
+                        $initials = '';
+                        foreach ($words as $word) {
+                            $initials .= strtoupper($word[0]);
+                        }
+                        echo $initials . ': ';
+                    } else {
+                        echo $categoryName . ': ';
+                    }
+                    ?>
                     <span><?= htmlspecialchars($stat['total_fav']) ?></span>
                 </div>
             <?php endforeach; ?>
