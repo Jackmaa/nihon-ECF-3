@@ -2821,6 +2821,22 @@ button:hover {
 ***********DASHBOARD************
 **********************************
 */
+
+#volumesContainer{
+display: flex;
+flex-wrap: wrap;
+height: 10rem;
+overflow: scroll;
+
+.volume-item{
+  margin: 0 0.2rem;
+  span {
+    color: var(--fc-black);
+    font-size: .9rem;
+  }
+}
+}
+
 .dashboard{
 #search-results-manga {
   display: flex;
