@@ -3545,6 +3545,9 @@ section.see-volume {
   width: 20px;
   height: 20px;
 }
+.admin-login p {
+  text-align: center;
+}
 
 /******FAV PAGE *******/
 #section-stat .total-fav {
