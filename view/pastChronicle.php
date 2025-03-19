@@ -18,11 +18,12 @@
             <div class="current-storie">
                 <figure><img src="<?php echo $manga->manga->manga->getThumbnail() ?>" alt=""></figure>
                 <div class="current-info">
-                    <h4><?php echo $manga->manga->manga->getName()?></h4>
+                    <h4><?php echo $manga->manga->manga->getName() ?></h4>
                     <div>
-                        <a href="#">Category: <span><?php echo $manga->manga->categories?></span></a>
-                        <a href="#">Author: <span><?php echo $manga->manga->author?></span></a>
-                        <a href="#">Editor: <span><?php echo $manga->manga->editor?></span></a>
+                        <span>Volume :<?php echo $manga->borrow->getId_volume() ?></span>
+                        <a href="#">Category: <span><?php echo $manga->manga->categories ?></span></a>
+                        <a href="#">Author: <span><?php echo $manga->manga->author ?></span></a>
+                        <a href="#">Editor: <span><?php echo $manga->manga->editor ?></span></a>
                     </div>
                 </div>
             </div>
