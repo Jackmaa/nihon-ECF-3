@@ -536,10 +536,6 @@ input:not(:focus):invalid:not(:placeholder-shown) ~ .error {
 .login {
   margin-top: 20px;
 }
-.connexion .form-container{
-  margin-top: 100px;
-}
-
 
 .connexion,
 .login {
@@ -662,10 +658,6 @@ input:not(:focus):invalid:not(:placeholder-shown) ~ .error {
   }
 }
 
-.auth-pages footer,
-.auth-pages footer * { 
-    color: white;
-}
 
 /*
 **********************************
@@ -4133,7 +4125,7 @@ section.see-volume {
   box-sizing: border-box; /* Inclure le padding et la bordure dans la largeur totale */
 }
 
-.admin-login-form button {
+.admin-login-form .buttonlogin {
   width: 100%;
   padding: 10px;
   background-color: #cc1606;
@@ -4144,7 +4136,7 @@ section.see-volume {
   transition: background-color 0.3s ease;
 }
 
-.admin-login-form button:hover {
+.admin-login-form .buttonlogin:hover {
   background-color: #e00e0e;
 }
 h1{
@@ -4156,6 +4148,33 @@ h1{
     color: #111111;
   
 }
+.password-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.password-container input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  outline: none;
+}
+
+.password-container button {
+  background: none;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.password-container img {
+  width: 20px;
+  height: 20px;
+}
+
 }
 
 /******FAV PAGE *******/

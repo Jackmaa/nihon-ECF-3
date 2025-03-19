@@ -477,10 +477,6 @@ input:not(:focus):invalid:not(:placeholder-shown) ~ .error {
   margin-top: 20px;
 }
 
-.connexion .form-container {
-  margin-top: 100px;
-}
-
 .connexion,
 .login {
   display: flex;
@@ -605,11 +601,6 @@ input:not(:focus):invalid:not(:placeholder-shown) ~ .error {
 .password-container .togglePassword img {
   width: 3vh;
   text-align: center;
-}
-
-.auth-pages footer,
-.auth-pages footer * {
-  color: white;
 }
 
 /*
@@ -3606,7 +3597,7 @@ section.see-volume {
   border-radius: 5px;
   box-sizing: border-box; /* Inclure le padding et la bordure dans la largeur totale */
 }
-.admin-login .admin-login-form button {
+.admin-login .admin-login-form .buttonlogin {
   width: 100%;
   padding: 10px;
   background-color: #cc1606;
@@ -3616,7 +3607,7 @@ section.see-volume {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-.admin-login .admin-login-form button:hover {
+.admin-login .admin-login-form .buttonlogin:hover {
   background-color: #e00e0e;
 }
 .admin-login h1 {
@@ -3626,6 +3617,29 @@ section.see-volume {
   margin-bottom: 1.5rem;
   margin-top: 100px;
   color: #111111;
+}
+.admin-login .password-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.admin-login .password-container input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  outline: none;
+}
+.admin-login .password-container button {
+  background: none;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.admin-login .password-container img {
+  width: 20px;
+  height: 20px;
 }
 
 /******FAV PAGE *******/
