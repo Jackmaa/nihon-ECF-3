@@ -4022,6 +4022,7 @@ form {
     font-size: 1.5rem;
     font-family: var(--ff-barlow);
     transition: all ease 0.3s;
+    cursor: pointer;
 
     &:hover {
       background-color: #cc1606;
