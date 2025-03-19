@@ -2100,6 +2100,10 @@ button:hover {
   flex-direction: column;
   justify-content: center;
 }
+#search-bar-desktop input,
+#search-bar-mobile input {
+  background-color: #f2ebe8;
+}
 
 .loup-search {
   display: flex;
@@ -2492,6 +2496,21 @@ button:hover {
     color: var(--fc-black);
     font-size: 0.9rem;
   }
+  #popupModified {
+    color: var(--fc-black);
+  }
+  #popupModified .close {
+    font-size: 2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  #popupModified .close:hover {
+    color: #cc392b;
+  }
+  #popupModified h2 {
+    text-align: center;
+  }
   .dashboard #search-results-manga {
     display: flex;
     flex-wrap: wrap;
@@ -2544,11 +2563,11 @@ button:hover {
   .dashboard #modifyMangaForm label {
     margin: 0.5rem 0;
   }
-  .dashboard #modifyMangaForm input {
+  .dashboard #modifyMangaForm input, .dashboard #modifyMangaForm textarea {
     height: 4vh;
     border-radius: 5px;
     padding: 0 5px;
-    background-color: #fcd1e6;
+    background-color: #f2ebe8;
   }
   div.headdashboard {
     height: 50vh;
@@ -2843,7 +2862,7 @@ button:hover {
   height: 4vh;
   border-radius: 5px;
   padding: 0 5px;
-  background-color: #fcd1e6;
+  background-color: #f2ebe8;
 }
 
 .dashboard {
@@ -3546,11 +3565,16 @@ section.see-volume {
 }
 
 /******FAV PAGE *******/
+#section-stat {
+  width: 100%;
+}
 #section-stat .total-fav {
   margin-bottom: 1rem;
 }
 #section-stat .stat-name {
-  font-size: 1.2rem;
+  font-size: 0.9rem;
+  text-align: center;
+  word-break: break-word;
 }
 #section-stat hr {
   width: 100%;
@@ -3560,32 +3584,35 @@ section.see-volume {
 }
 #section-stat .statistique {
   display: flex;
-  gap: 1rem;
+  gap: 0.29rem;
+  padding: 2rem 1rem;
   justify-content: center;
-  align-items: flex-end;
-  padding: 1rem;
+  overflow-x: auto;
+  max-width: 100%;
 }
-#section-stat .statistique .statistique-barre {
+#section-stat .statistique-barre {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
   border-radius: 8px;
   color: white;
-  padding: 0 15px;
   position: relative;
+  min-width: 2.5rem;
+  max-width: 5rem;
   opacity: 0;
   transform: translateY(50px);
   transition: all 0.5s ease-out;
 }
-#section-stat .statistique .statistique-barre span {
+#section-stat .statistique-barre span {
   margin-top: 0.5rem;
 }
-#section-stat .statistique .statistique-barre.visible {
+#section-stat .statistique-barre.visible {
   opacity: 1;
   transform: translateY(0);
   animation: pulseBar 1s ease-out;
 }
+
 @keyframes pulseBar {
   0% {
     transform: translateY(0) scaleY(0);
@@ -3595,5 +3622,17 @@ section.see-volume {
   }
   100% {
     transform: translateY(0) scaleY(1);
+  }
+}
+@media screen and (max-width: 600px) {
+  .statistique-barre {
+    width: 40px;
+    min-width: 30px;
+  }
+  .stat-name {
+    font-size: 0.8rem;
+  }
+  .total-fav {
+    font-size: 0.9rem;
   }
 }/*# sourceMappingURL=styles.css.map */
