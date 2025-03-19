@@ -99,6 +99,10 @@ body.dark-mode {
   background-color: #202024;
   color: white;
 
+  .formulaire {
+    background-color: #5cdff7;
+  }
+
   .menu-desktop {
     figure:nth-of-type(3) a img {
       transition: all 0.3s ease;
@@ -158,8 +162,8 @@ body.dark-mode {
     color: var(--fc-black);
   }
 
-  input {
-    background-color: #ccc;
+  textarea, input {
+    background-color: #f2ebe8;
   }
 
   .general-profile {
@@ -478,7 +482,18 @@ footer > p {
 ***********LOGIN/REGISTER*********
 **********************************
 */
-
+.img-contact{
+  background: url(../img/contact-us.svg) no-repeat bottom/cover;
+  width: 100%;
+  height: 40vh;
+}
+.clickhere{
+  color: rgb(255, 255, 255);
+  transition: all 0.3s ease;
+  &:hover{
+    color: #cc392b;
+  }
+}
 .connexion input, 
 .login input {
   outline: 3px solid hsl(203, 30%, 26%);
@@ -2011,7 +2026,9 @@ div.mangaPage {
   flex-direction: column;
   align-items: center;
 
-  input {
+  form{
+    margin-left: 25%;
+    input {
     width: 50%;
     margin-bottom: 3vh;
     border-radius: 5px;
@@ -2027,7 +2044,9 @@ div.mangaPage {
     }
   }
 
+
   button {
+    transform: translate(50% -50%);
     margin-bottom: 5vh;
     width: 50%;
     background-color: #fab1d4;
@@ -2047,6 +2066,7 @@ div.mangaPage {
       box-shadow: none;
     }
   }
+}
 }
 
 .modal {
@@ -2137,6 +2157,7 @@ button:hover {
   .current-storie {
     display: flex;
     justify-content: center;
+    align-items: center;
     margin: 5vh 0;
 
     h4 {
@@ -2145,7 +2166,9 @@ button:hover {
     }
 
     figure {
-      width: 20vh;
+      width: 5rem;
+      height: 7rem;
+      margin-right: 1rem;
 
       img {
         width: 100%;
@@ -2156,6 +2179,7 @@ button:hover {
       display: flex;
       justify-content: space-around;
       margin-left: 2vw;
+      width: 10rem;
     }
 
     div {
@@ -2361,6 +2385,9 @@ button:hover {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  input{
+    background-color: #f2ebe8;
+  }
 }
 
 .loup-search {
@@ -2451,6 +2478,79 @@ button:hover {
 }
 
 @media (min-width: 768px) {
+  /*
+*******************************
+***********PAGE FAV***********
+*******************************
+*/
+  .card-current {
+    display: flex;
+    justify-content: space-around;
+  
+    .chevron-current {
+      display: flex;
+      margin-top: 10vh;
+  
+      p {
+        font-family: var(--ff-barlow);
+        font-size: 1.2rem;
+  
+        span {
+          font-weight: 600;
+        }
+      }
+    }
+  
+    .current-storie {
+      display: flex;
+      justify-content: center;
+      margin: 5vh 0;
+  
+      h4 {
+        font-family: var(--ff-barlow);
+        font-weight: 400;
+      }
+  
+      figure {
+        width: 10rem;
+        height: 15rem;
+  
+        img {
+          width: 100%;
+        }
+      }
+  
+      .current-info {
+        display: flex;
+        justify-content: space-around;
+        margin-left: 2vw;
+        width: 20rem;
+      }
+  
+      div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+  
+        font-family: var(--ff-barlow);
+        font-size: 1.5rem;
+  
+        a {
+          color: var(--fc-black);
+          margin-bottom: 1vh;
+        }
+  
+        span {
+          color: #cc392b;
+          transition: all ease 0.3s;
+  
+          &:hover {
+            color: #a71103;
+          }
+        }
+      }
+    }
+  }
   /*
 **********************************
 ***********HOMEPAGE************
@@ -2813,6 +2913,38 @@ button:hover {
 ***********DASHBOARD************
 **********************************
 */
+
+#volumesContainer{
+display: flex;
+flex-wrap: wrap;
+height: 10rem;
+overflow: scroll;
+
+.volume-item{
+  margin: 0 0.2rem;
+  span {
+    color: var(--fc-black);
+    font-size: .9rem;
+  }
+}
+}
+#popupModified{
+  color: var(--fc-black);
+  .close{
+    font-size: 2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover{
+      color: #cc392b;
+    }
+  }
+  h2{
+    text-align: center;
+  }
+  
+}
 .dashboard{
 #search-results-manga {
   display: flex;
@@ -2868,11 +3000,11 @@ button:hover {
     margin: 0.5rem 0;
 
   }    
-  input{
+  input, textarea{
       height: 4vh;
       border-radius: 5px;
       padding: 0 5px;
-      background-color: #fcd1e6;
+      background-color: #f2ebe8;
     }
 }
 }
@@ -3174,7 +3306,8 @@ button:hover {
     font-family: var(--ff-bangers);
     margin: 1%;
     color: #ffffff;
-    -webkit-text-stroke: 1px red;
+    font-weight: 900;
+    -webkit-text-stroke: 1px #cc392b;
   }
 
   input,
@@ -3184,7 +3317,10 @@ button:hover {
     border-radius: 10px;
     border: none;
     background-color: #f5f5f5;
-    outline: 1px solid #b3b34e;
+    outline: 1px solid #333;
+    &:focus{
+      outline: 1px solid #fab1d4;
+    }
   }
 
   .button {
@@ -3192,15 +3328,14 @@ button:hover {
     padding: 1%;
     border-radius: 10px;
     border: none;
-    background-color: #cc1606;
-    color: #ffffff;
+    background-color: #cc392b;
+    color: var(--fc-black);
     font-family: var(--ff-bangers);
     cursor: pointer;
     transition: all ease 0.3s;
 
     &:hover {
-      background-color: #ce685f;
-      color: var(--fc-black);
+      background-color: #e63232;
     }
   }
 }
@@ -3229,7 +3364,7 @@ button:hover {
         height: 4vh;
         border-radius: 5px;
         padding: 0 5px;
-        background-color: #fcd1e6;
+        background-color: #f2ebe8;
       }
       
     }
@@ -3632,6 +3767,30 @@ form {
     /* Réduire la largeur au contenu */
     backdrop-filter: blur(10px);
     /* Ajouter un flou au fond */
+    width: 50rem;
+    height: 15rem;
+
+    .content-txt{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    p{
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    a{
+      font-size: 1.2rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+      &:hover{
+        color: #cc392b;
+      }
+    }
+    }
   }
 
   .shuriken {
@@ -3668,9 +3827,9 @@ form {
     font-family: var(--ff-bangers);
     letter-spacing: var(--letter-spacing);
     font-size: 2rem;
-    color: #f0f0f0;
-    text-shadow: -1px -1px 10px red, 1px -1px 10px red, -1px 1px 10px red,
-      1px 1px 10px red;
+    color: #cc392b;
+    text-shadow: -1px -1px 10px rgb(221, 217, 217), 1px -1px 10px rgb(219, 215, 215), -1px 1px 10px rgb(219, 215, 215),
+      1px 1px 10px rgb(219, 215, 215);
   }
 
   p {
@@ -3863,6 +4022,7 @@ form {
     font-size: 1.5rem;
     font-family: var(--ff-barlow);
     transition: all ease 0.3s;
+    cursor: pointer;
 
     &:hover {
       background-color: #cc1606;
@@ -3905,13 +4065,11 @@ form {
 **********************************
 */
 .aboutus {
+  background: url(../img/itachi.gif) no-repeat center/cover;
   position: relative;
   height: 100vh;
   overflow: hidden;
-  background-color: #f9f9f9;
-  margin: 20px;
   padding: 20px;
-  background-color: #f9f9f9;
   font-family: Arial, sans-serif;
 
   h1 {
@@ -3927,7 +4085,7 @@ form {
     font-family: var(--ff-bangers);
     letter-spacing: var(--letter-spacing);
     font-size: 1.5rem;
-    color: #070707;
+    color: #ffffff;
     margin: 20px;
     opacity: 0;
     transform: translateY(-50px);
@@ -3936,19 +4094,19 @@ form {
   p {
     font-family: var(--ff-barlow);
     font-size: 1.5rem;
-    color: #070707;
+    color: #ffffff;
     margin: 20px;
     opacity: 0;
     transform: translateY(-50px);
   }
 
   section {
+    background: #0e0e0ea2;
     max-width: 800px;
     margin: 0 auto;
-    background-color: #fff;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
   }
 
   .flexcenter {
@@ -4065,18 +4223,21 @@ h1{
 p{
   text-align: center;
 }
+
 }
 
 /******FAV PAGE *******/
 
 #section-stat {
-
+width: 100%;
   .total-fav{
     margin-bottom: 1rem;
   }
 
   .stat-name {
-    font-size: 1.2rem;
+    font-size: 0.9rem;
+    text-align: center;
+    word-break: break-word;
   }
   hr {
     width: 100%;
@@ -4087,10 +4248,13 @@ p{
 
   .statistique {
     display: flex;
-    gap: 1rem;
+    gap: 0.29rem;
+    padding: 2rem 1rem;
     justify-content: center;
-    align-items: flex-end;
-    padding: 1rem;
+    overflow-x: auto;
+    max-width: 100%;
+  }
+  
 
     .statistique-barre {
       display: flex;
@@ -4099,8 +4263,9 @@ p{
       align-items: center;
       border-radius: 8px;
       color: white;
-      padding: 0 15px;
       position: relative;
+      min-width: 2.5rem;
+      max-width: 5rem;
       opacity: 0;
       transform: translateY(50px);
       transition: all 0.5s ease-out;
@@ -4127,5 +4292,19 @@ p{
     100% {
       transform: translateY(0) scaleY(1);
     }
+  }
+
+@media screen and (max-width: 600px) {
+  .statistique-barre {
+    width: 40px;
+    min-width: 30px;
+  }
+
+  .stat-name {
+    font-size: 0.8rem;
+  }
+
+  .total-fav {
+    font-size: 0.9rem;
   }
 }
