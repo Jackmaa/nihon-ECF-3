@@ -10,13 +10,14 @@ ob_start();
     <form class="admin-login-form" method="POST" action="/dashboard-access">
         <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?? '' ?>">
         <label for="username">Username:</label>
-        <input type="text" name="credential" required>
+        <input type="text" name="credential" required placeholder="Username">
         <label for="password">Password:</label>
         <div class="password-container">
-            <input type="password" name="password" id="password" placeholder="Password">
+            <input type="password" name="password" id="password" placeholder="Password" minlength="8" required aria-errormessage='password-error' pattern="^(?=.*[A-Za-z])(?=.*\d).+$">
             <button type="button" class="togglePassword"><img src="public\asset\img\oeilferme.svg" alt="oeil"
                     class="eye-icon"> </button>
         </div>
+        <p>(8 caractères minimums)</p>
 
         <button class="buttonlogin" type="submit">Login</button>
     </form>
