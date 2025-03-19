@@ -55,6 +55,7 @@ class ModelUser extends Model {
             'public\asset\img\profile pic\luffy.webp',
             'public\asset\img\profile pic\minato.webp',
             'public\asset\img\profile pic\tanjiro.webp',
+            'public\asset\img\profile pic\shrek.webp',
         ];
 
         $random_image = $default_image[array_rand($default_image)];
