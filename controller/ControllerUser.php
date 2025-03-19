@@ -25,7 +25,6 @@ class ControllerUser extends Controller {
                         $_SESSION['id_user']     = $user->getId_user();
                         $_SESSION['name']        = $user->getUsername();
                         $_SESSION['profile_pic'] = $user->getProfile_pic();
-                        $_SESSION['cart']        = $model->fetchCartData($user->getId_user());
                         header('Location: ' . $this->router->generate('home'));
                         exit;
                     } else {
@@ -173,7 +172,7 @@ class ControllerUser extends Controller {
     public function update(int $id) {
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (! empty($_POST['username']) && ! empty($_POST['email']) && ! empty($_POST['password']) && ! empty($_POST['password_verify']) && ! empty($_POST['profile_pic'])) {
+            if (! empty($_POST['username']) && ! empty($_POST['email']) && ! empty($_POST['password']) && ! empty($_POST['password_verify']) && ! empty($_FILES['profile_pic'])) {
                 if ($_POST['password'] === $_POST['password_verify']) {
                     $model = new ModelUser();
                     $model->updateUser($_POST['username'], $_POST['email'], $_POST['password'], $_POST['profile_pic'], $id);
@@ -244,5 +243,41 @@ class ControllerUser extends Controller {
             }
             require_once './view/pastChronicle.php';
         }
+    }
+
+    public function imageProcessing() {
+
+        if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_FILES["profilePicture"])) {
+            $targetDir      = "assets/img/profiles/";
+            $fileName       = $_SESSION["useruid"];
+            $fileExtension  = pathinfo($_FILES["profilePicture"]["name"], PATHINFO_EXTENSION);
+            $targetFilePath = $targetDir . $fileName . "." . $fileExtension;
+
+            $allowTypes = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+
+            if (in_array(strtolower($fileExtension), $allowTypes)) {
+                // Supprimer l'ancienne image
+                foreach (glob($targetDir . $fileName . ".*") as $existingFile) {
+                    unlink($existingFile);
+                }
+
+                if (move_uploaded_file($_FILES["profilePicture"]["tmp_name"], $targetFilePath)) {
+                    $newFilePath = $targetDir . $fileName . ".webp";
+
+                    if (ImageProcessor::processImage($targetFilePath, $newFilePath, 50, 50)) {
+                        unlink($targetFilePath); // Supprimer l'original
+                        header("Location: user-profile.php?id=" . $_SESSION["userid"] . "&upload=success");
+                        exit();
+                    } else {
+                        header("Location: user-profile.php?id=" . $_SESSION["userid"] . "&upload=error");
+                        exit();
+                    }
+                }
+            } else {
+                header("Location: user-profile.php?id=" . $_SESSION["userid"] . "&upload=invalid");
+                exit();
+            }
+        }
+
     }
 }
