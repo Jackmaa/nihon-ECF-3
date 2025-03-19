@@ -195,9 +195,13 @@ class CartController extends Controller {
 
     // Renders the cart view
     public function cart() {
-        $model = new ModelBorrow;
-        $cart  = $model->getUserReservations($_SESSION['id_user']);
-        require_once './view/cart.php';
+        if (! isset($_SESSION['id_user'])) {
+            require_once './view/login.php';
+        } else {
+            $model = new ModelBorrow;
+            $cart  = $model->getUserReservations($_SESSION['id_user']);
+            require_once './view/cart.php';
+        }
     }
 
     public function cartState() {
