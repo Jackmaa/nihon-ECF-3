@@ -27,3 +27,21 @@ document.getElementById("sort-options").addEventListener("change", function() {
     container.innerHTML = "";
     cards.forEach(card => container.appendChild(card));
 });
+
+
+const bars = document.querySelectorAll('.statistique-barre');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    } else {
+      // Quand l'élément sort du viewport, on enlève la classe
+      entry.target.classList.remove('visible');
+    }
+  });
+}, { threshold: 0.2 });
+
+bars.forEach(bar => {
+  observer.observe(bar);
+});

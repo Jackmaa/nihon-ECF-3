@@ -1,4 +1,3 @@
-
 <?php include_once './view/template_part/header.php'; ?>
 <section>
     <?php echo $content ?>

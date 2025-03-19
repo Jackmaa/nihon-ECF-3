@@ -536,10 +536,6 @@ input:not(:focus):invalid:not(:placeholder-shown) ~ .error {
 .login {
   margin-top: 20px;
 }
-.connexion .form-container{
-  margin-top: 100px;
-}
-
 
 .connexion,
 .login {
@@ -662,10 +658,6 @@ input:not(:focus):invalid:not(:placeholder-shown) ~ .error {
   }
 }
 
-.auth-pages footer,
-.auth-pages footer * { 
-    color: white;
-}
 
 /*
 **********************************
@@ -2145,6 +2137,7 @@ button:hover {
   .current-storie {
     display: flex;
     justify-content: center;
+    align-items: center;
     margin: 5vh 0;
 
     h4 {
@@ -2153,7 +2146,9 @@ button:hover {
     }
 
     figure {
-      width: 20vh;
+      width: 5rem;
+      height: 7rem;
+      margin-right: 1rem;
 
       img {
         width: 100%;
@@ -2164,6 +2159,7 @@ button:hover {
       display: flex;
       justify-content: space-around;
       margin-left: 2vw;
+      width: 10rem;
     }
 
     div {
@@ -2369,6 +2365,9 @@ button:hover {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  input{
+    background-color: #f2ebe8;
+  }
 }
 
 .loup-search {
@@ -2459,6 +2458,79 @@ button:hover {
 }
 
 @media (min-width: 768px) {
+  /*
+*******************************
+***********PAGE FAV***********
+*******************************
+*/
+  .card-current {
+    display: flex;
+    justify-content: space-around;
+  
+    .chevron-current {
+      display: flex;
+      margin-top: 10vh;
+  
+      p {
+        font-family: var(--ff-barlow);
+        font-size: 1.2rem;
+  
+        span {
+          font-weight: 600;
+        }
+      }
+    }
+  
+    .current-storie {
+      display: flex;
+      justify-content: center;
+      margin: 5vh 0;
+  
+      h4 {
+        font-family: var(--ff-barlow);
+        font-weight: 400;
+      }
+  
+      figure {
+        width: 10rem;
+        height: 15rem;
+  
+        img {
+          width: 100%;
+        }
+      }
+  
+      .current-info {
+        display: flex;
+        justify-content: space-around;
+        margin-left: 2vw;
+        width: 20rem;
+      }
+  
+      div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+  
+        font-family: var(--ff-barlow);
+        font-size: 1.5rem;
+  
+        a {
+          color: var(--fc-black);
+          margin-bottom: 1vh;
+        }
+  
+        span {
+          color: #cc392b;
+          transition: all ease 0.3s;
+  
+          &:hover {
+            color: #a71103;
+          }
+        }
+      }
+    }
+  }
   /*
 **********************************
 ***********HOMEPAGE************
@@ -2821,6 +2893,38 @@ button:hover {
 ***********DASHBOARD************
 **********************************
 */
+
+#volumesContainer{
+display: flex;
+flex-wrap: wrap;
+height: 10rem;
+overflow: scroll;
+
+.volume-item{
+  margin: 0 0.2rem;
+  span {
+    color: var(--fc-black);
+    font-size: .9rem;
+  }
+}
+}
+#popupModified{
+  color: var(--fc-black);
+  .close{
+    font-size: 2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover{
+      color: #cc392b;
+    }
+  }
+  h2{
+    text-align: center;
+  }
+  
+}
 .dashboard{
 #search-results-manga {
   display: flex;
@@ -2876,11 +2980,11 @@ button:hover {
     margin: 0.5rem 0;
 
   }    
-  input{
+  input, textarea{
       height: 4vh;
       border-radius: 5px;
       padding: 0 5px;
-      background-color: #fcd1e6;
+      background-color: #f2ebe8;
     }
 }
 }
@@ -3237,7 +3341,7 @@ button:hover {
         height: 4vh;
         border-radius: 5px;
         padding: 0 5px;
-        background-color: #fcd1e6;
+        background-color: #f2ebe8;
       }
       
     }
@@ -4021,7 +4125,7 @@ section.see-volume {
   box-sizing: border-box; /* Inclure le padding et la bordure dans la largeur totale */
 }
 
-.admin-login-form button {
+.admin-login-form .buttonlogin {
   width: 100%;
   padding: 10px;
   background-color: #cc1606;
@@ -4032,7 +4136,7 @@ section.see-volume {
   transition: background-color 0.3s ease;
 }
 
-.admin-login-form button:hover {
+.admin-login-form .buttonlogin:hover {
   background-color: #e00e0e;
 }
 h1{
@@ -4044,4 +4148,114 @@ h1{
     color: #111111;
   
 }
+.password-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.password-container input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  outline: none;
+}
+
+.password-container button {
+  background: none;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.password-container img {
+  width: 20px;
+  height: 20px;
+}
+
+}
+
+/******FAV PAGE *******/
+
+#section-stat {
+width: 100%;
+  .total-fav{
+    margin-bottom: 1rem;
+  }
+
+  .stat-name {
+    font-size: 0.9rem;
+    text-align: center;
+    word-break: break-word;
+  }
+  hr {
+    width: 100%;
+    margin: 4rem 0;
+    border: none;
+    border-top: 2px solid #ff3c68;
+  }
+
+  .statistique {
+    display: flex;
+    gap: 0.29rem;
+    padding: 2rem 1rem;
+    justify-content: center;
+    overflow-x: auto;
+    max-width: 100%;
+  }
+  
+
+    .statistique-barre {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      border-radius: 8px;
+      color: white;
+      position: relative;
+      min-width: 2.5rem;
+      max-width: 5rem;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.5s ease-out;
+
+      span {
+        margin-top: 0.5rem;
+      }
+
+      &.visible {
+        opacity: 1;
+        transform: translateY(0);
+        animation: pulseBar 1s ease-out;
+      }
+    }
+  }
+
+  @keyframes pulseBar {
+    0% {
+      transform: translateY(0) scaleY(0);
+    }
+    60% {
+      transform: translateY(0) scaleY(1.2);
+    }
+    100% {
+      transform: translateY(0) scaleY(1);
+    }
+  }
+
+@media screen and (max-width: 600px) {
+  .statistique-barre {
+    width: 40px;
+    min-width: 30px;
+  }
+
+  .stat-name {
+    font-size: 0.8rem;
+  }
+
+  .total-fav {
+    font-size: 0.9rem;
+  }
 }

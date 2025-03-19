@@ -11,11 +11,14 @@ ob_start();
         <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?? '' ?>">
         <label for="username">Username:</label>
         <input type="text" name="credential" required>
-
         <label for="password">Password:</label>
-        <input type="password" name="password" required>
+        <div class="password-container">
+            <input type="password" name="password" id="password" placeholder="Password">
+            <button type="button" class="togglePassword"><img src="public\asset\img\oeilferme.svg" alt="oeil"
+                    class="eye-icon"> </button>
+        </div>
 
-        <button type="submit">Login</button>
+        <button class="buttonlogin" type="submit">Login</button>
     </form>
 </main>
 <?php
