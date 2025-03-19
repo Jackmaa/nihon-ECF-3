@@ -2011,7 +2011,9 @@ div.mangaPage {
   flex-direction: column;
   align-items: center;
 
-  input {
+  form{
+    margin-left: 25%;
+    input {
     width: 50%;
     margin-bottom: 3vh;
     border-radius: 5px;
@@ -2027,7 +2029,9 @@ div.mangaPage {
     }
   }
 
+
   button {
+    transform: translate(50% -50%);
     margin-bottom: 5vh;
     width: 50%;
     background-color: #fab1d4;
@@ -2047,6 +2051,7 @@ div.mangaPage {
       box-shadow: none;
     }
   }
+}
 }
 
 .modal {
@@ -3744,6 +3749,30 @@ form {
     /* Réduire la largeur au contenu */
     backdrop-filter: blur(10px);
     /* Ajouter un flou au fond */
+    width: 50rem;
+    height: 15rem;
+
+    .content-txt{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    p{
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    a{
+      font-size: 1.2rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+      &:hover{
+        color: #cc392b;
+      }
+    }
+    }
   }
 
   .shuriken {
@@ -3780,9 +3809,9 @@ form {
     font-family: var(--ff-bangers);
     letter-spacing: var(--letter-spacing);
     font-size: 2rem;
-    color: #f0f0f0;
-    text-shadow: -1px -1px 10px red, 1px -1px 10px red, -1px 1px 10px red,
-      1px 1px 10px red;
+    color: #cc392b;
+    text-shadow: -1px -1px 10px rgb(221, 217, 217), 1px -1px 10px rgb(219, 215, 215), -1px 1px 10px rgb(219, 215, 215),
+      1px 1px 10px rgb(219, 215, 215);
   }
 
   p {
@@ -4017,13 +4046,11 @@ form {
 **********************************
 */
 .aboutus {
+  background: url(../img/itachi.gif) no-repeat center/cover;
   position: relative;
   height: 100vh;
   overflow: hidden;
-  background-color: #f9f9f9;
-  margin: 20px;
   padding: 20px;
-  background-color: #f9f9f9;
   font-family: Arial, sans-serif;
 
   h1 {
@@ -4039,7 +4066,7 @@ form {
     font-family: var(--ff-bangers);
     letter-spacing: var(--letter-spacing);
     font-size: 1.5rem;
-    color: #070707;
+    color: #ffffff;
     margin: 20px;
     opacity: 0;
     transform: translateY(-50px);
@@ -4048,19 +4075,19 @@ form {
   p {
     font-family: var(--ff-barlow);
     font-size: 1.5rem;
-    color: #070707;
+    color: #ffffff;
     margin: 20px;
     opacity: 0;
     transform: translateY(-50px);
   }
 
   section {
+    background: #0e0e0ea2;
     max-width: 800px;
     margin: 0 auto;
-    background-color: #fff;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
   }
 
   .flexcenter {
@@ -4174,7 +4201,6 @@ h1{
   width: 20px;
   height: 20px;
 }
-
 }
 
 /******FAV PAGE *******/

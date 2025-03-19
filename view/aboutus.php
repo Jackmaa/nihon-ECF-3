@@ -20,7 +20,7 @@ ob_start();
             @Mel00w <br>
             @fab7669 <br>
             @SamyMechiche <br>
-            @Jackmaa
+            @Jackmaa (Our LeadDev)
         </p>
         </div>
     </section>
