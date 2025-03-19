@@ -20,7 +20,7 @@
                     <p>“Now more books to borrow: 5 instead of 3!”</p>
                     <p><span id="extended" >“Extended loan duration: 4 weeks instead of 3!”</span></p>
                     <div class="button-container">
-                        <button id="myButton" class="custom-btn btn-green coucou"> <span>Kakkoii mode</span></button>
+                        <button id="myButton" class="custom-btn btn-green coucou" onclick="window.location.href='kakkoii'"> <span>Kakkoii mode</span></button>
                         <div class="gif-background"></div>
                     </div>
                 </div>
