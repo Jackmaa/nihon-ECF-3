@@ -16,77 +16,114 @@ class ControllerManga extends Controller {
         require_once './view/home.php';
     }
 
-    // Method to update a manga entry
+    // Méthode pour mettre à jour un manga
     public function update($id) {
+        $model = new ModelManga();
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $model = new ModelManga();
-            var_dump($_FILES);
+            if (! isset($_FILES['thumbnail']) || $_FILES['thumbnail']['error'] !== UPLOAD_ERR_OK) {
+                header('Location: /?upload=error');
+                exit();
+            }
 
-            // Handle file upload for thumbnail
-            $thumbnail     = $_FILES['thumbnail']['name'];
-            $tmp_thumbnail = $_FILES['thumbnail']['tmp_name'];
-            move_uploaded_file($tmp_thumbnail, './public/asset/img/' . $thumbnail);
-            $thumbnail = './public/asset/img/' . $thumbnail;
+            // Gérer l'upload et la conversion
+            $thumbnailPath = $this->handleThumbnailUpload($_FILES['thumbnail'], "manga_$id");
 
-            // Update manga details in the database
-            $model->updateManga($_POST['id'], $_POST['name'], $_POST['description'], $_POST['published_date'], $thumbnail);
-            var_dump($_POST);
+            // Mettre à jour le manga en base de données
+            if ($thumbnailPath) {
+                $model->updateManga($id, $_POST['name'], $_POST['description'], $_POST['published_date'], $thumbnailPath);
+            }
 
-            // Redirect to home page after update
-            header('Location: /');
-        } else {
-            $get  = new ModelManga();
-            $data = $get->getManga($id);
-            require_once './view/update.php';
+            header('Location: /?update=success');
+            exit();
         }
+
+        $data = $model->getManga($id);
+        require_once './view/update.php';
     }
 
-    // Method to create a new manga entry
+    // Méthode pour créer un manga
     public function create() {
-        if ($_SESSION["admin_logged_in"] === true) {
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $model  = new ModelManga();
+        $model = new ModelManga();
+        if ($_SESSION["admin_logged_in"] !== true) {
+            echo "Bish you ain't no Kami, you just a NINGEN";
+            exit();
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $author = $model->getMangaAuthorByName($_POST['author']);
+            if (! $author) {
+                $model->createAuthor($_POST['author']);
                 $author = $model->getMangaAuthorByName($_POST['author']);
-                if (! $author) {
-                    // Author does not exist, create a new author
-                    $model->createAuthor($_POST['author']);
-                    $author = $model->getMangaAuthorByName($_POST['author']);
-                }
+            }
 
-                // Get author ID and other manga details from the form
-                $authorId       = $author['id_author'];
-                $name           = $_POST['name'];
-                $description    = $_POST['description'];
-                $published_date = $_POST['published_date'];
-                $thumbnail      = $_FILES['thumbnail']['name'];
-                $tmp_thumbnail  = $_FILES['thumbnail']['tmp_name'];
-                move_uploaded_file($tmp_thumbnail, './public/asset/img/' . $thumbnail);
-                $thumbnail = './public/asset/img/' . $thumbnail;
-                // Create new manga entry in the database
-                $model->createManga($name, $authorId, $description, $published_date, $thumbnail);
+            $authorId       = $author['id_author'];
+            $name           = $_POST['name'];
+            $description    = $_POST['description'];
+            $published_date = $_POST['published_date'];
+
+            // Vérifier et gérer l'upload de la couverture
+            if (! isset($_FILES['thumbnail']) || $_FILES['thumbnail']['error'] !== UPLOAD_ERR_OK) {
+                echo "Erreur d'upload de la couverture.";
+                exit();
+            }
+
+            $thumbnailPath = $this->handleThumbnailUpload($_FILES['thumbnail'], "manga_" . uniqid());
+
+            if ($thumbnailPath) {
+                $model->createManga($name, $authorId, $description, $published_date, $thumbnailPath);
                 $id_manga = $model->getMangaByName($name);
-                $editor   = $_POST["editor"];
-                $model->addEditor($id_manga, $editor);
-                $volumes = $_POST["volumes"];
-                $model->addVolumes($id_manga, $volumes);
 
-                // Handle multiple categories (min 1, max 3)
+                $model->addEditor($id_manga, $_POST["editor"]);
+                $model->addVolumes($id_manga, $_POST["volumes"]);
+
+                // Ajouter les catégories (max 3)
                 if (isset($_POST["category"]) && is_array($_POST["category"])) {
-                    $selectedCategories = array_slice($_POST["category"], 0, 3); // Limit to 3 categories
+                    $selectedCategories = array_slice($_POST["category"], 0, 3);
                     foreach ($selectedCategories as $categoryId) {
                         $model->addCategory($id_manga, $categoryId);
                     }
-
                 } else {
-                    echo "Please select at least one category.";
-                    exit;
+                    echo "Veuillez sélectionner au moins une catégorie.";
+                    exit();
                 }
-                $_SESSION["message"] = 'Manga created successfully.';
-                header("location:" . $this->router->generate("admin_dashboard"));
+
+                $_SESSION["message"] = 'Manga créé avec succès.';
+                header("Location: " . $this->router->generate("admin_dashboard"));
+                exit();
+            } else {
+                echo "Erreur lors du traitement de l'image.";
+                exit();
             }
-        } else {
-            echo "Bish you ain't no Kami, you just a NINGEN";
         }
+    }
+
+    // Fonction de gestion des uploads
+    private function handleThumbnailUpload($file, $fileName) {
+        $targetDir     = "public/asset/img/";
+        $fileExtension = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+        $allowedTypes  = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+
+        if (! in_array($fileExtension, $allowedTypes)) {
+            return false;
+        }
+
+        // Définir le chemin temporaire et final
+        $tempFilePath  = $targetDir . $fileName . "." . $fileExtension;
+        $finalFilePath = $targetDir . $fileName . ".webp";
+
+        // Déplacer le fichier temporaire
+        if (! move_uploaded_file($file['tmp_name'], $tempFilePath)) {
+            return false;
+        }
+
+        // Convertir et redimensionner l'image
+        if (ImageProcessor::processImage($tempFilePath, $finalFilePath, 200, 300)) {
+            unlink($tempFilePath); // Supprimer l'original
+            return $finalFilePath;
+        }
+
+        return false;
     }
 
     // Method to read a manga entry by ID
