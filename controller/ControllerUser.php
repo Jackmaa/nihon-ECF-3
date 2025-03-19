@@ -194,7 +194,7 @@ class ControllerUser extends Controller {
         $borrow     = new ModelBorrow();
         $maxBooks   = $borrow->maxBooksAllowed($_SESSION['id_user']);
         $currentRes = $borrow->totalReservationsAndBorrows();
-        var_dump($currentRes['total_entries']);
+        // var_dump($currentRes['total_entries']);
         require_once './view/myProfile.php';
 
     }

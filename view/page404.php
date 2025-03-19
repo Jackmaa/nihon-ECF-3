@@ -14,9 +14,12 @@
     <img src="public/asset/img/shuriken.svg" alt="shuriken" class="shuriken top">
     <img src="public/asset/img/shuriken.svg" alt="shuriken" class="shuriken top">
   <div class="content">
+    <div class="content-txt" >
     <h1>error 404 <br> <br> Page Not Found</h1>
+    <br>
     <p>Sorry, the page you are looking for does not exist.</p>
     <a href="/" class="button">Go to Homepage</a>
+  </div>
   </div>
     <img src="public/asset/img/shuriken.svg" alt="shuriken" class="shuriken bottom">
     <img src="public/asset/img/shuriken.svg" alt="shuriken" class="shuriken bottom">
