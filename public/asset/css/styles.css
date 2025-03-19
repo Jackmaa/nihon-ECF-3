@@ -1906,6 +1906,7 @@ button:hover {
 .card-current .current-storie {
   display: flex;
   justify-content: center;
+  align-items: center;
   margin: 5vh 0;
 }
 .card-current .current-storie h4 {
@@ -1913,7 +1914,9 @@ button:hover {
   font-weight: 400;
 }
 .card-current .current-storie figure {
-  width: 20vh;
+  width: 5rem;
+  height: 7rem;
+  margin-right: 1rem;
 }
 .card-current .current-storie figure img {
   width: 100%;
@@ -1922,6 +1925,7 @@ button:hover {
   display: flex;
   justify-content: space-around;
   margin-left: 2vw;
+  width: 10rem;
 }
 .card-current .current-storie div {
   display: flex;
@@ -2183,6 +2187,66 @@ button:hover {
   }
 }
 @media (min-width: 768px) {
+  /*
+  *******************************
+  ***********PAGE FAV***********
+  *******************************
+  */
+  .card-current {
+    display: flex;
+    justify-content: space-around;
+  }
+  .card-current .chevron-current {
+    display: flex;
+    margin-top: 10vh;
+  }
+  .card-current .chevron-current p {
+    font-family: var(--ff-barlow);
+    font-size: 1.2rem;
+  }
+  .card-current .chevron-current p span {
+    font-weight: 600;
+  }
+  .card-current .current-storie {
+    display: flex;
+    justify-content: center;
+    margin: 5vh 0;
+  }
+  .card-current .current-storie h4 {
+    font-family: var(--ff-barlow);
+    font-weight: 400;
+  }
+  .card-current .current-storie figure {
+    width: 10rem;
+    height: 15rem;
+  }
+  .card-current .current-storie figure img {
+    width: 100%;
+  }
+  .card-current .current-storie .current-info {
+    display: flex;
+    justify-content: space-around;
+    margin-left: 2vw;
+    width: 20rem;
+  }
+  .card-current .current-storie div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: var(--ff-barlow);
+    font-size: 1.5rem;
+  }
+  .card-current .current-storie div a {
+    color: var(--fc-black);
+    margin-bottom: 1vh;
+  }
+  .card-current .current-storie div span {
+    color: #cc392b;
+    transition: all ease 0.3s;
+  }
+  .card-current .current-storie div span:hover {
+    color: #a71103;
+  }
   /*
   **********************************
   ***********HOMEPAGE************

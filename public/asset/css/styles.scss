@@ -2145,6 +2145,7 @@ button:hover {
   .current-storie {
     display: flex;
     justify-content: center;
+    align-items: center;
     margin: 5vh 0;
 
     h4 {
@@ -2153,7 +2154,9 @@ button:hover {
     }
 
     figure {
-      width: 20vh;
+      width: 5rem;
+      height: 7rem;
+      margin-right: 1rem;
 
       img {
         width: 100%;
@@ -2164,6 +2167,7 @@ button:hover {
       display: flex;
       justify-content: space-around;
       margin-left: 2vw;
+      width: 10rem;
     }
 
     div {
@@ -2462,6 +2466,79 @@ button:hover {
 }
 
 @media (min-width: 768px) {
+  /*
+*******************************
+***********PAGE FAV***********
+*******************************
+*/
+  .card-current {
+    display: flex;
+    justify-content: space-around;
+  
+    .chevron-current {
+      display: flex;
+      margin-top: 10vh;
+  
+      p {
+        font-family: var(--ff-barlow);
+        font-size: 1.2rem;
+  
+        span {
+          font-weight: 600;
+        }
+      }
+    }
+  
+    .current-storie {
+      display: flex;
+      justify-content: center;
+      margin: 5vh 0;
+  
+      h4 {
+        font-family: var(--ff-barlow);
+        font-weight: 400;
+      }
+  
+      figure {
+        width: 10rem;
+        height: 15rem;
+  
+        img {
+          width: 100%;
+        }
+      }
+  
+      .current-info {
+        display: flex;
+        justify-content: space-around;
+        margin-left: 2vw;
+        width: 20rem;
+      }
+  
+      div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+  
+        font-family: var(--ff-barlow);
+        font-size: 1.5rem;
+  
+        a {
+          color: var(--fc-black);
+          margin-bottom: 1vh;
+        }
+  
+        span {
+          color: #cc392b;
+          transition: all ease 0.3s;
+  
+          &:hover {
+            color: #a71103;
+          }
+        }
+      }
+    }
+  }
   /*
 **********************************
 ***********HOMEPAGE************
