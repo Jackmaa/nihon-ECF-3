@@ -151,6 +151,18 @@ class CartController extends Controller {
         }
     }
 
+    public function clearCartItems() {
+        $model = new ModelBorrow();
+        $id_user = $_SESSION['id_user'];
+        $cartItems = $model->getUserReservations($_SESSION['id_user']);
+
+        foreach ($cartItems as $item) {
+            $model->removeFromReservationTable($id_user, $item['id_manga'], $item['id_volume']);
+        }
+
+        header('Location:' . $this->router->generate("home"));
+    }
+
     public function deleteCartItem() {
         $data = json_decode(file_get_contents("php://input"), true);
         if (empty($data['id_manga']) || empty($data['id_volume'])) {
