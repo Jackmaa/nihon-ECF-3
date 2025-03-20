@@ -13,9 +13,8 @@
         <input type="text" name="credential" required placeholder="Username">
         <label for="password">Password:</label>
         <div class="password-container">
-            <input type="password" name="password" id="password" placeholder="Password" minlength="8" required>
-            <button type="button" class="togglePassword"><img src="public\asset\img\oeilferme.svg" alt="oeil"
-                    class="eye-icon"> </button>
+            <input type="password" name="password" id="password" placeholder="Password" required>
+
         </div>
         <p>(8 caractères minimums)</p>
 

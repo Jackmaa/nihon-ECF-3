@@ -1,8 +1,8 @@
 <?php
-$title = 'Nihon | Category';
-$meta_description = 'where you can see all your current stories of the moment';
-$scripts = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public\asset\js\base.js", "public\asset\js\home.js", "public/asset/js/header.js", "public/asset/js/like.js", "public\asset\js\darkmode.js", "public\asset\js\cart.js"];
-ob_start();
+    $title            = 'Nihon | Category';
+    $meta_description = 'where you can see all your current stories of the moment';
+    $scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public\asset\js\base.js", "public\asset\js\home.js", "public/asset/js/header.js", "public/asset/js/like.js", "public\asset\js\darkmode.js", "public\asset\js\cart.js"];
+    ob_start();
 
 ?>
 <main class="pagecart">
@@ -10,13 +10,13 @@ ob_start();
     <h1>My Cart</h1>
 
     <div class="cartgrid">
-        <?php if (!empty($cart)): ?>
-            <?php foreach ($cart as $item): ?>
+        <?php if (! empty($cart)): ?>
+<?php foreach ($cart as $item): ?>
             <div class="gap">
-                <img class="battle" src="<?php echo htmlspecialchars($item['thumbnail']); ?>" alt="<?php echo htmlspecialchars($item['name'])?>">
+                <img class="battle" src="<?php echo htmlspecialchars($item['thumbnail']); ?>" alt="<?php echo htmlspecialchars($item['name']) ?>">
                 <div class="flexcenter">
-                <p><?php echo htmlspecialchars($item['name']);?></p>
-                <p><?php echo '&nbsp;';?></p>
+                <p><?php echo htmlspecialchars($item['name']); ?></p>
+                <p><?php echo '&nbsp;'; ?></p>
                 <p><?php echo htmlspecialchars('#' . ($item['id_volume'])); ?></p>
                 <div class="trash">
                     <svg viewBox="0 0 40 47" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -35,7 +35,7 @@ ob_start();
                 </div>
             </div>
             <?php endforeach; ?>
-        <?php else: ?>
+<?php else: ?>
             <p>Your cart is empty.</p>
         <?php endif; ?>
     </div>
@@ -50,8 +50,7 @@ ob_start();
 </main>
 <?php
 
-
-$content = ob_get_contents();
-ob_end_clean();
+    $content = ob_get_contents();
+    ob_end_clean();
 require_once 'view\base_html.php';
 ?>

@@ -118,39 +118,17 @@ class CartController extends Controller {
             echo json_encode(["error" => "An unexpected error occurred: " . $e->getMessage()]);
         }
     }
-
     // Handles confirming a borrow request
     public function validateCart() {
-        if (! isset($_SESSION['id_user'])) {
-            http_response_code(400);
-            echo json_encode(["error" => "User not logged in"]);
-            return;
+        $id_user = $_SESSION['id_user'];
+        $model   = new ModelBorrow();
+        $cart    = $model->getUserReservations($id_user);
+
+        foreach ($cart as $item) {
+            $model->removeFromReservationTable($id_user, $item["id_manga"], $item["id_volume"]);
+            $model->save($item["id_manga"], $item["id_volume"], $id_user);
         }
-
-        $id_user = (int) $_SESSION['id_user'];
-
-        if (empty($cart)) {
-            echo json_encode(["error" => "Cart is empty"]);
-            return;
-        }
-
-        $borrow          = new ModelBorrow();
-        $current_borrows = $borrow->userBorrowCount($id_user);
-        $max_books       = $borrow->maxBooksAllowed($id_user);
-
-        if ($current_borrows + count($cart) > $max_books) {
-            echo json_encode(["error" => "Borrow limit exceeded"]);
-            return;
-        }
-
-        // Traiter chaque élément du panier
-        foreach ($cart as $manga) {
-            $this->processBorrow($id_user, $manga["id_manga"], $manga["id_volume"]);
-        }
-
-        // Vider le panier après validation
-        $_SESSION["message"] = "Validation réussie, vérifiez vos e-mails pour récupérer vos livres.";
-        header("location:" . $this->router->generate("home"));
+        header('Location:' . $this->router->generate("home"));
     }
 
     public function validateCartItem() {
