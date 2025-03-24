@@ -363,6 +363,7 @@ class ModelManga extends Model {
         );
         $req->bindParam(':id', $id, PDO::PARAM_INT);
         $req->execute();
+        return true;
     }
 
     public function addReview($review, $id_manga, $id_user) {
@@ -395,6 +396,16 @@ class ModelManga extends Model {
         $req->bindParam(':id', $reviewId, PDO::PARAM_INT);
         $req->execute();
         return $req->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function getAllReviews() {
+        $req = $this->getDb()->query(
+            "SELECT review.*, user.username, manga.name AS manga_name
+            FROM review
+            INNER JOIN user ON review.id_user = user.id_user
+            INNER JOIN manga ON review.id_manga = manga.id_manga"
+        );
+        return $req->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function searchAdminManga($str) {

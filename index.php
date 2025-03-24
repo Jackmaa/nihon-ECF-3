@@ -93,7 +93,10 @@ $router->map("GET", "/dashboard", "ControllerAdmin#dashboard", "admin_dashboard"
 //SEARCH MANGA
 $router->map("GET|POST", "/searchManga", "ControllerAdmin#searchManga", "searchManga");
 //MANAGE REVIEW
+//From the manga page
 $router->map("GET|POST", "/delete_review/[i:id]", "ControllerAdmin#manageReview", "manageReview");
+//from the dashboard
+$router->map("GET|POST", "/deleteReview/[i:id]", "ControllerAdmin#deleteReview", "deleteReview");
 //SEARCH USER
 $router->map("GET|POST", "/searchUser", "ControllerAdmin#searchUser", "searchUser");
 //CREATE USER

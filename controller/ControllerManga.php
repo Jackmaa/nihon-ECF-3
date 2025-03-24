@@ -235,13 +235,6 @@ class ControllerManga extends Controller {
         echo json_encode(['liked_mangas' => $likedMangas]);
     }
 
-    // public function readCategory($id){
-    //     $model = new ModelManga();
-    //     $category = $model->getCategoryDatas($id);
-    //     $mangas = $model->getCategoryMangas($id);
-    //     require_once './view/category.php';
-    // }
-
     //Method to display the Category page
     public function readCategory($category_name) {
         $model    = new ModelManga();
