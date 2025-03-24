@@ -43,12 +43,13 @@ class ControllerAdmin extends Controller {
             header('Location: ' . $this->router->generate('admin_login'));
             exit;
         }
-        $category   = new ModelManga();
-        $categories = $category->getCategories();
-        $editors    = $category->getEditorList();
+        $manga      = new ModelManga();
+        $categories = $manga->getCategories();
+        $editors    = $manga->getEditorList();
         $model      = new ModelBorrow();
         $borrows    = $model->getBorrowedBooks();
         $enumValues = $model->getStatusEnum();
+        $reviews    = $manga->getAllReviews();
         require_once './view/admin_dashboard.php';
     }
 
@@ -75,6 +76,15 @@ class ControllerAdmin extends Controller {
             exit;
         }
     }
+
+    public function deleteReview($id) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $model = new ModelManga();
+            $model->deleteReview($id);
+            echo json_encode(['success' => true, 'review_id' => $id]);
+        }
+    }
+
     // Search for a user
     public function searchUser() {
         $search        = '%' . $_POST['search'] . '%';

@@ -363,18 +363,49 @@ class ModelManga extends Model {
         );
         $req->bindParam(':id', $id, PDO::PARAM_INT);
         $req->execute();
+        return true;
     }
 
     public function addReview($review, $id_manga, $id_user) {
-        if (isset($_POST['review'])) {
-            $req = $this->getDb()->prepare(
-                "INSERT INTO `review` (`review`, `id_manga`, `id_user`, `published_date`) VALUES (:review, :id_manga, :id_user, NOW())"
-            );
-            $req->bindParam(':review', $review, PDO::PARAM_STR);
-            $req->bindParam(':id_manga', $id_manga, PDO::PARAM_INT);
-            $req->bindParam(':id_user', $id_user, PDO::PARAM_INT);
-            $req->execute();
+        if (empty($review)) {
+            return false; // Don't insert empty reviews
         }
+
+        $req = $this->getDb()->prepare(
+            "INSERT INTO `review` (`review`, `id_manga`, `id_user`, `published_date`)
+            VALUES (:review, :id_manga, :id_user, NOW())"
+        );
+        $req->bindParam(':review', $review, PDO::PARAM_STR);
+        $req->bindParam(':id_manga', $id_manga, PDO::PARAM_INT);
+        $req->bindParam(':id_user', $id_user, PDO::PARAM_INT);
+
+        if ($req->execute()) {
+            return $this->getDb()->lastInsertId(); // Return the new review ID
+        }
+
+        return false;
+    }
+
+    public function getReviewById($reviewId) {
+        $req = $this->getDb()->prepare(
+            "SELECT review.*, user.username, user.profile_pic
+            FROM review
+            INNER JOIN user ON review.id_user = user.id_user
+            WHERE review.id_review = :id"
+        );
+        $req->bindParam(':id', $reviewId, PDO::PARAM_INT);
+        $req->execute();
+        return $req->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function getAllReviews() {
+        $req = $this->getDb()->query(
+            "SELECT review.*, user.username, manga.name AS manga_name
+            FROM review
+            INNER JOIN user ON review.id_user = user.id_user
+            INNER JOIN manga ON review.id_manga = manga.id_manga"
+        );
+        return $req->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function searchAdminManga($str) {

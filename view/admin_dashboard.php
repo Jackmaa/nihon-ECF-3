@@ -7,21 +7,54 @@
 <main class="dashboard">
 <div  class="block-gestion">
     <div>
-<h2>Users Gestion</h2>
-<form action="" id="search-form-user" method="POST">
-    <input type="text" name="search" id="search-user" placeholder="Search">
-</form>
-</div>
-<div id="search-results-user"></div>
+        <h2>Users Gestion</h2>
+        <form action="" id="search-form-user" method="POST">
+            <input type="text" name="search" id="search-user" placeholder="Search">
+        </form>
+    </div>
+    <div id="search-results-user"></div>
 </div>
 <div  class="block-gestion">
-<div>
-<h2>Books</h2>
-<form action="" id="search-form-manga" method="POST">
-    <input type="text" name="search" id="search-manga" placeholder="Search">
-</form>
+    <div>
+        <h2>Books</h2>
+        <form action="" id="search-form-manga" method="POST">
+            <input type="text" name="search" id="search-manga" placeholder="Search">
+        </form>
+    </div>
+    <div id="search-results-manga"></div>
 </div>
-<div id="search-results-manga"></div>
+<div class="block-gestion">
+<div id="search-results-review">
+            <?php if (! empty($reviews)): ?>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>User</th>
+                            <th>Manga</th>
+                            <th>Review</th>
+                            <th>Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($reviews as $review): ?>
+                            <tr>
+                                <td><?php echo htmlspecialchars($review['username']) ?></td>
+                                <td><?php echo htmlspecialchars($review['manga_name']) ?></td>
+                                <td><?php echo htmlspecialchars($review['review']) ?></td>
+                                <td><?php echo date('Y-m-d', strtotime($review['published_date'])) ?></td>
+                                <td>
+                                    <button class="button delete-review" data-review-id="<?php echo $review['id_review'] ?>">Delete</button>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            <?php else: ?>
+                <p>No reviews found.</p>
+            <?php endif; ?>
+        </div>
+    </div>
 </div>
 <!-- Overlay -->
 <div class="overlay" id="overlay" onclick="closePopup('popupCreate'); closePopup('popupBan'); closePopup('popupDelete'); closePopup('popupAdd'); closePopup('popupModified'); closePopup('popupUser')"></div>
@@ -130,6 +163,16 @@
         <button type="submit">Save Changes</button>
     </form>
 </div>
+
+<div class="popup" id="popupDeleteReview">
+        <h3>Delete Review</h3>
+        <p>Are you sure you want to delete this review?</p>
+        <form id="deleteReviewForm" method="POST" action="/deleteReview">
+            <input type="hidden" name="review_id" id="reviewIdToDelete">
+            <button type="button" class="button" onclick="closePopup('popupDeleteReview')">Cancel</button>
+            <button type="submit" class="button danger">Delete</button>
+        </form>
+    </div>
 
 </main>
 
