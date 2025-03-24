@@ -164,6 +164,16 @@ class ModelUser extends Model {
         $req->bindParam(':expires_at', $expiryTime, PDO::PARAM_INT);
         $req->execute();
     }
+
+    public function updateUserByAdmin(string $username, string $email, int $role, bool $premium) {
+        $req = $this->getDb()->prepare('UPDATE `user` SET `username` = :username, `email` = :email, `id_role` = :role, `premium` = :premium WHERE `email` = :email');
+        $req->bindParam(':username', $username, PDO::PARAM_STR);
+        $req->bindParam(':email', $email, PDO::PARAM_STR);
+        $req->bindParam(':role', $role, PDO::PARAM_INT);
+        $req->bindParam(':premium', $premium, PDO::PARAM_BOOL);
+        $req->execute();
+    }
+
     public function isPremium(int $id_user): bool {
         $req = $this->getDb()->prepare("SELECT premium FROM user WHERE id_user = ?");
         $req->execute([$id_user]);

@@ -93,6 +93,8 @@ $router->map("GET|POST", "/delete_review/[i:id]", "ControllerAdmin#manageReview"
 $router->map("GET|POST", "/searchUser", "ControllerAdmin#searchUser", "searchUser");
 //CREATE USER
 $router->map("GET|POST", "/createUser", "ControllerAdmin#createUser", "createUser");
+//UPDATE USER
+$router->map("GET|POST", "/modifyUser", "ControllerAdmin#modifyUser", "updateUserAdmin");
 //Validate Borrows
 $router->map("POST", "/adminBorrowStatus", "ControllerAdmin#adminBorrowStatus");
 // Get user borrows && cart items

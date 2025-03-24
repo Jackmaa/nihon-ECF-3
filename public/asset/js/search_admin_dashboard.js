@@ -171,11 +171,11 @@ searchUserInput.addEventListener("input", function () {
 
 // Function to fill the user modify popup with user data
 function fillModifyPopupUser(user) {
-  document.querySelector("#popupUser input:nth-of-type(1)").value =
-    user.id_user;
-  document.querySelector("#popupUser input:nth-of-type(2)").value =
-    user.username;
-  document.querySelector("#popupUser input:nth-of-type(3)").value = user.email;
+  document.querySelector("#popupUser input[name='name']").value = user.username;
+  document.querySelector("#popupUser input[name='email']").value = user.email;
+  document.querySelector("#popupUser select[name='role']").value = user.id_role;
+  document.querySelector("#popupUser select[name='premium']").value =
+    user.premium;
 }
 
 function fillModifyPopup(manga) {

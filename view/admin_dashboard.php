@@ -36,10 +36,19 @@
 </div>
 
 <div class="popup" id="popupUser">
-    <input type="text">
-    <input type="text">
-    <input type="text">
-    <button type="submit" class="button" onclick="closePopup('popupUser')">Modify</button>
+    <form action="/modifyUser" method="POST">
+        <input name="name" type="text">
+        <input name="email" type="text">
+        <select name="role" id="role">
+            <option value="1">Gaijin</option>
+            <option value="2">Kami</option>
+        </select>
+        <select name="premium" id="premium">
+            <option value="false">No</option>
+            <option value="true">Yes</option>
+        </select>
+        <button type="submit" class="button" onclick="closePopup('popupUser')">Modify</button>
+    </form>
 </div>
 
 <div class="popup" id="popupBan">
