@@ -203,6 +203,16 @@ class ModelBorrow extends Model {
         $req->execute();
     }
 
+    public function updateStatusLateReturns() {
+        $req = $this->getDb()->prepare(
+            "UPDATE borrow
+            SET status = 'LATE'
+            WHERE return_date < CURDATE()
+            AND status
+            NOT IN ('BACK', 'PENDING', 'APPROVED', 'REJECTED');");
+        $req->execute();
+    }
+
     public function totalReservationsAndBorrows() {
         $req = $this->getDb()->prepare("SELECT
         (SELECT COUNT(*) FROM reservation) +

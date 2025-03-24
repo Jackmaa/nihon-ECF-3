@@ -23,6 +23,7 @@ class ControllerAdmin extends Controller {
                 $_SESSION['id_admin']        = $user->getId_user();
                 $borrow                      = new ModelBorrow;
                 $borrow->clearExpiredReservations();
+                $borrow->updateStatusLateReturns();
                 header('Location: ' . $this->router->generate('admin_dashboard'));
                 exit;
             } else {
@@ -123,5 +124,19 @@ class ControllerAdmin extends Controller {
             "borrowed" => $borrowed,
             "cart"     => $cart,
         ]);
+    }
+
+    public function modifyUser() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $name    = $_POST['name'];
+            $email   = $_POST['email'];
+            $role    = $_POST['role'];
+            $premium = $_POST['premium'];
+            $model   = new ModelUser();
+            $model->updateUserByAdmin($name, $email, $role, $premium);
+
+            header('Location: ' . $this->router->generate('admin_dashboard'));
+            exit;
+        }
     }
 }

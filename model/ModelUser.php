@@ -11,6 +11,16 @@ class ModelUser extends Model {
         return $data ? new User($data) : null;
     }
 
+    //Retrieve user details by id
+    public function getUserById(int $id) {
+        $req = $this->getDb()->prepare('SELECT `id_user`, `username`, `email`, `password`, `signing_date`, `id_role`, `profile_pic`, `premium` FROM `user` WHERE `id_user` = :id_user');
+        $req->bindParam(':id_user', $id, PDO::PARAM_INT);
+        $req->execute();
+
+        $data = $req->fetch(PDO::FETCH_ASSOC);
+        return $data ? new User($data) : null;
+    }
+
     // Check if the user is already connected
     public function isConnected() {
         if ($_SESSION) {
@@ -154,6 +164,16 @@ class ModelUser extends Model {
         $req->bindParam(':expires_at', $expiryTime, PDO::PARAM_INT);
         $req->execute();
     }
+
+    public function updateUserByAdmin(string $username, string $email, int $role, bool $premium) {
+        $req = $this->getDb()->prepare('UPDATE `user` SET `username` = :username, `email` = :email, `id_role` = :role, `premium` = :premium WHERE `email` = :email');
+        $req->bindParam(':username', $username, PDO::PARAM_STR);
+        $req->bindParam(':email', $email, PDO::PARAM_STR);
+        $req->bindParam(':role', $role, PDO::PARAM_INT);
+        $req->bindParam(':premium', $premium, PDO::PARAM_BOOL);
+        $req->execute();
+    }
+
     public function isPremium(int $id_user): bool {
         $req = $this->getDb()->prepare("SELECT premium FROM user WHERE id_user = ?");
         $req->execute([$id_user]);

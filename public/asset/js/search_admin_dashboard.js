@@ -171,14 +171,17 @@ searchUserInput.addEventListener("input", function () {
 
 // Function to fill the user modify popup with user data
 function fillModifyPopupUser(user) {
-  document.querySelector("#popupUser input:nth-of-type(1)").value =
-    user.id_user;
-  document.querySelector("#popupUser input:nth-of-type(2)").value =
-    user.username;
-  document.querySelector("#popupUser input:nth-of-type(3)").value = user.email;
+  document.querySelector("#popupUser input[name='name']").value = user.username;
+  document.querySelector("#popupUser input[name='email']").value = user.email;
+  document.querySelector("#popupUser select[name='role']").value = user.id_role;
+  document.querySelector("#popupUser select[name='premium']").value =
+    user.premium;
 }
 
 function fillModifyPopup(manga) {
+  document
+    .querySelector("#modifyMangaForm")
+    .setAttribute("action", "/update/" + manga.manga.id_manga);
   document.querySelector("#popupModified input[name='id_manga']").value =
     manga.manga.id_manga;
   document.querySelector("#popupModified input[name='name']").value =
@@ -341,7 +344,6 @@ function updateUserItems(url, title, userId) {
     .then((data) => {
       if (data.borrowed.length === 0 && data.cart.length === 0) {
         borrowedTableContainer.innerHTML = "<p>No items found.</p>";
-        return;
       }
 
       // Handle borrowed items
