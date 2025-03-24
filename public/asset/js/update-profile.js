@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   gsap.set(content, { height: 0, opacity: 0 });
 
-  chevron.addEventListener("click", () => {
+  chevron?.addEventListener("click", () => {
     if (isOpen) {
       // Close
       gsap.to(content, {
@@ -32,9 +32,8 @@ document.addEventListener("DOMContentLoaded", () => {
   document
     .getElementById("changePictureBtn")
     .addEventListener("click", function () {
-      document.getElementById("fileInput").click();
+      document.getElementById("fileInput").setAttribute("style", "block");
     });
-
   document
     .getElementById("fileInput")
     .addEventListener("change", function (event) {

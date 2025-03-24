@@ -174,8 +174,8 @@ class ControllerUser extends Controller {
             $model = new ModelUser();
             $user  = $model->getUserById($id); // Fetch existing user data
 
-            $username = ! empty($_POST['username']) ? $_POST['username'] : $user['username'];
-            $email    = ! empty($_POST['email']) ? $_POST['email'] : $user['email'];
+            $username = ! empty($_POST['username']) ? $_POST['username'] : $user->getUsername();
+            $email    = ! empty($_POST['email']) ? $_POST['email'] : $user->getEmail();
 
             // Handle password update only if provided
             if (! empty($_POST['password']) && ! empty($_POST['password_verify'])) {
@@ -186,24 +186,54 @@ class ControllerUser extends Controller {
                     exit();
                 }
             } else {
-                $password = $user['password']; // Keep existing password
+                $password = $user->getPassword(); // Keep existing password
             }
 
-            // Handle profile picture update if uploaded
-            $profilePic = $user['profile_pic'];
-            if (! empty($_FILES['profile_pic']['name'])) {
-                $this->imageProcessing($id);
-                $profilePic = "assets/img/profiles/" . $id . ".webp"; // Updated path
+                                                   // Handle profile picture update if uploaded
+            $profilePic = $user->getProfile_pic(); // Keep existing profile picture
+            if (! empty($_FILES['profile_pic'])) {
+                $profilePic = $this->handleThumbnailUpload($_FILES['profile_pic'], "user$id");
             }
 
             $model->updateUser($username, $email, $password, $profilePic, $id);
-
+            $_SESSION['profile_pic'] = $profilePic; // Update session profile picture
             echo 'Your account has been updated.';
-            header('Location: ' . $this->router->generate('home'));
             exit();
         }
 
+        $model = new ModelUser();
+        $user  = $model->getUserById($id);
+
         require_once './view/updateUser.php';
+    }
+
+    // Fonction de gestion des uploads
+    private function handleThumbnailUpload($file, $fileName) {
+
+        $targetDir = "C:/wamp64/www/nihon/public/asset/img/profile_pic/";
+
+        $fileExtension = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+        $allowedTypes  = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+
+        if (! in_array($fileExtension, $allowedTypes)) {
+            return false;
+        }
+
+        // Def file paths
+        $tempFilePath  = $targetDir . $fileName . "." . $fileExtension;
+        $finalFilePath = $targetDir . $fileName . ".webp";
+        // Déplacer le fichier temporaire
+        if (! move_uploaded_file($file['tmp_name'], $tempFilePath)) {
+            return false;
+        }
+
+        // Convert and resize the image
+        if (ImageProcessor::processImage($tempFilePath, $finalFilePath, 100, 100)) {
+            $finalFilePath = str_replace("C:/wamp64/www/nihon/", '', $finalFilePath);
+            return $finalFilePath;
+        }
+
+        return false;
     }
 
     public function myProfile($id) {
@@ -212,7 +242,6 @@ class ControllerUser extends Controller {
         $borrow     = new ModelBorrow();
         $maxBooks   = $borrow->maxBooksAllowed($_SESSION['id_user']);
         $currentRes = $borrow->totalReservationsAndBorrows();
-        // var_dump($currentRes['total_entries']);
         require_once './view/myProfile.php';
 
     }
@@ -260,31 +289,6 @@ class ControllerUser extends Controller {
 
             }
             require_once './view/pastChronicle.php';
-        }
-    }
-
-    public function imageProcessing($userId) {
-        if (isset($_FILES["profile_pic"]) && $_FILES["profile_pic"]["error"] === 0) {
-            $targetDir     = "assets/img/profiles/";
-            $fileExtension = pathinfo($_FILES["profile_pic"]["name"], PATHINFO_EXTENSION);
-            $allowTypes    = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
-
-            if (in_array(strtolower($fileExtension), $allowTypes)) {
-                // Define new file paths
-                $targetFilePath = $targetDir . $userId . "." . $fileExtension;
-                $newFilePath    = $targetDir . $userId . ".webp";
-
-                // Remove old images
-                foreach (glob($targetDir . $userId . ".*") as $existingFile) {
-                    unlink($existingFile);
-                }
-
-                if (move_uploaded_file($_FILES["profile_pic"]["tmp_name"], $targetFilePath)) {
-                    if (ImageProcessor::processImage($targetFilePath, $newFilePath, 150, 150)) {
-                        unlink($targetFilePath); // Remove original image
-                    }
-                }
-            }
         }
     }
 
