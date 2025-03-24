@@ -5,7 +5,7 @@
     ob_start();
 ?>
 <main class="dashboard">
-<div  class="block-gestion"> 
+<div  class="block-gestion">
     <div>
 <h2>Users Gestion</h2>
 <form action="" id="search-form-user" method="POST">
@@ -87,32 +87,41 @@
 <div id="popupModified" class="popup">
     <span class="close" onclick="closePopup('popupModified')">&times;</span>
     <h2>Modify Manga</h2>
-    <form id="modifyMangaForm">
-      <input type="hidden" name="id_manga" />
-      <label for="name">Name:</label>
-      <input type="text" name="name" required />
-      <label for="categories">Categories:</label>
-      <input type="text" name="categories" required />
-      <label for="author">Author:</label>
-      <input type="text" name="author" required />
-      <label for="editor">Editor:</label>
-      <input type="text" name="editor" required />
-      <label for="description">Description:</label>
-      <textarea name="description" required></textarea>
 
-      <!-- Volume Section -->
-      <h3>Volumes</h3>
-      <div id="volumesContainer">
-        <!-- Existing volumes will be displayed here -->
-      </div>
-      <div>
-        <input type="number" id="newVolumeNumber" placeholder="Volume Number" />
-        <button type="button" onclick="addVolume()">Add Volume</button>
-      </div>
+    <form id="modifyMangaForm" action="" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="id_manga"/>
+        <label for="name">Name:</label>
+        <input type="text" name="name" required />
 
-      <button type="submit">Save Changes</button>
+        <label for="categories">Categories:</label>
+        <input type="text" name="categories" required />
+
+        <label for="author">Author:</label>
+        <input type="text" name="author" required />
+
+        <label for="editor">Editor:</label>
+        <input type="text" name="editor" required />
+
+        <label for="description">Description:</label>
+        <textarea name="description" required></textarea>
+
+        <label for="thumbnail">Thumbnail:</label>
+        <input type="file" name="thumbnail" accept="image/*" />
+
+        <!-- Volume Section -->
+        <h3>Volumes</h3>
+        <div id="volumesContainer">
+            <!-- Existing volumes will be displayed here -->
+        </div>
+        <div>
+            <input type="number" id="newVolumeNumber" name="volumes[]" placeholder="Volume Number" />
+            <button type="button" onclick="addVolume()">Add Volume</button>
+        </div>
+
+        <button type="submit">Save Changes</button>
     </form>
-  </div>
+</div>
+
 </main>
 
 <?php

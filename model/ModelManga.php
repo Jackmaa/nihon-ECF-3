@@ -126,18 +126,16 @@ class ModelManga extends Model {
         return $req->execute();
     }
 
-    public function updateManga(int $id, string $name, string $description, string $published_date, string $thumbnail) {
+    public function updateManga(int $id, string $name, string $description, string $thumbnail) {
         $req = $this->getDb()->prepare(
             'UPDATE `manga`
             SET
             `name` = :name,
             `description` = :description,
-            `published_date` = :published_date,
             `thumbnail` = :thumbnail
             WHERE id_manga = :id');
         $req->bindParam(':name', $name, PDO::PARAM_STR);
         $req->bindParam(':description', $description, PDO::PARAM_STR);
-        $req->bindParam(':published_date', $published_date, PDO::PARAM_STR);
         $req->bindParam(':thumbnail', $thumbnail, PDO::PARAM_STR);
         $req->bindParam(':id', $id, PDO::PARAM_INT);
         $req->execute();
@@ -186,10 +184,10 @@ class ModelManga extends Model {
     //Return user fav stats
     public function getStats($id_user) {
         $req = $this->getDb()->prepare(
-            'SELECT 
+            'SELECT
                 c.category_name,
                 u.username,
-                COUNT(f.id_manga) AS total_fav 
+                COUNT(f.id_manga) AS total_fav
             FROM fav f
             INNER JOIN manga_category mc ON f.id_manga = mc.manga_id
             INNER JOIN categories c ON mc.category_id = c.id_category
@@ -201,10 +199,9 @@ class ModelManga extends Model {
         );
         $req->bindParam(':id_user', $id_user, PDO::PARAM_INT);
         $req->execute();
-        
+
         return $req->fetchAll(PDO::FETCH_ASSOC);
     }
-    
 
     //Create a manga
     public function createManga(string $name, int $author, string $description, string $published_date, string $thumbnail) {

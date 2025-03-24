@@ -179,6 +179,9 @@ function fillModifyPopupUser(user) {
 }
 
 function fillModifyPopup(manga) {
+  document
+    .querySelector("#modifyMangaForm")
+    .setAttribute("action", "/update/" + manga.manga.id_manga);
   document.querySelector("#popupModified input[name='id_manga']").value =
     manga.manga.id_manga;
   document.querySelector("#popupModified input[name='name']").value =
