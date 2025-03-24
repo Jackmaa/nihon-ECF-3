@@ -80,11 +80,8 @@ class ControllerAdmin extends Controller {
     public function deleteReview($id) {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $model = new ModelManga();
-            if ($model->deleteReview($id)) {
-                echo json_encode(['success' => true, 'review_id' => $id]);
-            } else {
-                echo json_encode(['success' => false, 'message' => 'Failed to delete review']);
-            }
+            $model->deleteReview($id);
+            echo json_encode(['success' => true, 'review_id' => $id]);
         }
     }
 

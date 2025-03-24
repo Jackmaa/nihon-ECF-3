@@ -46,15 +46,27 @@ document.addEventListener("DOMContentLoaded", function () {
               row.remove();
             }
             closePopup("popupDeleteReview");
+            const tbody = document.querySelector(
+              "#search-results-review tbody"
+            );
+            if (tbody && tbody.rows.length === 0) {
+              const table = document.querySelector(
+                "#search-results-review table"
+              );
+              if (table) {
+                table.remove();
+                let results = document.createElement("p");
+                results.textContent = "No reviews found.";
+                document
+                  .querySelector("#search-results-review")
+                  .appendChild(results);
+              }
+            }
           } else {
             alert(
               "Error deleting review: " + (data.message || "Unknown error")
             );
           }
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-          alert("An error occurred while deleting the review.");
         });
     });
 });
