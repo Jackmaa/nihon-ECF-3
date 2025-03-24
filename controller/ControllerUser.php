@@ -169,71 +169,90 @@ class ControllerUser extends Controller {
         require_once './view/finishsignup.php';
     }
 
+    // Function to handle user account updates
     public function update(int $id) {
+        // Check if the request method is POST (form submission)
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $model = new ModelUser();
-            $user  = $model->getUserById($id); // Fetch existing user data
+            $model = new ModelUser();          // Instantiate the user model
+            $user  = $model->getUserById($id); // Fetch existing user data by ID
 
+            // Update username and email if provided, otherwise keep existing values
             $username = ! empty($_POST['username']) ? $_POST['username'] : $user->getUsername();
             $email    = ! empty($_POST['email']) ? $_POST['email'] : $user->getEmail();
 
-            // Handle password update only if provided
+            // Handle password update only if both password fields are provided
             if (! empty($_POST['password']) && ! empty($_POST['password_verify'])) {
                 if ($_POST['password'] === $_POST['password_verify']) {
+                    // Hash the new password
                     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
                 } else {
+                    // Exit if passwords do not match
                     echo 'Passwords do not match.';
                     exit();
                 }
             } else {
-                $password = $user->getPassword(); // Keep existing password
+                // Keep the existing password if no new password is provided
+                $password = $user->getPassword();
             }
 
-                                                   // Handle profile picture update if uploaded
-            $profilePic = $user->getProfile_pic(); // Keep existing profile picture
+                                                   // Handle profile picture update if a new file is uploaded
+            $profilePic = $user->getProfile_pic(); // Keep existing profile picture by default
             if (! empty($_FILES['profile_pic'])) {
+                // Call the function to handle the file upload and processing
                 $profilePic = $this->handleThumbnailUpload($_FILES['profile_pic'], "user$id");
             }
 
+            // Update the user data in the database
             $model->updateUser($username, $email, $password, $profilePic, $id);
-            $_SESSION['profile_pic'] = $profilePic; // Update session profile picture
+
+            // Update the session with the new profile picture
+            $_SESSION['profile_pic'] = $profilePic;
+
+            // Notify the user and redirect to their profile page
             echo 'Your account has been updated.';
             header('Location: ' . $this->router->generate('myProfile', ['id' => $id]));
             exit();
         }
 
+        // If the request is not POST, fetch the user data and load the update form
         $model = new ModelUser();
         $user  = $model->getUserById($id);
 
+        // Include the view for updating user information
         require_once './view/updateUser.php';
     }
 
-    // Fonction de gestion des uploads
+// Function to handle file uploads and image processing
     private function handleThumbnailUpload($file, $fileName) {
+        $targetDir = "C:/wamp64/www/nihon/public/asset/img/profile_pic/"; // Directory for profile pictures
 
-        $targetDir = "C:/wamp64/www/nihon/public/asset/img/profile_pic/";
-
+        // Get the file extension and validate it against allowed types
         $fileExtension = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
         $allowedTypes  = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
 
         if (! in_array($fileExtension, $allowedTypes)) {
+            // Return false if the file type is not allowed
             return false;
         }
 
-        // Def file paths
+        // Define file paths for temporary and final files
         $tempFilePath  = $targetDir . $fileName . "." . $fileExtension;
         $finalFilePath = $targetDir . $fileName . ".webp";
-        // Déplacer le fichier temporaire
+
+        // Move the uploaded file to the temporary location
         if (! move_uploaded_file($file['tmp_name'], $tempFilePath)) {
+            // Return false if the file could not be moved
             return false;
         }
 
-        // Convert and resize the image
+        // Convert and resize the image to WebP format
         if (ImageProcessor::processImage($tempFilePath, $finalFilePath, 100, 100)) {
+            // Remove the base path from the final file path and return it
             $finalFilePath = str_replace("C:/wamp64/www/nihon/", '', $finalFilePath);
             return $finalFilePath;
         }
 
+        // Return false if image processing fails
         return false;
     }
 
