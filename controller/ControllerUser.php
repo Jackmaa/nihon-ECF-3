@@ -170,21 +170,39 @@ class ControllerUser extends Controller {
     }
 
     public function update(int $id) {
-
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (! empty($_POST['username']) && ! empty($_POST['email']) && ! empty($_POST['password']) && ! empty($_POST['password_verify']) && ! empty($_FILES['profile_pic'])) {
+            $model = new ModelUser();
+            $user  = $model->getUserById($id); // Fetch existing user data
+
+            $username = ! empty($_POST['username']) ? $_POST['username'] : $user['username'];
+            $email    = ! empty($_POST['email']) ? $_POST['email'] : $user['email'];
+
+            // Handle password update only if provided
+            if (! empty($_POST['password']) && ! empty($_POST['password_verify'])) {
                 if ($_POST['password'] === $_POST['password_verify']) {
-                    $model = new ModelUser();
-                    $model->updateUser($_POST['username'], $_POST['email'], $_POST['password'], $_POST['profile_pic'], $id);
-                    echo 'Your account has been updated.';
-                    header('Location: ' . $this->router->generate('home'));
+                    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
                 } else {
                     echo 'Passwords do not match.';
+                    exit();
                 }
             } else {
-                echo 'All the fields are required.';
+                $password = $user['password']; // Keep existing password
             }
+
+            // Handle profile picture update if uploaded
+            $profilePic = $user['profile_pic'];
+            if (! empty($_FILES['profile_pic']['name'])) {
+                $this->imageProcessing($id);
+                $profilePic = "assets/img/profiles/" . $id . ".webp"; // Updated path
+            }
+
+            $model->updateUser($username, $email, $password, $profilePic, $id);
+
+            echo 'Your account has been updated.';
+            header('Location: ' . $this->router->generate('home'));
+            exit();
         }
+
         require_once './view/updateUser.php';
     }
 
@@ -245,39 +263,28 @@ class ControllerUser extends Controller {
         }
     }
 
-    public function imageProcessing() {
-
-        if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_FILES["profilePicture"])) {
-            $targetDir      = "assets/img/profiles/";
-            $fileName       = $_SESSION["useruid"];
-            $fileExtension  = pathinfo($_FILES["profilePicture"]["name"], PATHINFO_EXTENSION);
-            $targetFilePath = $targetDir . $fileName . "." . $fileExtension;
-
-            $allowTypes = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+    public function imageProcessing($userId) {
+        if (isset($_FILES["profile_pic"]) && $_FILES["profile_pic"]["error"] === 0) {
+            $targetDir     = "assets/img/profiles/";
+            $fileExtension = pathinfo($_FILES["profile_pic"]["name"], PATHINFO_EXTENSION);
+            $allowTypes    = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
 
             if (in_array(strtolower($fileExtension), $allowTypes)) {
-                // Supprimer l'ancienne image
-                foreach (glob($targetDir . $fileName . ".*") as $existingFile) {
+                // Define new file paths
+                $targetFilePath = $targetDir . $userId . "." . $fileExtension;
+                $newFilePath    = $targetDir . $userId . ".webp";
+
+                // Remove old images
+                foreach (glob($targetDir . $userId . ".*") as $existingFile) {
                     unlink($existingFile);
                 }
 
-                if (move_uploaded_file($_FILES["profilePicture"]["tmp_name"], $targetFilePath)) {
-                    $newFilePath = $targetDir . $fileName . ".webp";
-
-                    if (ImageProcessor::processImage($targetFilePath, $newFilePath, 50, 50)) {
-                        unlink($targetFilePath); // Supprimer l'original
-                        header("Location: user-profile.php?id=" . $_SESSION["userid"] . "&upload=success");
-                        exit();
-                    } else {
-                        header("Location: user-profile.php?id=" . $_SESSION["userid"] . "&upload=error");
-                        exit();
+                if (move_uploaded_file($_FILES["profile_pic"]["tmp_name"], $targetFilePath)) {
+                    if (ImageProcessor::processImage($targetFilePath, $newFilePath, 150, 150)) {
+                        unlink($targetFilePath); // Remove original image
                     }
                 }
-            } else {
-                header("Location: user-profile.php?id=" . $_SESSION["userid"] . "&upload=invalid");
-                exit();
             }
         }
-
     }
 }

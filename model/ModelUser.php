@@ -11,6 +11,16 @@ class ModelUser extends Model {
         return $data ? new User($data) : null;
     }
 
+    //Retrieve user details by id
+    public function getUserById(int $id) {
+        $req = $this->getDb()->prepare('SELECT `id_user`, `username`, `email`, `password`, `signing_date`, `id_role`, `profile_pic`, `premium` FROM `user` WHERE `id_user` = :id_user');
+        $req->bindParam(':id_user', $id, PDO::PARAM_INT);
+        $req->execute();
+
+        $data = $req->fetch(PDO::FETCH_ASSOC);
+        return $data ? new User($data) : null;
+    }
+
     // Check if the user is already connected
     public function isConnected() {
         if ($_SESSION) {
