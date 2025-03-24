@@ -23,6 +23,8 @@ $router->map("GET|POST", "/finishsignup/*", "ControllerUser#verifyUser", "verify
 $router->map("GET|POST", "/updateUser/[i:id]", "ControllerUser#update", "updateUser");
 //MY PROFILE
 $router->map("GET", "/myProfile/[i:id]", "ControllerUser#myProfile", "myProfile");
+//Buy Premium
+$router->map("POST", "/buyPremium", "ControllerUser#buyPremium", "buyPremium");
 
 //CURRENT STORIES
 $router->map("GET", "/currentStorie", "ControllerUser#currentStorie", "currentStorie");

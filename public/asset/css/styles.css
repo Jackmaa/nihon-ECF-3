@@ -134,7 +134,8 @@ body.dark-mode .resaux-sociaux a:hover path {
 body.dark-mode .hero_category_txt {
   color: var(--fc-black);
 }
-body.dark-mode textarea, body.dark-mode input {
+body.dark-mode textarea,
+body.dark-mode input {
   background-color: #f2ebe8;
 }
 body.dark-mode .general-profile h3 {
@@ -2639,7 +2640,8 @@ button:hover {
   .dashboard #modifyMangaForm label {
     margin: 0.5rem 0;
   }
-  .dashboard #modifyMangaForm input, .dashboard #modifyMangaForm textarea {
+  .dashboard #modifyMangaForm input,
+  .dashboard #modifyMangaForm textarea {
     height: 4vh;
     border-radius: 5px;
     padding: 0 5px;
@@ -3216,7 +3218,6 @@ form fieldset label input[type=checkbox] {
 }
 .kakkoii .close-popup:hover {
   background-color: #2d1ccc;
-  align-items: center;
 }
 .kakkoii h3 {
   font-family: var(--ff-bangers);
@@ -3374,6 +3375,10 @@ form fieldset label input[type=checkbox] {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   z-index: 1000;
   border-radius: 10px;
+}
+.kakkoii .popup .headkakkoiilogo > span.close-popup {
+  color: red;
+  background: none;
 }
 .kakkoii .overlay {
   display: none;

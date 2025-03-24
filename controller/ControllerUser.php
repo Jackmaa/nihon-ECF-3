@@ -287,4 +287,15 @@ class ControllerUser extends Controller {
             }
         }
     }
+
+    public function buyPremium() {
+        if (! isset($_SESSION['id_user'])) {
+            header('Location: ' . $this->router->generate('login'));
+            exit;
+        } elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $model = new ModelUser();
+            $model->buyPremium($_SESSION['id_user']);
+            header('Location: ' . $this->router->generate('myProfile', ['id' => $_SESSION['id_user']]));
+        }
+    }
 }

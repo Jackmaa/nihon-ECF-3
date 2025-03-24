@@ -190,4 +190,9 @@ class ModelUser extends Model {
 
         return $req->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function buyPremium(int $id_user) {
+        $req = $this->getDb()->prepare("UPDATE user SET premium = 1 WHERE id_user = ?");
+        $req->execute([$id_user]);
+    }
 }

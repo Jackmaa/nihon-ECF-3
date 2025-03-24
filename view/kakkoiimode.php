@@ -1,7 +1,7 @@
 <?php
     $title            = 'Nihon | Kakoii Mode';
     $meta_description = 'Activate Kakoii Mode';
-    $scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public/asset/js/base.js", "public/asset/js/header.js", "public/asset/js/kakoii.js", "public\asset\js\darkmode.js"];
+    $scripts          = ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js", "public/asset/js/base.js", "public/asset/js/header.js", "public\asset\js\darkmode.js", "public/asset/js/kakoii.js"];
     ob_start();
 ?>
 <section class="formkakoii">
@@ -45,15 +45,15 @@
                 <button class="open-popup" data-popup="popupAnnual">Buy now</button>
             </div>
         </div>
-        <!-- Popups -->
-        <div class="overlay" id="overlay"></div>
 
         <div class="popup" id="popupMonthly">
-            <div class="headkakkoiilogo"></div>
+            <div class="headkakkoiilogo">
+            <span class="close-popup">X</span>
+            </div>
             <h3>KAKKOII MONTHLY</h3>
             <p>Subscribe to the monthly plan for 9.99$</p>
             <h2>Formulaire de Paiement</h2>
-            <form action="/submit-payment" method="post">
+            <form action="/buyPremium" method="post">
                 <div class="form-group">
                     <label for="card-number"> <img src="public\asset\img\carte.svg" alt="carte"> Numéro de Carte :</label>
                     <input type="number" id="card-number" name="card-number" required>
@@ -72,11 +72,13 @@
         </div>
 
         <div class="popup" id="popupAnnual">
-            <div class="headkakkoiilogo"></div>
+            <div class="headkakkoiilogo">
+                <span class="close-popup">X</span>
+            </div>
             <h3>KAKKOII ANNUAL</h3>
             <p>Subscribe to the annual plan for 99.99$</p>
             <h2>Formulaire de Paiement</h2>
-            <form action="/submit-payment" method="post">
+            <form action="/buyPremium" method="post">
                 <div class="form-group">
                     <label for="card-number"> <img src="public\asset\img\carte.svg" alt="carte"> Numéro de Carte :</label>
                     <input type="number" id="card-number" name="card-number" required>
