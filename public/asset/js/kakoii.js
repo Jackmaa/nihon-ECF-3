@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const popup = document.getElementById(popupId);
       popup.style.display = "block";
       gsap.to(popup, {
+        zIndex: 1,
         duration: 0.5,
         opacity: 1,
         scale: 1,
@@ -29,6 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
     button.addEventListener("click", () => {
       const popup = button.closest(".popup");
       gsap.to(popup, {
+        zIndex: 0,
         duration: 0.5,
         opacity: 0,
         scale: 0.8,
