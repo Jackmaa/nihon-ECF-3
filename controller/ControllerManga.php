@@ -110,7 +110,7 @@ class ControllerManga extends Controller {
 
     // Fonction de gestion des uploads
     private function handleThumbnailUpload($file, $fileName) {
-        $targetDir     = "./public/asset/img/";
+        $targetDir     = "C:/wamp64/www/nihon/public/asset/img/";
         $fileExtension = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
         $allowedTypes  = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
 
@@ -129,7 +129,8 @@ class ControllerManga extends Controller {
 
         // Convertir et redimensionner l'image
         if (ImageProcessor::processImage($tempFilePath, $finalFilePath, 200, 300)) {
-            unlink($tempFilePath); // Supprimer l'original
+            $finalFilePath = str_replace("C:/wamp64/www/nihon/", '', $finalFilePath);
+            $finalFilePath = "./" . $finalFilePath;
             return $finalFilePath;
         }
 
