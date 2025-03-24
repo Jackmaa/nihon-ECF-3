@@ -344,7 +344,6 @@ function updateUserItems(url, title, userId) {
     .then((data) => {
       if (data.borrowed.length === 0 && data.cart.length === 0) {
         borrowedTableContainer.innerHTML = "<p>No items found.</p>";
-        return;
       }
 
       // Handle borrowed items
