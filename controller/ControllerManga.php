@@ -16,42 +16,6 @@ class ControllerManga extends Controller {
         require_once './view/home.php';
     }
 
-    // Méthode pour mettre à jour un manga
-    public function update($id) {
-        $model = new ModelManga();
-
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $thumbnailPath = null;
-
-            // Vérifier si un fichier a été uploadé
-            if (isset($_FILES['thumbnail']) && $_FILES['thumbnail']['error'] === UPLOAD_ERR_OK) {
-                $thumbnailPath = $this->handleThumbnailUpload($_FILES['thumbnail'], "manga_$id");
-                if (! $thumbnailPath) {
-                    header('Location: /?upload=error');
-                    exit();
-                }
-            } else {
-                // Si pas d'upload, récupérer l'ancien chemin de l'image
-                $manga         = $model->getManga($id);
-                $thumbnailPath = $manga['thumbnail']; // On garde l'ancienne image
-            }
-
-            // Mettre à jour les données du manga
-            $model->updateManga(
-                $id,
-                $_POST['name'],
-                $_POST['description'],
-                $thumbnailPath
-            );
-
-            header('Location: /?update=success');
-            exit();
-        }
-
-        $data = $model->getManga($id);
-        require_once './view/update.php';
-    }
-
     // Méthode pour créer un manga
     public function create() {
         $model = new ModelManga();
@@ -108,9 +72,45 @@ class ControllerManga extends Controller {
         }
     }
 
+    // Méthode pour mettre à jour un manga
+    public function update($id) {
+        $model = new ModelManga();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $thumbnailPath = null;
+
+            // Vérifier si un fichier a été uploadé
+            if (isset($_FILES['thumbnail']) && $_FILES['thumbnail']['error'] === UPLOAD_ERR_OK) {
+                $thumbnailPath = $this->handleThumbnailUpload($_FILES['thumbnail'], "manga_$id");
+                if (! $thumbnailPath) {
+                    header('Location: /?upload=error');
+                    exit();
+                }
+            } else {
+                // Si pas d'upload, récupérer l'ancien chemin de l'image
+                $manga         = $model->getManga($id);
+                $thumbnailPath = $manga['thumbnail']; // On garde l'ancienne image
+            }
+
+            // Mettre à jour les données du manga
+            $model->updateManga(
+                $id,
+                $_POST['name'],
+                $_POST['description'],
+                $thumbnailPath
+            );
+
+            header('Location: /?update=success');
+            exit();
+        }
+
+        $data = $model->getManga($id);
+        require_once './view/update.php';
+    }
+
     // Fonction de gestion des uploads
     private function handleThumbnailUpload($file, $fileName) {
-        $targetDir     = "public/asset/img/";
+        $targetDir     = "./public/asset/img/";
         $fileExtension = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
         $allowedTypes  = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
 
