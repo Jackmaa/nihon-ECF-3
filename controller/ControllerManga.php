@@ -144,10 +144,6 @@ class ControllerManga extends Controller {
         $volumes    = $model->getMangaVolumes($id);
         $review     = $model->mangaReview($id);
         $also_liked = $model->getAlsoLiked($id);
-        $revAdd     = null;
-        if (isset($_POST['review']) && isset($_POST['id_manga'])) {
-            $revAdd = $model->addReview($_POST['review'], $_POST['id_manga'], $_SESSION['id_user']);
-        }
         require_once './view/manga.php';
     }
 
@@ -255,12 +251,25 @@ class ControllerManga extends Controller {
     }
 
     //Method to add a review to a manga
-    public function addRev() {
-        $model = new ModelManga();
-        $model->addReview($_POST['review'], $_POST['id_manga'], $_SESSION['id_user']); //TELL ME SI C'EST BON
-        $id = $_POST['id_manga'];
-        header("Location:" . $this->router->generate("read", ["id" => $id]));
-        exit;
+    public function addRev($id) {
+        $model    = new ModelManga();
+        $reviewId = $model->addReview($_POST['review'], $id, $_SESSION['id_user']);
+
+        if ($reviewId) {
+                                                           // Get the full review data including user info
+            $newReview = $model->getReviewById($reviewId); // You'll need to implement this
+
+            echo json_encode([
+                'success'        => true,
+                'review'         => $newReview['review'],
+                'username'       => $newReview['username'],
+                'profile_pic'    => $newReview['profile_pic'],
+                'published_date' => $newReview['published_date'],
+            ]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Failed to add review']);
+        }
+        exit();
     }
 
     public function addVolume() {

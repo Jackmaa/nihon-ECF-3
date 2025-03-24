@@ -198,6 +198,7 @@ class ControllerUser extends Controller {
             $model->updateUser($username, $email, $password, $profilePic, $id);
             $_SESSION['profile_pic'] = $profilePic; // Update session profile picture
             echo 'Your account has been updated.';
+            header('Location: ' . $this->router->generate('myProfile', ['id' => $id]));
             exit();
         }
 

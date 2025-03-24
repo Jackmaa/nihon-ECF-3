@@ -77,6 +77,9 @@ $router->map("GET", "/getVolumes/[i:id]", "ControllerManga#getVolumes", "getVolu
 $router->map("POST", "/addVolume", "ControllerManga#addVolume", "addVolume");
 $router->map("POST", "/deleteVolume", "ControllerManga#deleteVolume", "deleteVolume");
 
+//MANGA REVIEW
+$router->map("GET|POST", "/addrev/[i:id]", "ControllerManga#addRev", "review");
+
 /*******************************||  AUTHORS  ||**************************************/
 //AUTHOR
 //READ
